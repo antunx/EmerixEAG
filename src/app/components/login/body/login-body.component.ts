@@ -327,12 +327,15 @@ export class LoginBodyComponent implements OnInit {
     let Tipoerror: string;
     let Return: string;
     let Largorequerido: number;
+    let Largorequerido2: number;
+
     let keepGoing = true;
     if (controlErrors != null) {
         Object.keys(controlErrors).forEach(keyError => {
           // console.log('Key control: ' + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
           Tipoerror = keyError;
           Largorequerido = controlErrors[keyError].requiredLength;
+          Largorequerido2 = 2;
           if (keepGoing) {
               keepGoing = false;
           }
