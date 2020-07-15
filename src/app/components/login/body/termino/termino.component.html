@@ -1,0 +1,13 @@
+<div class="dialog-content login-dialog login-tyc">
+  <h2>{{titulo}}</h2>
+  <div>
+      <h2>{{parrafo}}</h2>
+      <p>
+        {{subTitulo}}
+      </p>
+      <div *ngFor="let item of items">
+        <h2>{{ item.ItemTitle }}</h2>
+        <p>{{ item.ItemParagraph }}</p>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,2056 @@
+@charset "UTF-8";
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+  /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10+.
+ */
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+[hidden] {
+  display: none;
+}
+
+@font-face {
+  font-family: 'Maven Pro';
+  src: url("../assets/fonts/MavenPro-Bold.woff2") format("woff2"), url("../assets/fonts/MavenPro-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maven Pro';
+  src: url("../assets/fonts/MavenPro-Black.woff2") format("woff2"), url("../assets/fonts/MavenPro-Black.woff") format("woff");
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maven Pro';
+  src: url("../assets/fonts/MavenPro-Regular.woff2") format("woff2"), url("../assets/fonts/MavenPro-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+#__bs_notify__ {
+  display: none !important;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: #F6F6F5;
+}
+
+body {
+  position: relative;
+  font-family: sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.emerix-page {
+  font-family: 'Maven Pro';
+  /*
+* {
+	-webkit-overflow-scrolling: auto;
+}
+*/
+  /*
+	https://loading.io/css/
+*/
+}
+
+.emerix-page > * {
+  min-height: 100%;
+}
+
+.emerix-page html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+  .emerix-page html.desktop {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 598px) {
+  .emerix-page html.desktop {
+    font-size: 16px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .emerix-page html, .emerix-page body {
+    font-size: 16px;
+  }
+}
+
+.emerix-page *, .emerix-page *:before, .emerix-page *:after {
+  box-sizing: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.emerix-page a, .emerix-page span, .emerix-page p {
+  font-size: 1rem;
+}
+
+.emerix-page a:visited {
+  color: inherit;
+}
+
+.emerix-page ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.emerix-page ul li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.emerix-page img {
+  vertical-align: top;
+  max-width: 100%;
+}
+
+.emerix-page button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+.emerix-page button {
+  padding: 0;
+  border: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.emerix-page svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+  display: block;
+}
+
+.emerix-page svg path {
+  fill: inherit;
+}
+
+.emerix-page .relative {
+  position: relative;
+}
+
+.emerix-page .text-left {
+  text-align: left;
+}
+
+.emerix-page .text-right {
+  text-align: right;
+}
+
+.emerix-page .text-center {
+  text-align: center;
+}
+
+.emerix-page .text-uppercase {
+  text-transform: uppercase;
+}
+
+.emerix-page .flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.emerix-page .flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.emerix-page .flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.emerix-page .flex-grow {
+  flex-grow: 1;
+}
+
+.emerix-page .hidden {
+  display: none !important;
+}
+
+.emerix-page hr {
+  border: 0;
+  height: 1px;
+  background: #c1c1c1;
+}
+
+.emerix-page .pages-container {
+  background-color: #F6F6F5;
+  height: 100%;
+}
+
+.emerix-page .pages-container > * {
+  margin: 0 auto;
+}
+
+@media all and (min-width: 599px) {
+  .emerix-page .mobile-only {
+    display: none;
+  }
+}
+
+@media all and (max-width: 598px) {
+  .emerix-page .desktop-only {
+    display: none;
+  }
+  .emerix-page .flex-column-on-mobile {
+    flex-direction: column;
+  }
+}
+
+.emerix-page html:not(.debug) .debug {
+  display: none;
+}
+
+.emerix-page #debug-layer {
+  position: absolute;
+  pointer-events: none;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.emerix-page .loader {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: .75rem;
+  color: #aaa;
+}
+
+.emerix-page .loader .loading-text {
+  font-size: .75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: -1rem;
+}
+
+.emerix-page .lds-dual-ring {
+  display: inline-block;
+  width: 6rem;
+  height: 6rem;
+}
+
+.emerix-page .lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 5rem;
+  height: 5rem;
+  margin: .5rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  border: .2rem solid #aaa;
+  border-color: #f00 transparent #f00 transparent;
+  -webkit-animation: lds-dual-ring 1.2s linear infinite;
+          animation: lds-dual-ring 1.2s linear infinite;
+  mix-blend-mode: difference;
+}
+
+@-webkit-keyframes lds-dual-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.emerix-page #loading-page {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: block;
+  z-index: 300;
+  overflow: hidden;
+  background: #161616;
+}
+
+.emerix-page #loading-page .loader-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.emerix-page #loading-page .loader-bg.back {
+  -webkit-animation: loading-back .8s infinite alternate;
+          animation: loading-back .8s infinite alternate;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  z-index: 1;
+}
+
+.emerix-page #loading-page .loader-bg.front {
+  -webkit-animation: loading-blur .8s infinite alternate;
+          animation: loading-blur .8s infinite alternate;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  z-index: 2;
+}
+
+.emerix-page #loading-page .loader-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+@-webkit-keyframes loading-back {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+}
+
+@keyframes loading-back {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+}
+
+@-webkit-keyframes loading-blur {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: .2;
+  }
+  100% {
+    -webkit-transform: scale(1.4);
+            transform: scale(1.4);
+    opacity: 1;
+  }
+}
+
+@keyframes loading-blur {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: .2;
+  }
+  100% {
+    -webkit-transform: scale(1.4);
+            transform: scale(1.4);
+    opacity: 1;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .emerix-page #loading-page .loader-bg {
+    display: none;
+  }
+}
+
+.emerix-page .visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  /* added line */
+}
+
+.emerix-page .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  padding: 0;
+}
+
+.emerix-page .hide-text {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.emerix-page .box, .emerix-page .overlay .dialog-container {
+  background-color: #fff;
+  border: 1px solid rgba(152, 152, 152, 0.15);
+  padding: 2rem;
+  margin: .5rem;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.emerix-page .box hr, .emerix-page .overlay .dialog-container hr {
+  background-color: #989898;
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+@media all and (max-width: 598px) {
+  .emerix-page {
+    /*.box {
+		margin: 0;
+		border-radius: 0;
+		box-shadow: none;
+	}*/
+  }
+  .emerix-page .box, .emerix-page .overlay .dialog-container {
+    margin: 1.5rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .emerix-page .box:first-child, .emerix-page .overlay .dialog-container:first-child,
+  .emerix-page .box + .box,
+  .emerix-page .overlay .dialog-container + .box,
+  .emerix-page .overlay .box + .dialog-container,
+  .emerix-page .overlay .dialog-container + .dialog-container {
+    margin-top: 0;
+  }
+}
+
+.emerix-page form .form-group {
+  padding-bottom: 1rem;
+}
+
+.emerix-page .input-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.emerix-page .input-wrapper.select {
+  position: relative;
+}
+
+.emerix-page .input-wrapper.select:after {
+  content: url("/assets/images/ui/dropdown.svg");
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.emerix-page .input-wrapper input[type=text],
+.emerix-page .input-wrapper input[type=email],
+.emerix-page .input-wrapper input[type=search],
+.emerix-page .input-wrapper input[type=tel],
+.emerix-page .input-wrapper input[type=number],
+.emerix-page .input-wrapper input[type=url] {
+  border: 0;
+  border-bottom: 1px solid #989898;
+  line-height: 1.5rem;
+  width: 100%;
+}
+
+.emerix-page .input-wrapper textarea,
+.emerix-page .input-wrapper input[type=text],
+.emerix-page .input-wrapper input[type=url],
+.emerix-page .input-wrapper input[type=mail],
+.emerix-page .input-wrapper input[type=textarea],
+.emerix-page .input-wrapper input[type=number],
+.emerix-page .input-wrapper select {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #8569b4;
+  line-height: 1.625rem;
+}
+
+.emerix-page .input-wrapper textarea, .emerix-page .input-wrapper textarea:active, .emerix-page .input-wrapper textarea:active,
+.emerix-page .input-wrapper input[type=text],
+.emerix-page .input-wrapper input[type=text]:active,
+.emerix-page .input-wrapper input[type=text]:active,
+.emerix-page .input-wrapper input[type=url],
+.emerix-page .input-wrapper input[type=url]:active,
+.emerix-page .input-wrapper input[type=url]:active,
+.emerix-page .input-wrapper input[type=mail],
+.emerix-page .input-wrapper input[type=mail]:active,
+.emerix-page .input-wrapper input[type=mail]:active,
+.emerix-page .input-wrapper input[type=textarea],
+.emerix-page .input-wrapper input[type=textarea]:active,
+.emerix-page .input-wrapper input[type=textarea]:active,
+.emerix-page .input-wrapper input[type=number],
+.emerix-page .input-wrapper input[type=number]:active,
+.emerix-page .input-wrapper input[type=number]:active,
+.emerix-page .input-wrapper select,
+.emerix-page .input-wrapper select:active,
+.emerix-page .input-wrapper select:active {
+  outline: none;
+}
+
+.emerix-page .input-wrapper input[type=number] {
+  -moz-appearance: textfield;
+  /* Firefox */
+}
+
+.emerix-page .input-wrapper input[type=number]:-moz-inner-spin-button,
+.emerix-page .input-wrapper input[type=number]:-moz-outer-spin-button,
+.emerix-page .input-wrapper input[type=number]:-webkit-inner-spin-button,
+.emerix-page .input-wrapper input[type=number]:-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.emerix-page .input-wrapper select {
+  height: 1.25rem;
+  padding: calc((1.5rem - 1rem) / 2) 0;
+  padding-right: 1rem;
+  -webkit-appearance: none;
+  font-family: inherit;
+}
+
+.emerix-page .input-wrapper select option {
+  font-family: sans-serif;
+}
+
+.emerix-page .input-wrapper input[type=radio]:checked ~ .input-fake-radio .input-caret {
+  opacity: 1;
+}
+
+.emerix-page .input-wrapper .input-fake-radio {
+  display: inline-block;
+  width: .85rem;
+  height: .85rem;
+  border: 1px solid #000;
+  border-radius: .85rem;
+  vertical-align: middle;
+  position: relative;
+  margin-right: .5rem;
+  pointer-events: none;
+}
+
+.emerix-page .input-wrapper .input-fake-radio .input-caret {
+  opacity: 0;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  border-radius: 1rem;
+  background-color: #8569b4;
+  transition: opacity 0.25s ease;
+}
+
+.emerix-page .input-wrapper .input-fake-radio + label {
+  padding-left: 2rem;
+  margin-left: -2rem;
+}
+
+.emerix-page .input-wrapper input[type=checkbox]:checked ~ .input-fake-checkbox .input-caret {
+  opacity: 1;
+}
+
+.emerix-page .input-wrapper .input-fake-checkbox {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid #000;
+  border-radius: 5px;
+  vertical-align: middle;
+  position: relative;
+  margin-right: .5rem;
+  pointer-events: none;
+}
+
+.emerix-page .input-wrapper .input-fake-checkbox .input-caret {
+  opacity: 0;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  background-color: #8569b4;
+  transition: opacity 0.25s ease;
+}
+
+.emerix-page .input-wrapper .input-fake-checkbox + label {
+  padding-left: 2rem;
+  margin-left: -2rem;
+}
+
+.emerix-page .input-wrapper .input-error-icon {
+  opacity: 0;
+  transition: all 0.25s ease;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  width: .9rem;
+  height: .9rem;
+  background-image: url("/assets/images/ui/icono_error.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.emerix-page .input-wrapper .input-error-popup {
+  opacity: 0;
+  transition: all 0.25s ease;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: .25rem;
+  color: #fff;
+  padding: 0.625rem;
+  background-color: rgba(255, 106, 41, 0.77);
+  white-space: nowrap;
+}
+
+.emerix-page .input-wrapper .input-error-popup:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: .625rem;
+  width: 0;
+  height: 0;
+  border-top: 0.625rem solid rgba(255, 106, 41, 0.77);
+  border-left: .625rem solid transparent;
+}
+
+.emerix-page .input-wrapper.error .input-error-icon,
+.emerix-page .input-wrapper.error .input-error-popup {
+  opacity: 1;
+}
+
+@media all and (max-width: 598px) {
+  .emerix-page .input-wrapper select {
+    height: 1.5rem;
+    padding: .35rem 0;
+    -webkit-appearance: none;
+  }
+}
+
+.emerix-page .breadcrumb-container .title {
+  margin-right: 1rem;
+}
+
+.emerix-page .breadcrumb-container ul {
+  position: relative;
+  top: 6px;
+}
+
+.emerix-page .breadcrumb-container .breadcrumb {
+  position: relative;
+  background-color: #c1c1c1;
+  margin: 0 1rem;
+  border-radius: 1rem;
+  position: relative;
+  width: .75rem;
+  height: .75rem;
+  top: -.3rem;
+  font-size: 0;
+  color: transparent;
+}
+
+.emerix-page .breadcrumb-container .breadcrumb:not(:first-child):before, .emerix-page .breadcrumb-container .breadcrumb:not(:last-child):after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  width: 1rem;
+  height: 2px;
+  background-color: #c1c1c1;
+}
+
+.emerix-page .breadcrumb-container .breadcrumb:before {
+  right: 100%;
+}
+
+.emerix-page .breadcrumb-container .breadcrumb:after {
+  left: 100%;
+}
+
+.emerix-page .breadcrumb-container .breadcrumb:first-child {
+  margin-left: 0;
+}
+
+.emerix-page .breadcrumb-container .breadcrumb:last-child {
+  margin-right: 0;
+}
+
+.emerix-page .breadcrumb-container .breadcrumb.active {
+  background-color: #FF6A29;
+}
+
+.emerix-page .breadcrumb-container .breadcrumb.active:before, .emerix-page .breadcrumb-container .breadcrumb.active:after {
+  background-color: #FF6A29;
+}
+
+.emerix-page .breadcrumb-container .breadcrumb.last-of-type:after {
+  background-color: #c1c1c1;
+}
+
+.emerix-page .btn {
+  background: #8569b4;
+  border-radius: 1.75rem;
+  border: 1px solid transparent;
+  box-shadow: 0px 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+  margin: .5rem;
+  color: #fff;
+  display: inline-block;
+  padding: 1rem 3rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+}
+
+.emerix-page .btn:hover {
+  background-color: #A388D1;
+  outline: none;
+}
+
+.emerix-page .btn:active {
+  background-color: #4D2378;
+  outline: none;
+}
+
+.emerix-page .btn.secondary {
+  background: transparent;
+  box-shadow: none;
+  color: #8569b4;
+}
+
+.emerix-page .btn.secondary:hover, .emerix-page .btn.secondary.hover {
+  border: 1px solid #A388D1;
+  color: #A388D1;
+}
+
+.emerix-page .btn.secondary:active {
+  background-color: #4D2378;
+  border-color: #4D2378;
+  color: #fff;
+}
+
+.emerix-page .btn a,
+.emerix-page .btn a:visited,
+.emerix-page .btn a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media all and (max-width: 598px) {
+  .emerix-page .btn {
+    padding: 1rem 1.5rem;
+  }
+}
+
+.emerix-page .dropdown-trigger {
+  clip: rect(1px 1px 1px 1px);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.emerix-page .dropdown-trigger:checked ~ .dropdown-target {
+  display: block;
+  max-height: 100vh;
+}
+
+.emerix-page .dropdown-target {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.emerix-page .dropdown-title {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+.emerix-page .dropdown-title:after {
+  content: '↓';
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.emerix-page .dropdown-trigger:checked + .dropdown-title:after {
+  content: '↑';
+}
+
+.emerix-page .box, .emerix-page .overlay .dialog-container {
+  background-color: #fff;
+  border: 1px solid rgba(152, 152, 152, 0.15);
+  padding: 2rem;
+  margin: .5rem;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.emerix-page .box hr, .emerix-page .overlay .dialog-container hr {
+  background-color: #989898;
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+@media all and (max-width: 598px) {
+  .emerix-page {
+    /*.box {
+		margin: 0;
+		border-radius: 0;
+		box-shadow: none;
+	}*/
+  }
+  .emerix-page .box, .emerix-page .overlay .dialog-container {
+    margin: 1.5rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .emerix-page .box:first-child, .emerix-page .overlay .dialog-container:first-child,
+  .emerix-page .box + .box,
+  .emerix-page .overlay .dialog-container + .box,
+  .emerix-page .overlay .box + .dialog-container,
+  .emerix-page .overlay .dialog-container + .dialog-container {
+    margin-top: 0;
+  }
+}
+
+.emerix-page .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+.emerix-page .overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.emerix-page .overlay .close-btn {
+  position: absolute;
+  padding: 1rem;
+  cursor: pointer;
+  bottom: 100%;
+  right: 1rem;
+  z-index: 10;
+}
+
+.emerix-page .overlay .dialog-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.emerix-page .logo {
+  padding: 2rem;
+  padding-top: 0;
+}
+
+.emerix-page .list-view .list-view-title {
+  position: relative;
+}
+
+.emerix-page .list-view .list-view-title .list-view-add {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+}
+
+.emerix-page .main-navigation {
+  width: 17.5em;
+}
+
+.emerix-page .main-navigation .mobile-menu-toggle,
+.emerix-page .main-navigation .mobile-menu-toggle-label {
+  display: none;
+}
+
+.emerix-page .main-navigation .navigation-item {
+  position: relative;
+}
+
+.emerix-page .main-navigation .navigation-item a {
+  text-decoration: none;
+  color: #000;
+}
+
+.emerix-page .main-navigation .navigation-item.active:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3rem;
+  width: 4px;
+  background-color: #8569b4;
+}
+
+.emerix-page .main-navigation .navigation-item .item {
+  padding: 1rem;
+  padding-left: 0;
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.emerix-page .main-navigation .navigation-item .item.active * {
+  color: #8569b4;
+}
+
+.emerix-page .main-navigation .navigation-item .item:hover {
+  background-color: #F6F6F5;
+}
+
+.emerix-page .main-navigation .navigation-item > .item {
+  display: block;
+}
+
+.emerix-page .main-navigation .navigation-item > .item:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 1rem;
+  height: 1rem;
+  background-image: var(--icon);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.emerix-page .main-navigation .navigation-item .dropdown-title {
+  width: auto;
+}
+
+.emerix-page .main-navigation .navigation-item .dropdown-trigger + .dropdown-title:after {
+  content: "";
+  background-image: url(/assets/images/ui/dropdown.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1rem;
+  height: .75rem;
+  top: 50%;
+  right: 2rem;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  display: block;
+}
+
+.emerix-page .main-navigation .navigation-item .dropdown-trigger:checked + .dropdown-title:after {
+  -webkit-transform: translate(0, -50%) scale(-1);
+          transform: translate(0, -50%) scale(-1);
+}
+
+@media all and (max-width: 598px) {
+  .emerix-page .main-navigation {
+    position: absolute;
+    top: 2.4rem;
+    left: 2rem;
+    z-index: 1000;
+  }
+  .emerix-page .main-navigation .mobile-menu-toggle,
+  .emerix-page .main-navigation .mobile-menu-toggle-label {
+    display: block;
+  }
+  .emerix-page .main-navigation .mobile-menu-toggle-label {
+    cursor: pointer;
+  }
+  .emerix-page .main-navigation .mobile-menu-toggle-label img {
+    width: 20px;
+  }
+  .emerix-page .main-navigation .navigation-container {
+    background-color: #F6F6F5;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+  .emerix-page .main-navigation .mobile-menu-toggle:checked ~ .navigation-container {
+    max-height: 100vh;
+  }
+}
+
+.emerix-page .slider-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.emerix-page .slider[data-enabled=true] {
+  display: flex;
+  flex-direction: row;
+}
+
+.emerix-page .slider .slide {
+  overflow: hidden;
+}
+
+.emerix-page .slider-controller {
+  width: 100%;
+  display: none;
+}
+
+.emerix-page .slider-controller ul {
+  text-align: center;
+  padding: 0;
+}
+
+.emerix-page .slider-controller li {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  font-size: 0;
+  color: transparent;
+  border: 1px solid #8d8f91;
+  border-radius: 100px;
+  margin: 0 3px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.emerix-page .slider-controller li a {
+  display: block;
+  width: 10px;
+  height: 10px;
+  font-size: 0;
+}
+
+.emerix-page .slider-controller li.active {
+  background-color: #0000c1;
+}
+
+.emerix-page .slider-arrows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: none;
+}
+
+.emerix-page .slider-arrows a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.emerix-page .slider-arrows a.next-slide {
+  right: 0;
+  left: auto;
+}
+
+.emerix-page .table-container {
+  width: calc(100% - 1.25rem);
+}
+
+@media all and (min-width: 599px) {
+  .emerix-page .table-container {
+    background-color: #fff;
+    border: 1px solid rgba(152, 152, 152, 0.15);
+    margin: .5rem;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.emerix-page .table-container .table {
+  display: flex;
+  padding: 0;
+}
+
+.emerix-page .table-container .table tbody {
+  width: 100%;
+}
+
+.emerix-page .table-container .table tr {
+  display: flex;
+  padding: 1rem;
+  flex-direction: row;
+}
+
+.emerix-page .table-container .table td {
+  flex-grow: 1;
+}
+
+.emerix-page .table-container .table-header {
+  padding: 1rem;
+  font-weight: bold;
+  color: #8569b4;
+  background-color: #F6F6F5;
+}
+
+@media all and (max-width: 598px) {
+  .emerix-page .table-container .table tr:not(.table-header) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.emerix-page .topbar {
+  padding: 1rem;
+  background-color: #F6F6F5;
+  position: relative;
+}
+
+.emerix-page .topbar h1 {
+  font-size: 1.375rem;
+  padding-left: .5rem;
+  color: #8569b4;
+}
+
+.emerix-page .topbar:before {
+  content: "";
+  background-color: #8569b4;
+  width: 0.375rem;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.emerix-page .topbar .username {
+  color: #8569b4;
+}
+
+.emerix-page .topbar .notifications-menu {
+  position: relative;
+  margin-left: 4rem;
+}
+
+.emerix-page .topbar .notifications-menu .notifications-alert {
+  position: absolute;
+  top: -.5rem;
+  right: -.5rem;
+  background-color: #FF6A29;
+  width: .5rem;
+  height: .5rem;
+  border-radius: 1rem;
+}
+
+.emerix-page .topbar .notifications-menu .dropdown-title {
+  width: auto;
+}
+
+.emerix-page .topbar .notifications-menu .dropdown-title:after {
+  display: none;
+}
+
+.emerix-page .topbar .notifications-menu .dropdown-target {
+  position: absolute;
+  top: 100%;
+  margin-top: .5rem;
+  right: 0;
+  min-width: 10rem;
+  background-color: #F6F6F5;
+}
+
+.emerix-page .topbar .notifications-menu .dropdown-target ul {
+  padding: .5rem;
+  border: 1px solid #c1c1c1;
+}
+
+.emerix-page .topbar .notifications-menu .dropdown-target ul li {
+  margin: 1rem 0;
+}
+
+@media all and (max-width: 598px) {
+  .emerix-page .topbar > * {
+    margin-left: 3rem;
+  }
+  .emerix-page .topbar:before {
+    display: none;
+  }
+  .emerix-page .topbar .username {
+    display: none;
+  }
+}
+
+.emerix-page .text-xxlarge {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.emerix-page .text-xlarge {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.emerix-page .text-large {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.emerix-page .text-nowrap {
+  white-space: nowrap;
+}
+
+.emerix-page .text-silver {
+  color: #989898;
+}
+
+.emerix-page h1 {
+  color: #000;
+}
+
+.emerix-page h2, .emerix-page h3, .emerix-page h4, .emerix-page h5 {
+  color: #8569b4;
+  padding-bottom: 1rem;
+}
+
+.emerix-page h2 {
+  font-size: 1.375rem;
+  font-weight: bold;
+}
+
+.emerix-page .page-login {
+  height: 100%;
+  /*.phone-list {
+        max-height: 10rem;
+        overflow: scroll;
+    }*/
+}
+
+.emerix-page .page-login .form-container {
+  width: 55%;
+}
+
+.emerix-page .page-login .form {
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+}
+
+.emerix-page .page-login .bg-container {
+  width: 45%;
+  height: 100%;
+  background-image: url("https://www.emerix.com.ar/wp-content/uploads/2020/07/solucion-eficaz.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: -1rem;
+}
+
+.emerix-page .page-login .login-content {
+  height: calc(100% - 2rem);
+}
+
+.emerix-page .page-login .login-content > :first-child {
+  margin-bottom: auto;
+}
+
+.emerix-page .page-login .slide-page {
+  overflow: hidden;
+}
+
+.emerix-page .page-login .login-dnitype-container {
+  width: 33.33%;
+  margin-right: 2rem;
+}
+
+.emerix-page .page-login .login-method input:checked ~ label {
+  border: 1px solid #8569b4;
+}
+
+.emerix-page .page-login .login-method label {
+  order: -1;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  margin: 1rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  width: 100%;
+  text-align: center;
+}
+
+.emerix-page .page-login .login-method label img {
+  vertical-align: middle;
+  margin-right: .5rem;
+}
+
+.emerix-page .page-login select {
+  width: 100%;
+}
+
+.emerix-page .page-login .input-wrapper.radio {
+  margin-bottom: 1rem;
+}
+
+.emerix-page .page-login button + button {
+  margin-left: 1rem;
+}
+
+@media all and (max-width: 598px) {
+  .emerix-page .page-login .box, .emerix-page .page-login .overlay .dialog-container, .emerix-page .overlay .page-login .dialog-container {
+    box-shadow: none;
+    border-radius: 0;
+    border: 0;
+  }
+  .emerix-page .page-login .form {
+    margin-bottom: 0;
+  }
+  .emerix-page .page-login .form-container {
+    width: 100%;
+    padding: 1rem;
+  }
+  .emerix-page .page-login .bg-container {
+    display: none;
+  }
+  .emerix-page .page-login .login-method label {
+    padding: 1.5rem .5rem;
+  }
+  .emerix-page .page-login .login-content {
+    overflow: hidden;
+  }
+}
+
+.emerix-page .page-home {
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.emerix-page .page-home .payment-plans,
+.emerix-page .page-home .promises-latest {
+  margin: 1rem -2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #F6F6F5;
+}
+
+.emerix-page .page-home .payment-plans p,
+.emerix-page .page-home .promises-latest p {
+  margin-top: 0.25;
+  margin-bottom: 0;
+}
+
+.emerix-page .page-home .plan-date,
+.emerix-page .page-home .promise-date {
+  color: #989898;
+}
+
+.emerix-page .page-home .promises-latest:hover {
+  background-color: #F6F6F5;
+  color: #8569b4;
+}
+
+.emerix-page .page-home hr {
+  background-color: #F6F6F5;
+}
+
+.emerix-page .page-home .bullet {
+  display: inline-block;
+  vertical-align: middle;
+  width: .25rem;
+  height: .25rem;
+  border-radius: 1rem;
+  border: .4rem solid;
+  margin-right: .5rem;
+}
+
+.emerix-page .page-home .bullet.green {
+  border-color: #83DF63;
+}
+
+.emerix-page .page-home .bullet.yellow {
+  border-color: #FFE600;
+}
+
+.emerix-page .page-home .bullet.red {
+  border-color: #83DF63;
+}
+
+.emerix-page .page-home .wide-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  position: relative;
+  padding-top: .5rem;
+  color: #000;
+}
+
+.emerix-page .page-home .wide-link:after {
+  content: '>';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.emerix-page .page-home .list-view-add {
+  width: 2rem;
+  height: 2rem;
+  background-image: url("/assets/images/ui/btn-agregar.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.emerix-page .page-home .list-view-add:hover {
+  background-image: url("/assets/images/ui/btn-agregar-active.svg");
+}
+
+.emerix-page .page-invoice {
+  padding: 1rem;
+}
+
+.emerix-page .page-invoice .table tr:not(.table-header) {
+  cursor: pointer;
+}
+
+.emerix-page .page-invoice .table tr:not(.table-header):hover * {
+  color: #8569b4;
+}
+
+@media all and (minn-width: 599px) {
+  .emerix-page .page-invoice .table tr td:nth-child(4) {
+    text-align: right;
+  }
+  .emerix-page .page-invoice .table tr td:nth-child(5) {
+    text-align: center;
+  }
+  .emerix-page .page-invoice .table tr td:last-child {
+    text-align: right;
+  }
+}
+
+.emerix-page #invoice-sidebar {
+  padding: 0;
+  max-width: 320px;
+  left: auto;
+  right: 0;
+}
+
+.emerix-page #invoice-sidebar.active .sidebar {
+  width: 100%;
+}
+
+.emerix-page #invoice-sidebar.active .sidebar > div {
+  padding: 1rem;
+}
+
+.emerix-page #invoice-sidebar .dialog-container {
+  position: static;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-transform: none;
+          transform: none;
+}
+
+.emerix-page #invoice-sidebar .close-btn {
+  top: 0;
+  right: 0;
+  bottom: auto;
+}
+
+.emerix-page #invoice-sidebar .close-btn img {
+  display: block;
+  width: 1.188rem;
+  height: 1.188rem;
+}
+
+.emerix-page #invoice-sidebar .sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: #F6F6F5;
+  width: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.emerix-page .page-deals {
+  padding: 1rem;
+}
+
+.emerix-page .page-deals .table .input-wrapper {
+  margin-bottom: 0;
+}
+
+.emerix-page .page-deals .table.disabled {
+  color: #989898;
+}
+
+.emerix-page .page-deals .table.disabled tr.table-header {
+  color: #989898;
+  background-color: transparent;
+}
+
+.emerix-page .page-deals .table tr:not(.table-header) {
+  /*cursor: pointer;
+
+			&:hover * {
+				color: $violet;
+            }*/
+}
+
+.emerix-page .page-deals .table tr td:nth-child(4), .emerix-page .page-deals .table tr td:nth-child(5) {
+  text-align: right;
+}
+
+.emerix-page .page-deals .table .table-input input {
+  text-align: right;
+  width: auto;
+}
+
+.emerix-page .page-deals .deal-mini {
+  max-width: 25em;
+  margin-left: auto;
+  padding-left: 1.5rem;
+}
+
+.emerix-page .page-deals .deal-mini input:checked ~ label {
+  color: #8569b4;
+}
+
+.emerix-page .page-deals .deal-mini input:checked ~ label .box, .emerix-page .page-deals .deal-mini input:checked ~ label .overlay .dialog-container, .emerix-page .overlay .page-deals .deal-mini input:checked ~ label .dialog-container {
+  border: 1px solid #8569b4;
+}
+
+.emerix-page .page-deals .deal-mini .text-right input {
+  text-align: right;
+}
+
+.emerix-page .page-deals .deal-mini .input-fake-radio {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.emerix-page .page-deals .deal-mini .payment-title {
+  max-width: 5.375em;
+}
+
+.emerix-page .page-deals .deal-mini label {
+  padding: 0;
+  margin: 0;
+}
+
+.emerix-page #deals-sidebar {
+  padding: 0;
+}
+
+.emerix-page #deals-sidebar.active .sidebar {
+  width: 320px;
+  padding: 1rem;
+}
+
+.emerix-page #deals-sidebar .dialog-container {
+  position: static;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-transform: none;
+          transform: none;
+}
+
+.emerix-page #deals-sidebar .close-btn {
+  top: 0;
+  right: 0;
+  bottom: auto;
+}
+
+.emerix-page #deals-sidebar .close-btn img {
+  display: block;
+  width: 1.188rem;
+  height: 1.188rem;
+}
+
+.emerix-page #deals-sidebar .sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-color: #F6F6F5;
+  width: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.emerix-page .page-pay {
+  padding: 1rem;
+}
+
+.emerix-page .page-pay .table .input-wrapper {
+  margin-bottom: 0;
+}
+
+.emerix-page .page-pay .table.disabled {
+  color: #989898;
+}
+
+.emerix-page .page-pay .table.disabled tr.table-header {
+  color: #989898;
+  background-color: transparent;
+}
+
+.emerix-page .page-pay .table tr:not(.table-header) {
+  /*cursor: pointer;
+
+			&:hover * {
+				color: $violet;
+            }*/
+}
+
+.emerix-page .page-pay .pay-mini {
+  max-width: 25em;
+  margin-left: auto;
+  padding-left: 1.5rem;
+}
+
+.emerix-page .page-pay .pay-mini input:checked ~ label {
+  color: #8569b4;
+}
+
+.emerix-page .page-pay .pay-mini input:checked ~ label .box, .emerix-page .page-pay .pay-mini input:checked ~ label .overlay .dialog-container, .emerix-page .overlay .page-pay .pay-mini input:checked ~ label .dialog-container {
+  border: 1px solid #8569b4;
+}
+
+.emerix-page .page-pay .pay-mini .input-fake-radio {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.emerix-page .page-pay .pay-mini .payment-title {
+  max-width: 5.375em;
+}
+
+.emerix-page .page-pay .pay-mini label {
+  padding: 0;
+  margin: 0;
+}
+
+.emerix-page .page-pay.pay-first .table-1 tr td:nth-child(2), .emerix-page .page-pay.pay-first .table-1 tr td:nth-child(3), .emerix-page .page-pay.pay-first .table-1 tr td:nth-child(4), .emerix-page .page-pay.pay-first .table-1 tr td:nth-child(5), .emerix-page .page-pay.pay-first .table-1 tr td:nth-child(6) {
+  text-align: right;
+}
+
+.emerix-page .page-pay.pay-first .table-2 tr td:nth-child(2), .emerix-page .page-pay.pay-first .table-2 tr td:nth-child(3), .emerix-page .page-pay.pay-first .table-2 tr td:nth-child(4),
+.emerix-page .page-pay.pay-first .table-3 tr td:nth-child(2),
+.emerix-page .page-pay.pay-first .table-3 tr td:nth-child(3),
+.emerix-page .page-pay.pay-first .table-3 tr td:nth-child(4) {
+  text-align: right;
+}
+
+.emerix-page .page-pay.pay-second .table-1 tr td:nth-child(2), .emerix-page .page-pay.pay-second .table-1 tr td:nth-child(3), .emerix-page .page-pay.pay-second .table-1 tr td:nth-child(4), .emerix-page .page-pay.pay-second .table-1 tr td:nth-child(5), .emerix-page .page-pay.pay-second .table-1 tr td:nth-child(6) {
+  text-align: right;
+}
+
+.emerix-page .page-pay.pay-second .table-2 tr td:nth-child(2), .emerix-page .page-pay.pay-second .table-2 tr td:nth-child(3), .emerix-page .page-pay.pay-second .table-2 tr td:nth-child(4),
+.emerix-page .page-pay.pay-second .table-3 tr td:nth-child(2),
+.emerix-page .page-pay.pay-second .table-3 tr td:nth-child(3),
+.emerix-page .page-pay.pay-second .table-3 tr td:nth-child(4) {
+  text-align: right;
+}

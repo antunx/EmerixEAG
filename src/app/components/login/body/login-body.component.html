@@ -1,0 +1,218 @@
+<!-- {{ loginForm.value | json }} -->
+<div class="flex-column flex-grow" style="display:block; height: 100%;">
+  <div class="pages-container">
+      <section class="page-login">
+        <div class="flex-row flex-center flex-grow" style="height: 100%">
+          <div class="form-container">
+            <form [formGroup]="loginForm" class="form flex-column box">
+              <div *ngIf="loginAction===1" class="slide-page">
+                  <div class="login-content flex flex-column">
+                    <div>
+                        <div class="flex-row flex-center">
+                          <h1 class="visually-hidden">Emerix Login</h1>
+                          <img class="logo" src="assets/images/logos/emerix.png" alt="">
+                        </div>
+                        <div class="form-group flex-row">
+                          <div class="login-dnitype-container">
+                              <div [ngClass] = "!(tipoDoc.invalid && (tipoDoc.dirty || tipoDoc.touched)) ? 'input-wrapper select' : 'input-wrapper select error'" >
+                                <select formControlName="tipoDoc" id="login_dni_type" required>
+                                  <option *ngFor="let tipo_doc of tiposDocumento" [value]="tipo_doc.IdTypeDoc">
+                                    {{tipo_doc.CodeTypeDoc}}
+                                  </option>
+                                </select>
+
+                                <div class="input-error-icon" role="alert"></div>
+                                <div class="input-error-popup" role="alert">{{ 'Traduct.requerido' | translate }}</div>
+                              </div>
+                          </div>
+
+                          <div class="flex-grow">
+                            <div [ngClass] = "!(numero.invalid && (numero.dirty || numero.touched)) ? 'input-wrapper text' : 'input-wrapper text error'">
+                              <input id="numero" type="text" class="input-elem" placeholder="Número" formControlName="numero" (keypress)="SoloNumeros($event)">
+                              <div *ngIf="numero.invalid && (numero.dirty || numero.touched)">
+                                <div class="input-error-icon" role="alert"></div>
+                                <div class="input-error-popup" role="alert">{{ 'Traduct.numero_requerido' | translate }}</div>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="visually-hidden">
+                          <div class="form-group">
+                            <div class="input-wrapper select">
+                                <select id="login_genre" required>
+                                  <option selected="selected" class="placeholder" >Género</option>
+                                  <option value="Masculino">Masculino</option>
+                                  <option value="Femenino">Femenino</option>
+                                  <option value="Otro">Otro</option>
+                                </select>
+                                <div class="input-error-icon" role="alert"></div>
+                                <div class="input-error-popup" role="alert">{{ 'Traduct.requerido' | translate }}</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <p>{{ 'Traduct.elegi_como_recibir' | translate }} <strong>{{ 'Traduct.clave_acceso' | translate }}</strong></p>
+                          <div class="flex-row flex-center login-method">
+
+                              <div class="input-wrapper radio flex-center flex-column">
+                                <input id="login-method-call" type="radio" formControlName="medioEnvio" value="T" class="input-elem visually-hidden" name="medioEnvio">
+                                  <div class="input-fake-radio">
+                                    <span class="input-caret"></span>
+                                  </div>
+                                  <label for="login-method-call" (click)="TildarMedioEnvio('T')"><img src="assets/images/ui/sms.svg">Sms</label>
+                                <div class="input-error-icon" role="alert"></div>
+                                <div class="input-error-popup" role="alert">{{ 'Traduct.numero_incorrecto' | translate }}</div>
+                              </div>
+
+                              <div class="input-wrapper radio flex-center flex-column">
+                                <input id="login-method-sms" type="radio" formControlName="medioEnvio" value="M" class="input-elem visually-hidden" name="medioEnvio">
+                                  <div class="input-fake-radio">
+                                    <span class="input-caret"></span>
+                                  </div>
+                                  <label for="login-method-sms" (click)="TildarMedioEnvio('M')"><img src="assets/images/ui/mail.svg">Mail</label>
+                                <div class="input-error-icon" role="alert"></div>
+                                <div class="input-error-popup" role="alert">{{ 'Traduct.numero_incorrecto' | translate }}</div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="flex-row flex-center">
+                        <button type="button" class="btn" data-direction="next" (click)="Login(loginForm.value)" [disabled]='!(loginForm.valid &&  SeleccionoMedioEnvio)'>{{ 'Traduct.siguiente' | translate }}</button>
+                    </div>
+                  </div>
+              </div>
+
+
+              <div *ngIf="loginAction===2" class="slide-page">
+                  <div class="login-content flex flex-column">
+                    <div>
+                        <div class="flex-row flex-center">
+                          <h1 class="visually-hidden">Emerix Login</h1>
+                          <img class="logo" src="assets/images/logos/emerix.png" alt="">
+                        </div>
+                        <div class="form-group">
+                          <p><strong>{{ 'Traduct.pregunta_clave' | translate }}</strong></p>
+                        </div>
+
+                         <div *ngIf="mostrarTelefonos">
+                          <div class="form-group flex-column phone-list">
+                              <div>
+                                <div *ngFor="let telefono of telefonos; let i = index" class="input-wrapper radio">
+                                    <input id="{{i}}" type="radio" class="input-elem visually-hidden" name="login_phone" Value="telefono.PhoneValue" (click)="SeleccionMedio('T',telefono)">
+                                      <div class="input-fake-radio">
+                                        <span class="input-caret"></span>
+                                      </div>
+                                      <label for="{{i}}">{{telefono.Phone}}</label>
+                                    <div class="input-error-icon" role="alert"></div>
+                                    <div class="input-error-popup" role="alert">{{ 'Traduct.requerido' | translate }}</div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div *ngIf="mostrarMails">
+                          <div class="form-group flex-column phone-list">
+                            <div>
+                              <div *ngFor="let mail of mails; let i = index" class="input-wrapper radio">
+                                <input id="{{i}}" type="radio" class="input-elem visually-hidden" name="login_phone" Value="mail.MailValue" (click)="SeleccionMedio('M',mail)">
+                                  <div class="input-fake-radio">
+                                    <span class="input-caret"></span>
+                                  </div>
+                                  <label for="{{i}}">{{mail.Mail}}</label>
+                                <div class="input-error-icon" role="alert"></div>
+                                <div class="input-error-popup" role="alert">{{ 'Traduct.requerido' | translate }}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="form-group flex-row flex-center">
+                        <button type="button" class="btn secondary" data-direction="back" (click)="Volver(1)">Volver</button>
+                        <button type="button" class="btn" data-direction="next" (click)="EnviarCodigo()" [disabled]='!SeleccionoCanal || loadingGenerar'>{{ 'Traduct.enviar_token' | translate }}</button>
+                    </div>
+                    <div class="visually-hidden">
+                      <a href="#" class="text-silver">{{ 'Traduct.recibir_otro_tel' | translate }}</a>
+                    </div>
+                  </div>
+              </div>
+
+              <form [formGroup]="loginFormIngreso">
+                <div class="slide-page">
+                    <div *ngIf="loginAction===3" class="login-content flex flex-column">
+                      <div>
+                          <div class="flex-row flex-center">
+                            <h1 class="visually-hidden">Emerix Login</h1>
+                            <img class="logo" src="assets/images/logos/emerix.png" alt="">
+                          </div>
+                          <div class="form-group">
+                            <p><strong>{{ 'Traduct.ingrese_token' | translate }}</strong></p>
+                            <div class="input-wrapper text">
+                                <input id="login_key" type="text" class="input-elem" formControlName="codigo">
+
+                                <div class="input-error-icon" role="alert"></div>
+                                <div class="input-error-popup" role="alert">{{ 'Traduct.requerido' | translate }}</div>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="text-right">
+                                <a [routerLink]="" (click)="InconvenienteCodigo()" class="text-silver" data-dialog-target="login-2">{{ 'Traduct.inconvenientes_token' | translate }} </a>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="input-wrapper checkbox">
+                               <input type="checkbox" class="input-elem visually-hidden" id="AceptaTerminos" (click)="AceptoTerminos()">
+                               <div class="input-fake-checkbox">
+                                  <span class="input-caret"></span>
+                               </div>
+                               <label for="AceptaTerminos">Acepto los <a [routerLink]="" (click)="TerminosCondiciones()"  data-dialog-target="login-tyc">{{ 'Traduct.terminos_condiciones' | translate }}</a></label>
+                               <div class="input-error-icon" role="alert"></div>
+                               <div class="input-error-popup" role="alert">{{ 'Traduct.requerido' | translate }}</div>
+                            </div>
+                         </div>
+
+                      </div>
+                      <div class="flex-row flex-center">
+                          <button type="button" class="btn secondary" data-direction="back" (click)="Volver(2)">Volver</button>
+                          <button type="button" class="btn" data-direction="next" [disabled]='!(loginFormIngreso.valid && AceptaTerminos)' (click)="IngresarPortal()">{{ 'Traduct.ingresar' | translate }}</button>
+                      </div>
+                    </div>
+                </div>
+              </form>
+            </form>
+          </div>
+          <div class="bg-container">
+          </div>
+        </div>
+        <!-- popup -->
+        <div class="overlay">
+          <div *ngIf="popupNro>0" class="dialog-container" role="dialog">
+              <a class="close-btn" (click)="cerrarPopup()">
+                  <img src="assets/images/ui/close-btn.svg" alt="Close">
+              </a>
+              <div class="dialog-content login-dialog">
+                  <div>
+                    <div *ngIf="popupNro===1">
+                      <app-consulta></app-consulta>
+                    </div>
+                    <div *ngIf="popupNro===2">
+                      <app-termino></app-termino>
+                    </div>
+                    <div *ngIf="popupNro===3">
+                      <div class="flex-column flex-center">
+                        <div><img width="70px" height="70px" src="assets/images/ui/exclamation-triangle-solid.svg" alt=""></div>
+                        <div class="text-center">
+                          <p>{{ MensajeAlert }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <!-- popup -->
+      </section>
+  </div>
+</div>

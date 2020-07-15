@@ -1,13 +1,80 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>EmerixEAG</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+	<head>
+    <title>Émerix</title>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- https://a11yproject.com/posts/never-use-maximum-scale/ -->
+    <!-- Never user maximum-scale=1 -->
+    <!-- Avoid using user-scalable="no" -->
+
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1,shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="">
+
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://stage.com/esassets/images/share_img_fb.png">
+    <meta property="og:image:width" content="2048">
+    <meta property="og:image:height" content="1072">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stage.com/es">
+    <meta property="fb:app_id" content="">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="https://stage.com/esassets/images/share_img_tw.png">
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ec2844">
+    <meta name="msapplication-TileColor" content="#ec2844">
+    <meta name="theme-color" content="#ec2844">
+
+    <!-- @see https://web.dev/uses-rel-preconnect/?utm_source=lighthouse&utm_medium=devtools -->
+    <!-- @see https://developers.google.com/web/fundamentals/performance/resource-prioritization#use-case_knowing_where_from_but_not_what_youre_fetching -->
+    <link rel="preconnect" href="https://www.google-analytics.com">
+
+    <!-- @see https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content -->
+    <!--<link rel="preload" as="font" type="font/woff2" crossorigin="anonymous" href="./assets/fonts/....woff2">-->
+
+    <!-- @see https://web.dev/defer-non-critical-css/ -->
+    <!--<link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" type="text/css" href="css/main.css"></noscript>-->
+
+    <!--<link rel="stylesheet" type="text/css" href="assets/libs/css/main.css">-->
+
+    <!--<script>
+        window.buildDate = '2020-07-07 04:44:23';
+        console.warn('Build date: ', window.buildDate);
+    </script>-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-00000000-00"></script>-->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-00000000-00');
+    </script>
+
 </head>
-<body>
-  <app-root></app-root>
-</body>
+  <body class="emerix-page">
+    <app-root></app-root>
+  </body>
 </html>

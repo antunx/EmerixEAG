@@ -1,0 +1,56 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+/** TRANSLATION */
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+
+/* ROUTING */
+import { HomeRoutingModule } from './home-routing.module';
+
+/* COMPONENTES */
+import { HomeComponent } from './home.component';
+import { DeudaComponent } from './body/deuda/deuda.component';
+import { PersonaComponent } from './body/persona/persona.component';
+import { InformarComprobanteComponent } from './body/pago/comprobante/informar-comprobante.component';
+import { ListaComprobanteComponent } from './body/pago/comprobante/lista-comprobante.component';
+import { TopbarComponent } from './topbar/topbar.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { DefaultComponent } from './default.component';
+
+export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
+}
+
+@NgModule({
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+    HomeRoutingModule,
+    TranslateModule.forRoot({ defaultLanguage: 'es',
+                              loader: {
+                                      provide: TranslateLoader,
+                                      useFactory: (createTranslateLoader),
+                                      deps: [HttpClient]
+                                      }
+                            }),
+  ],
+  declarations: [
+    HomeComponent,
+    DeudaComponent,
+    PersonaComponent,
+    InformarComprobanteComponent,
+    ListaComprobanteComponent,
+
+    TopbarComponent,
+    NavigationComponent,
+    HeaderComponent,
+    FooterComponent,
+    DefaultComponent]
+})
+export class HomeModule { }

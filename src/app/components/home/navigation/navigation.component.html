@@ -1,0 +1,72 @@
+<nav class="main-navigation">
+  <input type="checkbox" class="visually-hidden mobile-menu-toggle" id="mobile-menu-toggle">
+  <label class="mobile-menu-toggle-label" for="mobile-menu-toggle">
+  <img src="assets/images/ui/menu.svg" alt="">
+  </label>
+  <div class="navigation-container">
+     <div class="text-center">
+        <img class="logo" src="assets/images/logos/emerix.png" alt="">
+     </div>
+     <ul>
+        <li class="navigation-item" style="--icon: url('assets/images/ui/navigation/icono-home.svg');">
+           <a class="item" [routerLink]="" (click)="Inicio()">Inicio</a>
+        </li>
+        <li class="navigation-item" style="--icon: url('');">
+           <hr>
+        </li>
+        <li class="navigation-item" style="--icon: url('assets/images/ui/navigation/icono-info.svg');">
+           <a class="item" [routerLink]="" (click)="MisCuentas()">Mis Cuentas</a>
+        </li>
+        <li class="navigation-item" style="--icon: url('assets/images/ui/navigation/icono-pagar.svg');">
+           <input aria-hidden="true" type="checkbox" class="dropdown-trigger" id="dropdown-trigger-pagos">
+           <label class="dropdown-title item" for="dropdown-trigger-pagos">
+           Pagos
+           </label>
+           <div class="dropdown-target">
+              <ul>
+                 <li class="item">
+                    <a [routerLink]="" (click)="Pagar()">Pagar</a>
+                 </li>
+                 <li class="item">
+                    <a [routerLink]="" (click)="RegistrarPago()">Registrar Pago</a>
+                 </li>
+                 <li class="item">
+                    <a [routerLink]="" (click)="Comprobantes()">Comprobantes</a>
+                 </li>
+              </ul>
+           </div>
+        </li>
+        <li class="navigation-item" style="--icon: url('assets/images/ui/navigation/icono-acuerdo.svg');">
+           <input aria-hidden="true" type="checkbox" class="dropdown-trigger" id="dropdown-trigger-acuerdos">
+           <label class="dropdown-title item" for="dropdown-trigger-acuerdos">
+           Acuerdos
+           </label>
+           <div class="dropdown-target">
+              <ul>
+                 <li class="item">
+                    <a [routerLink]="" (click)="PromesasPago()">Promesas de pago</a>
+                 </li>
+                 <li class="item">
+                    <a [routerLink]="" (click)="PlanPago()">Plan de pago</a>
+                 </li>
+                 <li class="item">
+                    <a [routerLink]="" (click)="EstadoSolicitudes()">Estado de solicitudes</a>
+                 </li>
+              </ul>
+           </div>
+        </li>
+        <li class="navigation-item" style="--icon: url('');">
+           <hr>
+        </li>
+        <li class="navigation-item" style="--icon: url('assets/images/ui/navigation/icono-perfil.svg');">
+           <a class="item" [routerLink]="" (click)="TuPerfil()">Tu Perfil</a>
+        </li>
+        <li class="navigation-item" style="--icon: url('assets/images/ui/navigation/icono-faq.svg');">
+           <a class="item" [routerLink]="" (click)="PreguntasFrecuentes()">Preguntas frecuentes</a>
+        </li>
+        <li class="navigation-item" style="--icon: url('assets/images/ui/navigation/icono-salir.svg');">
+           <a class="item" [routerLink]="" (click)="Salir()">Salir</a>
+        </li>
+     </ul>
+  </div>
+</nav>

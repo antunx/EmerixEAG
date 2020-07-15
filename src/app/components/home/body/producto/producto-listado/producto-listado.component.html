@@ -1,0 +1,29 @@
+<h3>{{ 'Traduct.listado_productos' | translate }}</h3>
+<div class="container-fluid" *ngIf="productos">
+  <table class="table table-hover table-sm">
+    <thead>
+        <tr>
+          <th>{{ 'Traduct.producto' | translate }}</th>
+          <th>{{ 'Traduct.tipo_producto' | translate }}</th>
+          <th>{{ 'Traduct.dias_deuda' | translate }}</th>
+          <th>{{ 'Traduct.monto_deuda' | translate }}</th>
+          <th>{{ 'Traduct.descargar' | translate }} {{ 'Traduct.libre_deuda' | translate }}</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos">
+        <td><button type="button" (click)="detalleProducto(producto.IdProd)" class="btn-link col-auto">{{ producto.NameProd }}</button></td>
+        <td>{{ producto.NameTypeProd }}</td>
+        <td>{{ producto.DaysDebt }}</td>
+        <td>{{ producto.Moneda }} - {{ removeCommas(producto.AmountDebt | number:'1.2-2') }}</td>
+        <td *ngIf="producto.IsFreeDebt == true"><button type='button' (click)='libreDeuda(producto.IdProd, producto.NameProd)' class='btn-link col-auto'>{{ 'Traduct.descargar' | translate }}</button></td>
+        <td *ngIf="producto.IsFreeDebt == false">-</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col">
+        <input type="button" class="btn btn-info" value="{{ 'Traduct.volver' | translate }}" (click)="Volver()">
+    </div>
+  </div>
+</div>

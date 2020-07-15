@@ -1,0 +1,28 @@
+<h3>{{ 'Traduct.comprobantes' | translate }}</h3>
+<div class="container-fluid" *ngIf="Comprobantes">
+  <table class="table table-hover table-sm">
+    <thead>
+        <tr>
+          <th>N° {{ 'Traduct.comprobante' | translate }}</th>
+          <th>{{ 'Traduct.fecha' | translate }}</th>
+          <th>{{ 'Traduct.monto' | translate }}</th>
+          <th>{{ 'Traduct.medio_pago' | translate }}</th>
+          <th>{{ 'Traduct.comentario' | translate }}</th>
+        </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let comprobante of Comprobantes">
+        <td>{{ comprobante.NumeroComprobante }}</td>
+        <td>{{ comprobante.Fecha | date: 'dd/MM/yyyy'}}</td>
+        <td>{{ comprobante.Moneda }} {{' '}} {{ comprobante.Importe | number:'1.2-2'}}</td>
+        <td>{{ comprobante.MedioPago }}</td>
+        <td>{{ comprobante.Comentario }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col">
+        <input type="button" class="btn btn-info" value="{{ 'Traduct.volver' | translate }}" (click)="Volver()">
+    </div>
+  </div>
+</div>
