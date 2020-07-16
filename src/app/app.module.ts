@@ -23,7 +23,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* MODULOS HIJOS*/
 import { HomeModule } from './components/home/home.module';
-import { ProductoModule } from './components/home/body/producto/producto.module';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
@@ -42,7 +41,6 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   imports: [
     BrowserModule,
     HomeModule,
-    ProductoModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,

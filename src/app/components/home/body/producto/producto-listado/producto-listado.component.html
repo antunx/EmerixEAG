@@ -1,4 +1,4 @@
-<h3>{{ 'Traduct.listado_productos' | translate }}</h3>
+<!-- <h3>{{ 'Traduct.listado_productos' | translate }}</h3>
 <div class="container-fluid" *ngIf="productos">
   <table class="table table-hover table-sm">
     <thead>
@@ -25,5 +25,433 @@
     <div class="col">
         <input type="button" class="btn btn-info" value="{{ 'Traduct.volver' | translate }}" (click)="Volver()">
     </div>
+  </div>
+</div>
+ -->
+ <div class="flex-column flex-grow">
+  <div class="pages-container">
+     <div class="overlay" id="invoice-sidebar">
+        <div class="dialog-container" role="dialog">
+           <a class="close-btn" (click) ="CerrarPopup()">
+           <img src="/assets/images/ui/close-btn.svg" alt="Close">
+           </a>
+           <div class="dialog-content sidebar">
+              <div>
+                 <div class="flex-column">
+                    <h1>Detalle de producto</h1>
+                    <h3>Tipo de producto</h3>
+                    <p>TC VISA XXXX XXXX XXXX 1234</p>
+                    <p>$1200</p>
+                    <h3>Deuda</h3>
+                    <h3>Última fecha de pago</h3>
+                    <p>03/12/96</p>
+                    <h3>Nº Comprobante</h3>
+                    <p>34324324443-9</p>
+                    <h3>Sucursal</h3>
+                    <p>504 - La Plata</p>
+                    <button class="btn secondary hover"><img src="/assets/images/ui/buttons/download.svg" alt=""> Libre deuda</button>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <section class="page-invoice">
+        <h1 class="flex-row">Tus productos</h1>
+        <div class="flex-row">
+           <div class="table-container desktop-only">
+              <table class="table" width="100%" border="0">
+                <tbody>
+                 <tr class="table-header">
+                    <td style="width: 16.666666666666668%">
+                       Producto
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       Ejemplo
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       Ejemplo
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       Vencimiento
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       Días de atraso
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       Monto adeudado
+                    </td>
+                 </tr>
+                 <tr (click) = "click_fila()">
+                    <td style="width: 16.666666666666668%">
+                       PRÉSTAMO 36 cuotas
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       MC3111223
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       1234
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       01/10/20
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       0
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       $19450,87
+                    </td>
+                 </tr>
+                 <tr>
+                    <td style="width: 16.666666666666668%">
+                       PRÉSTAMO 12 cuotas
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       MC3111223
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       1234
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       12/10/20
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       0
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       $19450,87
+                    </td>
+                 </tr>
+                 <tr>
+                    <td style="width: 16.666666666666668%">
+                       TC VISA 5400
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       MC3111223
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       1234
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       08/10/20
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       2
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       $19450,87
+                    </td>
+                 </tr>
+                 <tr>
+                    <td style="width: 16.666666666666668%">
+                       TC MASTER 2431
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       MC3111223
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       5434534
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       08/10/20
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       4
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       $19450,87
+                    </td>
+                 </tr>
+                 <tr>
+                    <td style="width: 16.666666666666668%">
+                       TC MASTER 2431
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       MC3111223
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       5345
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       08/10/206
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       20
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       $19450,87
+                    </td>
+                 </tr>
+                 <tr>
+                    <td style="width: 16.666666666666668%">
+                       TC MASTER 2431
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       MC3111223
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       543
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       08/10/20
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       17
+                    </td>
+                    <td style="width: 16.666666666666668%">
+                       $2308,50
+                    </td>
+                 </tr>
+                </tbody>
+              </table>
+           </div>
+           <div class="mobile-only flex-column flex-grow table-container">
+              <table class="box table flex-row">
+                <tbody>
+                 <tr class="table-header">
+                    <td>
+                       <p>PRÉSTAMO 36 cuotas</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Ejemplo</strong></p>
+                       <p>MC3111223</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Ejemplo</strong></p>
+                       <p>1234</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Vencimiento</strong></p>
+                       <p>01/10/20</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Días de atraso</strong></p>
+                       <p>0</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Monto adeudado</strong></p>
+                       <p>$19450,87</p>
+                    </td>
+                 </tr>
+                </tbody>
+              </table>
+              <table class="box table flex-row">
+              <tbody>
+                 <tr class="table-header">
+                    <td>
+                       <p>PRÉSTAMO 12 cuotas</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Ejemplo</strong></p>
+                       <p>MC3111223</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Ejemplo</strong></p>
+                       <p>1234</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Vencimiento</strong></p>
+                       <p>12/10/20</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Días de atraso</strong></p>
+                       <p>0</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Monto adeudado</strong></p>
+                       <p>$19450,87</p>
+                    </td>
+                 </tr>
+                </tbody>
+              </table>
+              <table class="box table flex-row">
+              <tbody>
+                 <tr class="table-header">
+                    <td>
+                       <p>TC VISA 5400</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Ejemplo</strong></p>
+                       <p>MC3111223</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Ejemplo</strong></p>
+                       <p>1234</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Vencimiento</strong></p>
+                       <p>08/10/20</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Días de atraso</strong></p>
+                       <p>2</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Monto adeudado</strong></p>
+                       <p>$19450,87</p>
+                    </td>
+                 </tr>
+                </tbody>
+              </table>
+              <table class="box table flex-row">
+              <tbody>
+                 <tr class="table-header">
+                    <td>
+                       <p>TC MASTER 2431</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Ejemplo</strong></p>
+                       <p>MC3111223</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Ejemplo</strong></p>
+                       <p>5434534</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Vencimiento</strong></p>
+                       <p>08/10/20</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Días de atraso</strong></p>
+                       <p>4</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Monto adeudado</strong></p>
+                       <p>$19450,87</p>
+                    </td>
+                 </tr>
+                </tbody>
+              </table>
+              <table class="box table flex-row">
+              <tbody>
+                 <tr class="table-header">
+                    <td>
+                       <p>TC MASTER 2431</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Ejemplo</strong></p>
+                       <p>MC3111223</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Ejemplo</strong></p>
+                       <p>5345</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Vencimiento</strong></p>
+                       <p>08/10/206</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Días de atraso</strong></p>
+                       <p>20</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Monto adeudado</strong></p>
+                       <p>$19450,87</p>
+                    </td>
+                 </tr>
+                </tbody>
+              </table>
+              <table class="box table flex-row">
+                <tbody>
+                 <tr class="table-header">
+                    <td>
+                       <p>TC MASTER 2431</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Ejemplo</strong></p>
+                       <p>MC3111223</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Ejemplo</strong></p>
+                       <p>543</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Vencimiento</strong></p>
+                       <p>08/10/20</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Días de atraso</strong></p>
+                       <p>17</p>
+                    </td>
+                 </tr>
+                 <tr>
+                    <td>
+                       <p><strong>Monto adeudado</strong></p>
+                       <p>$2308,50</p>
+                    </td>
+                 </tr>
+                </tbody>
+              </table>
+           </div>
+        </div>
+     </section>
+     <script>
+        document.querySelectorAll('.table tr:not(.table-header)').forEach((tr) => {
+          tr.addEventListener('click', () => {
+            document.querySelector('#invoice-sidebar').classList.add('active')
+          })
+        })
+
+        document.querySelector('.overlay .close-btn').addEventListener('click', () => {
+          document.querySelector('.overlay').classList.remove('active')
+        })
+     </script>
   </div>
 </div>

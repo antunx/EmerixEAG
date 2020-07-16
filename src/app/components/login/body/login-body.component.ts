@@ -79,12 +79,8 @@ export class LoginBodyComponent implements OnInit {
 
   configurarFormLogin(): void{
     this.loginForm = new FormGroup({
-      tipoDoc: new FormControl('1', [Validators.required]), // 1
-      numero: new FormControl('0803288836', [Validators.required]), // 0803288836
-      // numero: new FormControl('', [Validators.required, , Validators.maxLength(10), Validators.minLength(8)]),
-
-      // telefonos: new FormControl(''),
-      // mails: new FormControl(''),
+      tipoDoc: new FormControl('', [Validators.required]), // 1
+      numero: new FormControl('', [Validators.required]), // 0803288836
       // genero: new FormControl('', [Validators.required]),
       medioEnvio: new FormControl({value: false, disabled: false}),
     });
@@ -316,9 +312,9 @@ export class LoginBodyComponent implements OnInit {
   }
 
   cerrarPopup(): void{
+    document.querySelector('.overlay').classList.remove('active');
     this.popupNro = 0;
     this.MensajeAlert = '';
-    document.querySelector('.overlay').classList.remove('active');
   }
 
   // ineficiente, se ejecuta 4 veces, se puede usar como ultima instancia.

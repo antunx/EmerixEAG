@@ -187,14 +187,14 @@
           </div>
         </div>
         <!-- popup -->
-        <div class="overlay">
+        <div (click)="cerrarPopup()" class="overlay">
           <div *ngIf="popupNro>0" class="dialog-container" role="dialog">
               <a class="close-btn" (click)="cerrarPopup()">
                   <img src="assets/images/ui/close-btn.svg" alt="Close">
               </a>
               <div class="dialog-content login-dialog">
                   <div>
-                    <div *ngIf="popupNro===1">
+                    <div  *ngIf="popupNro===1">
                       <app-consulta></app-consulta>
                     </div>
                     <div *ngIf="popupNro===2">

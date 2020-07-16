@@ -31,10 +31,6 @@ export class DeudaComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  IrProductos(): void {
-    this.router.navigateByUrl('producto');
-  }
-
   InformarPago(): void {
     this.router.navigateByUrl('/home/informar_comprobante');
   }

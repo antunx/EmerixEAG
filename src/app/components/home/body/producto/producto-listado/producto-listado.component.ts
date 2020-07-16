@@ -72,4 +72,17 @@ export class ProductoListadoComponent implements OnInit, OnDestroy {
     return numero.replace(',', '');
   }
 
+  click_fila(): void{
+    document.querySelectorAll('.table tr:not(.table-header)').forEach((tr) => {
+      tr.addEventListener('click', () => {
+        document.querySelector('#invoice-sidebar').classList.add('active');
+      });
+    });
+  }
+
+  CerrarPopup(): void{
+    document.querySelector('.overlay .close-btn').addEventListener('click', () => {
+      document.querySelector('.overlay').classList.remove('active');
+    });
+  }
 }

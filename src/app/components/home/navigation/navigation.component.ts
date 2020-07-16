@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private router: Router,) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -19,7 +19,7 @@ export class NavigationComponent implements OnInit {
   }
 
   MisCuentas(): void{
-    alert('MisCuentas(), en desarrollo');
+    this.router.navigateByUrl('/home/producto');
   }
 
   Pagar(): void{
