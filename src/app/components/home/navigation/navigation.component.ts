@@ -35,7 +35,7 @@ export class NavigationComponent implements OnInit {
   }
 
   PromesasPago(): void{
-    alert('PromesasPago(), en desarrollo');
+    this.router.navigateByUrl('/home/promesa');
   }
 
   PlanPago(): void{
