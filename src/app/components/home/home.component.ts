@@ -14,9 +14,9 @@ export class HomeComponent implements OnInit {
               private getservices: GetService,
               private translate: TranslateService
   ) { }
-  persona = '';
+  IdPersona = '';
 
   ngOnInit(): void {
-    this.persona = localStorage.getItem('id_persona');
+    this.IdPersona = localStorage.getItem('version_core');
   }
 }

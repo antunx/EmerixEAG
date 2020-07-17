@@ -26,7 +26,7 @@ export class ListaComprobanteComponent implements OnInit, OnDestroy {
   }
 
   getComprobantesDetalle(): void{
-    this.subscription.add(this.getservices.getComprobantesDetail(localStorage.getItem('id_persona')).subscribe((res) => {
+    this.subscription.add(this.getservices.getComprobantesDetail(localStorage.getItem('version_core')).subscribe((res) => {
       if (res.ErrorCode > 0){
         console.log(res.ErrorMessage);
       } else{

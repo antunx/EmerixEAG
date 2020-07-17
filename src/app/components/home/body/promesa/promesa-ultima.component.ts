@@ -9,7 +9,7 @@ import { GetService } from '@app/services/get.service';
   ]
 })
 export class PromesaUltimaComponent implements OnInit {
-  persona: string;
+  IdPersona: string;
   constructor(
     private router: Router,
     private getservices: GetService,
@@ -17,7 +17,7 @@ export class PromesaUltimaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.persona = localStorage.getItem('id_persona');
+    this.IdPersona = localStorage.getItem('version_core');
   }
 
   IrPromesa(): void{

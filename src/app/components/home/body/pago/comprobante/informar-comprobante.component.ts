@@ -147,8 +147,8 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
         if (result.value) {
 
           const entidad: Comprobante = this.pagoForm.value;
-          entidad.IdCuenta = 0;
-          entidad.IdPersona = Number(localStorage.getItem('id_persona'));
+          entidad.IdCuenta = '0';
+          entidad.IdPersona = localStorage.getItem('version_core');
           // console.log(entidad);
           // return;
           this.subscription.add(this.postservices.postComprobante(entidad).subscribe(

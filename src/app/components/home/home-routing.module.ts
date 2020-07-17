@@ -6,7 +6,6 @@ import { AuthGeneralGuard } from '@app/guards/auth-general.guard';
 import { HomeComponent } from './home.component';
 import { DefaultComponent } from './default.component';
 import { ProductoListadoComponent } from './body/producto/producto-listado/producto-listado.component';
-import { ProductoDetalleComponent } from './body/producto/producto-detalle/producto-detalle.component';
 import { PromesaComponent } from './body/promesa/promesa.component';
 import { PromesaHistoricaComponent } from './body/promesa/promesa-historica.component';
 import { PromesaMensajeComponent } from './body/promesa/promesa-mensaje/promesa-mensaje.component';
@@ -22,10 +21,7 @@ const routes: Routes = [
       {path: 'promesa-detalle', component: PromesaDetalleComponent, canActivate: [ AuthGeneralGuard ]},
       {path: 'promesa-mensaje', component: PromesaMensajeComponent, canActivate: [ AuthGeneralGuard ]},
 
-      {path: 'producto', component: ProductoListadoComponent,
-        children: [
-          {path: ':id', component: ProductoDetalleComponent},
-        ]},
+      {path: 'producto', component: ProductoListadoComponent},
 
       {path: 'lista_comprobante', component: ListaComprobanteComponent, canActivate: [ AuthGeneralGuard ]  },
       {path: 'informar_comprobante', component: InformarComprobanteComponent, canActivate: [ AuthGeneralGuard ]  },

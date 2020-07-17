@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -8,13 +8,14 @@ import { GetService } from '@services/get.service';
 import { PostService } from '@services/post.service';
 import { UsuarioAutenticarModel } from '@models/usuarioautenticar.model';
 import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login-body',
   templateUrl: './login-body.component.html'
 })
 
-export class LoginBodyComponent implements OnInit {
+export class LoginBodyComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private postservices: PostService,
@@ -22,6 +23,7 @@ export class LoginBodyComponent implements OnInit {
     private formBuilder: FormBuilder,
     private translate: TranslateService
   ) { }
+  private subscription: Subscription = new Subscription();
   get numero(): any {
     return this.loginForm.get('numero');
   }
@@ -77,6 +79,10 @@ export class LoginBodyComponent implements OnInit {
     this.llenarTiposDni();
   }
 
+  ngOnDestroy(): void{
+    this.subscription.unsubscribe();
+  }
+
   configurarFormLogin(): void{
     this.loginForm = new FormGroup({
       tipoDoc: new FormControl('', [Validators.required]), // 1
@@ -91,13 +97,13 @@ export class LoginBodyComponent implements OnInit {
   }
 
   llenarTiposDni(): void{
-    this.getservices.getDocumentType().subscribe( (res) => {
+    this.subscription.add(this.getservices.getDocumentType().subscribe( (res) => {
       // console.log(res.TypeDoc);
       this.tiposDocumento = res.TypeDoc;
     }, (err) => {
         // console.log(err);
       }
-    );
+    ));
   }
 
   TildarMedioEnvio(medio: string): void{
@@ -126,12 +132,12 @@ export class LoginBodyComponent implements OnInit {
     this.telefonos = [];
     this.mails = [];
 
-    this.getservices.getValidateUser( this.usuario.dni, this.usuario.tipoDoc).subscribe( (res) => {
+    this.subscription.add(this.getservices.getValidateUser( this.usuario.dni, this.usuario.tipoDoc).subscribe( (res) => {
       // console.log(res);
 
       if (res.ErrorCode === 0){
           this.loginValido = true;
-          localStorage.setItem('id_persona', res.Person);
+          localStorage.setItem('version_core', res.Person);
           if (res.IsExistsPhone){
             this.tieneInfo = true;
             // LLENAR TELEFONOS
@@ -164,14 +170,14 @@ export class LoginBodyComponent implements OnInit {
           this.loginAction = 2;
       }else{
           this.loginValido = false;
-          localStorage.setItem('id_persona', '' );
+          localStorage.setItem('version_core', '' );
           this.MensajeAlert = res.ErrorMessage;
           this.mostrarPopu(3);
       }
       }, (err) => {
         // console.log(err);
       }
-    );
+    ));
     // console.log(tipo);
     // console.log('tieneMails: ' + this.tieneMails);
     // console.log('tieneTelefonos: ' + this.tieneTelefonos);
@@ -183,8 +189,8 @@ export class LoginBodyComponent implements OnInit {
 
     this.codigoEnviado = false;
     this.loadingGenerar = true;
-    this.usuario.persona = localStorage.getItem('id_persona');
-    this.postservices.postGenerateToken
+    this.usuario.persona = localStorage.getItem('version_core');
+    this.subscription.add(this.postservices.postGenerateToken
       (
         this.usuario.persona,
         this.tipoEnvio,
@@ -212,7 +218,7 @@ export class LoginBodyComponent implements OnInit {
         this.loadingGenerar = false;
         this.MensajeAlert = err.error.Message;
         this.mostrarPopu(3);
-      });
+      }));
   }
 
   IngresarPortal(): void{
@@ -223,7 +229,7 @@ export class LoginBodyComponent implements OnInit {
 
     const codigoValor = this.loginFormIngreso.controls.codigo.value;
 
-    this.postservices.postValidateToken
+    this.subscription.add(this.postservices.postValidateToken
       (
         this.usuario.dni,
         this.usuario.persona,
@@ -241,13 +247,13 @@ export class LoginBodyComponent implements OnInit {
           this.mostrarPopu(3);
         }else {
           localStorage.setItem('token', res.Jwt);
-          localStorage.setItem('Name', res.Name);
+          localStorage.setItem('Cliente', res.Name);
           this.router.navigateByUrl('/home');
         }
       }, (err) => {
         this.MensajeAlert = err.error.Message;
         this.mostrarPopu(3);
-      });
+      }));
   }
 
   MostrarCboTelefonos(): void{

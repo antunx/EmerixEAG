@@ -5,8 +5,8 @@ export interface ComprobantesLst {
 }
 
 export interface Comprobante {
-  IdPersona: number;
-  IdCuenta: number;
+  IdPersona: string;
+  IdCuenta: string;
   NumeroComprobante: string;
   IdMoneda: number;
   Importe: number;

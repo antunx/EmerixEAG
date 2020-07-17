@@ -1,12 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { GetService } from '@app/services/get.service';
 import { Subscription } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-producto-listado',
@@ -17,17 +11,17 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class ProductoListadoComponent implements OnInit, OnDestroy {
 
   constructor(
-    private router: Router,
-    private getservices: GetService,
-    private route: ActivatedRoute,
-    private translate: TranslateService
+    private getservices: GetService
   ) { }
   private subscription: Subscription = new Subscription();
+  MostrarPopup: boolean;
   IdPersona = '';
+  producto: any;
   productos: any[] = [];
 
   ngOnInit(): void {
-    this.IdPersona = localStorage.getItem('id_persona');
+    this.MostrarPopup = false;
+    this.IdPersona = localStorage.getItem('version_core');
     this.ObtenerProductos();
   }
 
@@ -49,38 +43,25 @@ export class ProductoListadoComponent implements OnInit, OnDestroy {
   }
 
   // navegamos al detalle de producto
-  detalleProducto(id: number): void{
-    this.router.navigate(['/producto', id]);
-  }
-
-  // descagamos el libre de deuda
-  libreDeuda(id: string, producto: string): void{
-    this.subscription.add(this.getservices.getDebtFree(id).subscribe((res) => {
-      // console.log(res);
-      pdfMake.createPdf(JSON.parse(res.ComprobanteJSON)).download( this.translate.instant('Traduct.libre_deuda')  + producto + '.pdf');
-    }, (err) => {
-        console.log(err);
-      }
-    ));
-  }
-
-  Volver(): void{
-    this.router.navigateByUrl('/home');
+  detalleProducto(producto: any): void{
+    if (producto !== ''){
+      // console.log('id: ' + id);
+      this.producto  = producto;
+      document.querySelectorAll('.table tr:not(.table-header)').forEach((tr) => {
+        tr.addEventListener('click', () => {
+          this.MostrarPopup = true;
+          document.querySelector('#invoice-sidebar').classList.add('active');
+        });
+      });
+    }
   }
 
   removeCommas(numero: string): string {
     return numero.replace(',', '');
   }
 
-  click_fila(): void{
-    document.querySelectorAll('.table tr:not(.table-header)').forEach((tr) => {
-      tr.addEventListener('click', () => {
-        document.querySelector('#invoice-sidebar').classList.add('active');
-      });
-    });
-  }
-
   CerrarPopup(): void{
+    this.MostrarPopup = false;
     document.querySelector('.overlay .close-btn').addEventListener('click', () => {
       document.querySelector('.overlay').classList.remove('active');
     });

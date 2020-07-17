@@ -9,14 +9,14 @@ import { GetService } from '@app/services/get.service';
   ]
 })
 export class PromesaHistoricaComponent implements OnInit {
-  persona: string;
+  IdPersona: string;
   constructor(
     private router: Router,
     private getservices: GetService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.persona = localStorage.getItem('id_persona');
+    this.IdPersona = localStorage.getItem('version_core');
   }
 
 

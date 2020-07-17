@@ -1,8 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GetService } from '../../../../../services/get.service';
 import { RtagetDetailProductModel } from '../../../../../models/rtagetdetailproduct.model';
 import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-producto-detalle',
@@ -10,9 +15,10 @@ import { Subscription } from 'rxjs';
 })
 export class ProductoDetalleComponent implements OnInit, OnDestroy {
 
-  constructor(private router: Router,
-              private getservices: GetService,
-              private route: ActivatedRoute) { }
+  constructor(private getservices: GetService,
+              private translate: TranslateService) {}
+
+  @Input() producto: any;
   private subscription: Subscription = new Subscription();
   cargando: boolean;
   listaCompleta: RtagetDetailProductModel;
@@ -20,7 +26,8 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   listaFilas = [];
 
   ngOnInit(): void {
-    this.ObtenerProducto(this.route.snapshot.paramMap.get('id'));
+    // console.log('IdProd: ' + this.producto.IdProd);
+    this.ObtenerProducto(this.producto.IdProd);
   }
 
   ngOnDestroy(): void{
@@ -37,7 +44,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
         this.listaFilas = res.Rows;
         this.listaColumnas = res.Headers;
         this.cargando = false;
-        // console.log(res);
+        console.log(res);
       }
     }, (err) => {
       console.log(err);
@@ -52,7 +59,14 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
     console.log(err);
   });*/
 
-  Volver(): void{
-    this.router.navigateByUrl('/producto');
+  // descagamos el libre de deuda
+  libreDeuda(id: string, producto: string): void{
+    this.subscription.add(this.getservices.getDebtFree(id).subscribe((res) => {
+      // console.log(res);
+      pdfMake.createPdf(JSON.parse(res.ComprobanteJSON)).download( this.translate.instant('Traduct.libre_deuda')  + producto + '.pdf');
+    }, (err) => {
+        console.log(err);
+      }
+    ));
   }
 }

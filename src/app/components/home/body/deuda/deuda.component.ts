@@ -15,14 +15,14 @@ export class DeudaComponent implements OnInit, OnDestroy {
     private translate: TranslateService) { }
 
   private subscription: Subscription = new Subscription();
-  IdPersona = '0';
+  IdPersona = '';
   Persona = '';
   Monto = 0;
   CantDiasMora = 0;
   CantProductos = 0;
 
   ngOnInit(): void {
-    this.IdPersona = localStorage.getItem('id_persona');
+    this.IdPersona = localStorage.getItem('version_core');
     // console.log(this.IdPersona);
     this.getEstadoDeuda();
   }

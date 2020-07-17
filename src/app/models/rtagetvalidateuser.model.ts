@@ -3,8 +3,7 @@ export interface RtagetValidateUserModel {
   ErrorMessage: string;
   IsValid: boolean;
   MessageValid: string;
-  PersonId: string;
-  Person: string;        // actualmente esta viniendo el id_persona, deberia ser nombre-apellido, id arriba
+  Person: string;
   IsExistsPhone: boolean;
   IsExistsMail: boolean;
   Phones: Phone[];
