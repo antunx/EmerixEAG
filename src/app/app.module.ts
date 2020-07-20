@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /** INTERCEPTOR */
 import { InterceptorService } from './services/interceptor.service';
@@ -19,10 +20,7 @@ import { TerminoComponent } from './components/login/body/termino/termino.compon
 import { LoginBodyComponent } from './components/login/body/login-body.component';
 import { LoginFooterComponent } from './components/login/footer/login-footer.component';
 import { LoginHeaderComponent } from './components/login/header/login-header.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-/* MODULOS HIJOS*/
-import { HomeModule } from './components/home/home.module';
+import { NotFoundComponent } from './components/standard/not-found/not-found.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
@@ -36,11 +34,11 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     LoginComponent,
     LoginBodyComponent,
     LoginFooterComponent,
-    LoginHeaderComponent
+    LoginHeaderComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
-    HomeModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,

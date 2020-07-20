@@ -4,7 +4,7 @@
         <h1 class="page-name">{{ Menu }}</h1>
      </li>
      <li class="username">
-        <p>¡Hola <strong>{{ Cliente }}</strong>!</p>
+        <p>¡{{ 'Traduct.hola' | translate }} <strong>{{ Cliente }}</strong>!</p>
      </li>
      <li class="notifications-menu">
         <input aria-hidden="true" type="checkbox" class="dropdown-trigger" id="dropdown-trigger-topbar-dropdown">
@@ -14,7 +14,7 @@
         </label>
         <div class="dropdown-target">
            <ul>
-              <li><strong>Notificaciones</strong></li>
+              <li><strong>{{ 'Traduct.notificaciones' | translate }}</strong></li>
               <li>
                  <hr>
               </li>

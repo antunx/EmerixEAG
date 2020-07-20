@@ -203,14 +203,6 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     });
   }
 
-  Detalle(): void{
-    this.router.navigateByUrl('/home/lista_comprobante');
-  }
-
-  Volver(): void{
-    this.router.navigateByUrl('/home');
-  }
-
   SoloNumerosLetras(event: any): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
     if ((charCode >= 48 && charCode <= 57) || (charCode >= 97 && charCode <= 122)) {

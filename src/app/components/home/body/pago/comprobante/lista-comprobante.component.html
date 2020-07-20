@@ -1,28 +1,85 @@
-<h3>{{ 'Traduct.comprobantes' | translate }}</h3>
-<div class="container-fluid" *ngIf="Comprobantes">
-  <table class="table table-hover table-sm">
-    <thead>
-        <tr>
-          <th>N° {{ 'Traduct.comprobante' | translate }}</th>
-          <th>{{ 'Traduct.fecha' | translate }}</th>
-          <th>{{ 'Traduct.monto' | translate }}</th>
-          <th>{{ 'Traduct.medio_pago' | translate }}</th>
-          <th>{{ 'Traduct.comentario' | translate }}</th>
-        </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let comprobante of Comprobantes">
-        <td>{{ comprobante.NumeroComprobante }}</td>
-        <td>{{ comprobante.Fecha | date: 'dd/MM/yyyy'}}</td>
-        <td>{{ comprobante.Moneda }} {{' '}} {{ comprobante.Importe | number:'1.2-2'}}</td>
-        <td>{{ comprobante.MedioPago }}</td>
-        <td>{{ comprobante.Comentario }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="row">
-    <div class="col">
-        <input type="button" class="btn btn-info" value="{{ 'Traduct.volver' | translate }}" (click)="Volver()">
-    </div>
+ <div class="flex-column flex-grow">
+  <div class="pages-container">
+     <section class="page-invoice">
+        <h1 class="flex-row">{{ 'Traduct.tus_comprobantes' | translate }}</h1>
+        <div class="flex-row">
+           <div class="table-container desktop-only">
+              <table class="table" width="100%" border="0">
+                <tbody>
+                 <tr class="table-header">
+                    <td style="width: 20%">
+                      N° {{ 'Traduct.comprobante' | translate }}
+                    </td>
+                    <td style="width: 20%">
+                      {{ 'Traduct.fecha' | translate }}
+                    </td>
+                    <td style="width: 20%">
+                      {{ 'Traduct.monto' | translate }}
+                    </td>
+                    <td style="width: 20%">
+                      {{ 'Traduct.medio_pago' | translate }}
+                    </td>
+                    <td style="width: 20%">
+                      {{ 'Traduct.comentario' | translate }}
+                    </td>
+                  </tr>
+                  <tr *ngFor="let comprobante of Comprobantes">
+                    <td style="width: 20%">
+                      {{ comprobante.NumeroComprobante }}
+                    </td>
+                    <td style="width: 20%">
+                      {{ comprobante.Fecha | date: 'dd/MM/yyyy'}}
+                    </td>
+                    <td style="width: 20%">
+                      {{ comprobante.Moneda }} {{' '}} {{ comprobante.Importe | number:'1.2-2'}}
+                    </td>
+                    <td style="width: 20%">
+                      {{ comprobante.MedioPago }}
+                    </td>
+                    <td style="width: 20%">
+                      {{ comprobante.Comentario }}
+                    </td>
+                 </tr>
+                </tbody>
+              </table>
+           </div>
+
+           <div class="mobile-only flex-column flex-grow table-container">
+            <table class="box table flex-row" *ngFor="let comprobante of Comprobantes">
+              <tbody>
+               <tr class="table-header" >
+                  <td>
+                     <p>{{ comprobante.NumeroComprobante }}</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <p><strong>{{ 'Traduct.fecha' | translate }}</strong></p>
+                     <p>{{ comprobante.Fecha | date: 'dd/MM/yyyy'}}</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <p><strong>{{ 'Traduct.monto' | translate }}</strong></p>
+                     <p>{{ comprobante.Moneda }} {{' '}} {{ comprobante.Importe | number:'1.2-2'}}</p>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <p><strong>{{ 'Traduct.medio_pago' | translate }}</strong></p>
+                     <p>{{ comprobante.MedioPago }}</p>
+                  </td>
+               </tr>
+               <tr>
+                <td>
+                   <p><strong>{{ 'Traduct.comentario' | translate }}</strong></p>
+                   <p>{{ comprobante.Comentario }}</p>
+                </td>
+               </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+     </section>
   </div>
 </div>

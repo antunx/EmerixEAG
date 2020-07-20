@@ -248,7 +248,7 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
         }else {
           localStorage.setItem('token', res.Jwt);
           localStorage.setItem('Cliente', res.Name);
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/home/default');
         }
       }, (err) => {
         this.MensajeAlert = err.error.Message;

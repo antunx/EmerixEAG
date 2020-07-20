@@ -7,7 +7,10 @@ import { RtagetPageInfoModel } from '@models/rtagetpageinfo.model';
 import { RtagetDebtPersonModel } from '@models/rtagetdebtperson.model';
 import { RtagetProductPersonModel } from '@models/rtagetproductperson.model';
 import { RtagetDetailProductModel } from '@models/rtagetdetailproduct.model';
+import { PromesaImporte } from '@app/models/rtagetproductpromimporte.model';
 import { RtagetDebtFreeModel } from '@models/rtagetdebtfree.model';
+import { Promesa } from '@app/models/Promesa.model';
+import {getPromesaPago} from '@models/getPromesaPago.model';
 
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
@@ -19,6 +22,8 @@ import { ComprobantesLst } from '@app/models/comprobante.models';
 export class GetService {
 
   private API_URL = environment.API_URL;
+  private promesa: any;
+  private promesaDetalle: any;
 
   constructor( private http: HttpClient ) {}
 
@@ -60,4 +65,41 @@ export class GetService {
   getDebtFree(id: string): Observable<RtagetDebtFreeModel>{
     return this.http.get<RtagetDebtFreeModel>(this.API_URL + 'emerixautog/getdebtfree/' + id);
  }
+  /** AGREGADO */
+  getProductProm(id: string): Observable<Promesa> {
+    return this.http.get<Promesa>(
+      `${this.API_URL}emerixautog/getproductosprom/${id}`
+    );
+  }
+
+  postPromesa(promesa: any): void {
+    this.promesa = promesa;
+  }
+
+  getPromesa(): Promesa {
+    return this.promesa;
+  }
+
+  getProductPromImporte(
+    id: string,
+    importe: number
+  ): Observable<PromesaImporte> {
+    return this.http.get<PromesaImporte>(
+      `${this.API_URL}emerixautog/getproductospromImp/?Id=${id}&Importe=${importe}`
+    );
+  }
+
+  getPromesaPago(id: string, ultimas: boolean) {
+    return this.http.get<getPromesaPago>(
+      `${this.API_URL}emerixautog/getpromesas/?Id=${id}&ultimas=${ultimas}`
+    );
+  }
+
+  setDetalle(item:any){
+    this.promesaDetalle = item
+  }
+
+  getDetalle(){
+    return this.promesaDetalle
+  }
 }

@@ -44,7 +44,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
         this.listaFilas = res.Rows;
         this.listaColumnas = res.Headers;
         this.cargando = false;
-        console.log(res);
+        // console.log(res);
       }
     }, (err) => {
       console.log(err);

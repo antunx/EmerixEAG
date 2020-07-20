@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ComunicacionService } from '@app/services/comunicacion.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navigation',
@@ -10,7 +11,10 @@ import { ComunicacionService } from '@app/services/comunicacion.service';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private router: Router, private servicioComunicacion: ComunicacionService) { }
+  constructor(
+    private router: Router,
+    private servicioComunicacion: ComunicacionService,
+    private translate: TranslateService) { }
 
   ngOnInit(): void {
   }
@@ -20,52 +24,52 @@ export class NavigationComponent implements OnInit {
   }
 
   Inicio(): void{
-    this.cambioTexto('Inicio');
-    this.router.navigateByUrl('/home');
+    this.cambioTexto(this.translate.instant('Traduct.inicio'));
+    this.router.navigateByUrl('/home/default');
   }
 
   MisCuentas(): void{
-    this.cambioTexto('Mis Cuentas');
+    this.cambioTexto(this.translate.instant('Traduct.mis_cuentas'));
     this.router.navigateByUrl('/home/producto');
   }
 
   Pagar(): void{
-    this.cambioTexto('Pagar');
+    this.cambioTexto(this.translate.instant('Traduct.pagar'));
     alert('Pagar(), en desarrollo');
   }
 
   RegistrarPago(): void{
-    this.cambioTexto('Registrar Pago');
+    this.cambioTexto(this.translate.instant('Traduct.registrar_pago'));
     alert('RegistrarPago(), en desarrollo');
   }
 
   Comprobantes(): void{
-    this.cambioTexto('Comprobantes');
-    alert('Comprobantes(), en desarrollo');
+    this.cambioTexto(this.translate.instant('Traduct.comprobantes'));
+    this.router.navigateByUrl('/home/comprobante');
   }
 
   PromesasPago(): void{
-    this.cambioTexto('Promesas de Pago');
+    this.cambioTexto(this.translate.instant('Traduct.promesa_pago'));
     this.router.navigateByUrl('/home/promesa');
   }
 
   PlanPago(): void{
-    this.cambioTexto('Plan de Pago');
+    this.cambioTexto(this.translate.instant('Traduct.plan_pago'));
     alert('PlanPago(), en desarrollo');
   }
 
   EstadoSolicitudes(): void{
-    this.cambioTexto('Estado Solicitudes');
+    this.cambioTexto(this.translate.instant('Traduct.estado_solicitudes'));
     alert('EstadoSolicitudes(), en desarrollo');
   }
 
   TuPerfil(): void{
-    this.cambioTexto('Tu Perfil');
+    this.cambioTexto(this.translate.instant('Traduct.tu_perfil'));
     alert('TuPerfil(), en desarrollo');
   }
 
   PreguntasFrecuentes(): void{
-    this.cambioTexto('Preguntas Frecuentes');
+    this.cambioTexto(this.translate.instant('Traduct.preguntas_frecuentes'));
     alert('PreguntasFrecuentes(), en desarrollo');
   }
 

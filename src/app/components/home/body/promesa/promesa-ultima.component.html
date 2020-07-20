@@ -1,41 +1,30 @@
-
 <div class="box">
   <div class="list-view">
     <div class="list-view-title">
-        <h2>Últimas promesas de pago (DESARROLAR)</h2>
-        <div class="list-view-add" (click)="IrPromesa()"></div>
+      <h2>Últimas promesas de pago</h2>
+      <div class="list-view-add" (click)="IrPromesa()"></div>
     </div>
-    <hr>
-    <ul class="list-view-content">
-        <li class="flex-row promises-latest">
-          <div class="flex-column flex-grow">
-              <p class="promise-price">$17,900</p>
-              <p class="promise-date">1 producto</p>
-          </div>
-          <div class="flex-column flex-center">
-              <p>17/08/20</p>
-          </div>
-        </li>
-        <li class="flex-row promises-latest">
-          <div class="flex-column flex-grow">
-              <p class="promise-price">$37,600</p>
-              <p class="promise-date">3 productos</p>
-          </div>
-          <div class="flex-column flex-center">
-              <p>17/08/20</p>
-          </div>
-        </li>
-        <li class="flex-row promises-latest">
-          <div class="flex-column flex-grow">
-              <p class="promise-price">$17,900</p>
-              <p class="promise-date">1 producto</p>
-          </div>
-          <div class="flex-column flex-center">
-              <p>17/08/20</p>
-          </div>
-        </li>
+    <hr />
+    <ul class="list-view-content" *ngFor="let promesa of promesas">
+      <li class="flex-row promises-latest">
+        <div class="flex-column flex-grow">
+          <p class="promise-price">
+            {{
+              promesa.PromesaMonto
+                | currency: promesa.CodigoMoneda:"symbol-narrow"
+            }}
+          </p>
+          <p class="promise-date">{{ promesa.CantidadCuentas }} producto</p>
+        </div>
+        <div class="flex-column flex-center">
+          <p>{{ promesa.PromesaFecha | date: "dd/MM/yyyy" }}</p>
+        </div>
+      </li>
     </ul>
-    <p><a [routerLink]="" (click)="IrPromesaHistorica()" class="wide-link">Ver todas las promesas</a></p>
+    <p>
+      <a [routerLink]="" (click)="IrPromesaHistorica()" class="wide-link"
+        >Ver todas las promesas</a
+      >
+    </p>
   </div>
 </div>
-

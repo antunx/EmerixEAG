@@ -1,30 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GetService } from '@app/services/get.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-promesa-ultima',
   templateUrl: './promesa-ultima.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class PromesaUltimaComponent implements OnInit {
-  IdPersona: string;
-  constructor(
-    private router: Router,
-    private getservices: GetService,
-    private route: ActivatedRoute
-  ) { }
+export class PromesaUltimaComponent implements OnInit, OnDestroy {
+  persona: string;
+  promesas: any;
+  private subs: Subscription;
 
-  ngOnInit(): void {
-    this.IdPersona = localStorage.getItem('version_core');
+  constructor(private router: Router, private getService: GetService) {}
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 
-  IrPromesa(): void{
+  ngOnInit(): void {
+    this.persona = localStorage.getItem('version_core');
+    this.subs = this.getService
+      .getPromesaPago(this.persona, true)
+      .subscribe((data) => {
+        // console.log(data['Promesas']);
+        this.promesas = data.Promesas;
+      });
+  }
+
+  IrPromesa(): void {
     this.router.navigateByUrl('/home/promesa');
   }
 
-  IrPromesaHistorica(): void{
+  IrPromesaHistorica(): void {
     this.router.navigateByUrl('/home/promesa-historica');
   }
 }

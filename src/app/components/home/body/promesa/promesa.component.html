@@ -1,3 +1,363 @@
-<p>promesa works!</p>
+<!-- <p>promesa works!</p>
 <p><a [routerLink]="" (click)="IrPromesaMensaje()" class="wide-link">Ir Promesa Mensaje</a></p>
-<p><a [routerLink]="" (click)="IrPromesaDetalle()" class="wide-link">Ir Promesa Detalle</a></p>
+<p><a [routerLink]="" (click)="IrPromesaDetalle()" class="wide-link">Ir Promesa Detalle</a></p> -->
+<div class="flex-column flex-grow">
+  <div class="pages-container">
+    <section class="page-deals" [hidden]="promesaGenerada">
+      <!-- START PAGE HEADER -->
+      <div class="flex-row flex-center">
+        <h1 class="flex-grow">Promesa de pago</h1>
+        <div>
+          <div class="breadcrumb-container" id="">
+            <ul class="flex-row">
+              <li class="active breadcrumb">
+                item1
+              </li>
+
+              <li class="breadcrumb">
+                item2
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- END PAGE HEADER -->
+      <div class="flex-row">
+        <!-- START DESKTOP TABLE -->
+        <div class="table-container desktop-only">
+          <table class="table" width="100%" border="0">
+            <tbody>
+              <tr class="table-header">
+                <td style="width: 25%;">
+                  <div class="input-wrapper checkbox">
+                    <input
+                      id="select-all"
+                      type="checkbox"
+                      class="input-elem visually-hidden"
+                      required
+                      value="all"
+                      checked
+                      (change)="checkAll($event)"
+                      [disabled]="tipoPago == 'IMPORTE'"
+                    />
+
+                    <div class="input-fake-checkbox">
+                      <span class="input-caret"></span>
+                    </div>
+
+                    <label for="select-all">Producto</label>
+
+                    <div class="input-error-icon" role="alert"></div>
+                    <div class="input-error-popup" role="alert">Required</div>
+                  </div>
+                </td>
+
+                <td style="width: 25%;">
+                  Dias de Mora
+                </td>
+
+                <td style="width: 25%;">
+                  Monto de Deuda
+                </td>
+
+                <td style="width: 25%;" [hidden]="tipoPago == 'IMPORTE'">
+                  Monto a Cancelar
+                </td>
+              </tr>
+              <div *ngFor="let cuenta of RespPromesa?.Cuentas">
+                <tr>
+                  <td style="width: 25%;">
+                    <div class="input-wrapper checkbox">
+                      <input
+                        id="table-select-{{ cuenta.IdCuenta }}"
+                        type="checkbox"
+                        class="input-elem visually-hidden"
+                        required
+                        [disabled]="tipoPago == 'IMPORTE'"
+                        name="selectAll"
+                        [checked]="cuenta.Check"
+                        (change)="cambiarCheck(cuenta.IdCuenta, $event)"
+                      />
+
+                      <div class="input-fake-checkbox">
+                        <span class="input-caret"></span>
+                      </div>
+
+                      <label for="table-select-{{ cuenta.IdCuenta }}">{{
+                        cuenta.NombreProducto
+                      }}</label>
+                    </div>
+                  </td>
+
+                  <td style="width: 25%;">
+                    {{ cuenta.DiasMora }}
+                  </td>
+
+                  <td style="width: 25%;">
+                    {{
+                      cuenta.Deuda
+                        | currency: cuenta.CodigoMoneda:"symbol-narrow"
+                    }}
+                  </td>
+
+                  <td style="width: 25%;" [hidden]="tipoPago == 'IMPORTE'">
+                    <input
+                      type="number"
+                      id="monto-cancelar-{{ cuenta.IdCuenta }}"
+                      [value]="cuenta.Deuda"
+                      [disabled]="!cuenta.Check"
+                      [max]="cuenta.Deuda"
+                      min="0"
+                      (focusout)="cambiarMonto($event)"
+                      attr.data-valor="{{ cuenta.Deuda }}"
+                      style="width: 100px; text-align: center;"
+                      (focus)="deshabilitarBoton()"
+                      *ngIf="RespPromesa?.ActivoParcial"
+                    />
+                    <label
+                      id="monto-cancelar-{{ cuenta.IdCuenta }}"
+                      *ngIf="!RespPromesa?.ActivoParcial"
+                      >{{ cuenta.Deuda }}</label
+                    >
+                  </td>
+                </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+        <!-- END DESKTOP TABLE -->
+
+        <!-- START MOBILE TABLE -->
+        <div class="mobile-only flex-column flex-grow table-container">
+          <table
+            class="box table flex-row"
+            *ngFor="let cuenta of RespPromesa?.Cuentas"
+          >
+            <tbody>
+              <tr class="table-header">
+                <td>
+                  <div class="input-wrapper checkbox">
+                    <input
+                      id="table-select-m{{ cuenta.IdCuenta }}"
+                      type="checkbox"
+                      class="input-elem visually-hidden"
+                      required
+                      [disabled]="tipoPago == 'IMPORTE'"
+                      name="selectAll"
+                      [checked]="cuenta.Check"
+                      (change)="cambiarCheck(cuenta.IdCuenta, $event)"
+                    />
+
+                    <div class="input-fake-checkbox">
+                      <span class="input-caret"></span>
+                    </div>
+
+                    <label for="table-select-m{{ cuenta.IdCuenta }}">{{
+                      cuenta.NombreProducto
+                    }}</label>
+
+                    <div class="input-error-icon" role="alert"></div>
+                    <div class="input-error-popup" role="alert">Required</div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <p><strong>Dias de Mora</strong></p>
+
+                  <p>{{ cuenta.DiasMora }}</p>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <p><strong>Monto de Deuda</strong></p>
+
+                  <p>{{ cuenta.Deuda }}</p>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <p><strong>Monto a Cancelar</strong></p>
+
+                  <p>
+                    <input
+                      type="number"
+                      id="monto-cancelar-{{ cuenta.IdCuenta }}"
+                      [value]="cuenta.Deuda"
+                      [disabled]="!cuenta.Check"
+                      [max]="cuenta.Deuda"
+                      min="0"
+                      (focusout)="cambiarMonto($event)"
+                      attr.data-valor="{{ cuenta.Deuda }}"
+                      style="width: 100px; text-align: center;"
+                      (focus)="deshabilitarBoton()"
+                      *ngIf="RespPromesa?.ActivoParcial"
+                    />
+                    <label
+                      id="monto-cancelar-{{ cuenta.IdCuenta }}"
+                      *ngIf="!RespPromesa?.ActivoParcial"
+                      >{{ cuenta.Deuda }}</label
+                    >
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- END MOBILE TABLE -->
+      </div>
+      <!-- START CONTROLLERS -->
+      <div class="flex-column deal-mini">
+        <div>
+          <div
+            class="input-wrapper radio"
+            [hidden]="!RespPromesa?.ActivoProducto"
+          >
+            <input
+              id="payment-total"
+              type="radio"
+              class="input-elem visually-hidden"
+              name="payment-type"
+              required
+              value="PRODUCTO"
+              [checked]="RespPromesa?.ActivoProducto == true"
+              [disabled]="RespPromesa?.ActivoProducto == false"
+              (click)="seleccionarPago($event)"
+            />
+
+            <div class="input-fake-radio">
+              <span class="input-caret"></span>
+            </div>
+
+            <label for="payment-total">
+              <div class="box flex-row flex-center">
+                <div class="payment-title">Por Producto</div>
+                <div class="text-right flex-grow">
+                  <strong>{{
+                    montoAPagar | currency: "ARS":"symbol-narrow"
+                  }}</strong>
+                </div>
+              </div>
+            </label>
+
+            <div class="input-error-icon" role="alert"></div>
+            <div class="input-error-popup" role="alert">Required</div>
+          </div>
+        </div>
+        <div>
+          <div class="input-wrapper radio" [hidden]="!RespPromesa?.ActivoMonto">
+            <input
+              id="payment-parcial"
+              type="radio"
+              class="input-elem visually-hidden"
+              name="payment-type"
+              required
+              value="IMPORTE"
+              (click)="seleccionarPago($event)"
+              [checked]="
+                RespPromesa?.ActivoMonto == true &&
+                RespPromesa?.ActivoProducto == false
+              "
+              [disabled]="RespPromesa?.ActivoMonto == false"
+            />
+
+            <div class="input-fake-radio">
+              <span class="input-caret"></span>
+            </div>
+
+            <label for="payment-parcial">
+              <div class="box flex-row flex-center">
+                <div class="payment-title">Por Monto</div>
+                <div class="text-right flex-grow">
+                  <div class="input-wrapper text">
+                    <input
+                      type="number"
+                      class="input-elem"
+                      name="monto-monto"
+                      id="monto-monto"
+                      [value]="RespPromesa?.DeudaTotal"
+                      min="0"
+                      [max]="RespPromesa?.DeudaTotal"
+                      (focusout)="cambiarMonto($event)"
+                      (focus)="deshabilitarBoton()"
+                      [disabled]="tipoPago != 'IMPORTE'"
+                      step="0.1"
+                      *ngIf="RespPromesa?.ActivoParcial"
+                    />
+                    <label
+                      id="monto-monto"
+                      *ngIf="!RespPromesa?.ActivoParcial"
+                      >{{ RespPromesa?.DeudaTotal }}</label
+                    >
+
+                    <div class="input-error-icon" role="alert"></div>
+                    <div class="input-error-popup" role="alert">Required</div>
+                  </div>
+                </div>
+              </div>
+            </label>
+
+            <div class="input-error-icon" role="alert"></div>
+            <div class="input-error-popup" role="alert">Required</div>
+          </div>
+        </div>
+        <div>
+          <div class="box flex-row flex-center">
+            <div class="payment-title">PERIODO</div>
+            <div class="text-right flex-grow">
+              <div class="input-wrapper date" id="date-input">
+                <select
+                  name="periodo"
+                  id="periodo"
+                  (change)="cambiarPeriodo($event)"
+                  class="input-elem"
+                >
+                  <option value="1">24 hs</option>
+                  <option value="2">48 hs</option>
+                  <option value="3">72 hs</option>
+                  <option value="fecha">Elegir Fecha</option>
+                </select>
+                <input
+                  *ngIf="periodo == 'fecha'"
+                  class="input-elem"
+                  type="date"
+                  name="fecha"
+                  id="fecha"
+                  (change)="setearFecha($event)"
+                />
+
+                <div class="input-error-icon" role="alert"></div>
+                <div class="input-error-popup" role="alert">
+                  Fecha Invalida. No puede ser menor a la fecha actual ni
+                  exceder en
+                  {{ RespPromesa?.DiasMaximo || RespPromesa?.DiasMaximoParam }}
+                  dias la fecha actual
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn"
+          value="Generar Promesa"
+          id="generar-promesa"
+          (click)="generarPromesa($event)"
+          [disabled]="button"
+        >
+          Generar promesa
+        </button>
+      </div>
+      <!-- END CONTROLLERS -->
+    </section>
+  </div>
+</div>
+
+<!-- COMPONENTE PROMESA-MENSAJE -->
+<app-promesa-mensaje
+  *ngIf="promesaGenerada"
+  [promesaGenerada]="promesaGenerada"
+  (volviendo)="onVolviendo($event)"
+></app-promesa-mensaje>

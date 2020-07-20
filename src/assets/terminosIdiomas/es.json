@@ -40,6 +40,7 @@
   "Traduct.comentario": "Comentario",
   "Traduct.comprobante": "Comprobante",
   "Traduct.comprobantes": "Comprobantes",
+  "Traduct.tus_comprobantes": "Tus comprobantes",
   "Traduct.minimo": "Mínimo",
   "Traduct.cant_dias_mora": "Cantidad Días de Mora",
 
@@ -56,6 +57,24 @@
   "Traduct.numero_incorrecto": "El número ingresado es incorrecto.",
   "Traduct.recibir_otro_tel": "Quiero recibirlo en otro teléfono",
   "Traduct.siguiente": "Siguiente",
+
+  "Traduct.inicio": "Inicio",
+  "Traduct.mis_cuentas": "Mis Cuentas",
+  "Traduct.pagos": "Pagos",
+  "Traduct.registrar_pago": "Registrar Pago",
+  "Traduct.acuerdos": "Acuerdos",
+  "Traduct.promesa_pago": "Promesas de pago",
+  "Traduct.plan_pago": "Plan de pago",
+  "Traduct.estado_solicitudes": "Estado de solicitudes",
+  "Traduct.tu_perfil": "Tu Perfil",
+  "Traduct.preguntas_frecuentes": "Preguntas frecuentes",
+  "Traduct.notificaciones": "Notificaciones",
+  "Traduct.hola": "Hola",
+  "Traduct.acepto_los": "Acepto los",
+
+  "Traduct.404_msg1": "404 Página No encontrada!!!",
+  "Traduct.404_msg2": "Lo sentimos, se ha producido un error. ¡No se encontró la página solicitada!",
+
 
   "Traduct.volver": "Volver",
   "Traduct.obligatorio": "Obligatorio",

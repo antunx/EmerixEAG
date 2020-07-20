@@ -37,8 +37,4 @@ export class ListaComprobanteComponent implements OnInit, OnDestroy {
         console.log(err);
     }));
   }
-
-  Volver(): void{
-    this.router.navigateByUrl('/home/informar_comprobante');
-  }
 }
