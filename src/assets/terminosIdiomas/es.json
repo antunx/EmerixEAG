@@ -75,7 +75,6 @@
   "Traduct.404_msg1": "404 Página No encontrada!!!",
   "Traduct.404_msg2": "Lo sentimos, se ha producido un error. ¡No se encontró la página solicitada!",
 
-
   "Traduct.volver": "Volver",
   "Traduct.obligatorio": "Obligatorio",
   "Traduct.validando": "Validando codigo",
@@ -83,5 +82,7 @@
   "Traduct.cargando": "Cargando",
   "Traduct.espere": "Espere por favor...",
   "Traduct.error1": "Error al autenticar",
-  "Traduct.credenciales": "Credenciales Invalidas"
+  "Traduct.credenciales": "Credenciales Invalidas",
+  "Traduct.continuar": "Continuar Navegando",
+  "Traduct.confirmar": "Confirmar"
 }

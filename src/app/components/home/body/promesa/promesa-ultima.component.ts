@@ -22,7 +22,7 @@ export class PromesaUltimaComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.persona = localStorage.getItem('version_core');
     this.subs = this.getService
-      .getPromesaPago(this.persona, true)
+      .getPromesaPago(this.persona, 'true')
       .subscribe((data) => {
         // console.log(data['Promesas']);
         this.promesas = data.Promesas;

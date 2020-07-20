@@ -17,7 +17,7 @@ export class PromesaDetalleComponent implements OnInit {
   ngOnInit(): void {
     this.detalle = this.getService.getDetalle();
     this.cuentas = this.detalle.Detalle;
-    console.log(this.cuentas);
+    // console.log(this.cuentas);
   }
 
 }

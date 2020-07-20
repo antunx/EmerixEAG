@@ -1,6 +1,6 @@
 <div class="flex-column flex-grow">
     <div class="pages-container">
-  
+
         <section class="page-invoice">
             <h1 class="flex-row">Promesas de Pago</h1>
             <div class="flex-row">
@@ -21,8 +21,8 @@
                                 Cantidad de Productos
                             </td>
                         </tr>
-                        <tr *ngFor="let item of promesas | paginate: { itemsPerPage: 10, currentPage: p }; let i = index" (click)="iradetalle(item)"> 
-                            <td style="width: 16.666666666666668%;">    
+                        <tr *ngFor="let item of promesas ; let i = index" (click)="iradetalle(item)">
+                            <td style="width: 16.666666666666668%;">
                               {{ item.PromesaFecha | date: "dd/MM/yyyy" }}
                             </td>
                             <td style="width: 16.666666666666668%;">
@@ -34,45 +34,41 @@
                             <td style="width: 16.666666666666668%;">
                               {{ item.CantidadCuentas }} productos
                             </td>
-                        </tr>       
-                      </tbody>     
+                        </tr>
+                      </tbody>
                     </table>
                 </div>
                 <div class="mobile-only flex-column flex-grow table-container">
-                    <table class="box table flex-row" *ngFor="let item of promesas | paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+                    <table class="box table flex-row" *ngFor="let item of promesas ; let i = index">
                     <tbody>
                         <tr>
-                            <td>    
+                            <td>
                               <p><strong>Estado</strong></p>
-                                <p>{{ item.Estado }}</p>   
+                                <p>{{ item.Estado }}</p>
                             </td>
                         </tr>
                         <tr>
-                            <td>    
+                            <td>
                                 <p><strong>Fecha de Promesa</strong></p>
-                                <p>{{ item.PromesaFecha | date: "dd/MM/yyyy" }}</p>   
+                                <p>{{ item.PromesaFecha | date: "dd/MM/yyyy" }}</p>
                             </td>
                         </tr>
                         <tr>
-                            <td style="border-top-width: 0px;">    
+                            <td style="border-top-width: 0px;">
                                 <p><strong>Monto</strong></p>
-                                <p>{{ item.CodigoMoneda + item.PromesaMonto }}</p>   
+                                <p>{{ item.CodigoMoneda + item.PromesaMonto }}</p>
                             </td>
                         </tr>
                         <tr>
-                            <td style="border-top-width: 0px;">    
+                            <td style="border-top-width: 0px;">
                                 <p><strong>Cantidad de Productos</strong></p>
-                                <p>{{ item.CantidadCuentas }} productos</p>   
+                                <p>{{ item.CantidadCuentas }} productos</p>
                             </td>
                         </tr>
                       </tbody>
                     </table>
                 </div>
             </div>
-            <div class="mx-auto text-center">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </div>
         </section>
     </div>
   </div>
-  

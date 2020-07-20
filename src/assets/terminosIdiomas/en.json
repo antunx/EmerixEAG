@@ -81,5 +81,7 @@
   "Traduct.cargando": "Loading",
   "Traduct.espere": "Please wait...",
   "Traduct.error1": "Authentication failed",
-  "Traduct.credenciales": "Invalid credentials"
+  "Traduct.credenciales": "Invalid credentials",
+  "Traduct.continuar": "Continue browsing",
+  "Traduct.confirmar": "Confirm"
 }

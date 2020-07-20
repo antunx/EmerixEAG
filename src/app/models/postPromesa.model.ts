@@ -1,4 +1,4 @@
-export interface postPromesa{
+export interface Promesa{
     Cuentas: Cuenta[];
     DeudaTotal: number;
     FormaPago: string;

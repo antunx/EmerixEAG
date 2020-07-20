@@ -5,7 +5,7 @@ import { RtapostGeneraTetokenModel } from '@models/rtapostgeneratetoken.model';
 import { RtapostValidateTokenModel } from '@models/rtapostvalidatetoken.model';
 import { Comprobante } from '@models/comprobante.models';
 import { StandardPost } from '@app/models/standardpost.models';
-import { postPromesa } from '@models/postPromesa.model';
+import { Promesa } from '@models/postPromesa.model';
 import { rtaPostPromesaPago } from '@models/rtapostpromesapago.model';
 
 import { environment } from '../../environments/environment';
@@ -39,14 +39,8 @@ export class PostService {
     return this.http.post<StandardPost>(this.API_URL  + 'emerixautog/ingresarcomprobante', comprobante, { headers });
   }
   /** AGREGADO */
-  postPromesaPago(obj: postPromesa): Observable<rtaPostPromesaPago> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json;charset=utf-8',
-    });
-    return this.http.post<rtaPostPromesaPago>(
-      this.API_URL + 'emerixautog/ingresarpromesa',
-      obj,
-      { headers }
-    );
+  postPromesaPago(promesa: Promesa): Observable<rtaPostPromesaPago> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json;charset=utf-8' });
+    return this.http.post<rtaPostPromesaPago>(this.API_URL + 'emerixautog/ingresarpromesa', promesa, { headers });
   }
 }

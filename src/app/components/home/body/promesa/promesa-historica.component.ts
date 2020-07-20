@@ -23,11 +23,11 @@ export class PromesaHistoricaComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.sub = this.getServices
-      .getPromesaPago(localStorage.getItem('version_core'), false)
+      .getPromesaPago(localStorage.getItem('version_core'), 'false')
       .subscribe((res) => {
         this.promesas = res.Promesas;
         this.promesas = this.sortData();
-        console.log(this.promesas);
+        // console.log(this.promesas);
       });
   }
 
@@ -36,7 +36,7 @@ export class PromesaHistoricaComponent implements OnInit, OnDestroy {
   }
 
   iradetalle(item: any): void{
-    console.log(item);
+    // console.log(item);
     this.getServices.setDetalle(item);
     this.router.navigateByUrl('home/promesa-detalle');
   }

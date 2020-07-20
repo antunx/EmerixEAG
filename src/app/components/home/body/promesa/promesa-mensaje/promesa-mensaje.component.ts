@@ -28,22 +28,22 @@ export class PromesaMensajeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.promesaGenerada);
+    // (this.promesaGenerada);
     this.respuesta = this.getService.getPromesa();
-    console.log(this.respuesta);
+    // console.log(this.respuesta);
     if (this.respuesta.formaPago === 'IMPORTE') {
       const cliente = this.respuesta.cliente;
       const importe = this.respuesta.totalPagar;
       this.getService
         .getProductPromImporte(cliente, importe)
         .subscribe((res) => {
-          console.log(res);
+          // console.log(res);
           this.productos = res.Cuentas;
         });
     } else {
       this.productos = this.respuesta.cuentas;
     }
-    console.log(this.respuesta.mensajes);
+    // console.log(this.respuesta.mensajes);
     // this.respuesta.mensajes.mensaje = this.respuesta.mensajes.mensaje.replace('promesaPago', JSON.stringify(this.respuesta.totalPagar));
     // this.respuesta.mensajes.mensaje = this.respuesta.mensajes.mensaje.replace('fechaPromesa', this.respuesta.fechaPromesaVencimiento);
   }
@@ -59,7 +59,7 @@ export class PromesaMensajeComponent implements OnInit {
       };
       cuentas.push(cuenta);
     });
-    console.log(cuentas);
+    // console.log(cuentas);
     const obj = {
       IdPersona: JSON.parse(this.respuesta.cliente),
       IdTipoPromesa: this.respuesta.idTipoPromesa,
@@ -70,10 +70,10 @@ export class PromesaMensajeComponent implements OnInit {
       FormaPromesa: this.respuesta.formaPromesa,
       FormaPago: this.respuesta.formaPago,
     };
-    console.log(obj);
+    // console.log(obj);
 
     this.postService.postPromesaPago(obj).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       if (res.ErrorCode === 0) {
         this.promesaCreada = true;
         const element = document.getElementById('deals-sidebar');

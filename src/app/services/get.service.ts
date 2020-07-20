@@ -64,12 +64,11 @@ export class GetService {
 
   getDebtFree(id: string): Observable<RtagetDebtFreeModel>{
     return this.http.get<RtagetDebtFreeModel>(this.API_URL + 'emerixautog/getdebtfree/' + id);
- }
+  }
+
   /** AGREGADO */
   getProductProm(id: string): Observable<Promesa> {
-    return this.http.get<Promesa>(
-      `${this.API_URL}emerixautog/getproductosprom/${id}`
-    );
+    return this.http.get<Promesa>(this.API_URL + 'emerixautog/getproductosprom/' + id);
   }
 
   postPromesa(promesa: any): void {
@@ -80,26 +79,25 @@ export class GetService {
     return this.promesa;
   }
 
-  getProductPromImporte(
-    id: string,
-    importe: number
-  ): Observable<PromesaImporte> {
-    return this.http.get<PromesaImporte>(
-      `${this.API_URL}emerixautog/getproductospromImp/?Id=${id}&Importe=${importe}`
-    );
+  getProductPromImporte(id: string, importe: string): Observable<PromesaImporte> {
+    let params = new HttpParams();
+    params = params.append('Id', id);
+    params = params.append('Importe', importe);
+    return this.http.get<PromesaImporte>(this.API_URL + 'emerixautog/getproductospromImp', { params });
   }
 
-  getPromesaPago(id: string, ultimas: boolean) {
-    return this.http.get<getPromesaPago>(
-      `${this.API_URL}emerixautog/getpromesas/?Id=${id}&ultimas=${ultimas}`
-    );
+  getPromesaPago(id: string, ultimas: string): Observable<getPromesaPago> {
+    let params = new HttpParams();
+    params = params.append('Id', id);
+    params = params.append('ultimas', ultimas);
+    return this.http.get<getPromesaPago>(this.API_URL + 'emerixautog/getpromesas', { params });
   }
 
-  setDetalle(item:any){
-    this.promesaDetalle = item
+  setDetalle(item: any): void{
+    this.promesaDetalle = item;
   }
 
-  getDetalle(){
-    return this.promesaDetalle
+  getDetalle(): void{
+    return this.promesaDetalle;
   }
 }

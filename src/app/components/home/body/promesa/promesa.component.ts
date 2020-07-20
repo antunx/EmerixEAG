@@ -27,12 +27,9 @@ export class PromesaComponent implements OnInit, OnDestroy {
     this.sub = this.getService
       .getProductProm(localStorage.getItem('version_core'))
       .subscribe((data: Promesa) => {
-        console.log(data);
+        // console.log(data);
         this.button = false;
         // data.ActivoParcial = false;
-        if (!localStorage.getItem('mensajes')) {
-          localStorage.setItem('mensajes', JSON.stringify(data.Mensajes[0]));
-        }
         this.RespPromesa = data;
         this.montoAPagar = data.DeudaTotal;
         if (!data.ActivoProducto && data.ActivoMonto) {
@@ -103,7 +100,7 @@ export class PromesaComponent implements OnInit, OnDestroy {
       this.tipoPago === 'PRODUCTO' &&
       valorAnterior !== monto
     ) {
-      console.log('entre');
+      // console.log('entre');
       this.montoAPagar -= max - monto + valorAnterior - max;
       e.target.dataset.valor = monto;
     }

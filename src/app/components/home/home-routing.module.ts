@@ -18,7 +18,7 @@ import { PromesaDetalleComponent } from './body/promesa/promesa-detalle/promesa-
 const routes: Routes = [
   {path: '', component: HomeComponent,
     children: [
-      {path: 'default', component: DefaultComponent, canActivate: [ AuthGeneralGuard ]},
+      {path: 'default', component: DefaultComponent, canActivateChild: [ AuthGeneralGuard ]},
 
       {path: 'promesa', component: PromesaComponent, canActivate: [ AuthGeneralGuard ]},
       {path: 'promesa-historica', component: PromesaHistoricaComponent, canActivate: [ AuthGeneralGuard ]},

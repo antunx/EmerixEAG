@@ -32,8 +32,6 @@ import { PromesaComponent } from './body/promesa/promesa.component';
 import { PromesaMensajeComponent } from './body/promesa/promesa-mensaje/promesa-mensaje.component';
 import { PromesaDetalleComponent } from './body/promesa/promesa-detalle/promesa-detalle.component';
 
-import { NgxPaginationModule } from 'ngx-pagination';
-
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
 }
@@ -50,8 +48,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
                                       useFactory: (createTranslateLoader),
                                       deps: [HttpClient]
                                       }
-                            }),
-    NgxPaginationModule
+                            })
   ],
   declarations: [
     DefaultComponent,
