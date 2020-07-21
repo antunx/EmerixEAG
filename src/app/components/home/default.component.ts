@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ComunicacionService } from '@app/services/comunicacion.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-default',
@@ -10,7 +11,10 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DefaultComponent implements OnInit {
 
-  constructor(private servicioComunicacion: ComunicacionService, private translate: TranslateService) { }
+  constructor(
+    private translate: TranslateService,
+    private servicioComunicacion: ComunicacionService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.cambioTexto(this.translate.instant('Traduct.inicio'));

@@ -9,6 +9,7 @@ import { PostService } from '@services/post.service';
 import { UsuarioAutenticarModel } from '@models/usuarioautenticar.model';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { ComunicacionService } from '@app/services/comunicacion.service';
 
 @Component({
   selector: 'app-login-body',

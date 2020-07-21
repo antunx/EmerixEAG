@@ -1,16 +1,16 @@
  <div class="flex-column flex-grow">
   <div class="pages-container">
      <div class="overlay" id="invoice-sidebar">
-        <div *ngIf="MostrarPopup===true" class="dialog-container" role="dialog">
+        <div *ngIf="MostrarPopup===true" class="dialog-container sidebar" role="dialog">
            <a class="close-btn">
-              <img src="/assets/images/ui/close-btn.svg" alt="Close" (click) ="CerrarPopup()">
+              <img src="assets/images/ui/close-btn.svg" alt="Close" (click) ="CerrarPopup()">
            </a>
            <div>
               <app-producto-detalle [producto]="producto"></app-producto-detalle>
           </div>
         </div>
      </div>
-     <section class="page-invoice">
+     <section class="page-invoice restrict-desktop">
         <h1 class="flex-row">{{ 'Traduct.listado_productos' | translate }}</h1>
         <div class="flex-row">
            <div class="table-container desktop-only">

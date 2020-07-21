@@ -4,6 +4,7 @@ import { GetService } from '@app/services/get.service';
 import { PostService } from '@app/services/post.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { ComunicacionService } from '@app/services/comunicacion.service';
 
 @Component({
   selector: 'app-promesa-mensaje',
@@ -12,6 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class PromesaMensajeComponent implements OnInit {
   @Input() promesaGenerada: boolean;
+  @Input() promesa: any;
   @Output() volviendo = new EventEmitter<boolean>();
   respuesta: any;
   productos = [];
@@ -24,12 +26,15 @@ export class PromesaMensajeComponent implements OnInit {
     private router: Router,
     private getService: GetService,
     private postService: PostService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private servicioComunicacion: ComunicacionService
   ) {}
 
   ngOnInit(): void {
     // (this.promesaGenerada);
-    this.respuesta = this.getService.getPromesa();
+    // this.respuesta = this.getService.getPromesa();
+    this.cambioTexto(this.translate.instant('Traduct.promesa_pago'));
+    this.respuesta = this.promesa;
     // console.log(this.respuesta);
     if (this.respuesta.formaPago === 'IMPORTE') {
       const cliente = this.respuesta.cliente;
@@ -46,6 +51,10 @@ export class PromesaMensajeComponent implements OnInit {
     // console.log(this.respuesta.mensajes);
     // this.respuesta.mensajes.mensaje = this.respuesta.mensajes.mensaje.replace('promesaPago', JSON.stringify(this.respuesta.totalPagar));
     // this.respuesta.mensajes.mensaje = this.respuesta.mensajes.mensaje.replace('fechaPromesa', this.respuesta.fechaPromesaVencimiento);
+  }
+
+  cambioTexto(mensaje: string): void {
+    this.servicioComunicacion.enviarMensaje(mensaje);
   }
 
   postPromesa(): void {
@@ -71,6 +80,10 @@ export class PromesaMensajeComponent implements OnInit {
       FormaPago: this.respuesta.formaPago,
     };
     // console.log(obj);
+    this.promesaCreada = true;
+    const element = document.getElementById('deals-sidebar');
+    element.classList.add('active');
+    return;
 
     this.postService.postPromesaPago(obj).subscribe((res: any) => {
       // console.log(res);
@@ -90,5 +103,10 @@ export class PromesaMensajeComponent implements OnInit {
   volver(): void {
     this.promesaGenerada = !this.promesaGenerada;
     this.volviendo.emit(this.promesaGenerada);
+  }
+
+  removeCommas(numero: string): string {
+    if (numero === '' || numero === null) { return numero; }
+    return numero.replace(',', '');
   }
 }

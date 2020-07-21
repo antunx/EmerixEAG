@@ -14,21 +14,25 @@ import { PromesaComponent } from './body/promesa/promesa.component';
 import { PromesaHistoricaComponent } from './body/promesa/promesa-historica.component';
 import { PromesaMensajeComponent } from './body/promesa/promesa-mensaje/promesa-mensaje.component';
 import { PromesaDetalleComponent } from './body/promesa/promesa-detalle/promesa-detalle.component';
+import { PreguntasComponent } from './body/preguntas/preguntas.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent,
     children: [
       {path: 'default', component: DefaultComponent, canActivateChild: [ AuthGeneralGuard ]},
 
+      {path: 'producto', component: ProductoListadoComponent},
+
       {path: 'promesa', component: PromesaComponent, canActivate: [ AuthGeneralGuard ]},
       {path: 'promesa-historica', component: PromesaHistoricaComponent, canActivate: [ AuthGeneralGuard ]},
       {path: 'promesa-detalle', component: PromesaDetalleComponent, canActivate: [ AuthGeneralGuard ]},
       {path: 'promesa-mensaje', component: PromesaMensajeComponent, canActivate: [ AuthGeneralGuard ]},
 
-      {path: 'producto', component: ProductoListadoComponent},
-
       {path: 'comprobante', component: ListaComprobanteComponent, canActivate: [ AuthGeneralGuard ]  },
       {path: 'informar_comprobante', component: InformarComprobanteComponent, canActivate: [ AuthGeneralGuard ]  },
+
+      {path: 'preguntas', component: PreguntasComponent, canActivateChild: [ AuthGeneralGuard ]},
+
     ]},
 ];
 

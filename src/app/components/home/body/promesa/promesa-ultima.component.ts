@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GetService } from '@app/services/get.service';
 import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-promesa-ultima',
@@ -13,7 +14,11 @@ export class PromesaUltimaComponent implements OnInit, OnDestroy {
   promesas: any;
   private subs: Subscription;
 
-  constructor(private router: Router, private getService: GetService) {}
+  constructor(
+    private router: Router,
+    private getService: GetService,
+    private Traduct: TranslateService
+  ) {}
 
   ngOnDestroy(): void {
     this.subs.unsubscribe();

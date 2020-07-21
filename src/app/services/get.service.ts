@@ -22,8 +22,6 @@ import { ComprobantesLst } from '@app/models/comprobante.models';
 export class GetService {
 
   private API_URL = environment.API_URL;
-  private promesa: any;
-  private promesaDetalle: any;
 
   constructor( private http: HttpClient ) {}
 
@@ -58,8 +56,11 @@ export class GetService {
     return this.http.get<RtagetDetailProductModel>(this.API_URL + 'emerixautog/getdetailproduct' , { params });
   }
 
-  getComprobantesDetail(IdPersona: string): Observable<ComprobantesLst>{
-    return this.http.get<ComprobantesLst>(this.API_URL + 'emerixautog/getcomprobante/' + IdPersona);
+  getComprobantesDetail(IdPersona: string, ultimas: string): Observable<ComprobantesLst>{
+    let params = new HttpParams();
+    params = params.append('Id', IdPersona);
+    params = params.append('ultimas', ultimas);
+    return this.http.get<ComprobantesLst>(this.API_URL + 'emerixautog/getcomprobante', { params });
   }
 
   getDebtFree(id: string): Observable<RtagetDebtFreeModel>{
@@ -69,14 +70,6 @@ export class GetService {
   /** AGREGADO */
   getProductProm(id: string): Observable<Promesa> {
     return this.http.get<Promesa>(this.API_URL + 'emerixautog/getproductosprom/' + id);
-  }
-
-  postPromesa(promesa: any): void {
-    this.promesa = promesa;
-  }
-
-  getPromesa(): Promesa {
-    return this.promesa;
   }
 
   getProductPromImporte(id: string, importe: string): Observable<PromesaImporte> {
@@ -93,11 +86,4 @@ export class GetService {
     return this.http.get<getPromesaPago>(this.API_URL + 'emerixautog/getpromesas', { params });
   }
 
-  setDetalle(item: any): void{
-    this.promesaDetalle = item;
-  }
-
-  getDetalle(): void{
-    return this.promesaDetalle;
-  }
 }

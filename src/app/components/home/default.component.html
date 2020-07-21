@@ -1,55 +1,23 @@
-<div class="flex-row flex-column-on-mobile">
-    <div class="flex-column flex-grow">
+<div class="flex-row flex-column-on-mobile justify-center">
+    <div class="flex-column flex-grow home-area">
 
       <!--BOX COMPONENTE DEUDA-->
       <app-deuda></app-deuda>
 
-      <!--LIMPIAR -->
-      <div class="box">
-				<div class="list-view">
-					<div class="list-view-title">
-						<h2>Últimos planes</h2>
-						<div class="list-view-add"></div>
-					</div>
-					<hr>
-					<ul class="list-view-content">
-
-						<li class="flex-row promises-latest">
-							<div class="flex-column flex-grow">
-								<p class="plan-text">REFI - MC3111223</p>
-								<p class="plan-date">17/10/20</p>
-							</div>
-							<div class="flex-column flex-center">
-								<p><span class="bullet green"></span>Aprobado</p>
-							</div>
-						</li>
-
-						<li class="flex-row promises-latest">
-							<div class="flex-column flex-grow">
-								<p class="plan-text">REFI - MC3111223</p>
-								<p class="plan-date">17/10/20</p>
-							</div>
-							<div class="flex-column flex-center">
-								<p><span class="bullet yellow"></span>En espera</p>
-							</div>
-						</li>
-
-					</ul>
-					<p><a href="#" class="wide-link">Ver todos los planes</a></p>
-				</div>
-			</div>
+      <!--BOX ULTIMOS 3 COMPROBANTES -->
+      <app-ultimos-comprobantes></app-ultimos-comprobantes>
     </div>
 
-    <div class="flex-column flex-grow">
+    <div class="flex-column flex-grow home-area">
 
       <!--LIMPIAR -->
       <div class="box">
           <p class="text-center"><img src="https://placekitten.com/g/450/150" alt=""></p>
           <hr>
-          <p>¡Accedé a este beneficio ahora!</p>
+           <p class="wide-link"><a href="#">¡Accedé a este beneficio ahora!</a></p>
       </div>
 
-      <!--DESARROLLAR -->
+      <!--BOX PROMESAS DE PAGO -->
       <app-promesa-ultima></app-promesa-ultima>
     </div>
 </div>

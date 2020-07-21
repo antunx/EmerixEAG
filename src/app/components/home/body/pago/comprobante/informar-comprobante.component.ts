@@ -8,6 +8,8 @@ import { Item } from '@app/models/rtagetobjetocombo.model';
 import Swal from 'sweetalert2';
 import { Comprobante } from '@app/models/comprobante.models';
 import { Subscription } from 'rxjs';
+import { ComunicacionService } from '@app/services/comunicacion.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-informar-comprobante',
@@ -20,7 +22,9 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private router: Router,
     private postservices: PostService,
-    private metodosEstandarService: MetodosEstandarService
+    private metodosEstandarService: MetodosEstandarService,
+    private servicioComunicacion: ComunicacionService,
+    private translate: TranslateService
     ) {
       this.metodosEstandarService.Entidad = ''; // SOLO SE USA PARA CRUD
     }
@@ -70,6 +74,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   });
 
   ngOnInit(): void{
+    this.cambioTexto(this.translate.instant('Traduct.informar_pago'));
     this.LlenarMediosPago();
     this.LlenarMonedas();
   }
@@ -78,6 +83,9 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  cambioTexto(mensaje: string): void {
+    this.servicioComunicacion.enviarMensaje(mensaje);
+  }
   LlenarMediosPago(): void{
     this.subscription.add(this.metodosEstandarService.getObjectCombo('getmediospago').subscribe(
       (res) => {
@@ -205,7 +213,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
 
   SoloNumerosLetras(event: any): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
-    if ((charCode >= 48 && charCode <= 57) || (charCode >= 97 && charCode <= 122)) {
+    if ((charCode === 45) || (charCode >= 48 && charCode <= 57) || (charCode >= 97 && charCode <= 122)) {
       return true;
     }
     return false;

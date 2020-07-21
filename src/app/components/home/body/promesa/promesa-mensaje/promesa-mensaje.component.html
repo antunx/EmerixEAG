@@ -1,14 +1,14 @@
 <div class="flex-column flex-grow">
   <div class="pages-container">
     <div class="overlay" id="deals-sidebar">
-      <div class="dialog-container" role="dialog">
-        <a class="close-btn">
+      <div class="dialog-container sidebar" role="dialog">
+<!--         <a class="close-btn">
           <img
-            src="../../../../../assets/images/ui/close-btn.svg"
+            src="assets/images/ui/close-btn.svg"
             alt="Close"
           />
-        </a>
-        <div class="dialog-content sidebar">
+        </a> -->
+        <div class="dialog-content sidebar-content">
           <div>
             <div class="flex-column">
               <img src="https://placekitten.com/g/165/165" alt="" />
@@ -16,7 +16,7 @@
               <p>{{ this.respuesta.mensajes.OpeOk }}</p>
               <!-- <button class="btn" routerLink="/pagos">Pagar ahora</button -->
               <button class="btn secondary" routerLink="/home/default">
-                {{ 'Traduct.continuar' | translate }}
+                {{ "Traduct.continuar" | translate }}
               </button>
             </div>
           </div>
@@ -26,7 +26,7 @@
 
     <section class="page-deals">
       <div class="flex-row flex-center">
-        <h1 class="flex-grow">Promesa de pago</h1>
+        <h1 class="flex-grow">{{ "Traduct.confirmar_promesa" | translate }}</h1>
         <div>
           <div class="breadcrumb-container" id="">
             <ul class="flex-row">
@@ -43,13 +43,17 @@
 
       <div class="flex-row">
         <div class="box flex-grow text-center">
-          <h3>Importe acordado</h3>
-          <p class="text-xlarge">${{ this.respuesta.totalPagar }}</p>
+          <h3>{{ "Traduct.importe" | translate }}</h3>
+          <p class="text-xlarge">
+            ${{
+              removeCommas(this.respuesta.totalPagar | number:'1.2-2')
+            }}
+          </p>
         </div>
         <div class="box flex-grow text-center">
-          <h3>Plazo de pago</h3>
+          <h3>{{ "Traduct.plazo_de_pago" | translate }}</h3>
           <p class="text-xlarge">
-            {{ this.respuesta.fechaPromesaVencimiento | date: 'dd/MM/yyyy' }}
+            {{ this.respuesta.fechaPromesaVencimiento | date: "dd/MM/yyyy" }}
           </p>
         </div>
       </div>
@@ -60,16 +64,16 @@
             <tbody>
               <tr class="table-header">
                 <td style="width: 20%;">
-                  Producto
+                  {{ "Traduct.producto" | translate }}
                 </td>
                 <td style="width: 20%;">
-                  Atraso
+                  {{ "Traduct.dias_deuda" | translate }}
                 </td>
                 <td style="width: 20%;">
-                  Importe adeudado
+                  {{ "Traduct.monto_deuda" | translate }}
                 </td>
                 <td style="width: 20%;">
-                  Importe a pagar
+                  {{ "Traduct.importe_a_pagar" | translate }}
                 </td>
               </tr>
               <tr *ngFor="let item of productos">
@@ -96,19 +100,25 @@
               </tr>
               <tr>
                 <td>
-                  <p><strong>Atraso</strong></p>
+                  <p>
+                    <strong>{{ "Traduct.dias_deuda" | translate }}</strong>
+                  </p>
                   <p>{{ item.DiasMora }}</p>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <p><strong>Importe adeudado</strong></p>
+                  <p>
+                    <strong>{{ "Traduct.deuda" | translate }}</strong>
+                  </p>
                   ${{ item.Deuda }}
                 </td>
               </tr>
               <tr>
                 <td>
-                  <p><strong>Importe a pagar</strong></p>
+                  <p>
+                    <strong>{{ "Traduct.importe_a_pagar" | translate }}</strong>
+                  </p>
                   ${{ item.ImportePago }}
                 </td>
               </tr>
@@ -117,12 +127,16 @@
         </div>
       </div>
       <p>
-        <img src="../../../../../assets/images/ui/icono_info.svg" alt="" />
+        <img src="assets/images/ui/icono_info.svg" alt="" />
         {{ this.respuesta.mensajes.Termino }}
       </p>
       <div class="deal-mini flex-row">
-        <button class="btn secondary" (click)="volver()">{{ 'Traduct.volver' | translate }}</button>
-        <button class="btn" (click)="postPromesa()">{{ 'Traduct.confirmar' | translate }}</button>
+        <button class="btn secondary" (click)="volver()">
+          {{ "Traduct.volver" | translate }}
+        </button>
+        <button class="btn" (click)="postPromesa()">
+          {{ "Traduct.confirmar" | translate }}
+        </button>
       </div>
     </section>
   </div>

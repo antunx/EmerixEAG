@@ -2,6 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GetService } from '@app/services/get.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ComunicacionService } from '@app/services/comunicacion.service';
+import { TranslateService } from '@ngx-translate/core';
+import { PropService } from '@app/services/prop.service';
+import { PromesaDetalle } from '@app/models/promesdetalle.model';
 
 @Component({
   selector: 'app-promesa-historica',
@@ -13,7 +17,13 @@ export class PromesaHistoricaComponent implements OnInit, OnDestroy {
   p = 1;
   private sub: Subscription;
 
-  constructor(private getServices: GetService, private router: Router) {}
+  constructor(
+    private getServices: GetService,
+    private router: Router,
+    private propServices: PropService,
+    private servicioComunicacion: ComunicacionService,
+    private translate: TranslateService
+  ) {}
 
   sortData(): any {
     return this.promesas.sort((a, b) => {
@@ -22,6 +32,7 @@ export class PromesaHistoricaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.cambioTexto(this.translate.instant('Traduct.promesa_pago'));
     this.sub = this.getServices
       .getPromesaPago(localStorage.getItem('version_core'), 'false')
       .subscribe((res) => {
@@ -31,13 +42,17 @@ export class PromesaHistoricaComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void{
+  ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 
-  iradetalle(item: any): void{
+  cambioTexto(mensaje: string): void {
+    this.servicioComunicacion.enviarMensaje(mensaje);
+  }
+
+  iradetalle(item: PromesaDetalle): void {
     // console.log(item);
-    this.getServices.setDetalle(item);
+    this.propServices.setDetalle(item);
     this.router.navigateByUrl('home/promesa-detalle');
   }
 }

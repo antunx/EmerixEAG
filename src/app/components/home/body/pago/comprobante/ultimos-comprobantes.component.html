@@ -1,0 +1,39 @@
+<div class="box">
+  <div class="list-view">
+    <div class="list-view-title">
+      <h2>{{ 'Traduct.ultimos_comprobantes' | translate }}</h2>
+      <div class="list-view-add" (click)="RegistrarPago()"></div>
+    </div>
+    <hr>
+    <ul class="list-view-content">
+      <li class="flex-row promises-latest" *ngFor="let comprobante of Comprobantes">
+        <div class="flex-column flex-grow">
+          <p class="plan-text">{{ comprobante.NumeroComprobante}}</p>
+          <p class="plan-date">{{ comprobante.Fecha | date: 'dd/MM/yyyy'}}</p>
+        </div>
+      </li>
+      <!--
+       <li class="flex-row promises-latest">
+        <div class="flex-column flex-grow">
+          <p class="plan-text">REFI - MC3111223</p>
+          <p class="plan-date">17/10/2020</p>
+        </div>
+        <div class="flex-column flex-center">
+          <p><span class="bullet green"></span>Aprobado</p>
+        </div>
+      </li>
+
+      <li class="flex-row promises-latest">
+        <div class="flex-column flex-grow">
+          <p class="plan-text">REFI - MC3111223</p>
+          <p class="plan-date">17/10/2020</p>
+        </div>
+        <div class="flex-column flex-center">
+          <p><span class="bullet yellow"></span>En espera</p>
+        </div>
+      </li> -->
+
+    </ul>
+    <p class="wide-link"><a [routerLink]="" (click)="VerComprobantes()">{{ 'Traduct.ver_todos_comprobantes' | translate }}</a></p>
+  </div>
+</div>

@@ -6,7 +6,7 @@
     <section class="page-deals" [hidden]="promesaGenerada">
       <!-- START PAGE HEADER -->
       <div class="flex-row flex-center">
-        <h1 class="flex-grow">Promesa de pago</h1>
+        <h1 class="flex-grow">{{ "Traduct.generar_promesa" | translate }}</h1>
         <div>
           <div class="breadcrumb-container" id="">
             <ul class="flex-row">
@@ -41,11 +41,16 @@
                       [disabled]="tipoPago == 'IMPORTE'"
                     />
 
-                    <div class="input-fake-checkbox">
+                    <div
+                      class="input-fake-checkbox"
+                      *ngIf="tipoPago == 'PRODUCTO'"
+                    >
                       <span class="input-caret"></span>
                     </div>
 
-                    <label for="select-all">Producto</label>
+                    <label for="select-all">{{
+                      "Traduct.producto" | translate
+                    }}</label>
 
                     <div class="input-error-icon" role="alert"></div>
                     <div class="input-error-popup" role="alert">Required</div>
@@ -53,15 +58,15 @@
                 </td>
 
                 <td style="width: 25%;">
-                  Dias de Mora
+                  {{ "Traduct.cant_dias_mora" | translate }}
                 </td>
 
                 <td style="width: 25%;">
-                  Monto de Deuda
+                  {{ "Traduct.monto_deuda" | translate }}
                 </td>
 
                 <td style="width: 25%;" [hidden]="tipoPago == 'IMPORTE'">
-                  Monto a Cancelar
+                  {{ "Traduct.importe_a_pagar" | translate }}
                 </td>
               </tr>
               <div *ngFor="let cuenta of RespPromesa?.Cuentas">
@@ -79,7 +84,10 @@
                         (change)="cambiarCheck(cuenta.IdCuenta, $event)"
                       />
 
-                      <div class="input-fake-checkbox">
+                      <div
+                        class="input-fake-checkbox"
+                        *ngIf="tipoPago == 'PRODUCTO'"
+                      >
                         <span class="input-caret"></span>
                       </div>
 
@@ -113,6 +121,12 @@
                       style="width: 100px; text-align: center;"
                       (focus)="deshabilitarBoton()"
                       *ngIf="RespPromesa?.ActivoParcial"
+                      style="
+                        text-align: right;
+                        width: 30%;
+                        border: none;
+                        border-bottom: 1px solid #8569b4;
+                      "
                     />
                     <label
                       id="monto-cancelar-{{ cuenta.IdCuenta }}"
@@ -148,7 +162,10 @@
                       (change)="cambiarCheck(cuenta.IdCuenta, $event)"
                     />
 
-                    <div class="input-fake-checkbox">
+                    <div
+                      class="input-fake-checkbox"
+                      *ngIf="tipoPago == 'PRODUCTO'"
+                    >
                       <span class="input-caret"></span>
                     </div>
 
@@ -164,7 +181,9 @@
 
               <tr>
                 <td>
-                  <p><strong>Dias de Mora</strong></p>
+                  <p>
+                    <strong>{{ "Traduct.cant_dias_mora" | translate }}</strong>
+                  </p>
 
                   <p>{{ cuenta.DiasMora }}</p>
                 </td>
@@ -172,7 +191,9 @@
 
               <tr>
                 <td>
-                  <p><strong>Monto de Deuda</strong></p>
+                  <p>
+                    <strong>{{ "Traduct.monto_deuda" | translate }}</strong>
+                  </p>
 
                   <p>{{ cuenta.Deuda }}</p>
                 </td>
@@ -180,7 +201,9 @@
 
               <tr>
                 <td>
-                  <p><strong>Monto a Cancelar</strong></p>
+                  <p>
+                    <strong>{{ "Traduct.importe_a_pagar" | translate }}</strong>
+                  </p>
 
                   <p>
                     <input
@@ -195,6 +218,12 @@
                       style="width: 100px; text-align: center;"
                       (focus)="deshabilitarBoton()"
                       *ngIf="RespPromesa?.ActivoParcial"
+                      style="
+                        text-align: right;
+                        width: 30%;
+                        border: none;
+                        border-bottom: 1px solid #8569b4;
+                      "
                     />
                     <label
                       id="monto-cancelar-{{ cuenta.IdCuenta }}"
@@ -214,7 +243,7 @@
         <div>
           <div
             class="input-wrapper radio"
-            [hidden]="!RespPromesa?.ActivoProducto"
+            [hidden]="!RespPromesa?.ActivoProducto && RespPromesa?.ActivoMonto"
           >
             <input
               id="payment-total"
@@ -223,8 +252,10 @@
               name="payment-type"
               required
               value="PRODUCTO"
-              [checked]="RespPromesa?.ActivoProducto == true"
-              [disabled]="RespPromesa?.ActivoProducto == false"
+              [checked]="
+                RespPromesa?.ActivoProducto == true ||
+                (!RespPromesa?.ActivoProducto && !RespPromesa?.ActivoMonto)
+              "
               (click)="seleccionarPago($event)"
             />
 
@@ -234,10 +265,12 @@
 
             <label for="payment-total">
               <div class="box flex-row flex-center">
-                <div class="payment-title">Por Producto</div>
+                <div class="payment-title">
+                  {{ "Traduct.por_producto" | translate }}
+                </div>
                 <div class="text-right flex-grow">
-                  <strong>{{
-                    montoAPagar | currency: "ARS":"symbol-narrow"
+                  <strong>${{
+                    removeCommas(montoAPagar | number:'1.2-2')
                   }}</strong>
                 </div>
               </div>
@@ -270,7 +303,9 @@
 
             <label for="payment-parcial">
               <div class="box flex-row flex-center">
-                <div class="payment-title">Por Monto</div>
+                <div class="payment-title">
+                  {{ "Traduct.por_monto" | translate }}
+                </div>
                 <div class="text-right flex-grow">
                   <div class="input-wrapper text">
                     <input
@@ -285,13 +320,8 @@
                       (focus)="deshabilitarBoton()"
                       [disabled]="tipoPago != 'IMPORTE'"
                       step="0.1"
-                      *ngIf="RespPromesa?.ActivoParcial"
+                      style="font-weight: bold;"
                     />
-                    <label
-                      id="monto-monto"
-                      *ngIf="!RespPromesa?.ActivoParcial"
-                      >{{ RespPromesa?.DeudaTotal }}</label
-                    >
 
                     <div class="input-error-icon" role="alert"></div>
                     <div class="input-error-popup" role="alert">Required</div>
@@ -306,7 +336,7 @@
         </div>
         <div>
           <div class="box flex-row flex-center">
-            <div class="payment-title">PERIODO</div>
+            <div class="payment-title">{{ "Traduct.periodo" | translate }}</div>
             <div class="text-right flex-grow">
               <div class="input-wrapper date" id="date-input">
                 <select
@@ -318,7 +348,9 @@
                   <option value="1">24 hs</option>
                   <option value="2">48 hs</option>
                   <option value="3">72 hs</option>
-                  <option value="fecha">Elegir Fecha</option>
+                  <option value="fecha">{{
+                    "Traduct.elegir_fecha" | translate
+                  }}</option>
                 </select>
                 <input
                   *ngIf="periodo == 'fecha'"
@@ -330,12 +362,7 @@
                 />
 
                 <div class="input-error-icon" role="alert"></div>
-                <div class="input-error-popup" role="alert">
-                  Fecha Invalida. No puede ser menor a la fecha actual ni
-                  exceder en
-                  {{ RespPromesa?.DiasMaximo || RespPromesa?.DiasMaximoParam }}
-                  dias la fecha actual
-                </div>
+                <div class="input-error-popup" role="alert"></div>
               </div>
             </div>
           </div>
@@ -347,12 +374,38 @@
           (click)="generarPromesa($event)"
           [disabled]="button"
         >
-          Generar promesa
+          {{ "Traduct.generar_promesa" | translate }}
         </button>
       </div>
       <!-- END CONTROLLERS -->
     </section>
   </div>
+  <!-- START POPUP -->
+  <div (click)="cerrarPopup()" class="overlay">
+    <div class="dialog-container sidebar" role="dialog">
+      <a class="close-btn" (click)="cerrarPopup()">
+        <img src="assets/images/ui/close-btn.svg" alt="Close" />
+      </a>
+      <div class="dialog-content login-dialog">
+        <div>
+          <div class="flex-column flex-center">
+            <div>
+              <img
+                width="70px"
+                height="70px"
+                src="assets/images/ui/exclamation-triangle-solid.svg"
+                alt=""
+              />
+            </div>
+            <div class="text-center">
+              <p>{{ MensajeAlert }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END POPUP -->
 </div>
 
 <!-- COMPONENTE PROMESA-MENSAJE -->
@@ -360,4 +413,5 @@
   *ngIf="promesaGenerada"
   [promesaGenerada]="promesaGenerada"
   (volviendo)="onVolviendo($event)"
+  [promesa]="promesa"
 ></app-promesa-mensaje>

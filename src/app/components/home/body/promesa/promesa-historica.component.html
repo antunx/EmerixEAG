@@ -2,23 +2,23 @@
     <div class="pages-container">
 
         <section class="page-invoice">
-            <h1 class="flex-row">Promesas de Pago</h1>
+            <h1 class="flex-row">{{'Traduct.historial_promesa' | translate }}</h1>
             <div class="flex-row">
                 <div class="table-container desktop-only">
                     <table class="table" width="100%" border="0">
                       <tbody>
                         <tr class="table-header">
                             <td style="width: 16.666666666666668%;">
-                                Fecha de Promesa
+                                {{'Traduct.plazo_de_pago' | translate }}
                             </td>
                             <td style="width: 16.666666666666668%;">
-                                Estado
+                                {{'Traduct.estado' | translate }}
                             </td>
                             <td style="width: 16.666666666666668%;">
-                                Monto de Promesa
+                                {{'Traduct.monto' | translate }}
                             </td>
                             <td style="width: 16.666666666666668%;">
-                                Cantidad de Productos
+                                {{'Traduct.cant_productos' | translate }}
                             </td>
                         </tr>
                         <tr *ngFor="let item of promesas ; let i = index" (click)="iradetalle(item)">
@@ -43,26 +43,26 @@
                     <tbody>
                         <tr>
                             <td>
-                              <p><strong>Estado</strong></p>
+                              <p><strong>{{'Traduct.estado' | translate }}</strong></p>
                                 <p>{{ item.Estado }}</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p><strong>Fecha de Promesa</strong></p>
+                                <p><strong>{{'Traduct.plazo_de_pago' | translate }}</strong></p>
                                 <p>{{ item.PromesaFecha | date: "dd/MM/yyyy" }}</p>
                             </td>
                         </tr>
                         <tr>
                             <td style="border-top-width: 0px;">
-                                <p><strong>Monto</strong></p>
+                                <p><strong>{{'Traduct.monto' | translate }}</strong></p>
                                 <p>{{ item.CodigoMoneda + item.PromesaMonto }}</p>
                             </td>
                         </tr>
                         <tr>
                             <td style="border-top-width: 0px;">
-                                <p><strong>Cantidad de Productos</strong></p>
-                                <p>{{ item.CantidadCuentas }} productos</p>
+                                <p><strong>{{'Traduct.cant_productos' | translate }}</strong></p>
+                                <p>{{ item.CantidadCuentas }}</p>
                             </td>
                         </tr>
                       </tbody>

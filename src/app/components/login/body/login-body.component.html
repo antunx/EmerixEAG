@@ -92,7 +92,7 @@
                           <img class="logo" src="assets/images/logos/emerix.png" alt="">
                         </div>
                         <div class="form-group">
-                          <p><strong>{{ 'Traduct.pregunta_clave' | translate }}</strong></p>
+                          <p class="text-large"><strong>{{ 'Traduct.pregunta_clave' | translate }}</strong></p>
                         </div>
 
                          <div *ngIf="mostrarTelefonos">
@@ -186,33 +186,45 @@
           <div class="bg-container">
           </div>
         </div>
+
         <!-- popup -->
         <div (click)="cerrarPopup()" class="overlay">
-          <div *ngIf="popupNro>0" class="dialog-container" role="dialog">
+          <div *ngIf="popupNro===1" class="dialog-container" role="dialog">
               <a class="close-btn" (click)="cerrarPopup()">
                   <img src="assets/images/ui/close-btn.svg" alt="Close">
               </a>
               <div class="dialog-content login-dialog">
-                  <div>
-                    <div  *ngIf="popupNro===1">
-                      <app-consulta></app-consulta>
-                    </div>
-                    <div *ngIf="popupNro===2">
-                      <app-termino></app-termino>
-                    </div>
-                    <div *ngIf="popupNro===3">
-                      <div class="flex-column flex-center">
-                        <div><img width="70px" height="70px" src="assets/images/ui/exclamation-triangle-solid.svg" alt=""></div>
-                        <div class="text-center">
-                          <p>{{ MensajeAlert }}</p>
-                        </div>
-                      </div>
+                <app-consulta></app-consulta>
+              </div>
+          </div>
+
+          <div *ngIf="popupNro===2" class="dialog-container login-dialog login-tyc" role="dialog">
+            <a class="close-btn" (click)="cerrarPopup()">
+                <img src="assets/images/ui/close-btn.svg" alt="Close">
+            </a>
+            <div>
+              <app-termino></app-termino>
+            </div>
+          </div>
+
+          <div *ngIf="popupNro===3" class="dialog-container" role="dialog">
+            <a class="close-btn" (click)="cerrarPopup()">
+                <img src="assets/images/ui/close-btn.svg" alt="Close">
+            </a>
+            <div class="dialog-content login-dialog">
+                <div>
+                  <div class="flex-column flex-center">
+                    <div><img width="70px" height="70px" src="assets/images/ui/exclamation-triangle-solid.svg" alt=""></div>
+                    <div class="text-center">
+                      <p>{{ MensajeAlert }}</p>
                     </div>
                   </div>
-              </div>
+                </div>
+            </div>
           </div>
         </div>
         <!-- popup -->
+
       </section>
   </div>
 </div>

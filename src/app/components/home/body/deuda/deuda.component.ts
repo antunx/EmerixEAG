@@ -31,8 +31,12 @@ export class DeudaComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  InformarPago(): void {
-    this.router.navigateByUrl('/home/informar_comprobante');
+  Redireccionar(destino: string): void {
+    if (destino === 'PAG'){
+      this.router.navigateByUrl('/home/informar_comprobante');
+    }else{
+      this.router.navigateByUrl('/home/producto');
+    }
   }
 
   getEstadoDeuda(): void{
@@ -52,6 +56,7 @@ export class DeudaComponent implements OnInit, OnDestroy {
   }
 
   removeCommas(numero: string): string {
+    if (numero === '' || numero === null) { return numero; }
     return numero.replace(',', '');
   }
 }

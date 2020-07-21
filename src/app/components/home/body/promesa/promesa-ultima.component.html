@@ -1,7 +1,7 @@
 <div class="box">
   <div class="list-view">
     <div class="list-view-title">
-      <h2>Últimas promesas de pago</h2>
+      <h2>{{'Traduct.ultimas_promesas' | translate }}</h2>
       <div class="list-view-add" (click)="IrPromesa()"></div>
     </div>
     <hr />
@@ -21,9 +21,9 @@
         </div>
       </li>
     </ul>
-    <p>
+    <p class="wide-link">
       <a [routerLink]="" (click)="IrPromesaHistorica()" class="wide-link"
-        >Ver todas las promesas</a
+        >{{'Traduct.ver_todas_promesas' | translate }}</a
       >
     </p>
   </div>

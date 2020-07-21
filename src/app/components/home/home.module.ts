@@ -31,6 +31,8 @@ import { PromesaUltimaComponent } from './body/promesa/promesa-ultima.component'
 import { PromesaComponent } from './body/promesa/promesa.component';
 import { PromesaMensajeComponent } from './body/promesa/promesa-mensaje/promesa-mensaje.component';
 import { PromesaDetalleComponent } from './body/promesa/promesa-detalle/promesa-detalle.component';
+import { PreguntasComponent } from './body/preguntas/preguntas.component';
+import { UltimosComprobantesComponent } from './body/pago/comprobante/ultimos-comprobantes.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
@@ -70,7 +72,9 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     PromesaUltimaComponent,
     PromesaComponent,
     PromesaMensajeComponent,
-    PromesaDetalleComponent
+    PromesaDetalleComponent,
+    PreguntasComponent,
+    UltimosComprobantesComponent
   ]
 })
 export class HomeModule { }

@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GetService } from '@services/get.service';
 import { Promesa } from '@models/Promesa.model';
 import { Subscription } from 'rxjs';
+import { ComunicacionService } from '@app/services/comunicacion.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-promesa',
@@ -17,10 +19,17 @@ export class PromesaComponent implements OnInit, OnDestroy {
   promesaGenerada: boolean;
   periodo: string;
   private sub: Subscription;
+  promesa: any;
+  MensajeAlert = '';
 
-  constructor(private getService: GetService) {}
+  constructor(
+    private getService: GetService,
+    private servicioComunicacion: ComunicacionService,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
+    this.cambioTexto(this.translate.instant('Traduct.promesa_pago'));
     this.promesaGenerada = false;
     this.periodo = '1';
     this.tipoPago = 'PRODUCTO';
@@ -29,7 +38,9 @@ export class PromesaComponent implements OnInit, OnDestroy {
       .subscribe((data: Promesa) => {
         // console.log(data);
         this.button = false;
-        // data.ActivoParcial = false;
+        data.ActivoMonto = true;
+        data.ActivoParcial = true;
+        data.ActivoProducto = true;
         this.RespPromesa = data;
         this.montoAPagar = data.DeudaTotal;
         if (!data.ActivoProducto && data.ActivoMonto) {
@@ -38,8 +49,17 @@ export class PromesaComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void{
+  cambioTexto(mensaje: string): void {
+    this.servicioComunicacion.enviarMensaje(mensaje);
+  }
+
+  ngOnDestroy(): void {
     this.sub.unsubscribe();
+  }
+
+  cerrarPopup(): void {
+    document.querySelector('.overlay').classList.remove('active');
+    this.MensajeAlert = '';
   }
 
   cambiarCheck(id: number, e): void {
@@ -132,10 +152,14 @@ export class PromesaComponent implements OnInit, OnDestroy {
     ) {
       this.fechaPromesa = null;
       this.button = true;
-      document.getElementById('date-input').classList.add('error');
-      setTimeout(() => {
-        document.getElementById('date-input').classList.remove('error');
-      }, 3000);
+      this.MensajeAlert = this.translate.instant('Traduct.error_fecha_promesa');
+      this.MensajeAlert = this.MensajeAlert.replace(
+        'ParamDate',
+        JSON.stringify(
+          this.RespPromesa?.DiasMaximo || this.RespPromesa?.DiasMaximoParam
+        )
+      );
+      document.querySelector('.overlay').classList.add('active');
     } else {
       const auxFecha = new Date(e.target.value);
       auxFecha.setDate(auxFecha.getDate() + 1);
@@ -257,9 +281,14 @@ export class PromesaComponent implements OnInit, OnDestroy {
         promesa.totalPagar = pagoPorMonto;
       }
 
-      this.getService.postPromesa(promesa);
+      this.promesa = promesa;
       this.promesaGenerada = true;
     }
+  }
+
+  removeCommas(numero: string): string {
+    if (numero === '' || numero === null) { return numero; }
+    return numero.replace(',', '');
   }
 
   onVolviendo(e): void {
