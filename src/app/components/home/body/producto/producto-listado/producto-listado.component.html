@@ -41,7 +41,7 @@
                       {{ producto.DaysDebt }}
                     </td>
                     <td style="width: 16.666666666666668%" (click) = "detalleProducto(producto)">
-                      {{ producto.Moneda }} - {{ removeCommas(producto.AmountDebt | number:'1.2-2') }}
+                      {{ producto.Moneda }} - {{ removerComas(producto.AmountDebt | number:'1.2-2') }}
                     </td>
                  </tr>
                 </tbody>
@@ -71,7 +71,7 @@
                <tr>
                   <td (click) = "detalleProducto(producto)">
                      <p><strong>{{ 'Traduct.monto_deuda' | translate }}</strong></p>
-                     <p>{{ producto.Moneda }} - {{ removeCommas(producto.AmountDebt | number:'1.2-2') }}</p>
+                     <p>{{ producto.Moneda }} - {{ removerComas(producto.AmountDebt | number:'1.2-2') }}</p>
                   </td>
                </tr>
               </tbody>

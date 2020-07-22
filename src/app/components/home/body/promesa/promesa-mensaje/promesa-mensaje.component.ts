@@ -101,7 +101,7 @@ export class PromesaMensajeComponent implements OnInit {
     this.volviendo.emit(this.promesaGenerada);
   }
 
-  removeCommas(numero: string): string {
+  removerComas(numero: string): string {
     if (numero === '' || numero === null) { return numero; }
     return numero.replace(',', '');
   }

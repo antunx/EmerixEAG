@@ -56,7 +56,7 @@ export class ProductoListadoComponent implements OnInit, OnDestroy {
     }
   }
 
-  removeCommas(numero: string): string {
+  removerComas(numero: string): string {
     if (numero === '' || numero === null) { return numero; }
     return numero.replace(',', '');
   }
