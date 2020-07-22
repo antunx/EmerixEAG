@@ -6,7 +6,7 @@
     </div>
     <hr />
     <ul class="list-view-content" *ngFor="let promesa of promesas">
-      <li class="flex-row promises-latest" (click)="iradetalle(promesa)">
+      <li class="flex-row promises-latest" style="cursor: pointer" (click)="iradetalle(promesa)">
         <div class="flex-column flex-grow">
           <p class="promise-price">
             {{
