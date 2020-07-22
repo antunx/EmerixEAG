@@ -74,7 +74,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   });
 
   ngOnInit(): void{
-    this.cambioTexto(this.translate.instant('Traduct.informar_pago'));
+    this.cambioTexto(this.translate.instant('Traduct.registrar_pago'));
     this.LlenarMediosPago();
     this.LlenarMonedas();
   }

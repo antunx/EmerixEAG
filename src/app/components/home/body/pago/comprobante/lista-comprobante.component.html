@@ -1,6 +1,6 @@
  <div class="flex-column flex-grow">
   <div class="pages-container">
-     <section class="page-invoice restrict-desktop">
+     <section class="page-invoice">
         <h1 class="flex-row">{{ 'Traduct.tus_comprobantes' | translate }}</h1>
         <div class="flex-row">
            <div class="table-container desktop-only">
@@ -47,8 +47,9 @@
            <div class="mobile-only flex-column flex-grow table-container">
             <table class="box table flex-row" *ngFor="let comprobante of Comprobantes">
               <tbody>
-               <tr class="table-header" >
+               <tr>
                   <td>
+                    <p><strong>N° {{ 'Traduct.comprobante' | translate }}</strong></p>
                      <p>{{ comprobante.NumeroComprobante }}</p>
                   </td>
                </tr>
