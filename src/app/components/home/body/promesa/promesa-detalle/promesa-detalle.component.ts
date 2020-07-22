@@ -12,7 +12,7 @@ import { PromesaDetalle } from '@app/models/promesdetalle.model';
   styles: [],
 })
 export class PromesaDetalleComponent implements OnInit {
-  detalle: PromesaDetalle;
+  detalle: any;
   cuentas: any;
 
   constructor(
@@ -25,8 +25,10 @@ export class PromesaDetalleComponent implements OnInit {
   ngOnInit(): void {
     this.cambioTexto(this.translate.instant('Traduct.promesa_pago'));
     this.detalle = this.propServices.getDetalle();
-    this.cuentas = this.detalle.Detalle;
-    // console.log(this.cuentas);
+    if (this.detalle.detalle === undefined) {
+      this.router.navigateByUrl('/home/default');
+    }
+    this.cuentas = this.detalle.detalle?.Detalle;
   }
 
   volver(): void {
@@ -35,5 +37,12 @@ export class PromesaDetalleComponent implements OnInit {
 
   cambioTexto(mensaje: string): void {
     this.servicioComunicacion.enviarMensaje(mensaje);
+  }
+
+  removeCommas(numero: string): string {
+    if (numero === '' || numero === null) {
+      return numero;
+    }
+    return numero.replace(',', '');
   }
 }

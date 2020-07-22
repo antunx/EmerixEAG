@@ -52,7 +52,14 @@ export class PromesaHistoricaComponent implements OnInit, OnDestroy {
 
   iradetalle(item: PromesaDetalle): void {
     // console.log(item);
-    this.propServices.setDetalle(item);
+    this.propServices.setDetalle(item, false);
     this.router.navigateByUrl('home/promesa-detalle');
+  }
+
+  removeCommas(numero: string): string {
+    if (numero === '' || numero === null) {
+      return numero;
+    }
+    return numero.replace(',', '');
   }
 }

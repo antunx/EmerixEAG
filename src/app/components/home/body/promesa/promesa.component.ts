@@ -38,9 +38,9 @@ export class PromesaComponent implements OnInit, OnDestroy {
       .subscribe((data: Promesa) => {
         // console.log(data);
         this.button = false;
-        data.ActivoMonto = true;
+        /*data.ActivoMonto = true;
         data.ActivoParcial = true;
-        data.ActivoProducto = true;
+        data.ActivoProducto = true;*/
         this.RespPromesa = data;
         this.montoAPagar = data.DeudaTotal;
         if (!data.ActivoProducto && data.ActivoMonto) {
@@ -139,6 +139,24 @@ export class PromesaComponent implements OnInit, OnDestroy {
     this.button = true;
   }
 
+  formatfecha(e){
+    e = new Date(e.target.value);
+    let dt = e.getDate();
+    dt++;
+    let mn = e.getMonth();
+    mn++;
+    let yy = e.getFullYear();
+    let nfecha = (<HTMLInputElement>document.getElementById("nfecha")).value = dt + "/" + mn + "/" + yy
+    document.getElementById("nfecha").hidden = false;
+    document.getElementById("fecha").hidden = true;
+  }
+
+  cambiarInputFecha() {
+    document.getElementById("fecha").hidden = false;
+    document.getElementById("nfecha").hidden = true;
+    document.getElementById("fecha").focus();
+  }
+
   setearFecha(e): void {
     const aux = new Date();
     if (this.RespPromesa.DiasMaximo === 0) {
@@ -153,14 +171,10 @@ export class PromesaComponent implements OnInit, OnDestroy {
       this.fechaPromesa = null;
       this.button = true;
       this.MensajeAlert = this.translate.instant('Traduct.error_fecha_promesa');
-      this.MensajeAlert = this.MensajeAlert.replace(
-        'ParamDate',
-        JSON.stringify(
-          this.RespPromesa?.DiasMaximo || this.RespPromesa?.DiasMaximoParam
-        )
-      );
+      this.MensajeAlert = this.MensajeAlert.replace('ParamDate', JSON.stringify(this.RespPromesa?.DiasMaximo || this.RespPromesa?.DiasMaximoParam));
       document.querySelector('.overlay').classList.add('active');
     } else {
+      this.formatfecha(e);
       const auxFecha = new Date(e.target.value);
       auxFecha.setDate(auxFecha.getDate() + 1);
       this.fechaPromesa = auxFecha;
@@ -286,8 +300,10 @@ export class PromesaComponent implements OnInit, OnDestroy {
     }
   }
 
-  removerComas(numero: string): string {
-    if (numero === '' || numero === null) { return numero; }
+  removeCommas(numero: string): string {
+    if (numero === '' || numero === null) {
+      return numero;
+    }
     return numero.replace(',', '');
   }
 

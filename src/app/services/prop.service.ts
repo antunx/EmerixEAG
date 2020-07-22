@@ -6,14 +6,16 @@ import { PromesaDetalle } from '../models/promesdetalle.model';
 })
 export class PropService {
   private promesaDetalle: PromesaDetalle;
+  private desdeHome: boolean;
 
   constructor() {}
 
-  setDetalle(item: PromesaDetalle): void {
+  setDetalle(item: PromesaDetalle, desdeHome: boolean): void {
     this.promesaDetalle = item;
+    this.desdeHome = desdeHome;
   }
 
-  getDetalle(): PromesaDetalle {
-    return this.promesaDetalle;
+  getDetalle(): any {
+    return { detalle: this.promesaDetalle, desdeHome: this.desdeHome };
   }
 }

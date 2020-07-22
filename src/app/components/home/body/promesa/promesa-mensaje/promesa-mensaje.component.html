@@ -2,7 +2,7 @@
   <div class="pages-container">
     <div class="overlay" id="deals-sidebar">
       <div class="dialog-container sidebar" role="dialog">
-<!--         <a class="close-btn">
+        <!--         <a class="close-btn">
           <img
             src="assets/images/ui/close-btn.svg"
             alt="Close"
@@ -44,9 +44,17 @@
       <div class="flex-row">
         <div class="box flex-grow text-center">
           <h3>{{ "Traduct.importe" | translate }}</h3>
-          <p class="text-xlarge">
+          <!-- <p class="text-xlarge">
             ${{
-              removerComas(this.respuesta.totalPagar | number:'1.2-2')
+              removeCommas(this.respuesta.totalPagar | number:'1.2-2')
+            }}
+          </p> -->
+          <p class="text-xlarge">
+            {{
+              removeCommas(
+                this.respuesta.totalPagar
+                  | currency: "ARS":"symbol-narrow":"1.2-2"
+              )
             }}
           </p>
         </div>

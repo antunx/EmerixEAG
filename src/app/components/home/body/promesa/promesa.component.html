@@ -269,8 +269,15 @@
                   {{ "Traduct.por_producto" | translate }}
                 </div>
                 <div class="text-right flex-grow">
-                  <strong>${{
-                    removerComas(montoAPagar | number:'1.2-2')
+                  <!-- <strong>${{
+                    removeCommas(
+                      montoAPagar | number: :"1.2-2"
+                    )
+                  }}</strong> -->
+                  <strong>{{
+                    removeCommas(
+                      montoAPagar | currency: "ARS":"symbol-narrow":"1.2-2"
+                    )
                   }}</strong>
                 </div>
               </div>
@@ -360,6 +367,15 @@
                   id="fecha"
                   (change)="setearFecha($event)"
                 />
+                <input
+                  *ngIf="periodo == 'fecha'"
+                  class="input-elem"
+                  type="text"
+                  name="nfecha"
+                  id="nfecha"
+                  (click)="cambiarInputFecha()"
+                  hidden
+                />  
 
                 <div class="input-error-icon" role="alert"></div>
                 <div class="input-error-popup" role="alert"></div>

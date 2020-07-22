@@ -1,20 +1,20 @@
 <div class="flex-column flex-grow">
   <div class="pages-container">
     <section class="page-invoice">
-      <h1 class="flex-row">{{'Traduct.detalle_promesa' | translate }}</h1>
+      <h1 class="flex-row">{{ "Traduct.detalle_promesa" | translate }}</h1>
       <div class="flex-row">
         <div class="table-container desktop-only">
           <table class="table" width="100%" border="0">
             <tbody>
               <tr class="table-header">
                 <td style="width: 33.33%;">
-                  {{'Traduct.producto' | translate }}
+                  {{ "Traduct.producto" | translate }}
                 </td>
                 <td style="width: 33.33%;">
-                  {{'Traduct.moneda' | translate }}
+                  {{ "Traduct.moneda" | translate }}
                 </td>
                 <td style="width: 33.33%;">
-                  {{'Traduct.monto' | translate }}
+                  {{ "Traduct.monto" | translate }}
                 </td>
               </tr>
               <tr></tr>
@@ -26,7 +26,11 @@
                   {{ item.CodigoMoneda }}
                 </td>
                 <td style="width: 33.33%;">
-                  {{ item.ImportePago }}
+                  {{
+                    removeCommas(
+                      item.ImportePago | number:'1.2-2'
+                    )
+                  }}
                 </td>
               </tr>
             </tbody>
@@ -40,20 +44,32 @@
             <tbody>
               <tr>
                 <td>
-                  <p><strong>{{'Traduct.producto' | translate }}</strong></p>
+                  <p>
+                    <strong>{{ "Traduct.producto" | translate }}</strong>
+                  </p>
                   <p>{{ item.NombreProducto }}</p>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <p><strong>{{'Traduct.moneda' | translate }}</strong></p>
+                  <p>
+                    <strong>{{ "Traduct.moneda" | translate }}</strong>
+                  </p>
                   <p>{{ item.CodigoMoneda }}</p>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <p><strong>{{'Traduct.monto' | translate }}</strong></p>
-                  <p>{{ item.ImportePago }}</p>
+                  <p>
+                    <strong>{{ "Traduct.monto" | translate }}</strong>
+                  </p>
+                  <p>
+                    {{
+                      removeCommas(
+                        item.ImportePago | number:'1.2-2'
+                      )
+                    }}
+                    </p>
                 </td>
               </tr>
             </tbody>
@@ -63,9 +79,13 @@
     </section>
   </div>
   <div class="flex-row flex-center">
-    <button type="button" class="btn" (click)="volver()">
-
-      {{'Traduct.volver' | translate }}
+    <button
+      type="button"
+      class="btn"
+      (click)="volver()"
+      *ngIf="!detalle.desdeHome"
+    >
+      {{ "Traduct.volver" | translate }}
     </button>
   </div>
 </div>
