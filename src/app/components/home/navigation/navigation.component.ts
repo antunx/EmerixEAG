@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ComunicacionService } from '@app/services/comunicacion.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '@app/services/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -14,7 +15,8 @@ export class NavigationComponent implements OnInit {
   constructor(
     private router: Router,
     private servicioComunicacion: ComunicacionService,
-    private translate: TranslateService) { }
+    private translate: TranslateService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.traducirEtiqueta(this.router.url);
@@ -123,7 +125,7 @@ export class NavigationComponent implements OnInit {
   }
 
   Salir(): void{
-    localStorage.clear();
+    this.authService.logout();
     this.router.navigateByUrl('/login');
   }
 

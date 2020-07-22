@@ -39,7 +39,7 @@ export class ListaComprobanteComponent implements OnInit, OnDestroy {
         console.log(res.ErrorMessage);
       } else{
         this.Comprobantes = res.Comprobantes;
-        console.log(this.Comprobantes);
+        // console.log(this.Comprobantes);
       }
     }, (err) => {
         console.log(err);

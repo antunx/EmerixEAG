@@ -19,9 +19,9 @@ import { PreguntasComponent } from './body/preguntas/preguntas.component';
 const routes: Routes = [
   {path: '', component: HomeComponent,
     children: [
-      {path: 'default', component: DefaultComponent, canActivateChild: [ AuthGeneralGuard ]},
+      {path: 'default', component: DefaultComponent, canActivate: [ AuthGeneralGuard ]},
 
-      {path: 'producto', component: ProductoListadoComponent},
+      {path: 'producto', component: ProductoListadoComponent , canActivate: [ AuthGeneralGuard ]},
 
       {path: 'promesa', component: PromesaComponent, canActivate: [ AuthGeneralGuard ]},
       {path: 'promesa-historica', component: PromesaHistoricaComponent, canActivate: [ AuthGeneralGuard ]},
@@ -29,9 +29,9 @@ const routes: Routes = [
       {path: 'promesa-mensaje', component: PromesaMensajeComponent, canActivate: [ AuthGeneralGuard ]},
 
       {path: 'comprobante', component: ListaComprobanteComponent, canActivate: [ AuthGeneralGuard ]  },
-      {path: 'informar_comprobante', component: InformarComprobanteComponent, canActivate: [ AuthGeneralGuard ]  },
+      {path: 'informar_comprobante', component: InformarComprobanteComponent, canActivate: [ AuthGeneralGuard ]},
 
-      {path: 'preguntas', component: PreguntasComponent, canActivateChild: [ AuthGeneralGuard ]},
+      {path: 'preguntas', component: PreguntasComponent, canActivate: [ AuthGeneralGuard ]},
 
     ]},
 ];

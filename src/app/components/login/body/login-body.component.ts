@@ -10,6 +10,7 @@ import { UsuarioAutenticarModel } from '@models/usuarioautenticar.model';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ComunicacionService } from '@app/services/comunicacion.service';
+import { AuthService } from '@app/services/auth.service';
 
 @Component({
   selector: 'app-login-body',
@@ -24,6 +25,7 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private translate: TranslateService
   ) { }
+  private authService = new AuthService();
   private subscription: Subscription = new Subscription();
   get numero(): any {
     return this.loginForm.get('numero');
@@ -204,12 +206,10 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
          // return false;
 
          if (!res.IsSent){
-              // localStorage.setItem('genero', 'N' );
               this.loadingGenerar = false;
               this.MensajeAlert = res.ErrorMessage;
               this.mostrarPopu(3);
           }else {
-            // localStorage.setItem('genero', 'S');
             this.codigoEnviado = true;
             // this.loginForm.controls.aceptaTerminos.enable();
             this.loadingGenerar = false;
@@ -243,11 +243,11 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
         // return ;
 
         if (!res.IsValid){
-          localStorage.setItem('token', '' );
+          this.authService.logout();
           this.MensajeAlert = res.ErrorMessage;
           this.mostrarPopu(3);
         }else {
-          localStorage.setItem('token', res.Jwt);
+          this.authService.login(res.Jwt);
           localStorage.setItem('Cliente', res.Name);
           this.router.navigateByUrl('/home/default');
         }

@@ -80,10 +80,6 @@ export class PromesaMensajeComponent implements OnInit {
       FormaPago: this.respuesta.formaPago,
     };
     // console.log(obj);
-    this.promesaCreada = true;
-    const element = document.getElementById('deals-sidebar');
-    element.classList.add('active');
-    return;
 
     this.postService.postPromesaPago(obj).subscribe((res: any) => {
       // console.log(res);
