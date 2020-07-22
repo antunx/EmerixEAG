@@ -39,7 +39,7 @@ export class PromesaDetalleComponent implements OnInit {
     this.servicioComunicacion.enviarMensaje(mensaje);
   }
 
-  removeCommas(numero: string): string {
+  removerComas(numero: string): string {
     if (numero === '' || numero === null) {
       return numero;
     }

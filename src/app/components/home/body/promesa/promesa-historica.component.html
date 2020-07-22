@@ -30,7 +30,7 @@
                             </td>
                             <td style="width: 16.666666666666668%;">
                               {{
-                                item.CodigoMoneda + removeCommas(
+                                item.CodigoMoneda + removerComas(
                                   item.PromesaMonto | number:'1.2-2'
                                 )
                               }}
@@ -62,7 +62,7 @@
                                 <p><strong>{{'Traduct.monto' | translate }}</strong></p>
                                 <p>
                                   {{
-                                    item.CodigoMoneda + removeCommas(
+                                    item.CodigoMoneda + removerComas(
                                       item.PromesaMonto | number:'1.2-2'
                                     )
                                   }}

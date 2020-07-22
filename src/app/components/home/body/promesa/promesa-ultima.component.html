@@ -10,7 +10,7 @@
         <div class="flex-column flex-grow">
           <p class="promise-price">
             {{
-              removeCommas(
+              removerComas(
                 promesa.PromesaMonto | currency: promesa.CodigoMoneda:"symbol-narrow":"1.2-2"
               )
             }} - {{ promesa.CantidadCuentas }} producto/s

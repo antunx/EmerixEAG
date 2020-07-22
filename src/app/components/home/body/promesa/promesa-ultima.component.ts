@@ -51,7 +51,7 @@ export class PromesaUltimaComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('home/promesa-detalle');
   }
 
-  removeCommas(numero: string): string {
+  removerComas(numero: string): string {
     if (numero === '' || numero === null) {
       return numero;
     }
