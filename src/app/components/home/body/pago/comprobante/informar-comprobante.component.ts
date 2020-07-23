@@ -1,6 +1,6 @@
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PostService } from '@app/services/post.service';
 import { MetodosEstandarService } from '@app/services/metodos-estandar.service';
@@ -37,27 +37,27 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     buttonsStyling: false
   });
 
-  get IdMedioPago(): any {
+  get IdMedioPago(): AbstractControl {
     return this.pagoForm.get('IdMedioPago');
   }
 
-  get IdMoneda(): any {
+  get IdMoneda(): AbstractControl {
     return this.pagoForm.get('IdMoneda');
   }
 
-  get Importe(): any {
+  get Importe(): AbstractControl {
     return this.pagoForm.get('Importe');
   }
 
-  get Fecha(): any {
+  get Fecha(): AbstractControl {
     return this.pagoForm.get('Fecha');
   }
 
-  get NumeroComprobante(): any {
+  get NumeroComprobante(): AbstractControl {
     return this.pagoForm.get('NumeroComprobante');
   }
 
-  get Comentario(): any {
+  get Comentario(): AbstractControl {
     return this.pagoForm.get('Comentario');
   }
   // Combos

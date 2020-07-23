@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GetService } from '@app/services/get.service';
 import { Subscription } from 'rxjs';
+import { RtagetProductPersonModel, Product } from '@app/models/rtagetproductperson.model';
 
 @Component({
   selector: 'app-producto-listado',
@@ -16,8 +17,8 @@ export class ProductoListadoComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   MostrarPopup: boolean;
   IdPersona = '';
-  producto: any;
-  productos: any[] = [];
+  producto: Product;
+  productos: Product[] = [];
 
   ngOnInit(): void {
     this.MostrarPopup = false;
@@ -43,8 +44,8 @@ export class ProductoListadoComponent implements OnInit, OnDestroy {
   }
 
   // navegamos al detalle de producto
-  detalleProducto(producto: any): void{
-    if (producto !== ''){
+  detalleProducto(producto: Product): void{
+    if (producto !== null){
       // console.log('id: ' + id);
       this.producto  = producto;
       document.querySelectorAll('.table tr:not(.table-header)').forEach((tr) => {

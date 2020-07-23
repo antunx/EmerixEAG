@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { RtagetProductPersonModel, Product } from '@app/models/rtagetproductperson.model';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -18,7 +19,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   constructor(private getservices: GetService,
               private translate: TranslateService) {}
 
-  @Input() producto: any;
+  @Input() producto: Product;
   private subscription: Subscription = new Subscription();
   cargando: boolean;
   listaCompleta: RtagetDetailProductModel;

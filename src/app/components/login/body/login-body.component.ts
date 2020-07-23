@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl, Form } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -26,23 +26,23 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
     private authService: AuthService
   ) { }
   private subscription: Subscription = new Subscription();
-  get numero(): any {
+  get numero(): AbstractControl {
     return this.loginForm.get('numero');
   }
-  get tipoDoc(): any {
+  get tipoDoc(): AbstractControl {
     return this.loginForm.get('tipoDoc');
   }
-  /*get genero(): any {
+  /*get genero(): AbstractControl {
     return this.loginForm.get('genero');
   }*/
-  get sms(): any {
+  get sms(): AbstractControl {
     return this.loginForm.get('sms');
   }
-  get mail(): any {
+  get mail(): AbstractControl {
     return this.loginForm.get('mail');
   }
 
-  get codigo(): any {
+  get codigo(): AbstractControl {
     return this.loginFormIngreso.get('codigo');
   }
 

@@ -5,9 +5,9 @@ export interface RtagetProductPersonModel {
 }
 
 export interface Product {
-  IdProd: number;
+  IdProd: string;
   NameProd: string;
-  IdTypeProd: number;
+  IdTypeProd: string;
   NameTypeProd: string;
   Moneda: string;
   DaysDebt: number;
