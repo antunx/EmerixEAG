@@ -211,11 +211,10 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     });
   }
 
-  SoloNumerosLetras(event: any): boolean {
-    const charCode = (event.which) ? event.which : event.keyCode;
-    if ((charCode === 45) || (charCode >= 48 && charCode <= 57) || (charCode >= 97 && charCode <= 122)) {
-      return true;
-    }
-    return false;
+  SoloNumerosLetras(event: string): boolean {
+    const reg = new RegExp('[a-z0-9]');
+    let ret: boolean;
+    ret = reg.test(event);
+    return ret;
   }
 }

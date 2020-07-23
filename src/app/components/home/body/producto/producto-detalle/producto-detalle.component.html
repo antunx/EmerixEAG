@@ -24,15 +24,14 @@
       <input type="button" class="btn btn-info" value="{{ 'Traduct.volver' | translate }}">
   </div>
 </div> -->
-
 <div class="dialog-content sidebar-content">
   <div>
       <div class="flex-column">
         <h1>{{ 'Traduct.detalle_productos' | translate }}</h1>
-        <div *ngFor="let col of listaColumnas; let i = index">
+        <ng-container *ngFor="let col of listaColumnas; let i = index">
           <h3>{{col.Columna}}</h3>
           <p>{{listaFilas[i].Columna}}</p>
-        </div>
+        </ng-container>
         <button *ngIf="producto.IsFreeDebt == true" class="btn secondary hover" (click)='libreDeuda(producto.IdProd, producto.NameProd)'><img src="assets/images/ui/buttons/download.svg" alt="">{{ 'Traduct.libre_deuda' | translate }}</button>
       </div>
   </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl, Form } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -123,13 +123,11 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
     this.loginAction = valor;
   }
 
-  Login(ownerFormValue: any): void{
+  Login(): void{
     this.MedioEnvioSeleccionado = this.loginForm.controls.medioEnvio.value;
-    // console.log("Login: " + tipo);
-
     this.tieneInfo = false;
-    this.usuario.dni = ownerFormValue.numero;
-    this.usuario.tipoDoc = ownerFormValue.tipoDoc;
+    this.usuario.dni = this.loginForm.controls.numero.value;
+    this.usuario.tipoDoc = this.loginForm.controls.tipoDoc.value;
     this.telefonos = [];
     this.mails = [];
 
@@ -161,13 +159,13 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
             this.tieneMails = false;
           }
 
-          if (this.MedioEnvioSeleccionado === 'T' && this.tieneTelefonos === false){
+          if (this.MedioEnvioSeleccionado === 'T' && !this.tieneTelefonos){
             this.MensajeTituloAlert = this.translate.instant('Traduct.msgTelefonoTitulo');
             this.MensajeAlert = this.translate.instant('Traduct.msgTelefono');
             this.mostrarPopu(4);
             return;
           }
-          if (this.MedioEnvioSeleccionado === 'M' && this.tieneMails === false){
+          if (this.MedioEnvioSeleccionado === 'M' && !this.tieneMails){
             this.MensajeTituloAlert = this.translate.instant('Traduct.msgMailTitulo');
             this.MensajeAlert = this.translate.instant('Traduct.msgMail');
             this.mostrarPopu(4);
@@ -288,12 +286,11 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
     this.AceptaTerminos = !this.AceptaTerminos;
   }
 
-  SoloNumeros(event: any): boolean {
-    const charCode = (event.which) ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      return false;
-    }
-    return true;
+  SoloNumeros(event: string): boolean {
+    const reg = new RegExp('[0-9]');
+    let ret: boolean;
+    ret = reg.test(event);
+    return ret;
   }
 
   InconvenienteCodigo(): void {

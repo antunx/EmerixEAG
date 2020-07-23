@@ -28,7 +28,7 @@
 
                           <div class="flex-grow">
                             <div [ngClass] = "!(numero.invalid && (numero.dirty || numero.touched)) ? 'input-wrapper text' : 'input-wrapper text error'">
-                              <input id="numero" type="text" class="input-elem" placeholder="{{ 'Traduct.numero' | translate }}" formControlName="numero" (keypress)="SoloNumeros($event)">
+                              <input id="numero" type="text" class="input-elem" placeholder="{{ 'Traduct.numero' | translate }}" formControlName="numero" (keypress)="SoloNumeros($event.key)">
                               <div *ngIf="numero.invalid && (numero.dirty || numero.touched)">
                                 <div class="input-error-icon" role="alert"></div>
                                 <div class="input-error-popup" role="alert">{{ 'Traduct.numero_requerido' | translate }}</div>
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div class="flex-row flex-center">
-                        <button type="button" class="btn" data-direction="next" (click)="Login(loginForm.value)" [disabled]='!(loginForm.valid &&  SeleccionoMedioEnvio)'>{{ 'Traduct.siguiente' | translate }}</button>
+                        <button type="button" class="btn" data-direction="next" (click)="Login()" [disabled]='!(loginForm.valid &&  SeleccionoMedioEnvio)'>{{ 'Traduct.siguiente' | translate }}</button>
                     </div>
                   </div>
               </div>
@@ -189,6 +189,8 @@
 
         <!-- popup -->
         <div (click)="cerrarPopup()" class="overlay">
+
+          <!-- consultas -->
           <div *ngIf="popupNro===1" class="dialog-container" role="dialog">
               <a class="close-btn" (click)="cerrarPopup()">
                   <img src="assets/images/ui/close-btn.svg" alt="Close">
@@ -198,6 +200,7 @@
               </div>
           </div>
 
+          <!-- terminos y condiciones -->
           <div *ngIf="popupNro===2" class="dialog-container login-dialog login-tyc" role="dialog">
             <a class="close-btn" (click)="cerrarPopup()">
                 <img src="assets/images/ui/close-btn.svg" alt="Close">
@@ -207,6 +210,7 @@
             </div>
           </div>
 
+          <!-- mensaje datos invalidos -->
           <div *ngIf="popupNro===3" class="dialog-container" role="dialog">
             <a class="close-btn" (click)="cerrarPopup()">
                 <img src="assets/images/ui/close-btn.svg" alt="Close">
