@@ -29,6 +29,10 @@ export class AuthService {
   }
 
   token(): string{
-    return localStorage.getItem('token');
+    if ( localStorage.getItem('token') === '' || localStorage.getItem('token') === null) {
+      return '';
+    } else {
+      return 'Bearer ' + localStorage.getItem('token').substring(22);
+    }
   }
 }

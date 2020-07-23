@@ -5,6 +5,8 @@ import { PostService } from '@app/services/post.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { ComunicacionService } from '@app/services/comunicacion.service';
+// import { Promesa } from '@app/models/Promesa.model';
+import { Promesa } from '@app/models/PostPromesa.model';
 
 @Component({
   selector: 'app-promesa-mensaje',
@@ -69,8 +71,8 @@ export class PromesaMensajeComponent implements OnInit {
       cuentas.push(cuenta);
     });
     // console.log(cuentas);
-    const obj = {
-      IdPersona: JSON.parse(this.respuesta.cliente),
+    const obj: Promesa = { // Sacamos el Any
+      IdPersona: this.respuesta.cliente,
       IdTipoPromesa: this.respuesta.idTipoPromesa,
       PromesaFecha: new Date(this.respuesta.fechaPromesaVencimiento),
       PromesaMonto: this.respuesta.totalPagar,
