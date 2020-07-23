@@ -9,7 +9,6 @@ import { PostService } from '@services/post.service';
 import { UsuarioAutenticarModel } from '@models/usuarioautenticar.model';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { ComunicacionService } from '@app/services/comunicacion.service';
 import { AuthService } from '@app/services/auth.service';
 
 @Component({
@@ -23,9 +22,9 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
     private postservices: PostService,
     private getservices: GetService,
     private formBuilder: FormBuilder,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private authService: AuthService
   ) { }
-  private authService = new AuthService();
   private subscription: Subscription = new Subscription();
   get numero(): any {
     return this.loginForm.get('numero');

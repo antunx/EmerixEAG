@@ -31,18 +31,19 @@ export class NavigationComponent implements OnInit {
     private router: Router,
     private servicioComunicacion: ComunicacionService,
     private translate: TranslateService,
-    private authService: AuthService) { }
+    private authService: AuthService) {
+    }
 
   ngOnInit(): void {
     // LA FORMA CLASICA DEL TRADUCTOR NO ANDA BIEN EN EL INICIO POR ESO SE USA LA SIGUIENTE.
-    this.traducirEtiqueta(this.router.url);
+      this.traducirEtiqueta(this.router.url);
 
     // LA FORMA CLASICA DEL TRADUCTOR NO ANDA BIEN EN EL INICIO POR ESO SE USA LA SIGUIENTE.
-    this.translate.get('Traduct.inicio').subscribe((translated: string) => {
-      this.MenuSel = translated;
-      this.MenuHijoSel = translated;
-      this.MenuInicio = translated;
-    });
+      this.translate.get('Traduct.inicio').subscribe((translated: string) => {
+       this.MenuSel = translated;
+       this.MenuHijoSel = translated;
+       this.MenuInicio = translated;
+      });
   }
 
   traducirEtiqueta(ruta: string): void {
@@ -128,7 +129,7 @@ export class NavigationComponent implements OnInit {
     this.MenuPagos = this.translate.instant('Traduct.pagos');
     this.MenuPagosSubMenuPagar = this.translate.instant('Traduct.pagar');
     this.cambioTexto(this.translate.instant('Traduct.pagar'));
-    alert('Pagar(): en desarrollo =(-.-)T ');
+    alert('Pagar(): en desarrollo |_(-.-)_T ');
   }
 
   RegistrarPago(): void{
@@ -165,7 +166,7 @@ export class NavigationComponent implements OnInit {
     this.MenuAcuerdos = this.translate.instant('Traduct.acuerdos');
     this.MenuAcuerdosSubPlanPago = this.translate.instant('Traduct.plan_pago');
     this.cambioTexto(this.translate.instant('Traduct.plan_pago'));
-    alert('PlanPago(): en desarrollo =(-.-)T ');
+    alert('PlanPago(): en desarrollo |_(-.-)_T ');
   }
 
   EstadoSolicitudes(): void{
@@ -173,7 +174,7 @@ export class NavigationComponent implements OnInit {
     this.MenuAcuerdos = this.translate.instant('Traduct.acuerdos');
     this.MenuAcuerdosSubEstadoSolicitudes = this.translate.instant('Traduct.estado_solicitudes');
     this.cambioTexto(this.translate.instant('Traduct.estado_solicitudes'));
-    alert('EstadoSolicitudes(): en desarrollo =(-.-)T ');
+    alert('EstadoSolicitudes(): en desarrollo |_(-.-)_T ');
   }
 
   TuPerfil(): void{
@@ -181,7 +182,7 @@ export class NavigationComponent implements OnInit {
     this.MenuHijoSel = '';
     this.MenuTuPerfil = this.translate.instant('Traduct.tu_perfil');
     this.cambioTexto(this.translate.instant('Traduct.tu_perfil'));
-    alert('TuPerfil(): en desarrollo =(-.-)T ');
+    alert('TuPerfil(): en desarrollo |_(-.-)_T ');
   }
 
   PreguntasFrecuentes(): void{

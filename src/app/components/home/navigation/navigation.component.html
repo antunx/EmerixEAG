@@ -22,8 +22,6 @@ menuhijoSeleccionado: {{MenuHijoSel}}
            <a class="item" [routerLink]="" (click)="MisCuentas()">{{ 'Traduct.mis_cuentas' | translate }}</a>
         </li>
 
-
-
         <li class="navigation-item" (click)="Pagos()" [ngClass]="{'' : MenuSel != MenuPagos,' active' : MenuSel === MenuPagos}" style="--icon: url('assets/images/ui/navigation/icono-pagar.svg');">
            <input aria-hidden="true" type="checkbox" class="dropdown-trigger" id="dropdown-trigger-pagos">
            <label class="dropdown-title item"  for="dropdown-trigger-pagos">
@@ -44,7 +42,6 @@ menuhijoSeleccionado: {{MenuHijoSel}}
            </div>
         </li>
 
-
         <li class="navigation-item" (click)="Acuerdos()" [ngClass]="{'' : MenuSel != MenuAcuerdos,' active' : MenuSel === MenuAcuerdos}" style="--icon: url('assets/images/ui/navigation/icono-acuerdo.svg');">
            <input aria-hidden="true" type="checkbox" class="dropdown-trigger" id="dropdown-trigger-acuerdos">
            <label class="dropdown-title item"  for="dropdown-trigger-acuerdos">
@@ -64,6 +61,7 @@ menuhijoSeleccionado: {{MenuHijoSel}}
               </ul>
            </div>
         </li>
+
         <li class="navigation-item" style="--icon: url('');">
            <hr>
         </li>
