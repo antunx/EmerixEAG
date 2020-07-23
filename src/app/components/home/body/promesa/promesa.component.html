@@ -36,7 +36,7 @@
                       class="input-elem visually-hidden"
                       required
                       value="all"
-                      checked
+                      [checked]="checked"
                       (change)="checkAll($event)"
                       [disabled]="tipoPago == 'IMPORTE'"
                     />

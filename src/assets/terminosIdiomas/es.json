@@ -47,7 +47,7 @@
   "Traduct.ver_todos_comprobantes": "Ver todos los comprobantes",
 
   "Traduct.minimo": "Mínimo",
-  "Traduct.cant_dias_mora": "Cantidad Días de Mora",
+  "Traduct.cant_dias_mora": "Días de Mora",
   "Traduct.importe": "Importe Acordado",
   "Traduct.plazo_de_pago": "Plazo de Pago",
   "Traduct.importe_a_pagar": "Importe a pagar",
@@ -94,6 +94,11 @@
 
   "Traduct.404_msg1": "404 Página No encontrada!!!",
   "Traduct.404_msg2": "Lo sentimos, se ha producido un error. ¡No se encontró la página solicitada!",
+
+  "Traduct.msgTelefonoTitulo": "¡Lo sentimos!, no tenemos registro de tu teléfono móvil.",
+  "Traduct.msgTelefono": "Por favor, comunicate al 0800 333 0000 para solucionarlo y poder ingresar.",
+  "Traduct.msgMailTitulo": "¡Registrá tu contacto!",
+  "Traduct.msgMail": "Por favor, comunicate al 0800 333 0000 para solucionarlo y poder ingresar.",
 
   "Traduct.volver": "Volver",
   "Traduct.obligatorio": "Obligatorio",

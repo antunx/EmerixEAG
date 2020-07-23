@@ -53,12 +53,11 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
   telefonos = [];
   mails = [];
 
+  MedioEnvioSeleccionado: string;
   loginValido = false;
   tieneInfo = false;
   tieneTelefonos = true;
   tieneMails = true;
-  mostrarTelefonos = false;
-  mostrarMails = false;
   SeleccionoCanal = false;
   CanalSeleccionado = '';
   IdCanalSeleccionado = '';
@@ -69,6 +68,7 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
 
   popupNro: number;
   MensajeAlert: string;
+  MensajeTituloAlert: string;
   loginAction: number;
   SeleccionoMedioEnvio: boolean;
 
@@ -124,8 +124,7 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
   }
 
   Login(ownerFormValue: any): void{
-    let tipo: string;
-    tipo = this.loginForm.controls.medioEnvio.value;
+    this.MedioEnvioSeleccionado = this.loginForm.controls.medioEnvio.value;
     // console.log("Login: " + tipo);
 
     this.tieneInfo = false;
@@ -147,13 +146,9 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
             // console.log('this.telefonos: ' + this.telefonos);
             // console.log('this.telefonos.length: ' + this.telefonos.length);
             this.tieneTelefonos = true;
-            if (tipo === 'T'){
-              this.MostrarCboTelefonos();
-            }
           }
           else{
             this.tieneTelefonos = false;
-            this.MostrarCboMails();
           }
           if (res.IsExistsMail){
             this.tieneInfo = true;
@@ -162,12 +157,21 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
             // console.log('this.mails: ' + this.mails);
             // console.log('this.mails.length: ' + this.mails.length);
             this.tieneMails = true;
-            if (tipo === 'M'){
-              this.MostrarCboMails();
-            }
           }else{
-            this.MostrarCboTelefonos();
             this.tieneMails = false;
+          }
+
+          if (this.MedioEnvioSeleccionado === 'T' && this.tieneTelefonos === false){
+            this.MensajeTituloAlert = this.translate.instant('Traduct.msgTelefonoTitulo');
+            this.MensajeAlert = this.translate.instant('Traduct.msgTelefono');
+            this.mostrarPopu(4);
+            return;
+          }
+          if (this.MedioEnvioSeleccionado === 'M' && this.tieneMails === false){
+            this.MensajeTituloAlert = this.translate.instant('Traduct.msgMailTitulo');
+            this.MensajeAlert = this.translate.instant('Traduct.msgMail');
+            this.mostrarPopu(4);
+            return;
           }
           this.loginAction = 2;
       }else{
@@ -254,18 +258,6 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
         this.MensajeAlert = err.error.Message;
         this.mostrarPopu(3);
       }));
-  }
-
-  MostrarCboTelefonos(): void{
-    this.mostrarTelefonos = true;
-    this.mostrarMails = false;
-    // this.PantallaDefault();
-  }
-
-  MostrarCboMails(): void{
-    this.mostrarMails = true;
-    this.mostrarTelefonos = false;
-    // this.PantallaDefault();
   }
 
   SeleccionMedio(tipo: string, medioEnvio: any): void {

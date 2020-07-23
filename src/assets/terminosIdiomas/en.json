@@ -46,7 +46,7 @@
   "Traduct.ultimos_comprobantes": "Latest Vouchers",
   "Traduct.ver_todos_comprobantes": "See all vouchers",
   "Traduct.minimo": "Mín",
-  "Traduct.cant_dias_mora": "Number of days past due",
+  "Traduct.cant_dias_mora": "Days past due",
   "Traduct.seleccione_medio_pago": "Select a payment method",
   "Traduct.seleccione_moneda": "Select a Currency",
   "Traduct.requerido": "Required",
@@ -92,6 +92,11 @@
 
   "Traduct.404_msg1": "404 Not Found!!!",
   "Traduct.404_msg2": "Sorry, an error has occured, Requested page not found!",
+
+  "Traduct.msgTelefonoTitulo": "Sorry !, we have no record of your mobile phone.",
+  "Traduct.msgTelefono": "Please contact 0800 333 0000 to solve it and to be able to enter.",
+  "Traduct.msgMailTitulo": "Register your contact!",
+  "Traduct.msgMail": "Please contact 0800 333 0000 to solve it and to be able to enter.",
 
   "Traduct.volver": "Return",
   "Traduct.obligatorio": "required",

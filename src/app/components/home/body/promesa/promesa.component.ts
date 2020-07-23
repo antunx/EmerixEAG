@@ -21,6 +21,7 @@ export class PromesaComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   promesa: any;
   MensajeAlert = '';
+  checked: boolean;
 
   constructor(
     private getService: GetService,
@@ -38,15 +39,26 @@ export class PromesaComponent implements OnInit, OnDestroy {
       .subscribe((data: Promesa) => {
         // console.log(data);
         this.button = false;
-        /*data.ActivoMonto = true;
-        data.ActivoParcial = true;
-        data.ActivoProducto = true;*/
+        // data.ActivoMonto = true;
+        // data.ActivoParcial = true;
+        // data.ActivoProducto = true;
         this.RespPromesa = data;
+        this.allChecked();
+        console.log(this.checked);
         this.montoAPagar = data.DeudaTotal;
         if (!data.ActivoProducto && data.ActivoMonto) {
           this.tipoPago = 'IMPORTE';
         }
       });
+  }
+
+  allChecked(): void {
+    this.checked = true;
+    this.RespPromesa.Cuentas.forEach((cuenta) => {
+      if (!cuenta.Check) {
+        this.checked = false;
+      }
+    });
   }
 
   cambioTexto(mensaje: string): void {
@@ -65,6 +77,16 @@ export class PromesaComponent implements OnInit, OnDestroy {
   cambiarCheck(id: number, e): void {
     this.RespPromesa.Cuentas.forEach((producto) => {
       if (producto.IdCuenta === id) {
+        // CARGO VALORES EN EL IMPORTE A PAGAR
+        document.getElementById(
+          `monto-cancelar-${producto.IdCuenta}`
+        ).innerHTML = producto.Deuda.toString();
+        (document.getElementById(
+          `monto-cancelar-${producto.IdCuenta}`
+        ) as HTMLInputElement).value = (document.getElementById(
+          `monto-cancelar-${producto.IdCuenta}`
+        ) as HTMLInputElement).dataset.valor;
+
         const montoACancelar = parseFloat(
           (document.getElementById(
             `monto-cancelar-${producto.IdCuenta}`
@@ -72,6 +94,14 @@ export class PromesaComponent implements OnInit, OnDestroy {
         );
         producto.Check = e.target.checked;
         if (producto.Check === false) {
+          // CAMBIO A 0 AL DESCHECKEAR
+          document.getElementById(
+            `monto-cancelar-${producto.IdCuenta}`
+          ).innerHTML = '0';
+          (document.getElementById(
+            `monto-cancelar-${producto.IdCuenta}`
+          ) as HTMLInputElement).value = '0';
+
           if (montoACancelar <= producto.Deuda) {
             this.montoAPagar -= montoACancelar;
           } else {
@@ -86,6 +116,7 @@ export class PromesaComponent implements OnInit, OnDestroy {
         }
       }
     });
+    this.allChecked();
   }
 
   checkAll(e): void {
@@ -111,17 +142,20 @@ export class PromesaComponent implements OnInit, OnDestroy {
       this.tipoPago === 'PRODUCTO'
     ) {
       e.target.value = max;
+      e.target.dataset.valor = max;
+      this.montoAPagar += max - valorAnterior;
       this.button = false;
       return;
     }
     if (
       max >= e.target.value &&
-      e.target.value >= 0 &&
+      e.target.value > 0 &&
       this.tipoPago === 'PRODUCTO' &&
       valorAnterior !== monto
     ) {
       // console.log('entre');
-      this.montoAPagar -= max - monto + valorAnterior - max;
+      // this.montoAPagar -= max - monto + valorAnterior - max;
+      this.montoAPagar -= valorAnterior - monto;
       e.target.dataset.valor = monto;
     }
     if (
@@ -139,22 +173,24 @@ export class PromesaComponent implements OnInit, OnDestroy {
     this.button = true;
   }
 
-  formatfecha(e){
+  formatfecha(e): void {
     e = new Date(e.target.value);
     let dt = e.getDate();
     dt++;
     let mn = e.getMonth();
     mn++;
-    let yy = e.getFullYear();
-    let nfecha = (<HTMLInputElement>document.getElementById("nfecha")).value = dt + "/" + mn + "/" + yy
-    document.getElementById("nfecha").hidden = false;
-    document.getElementById("fecha").hidden = true;
+    const yy = e.getFullYear();
+    const nfecha = ((document.getElementById(
+      'nfecha'
+    ) as HTMLInputElement).value = dt + '/' + mn + '/' + yy);
+    document.getElementById('nfecha').hidden = false;
+    document.getElementById('fecha').hidden = true;
   }
 
-  cambiarInputFecha() {
-    document.getElementById("fecha").hidden = false;
-    document.getElementById("nfecha").hidden = true;
-    document.getElementById("fecha").focus();
+  cambiarInputFecha(): void {
+    document.getElementById('fecha').hidden = false;
+    document.getElementById('nfecha').hidden = true;
+    document.getElementById('fecha').focus();
   }
 
   setearFecha(e): void {
@@ -171,7 +207,12 @@ export class PromesaComponent implements OnInit, OnDestroy {
       this.fechaPromesa = null;
       this.button = true;
       this.MensajeAlert = this.translate.instant('Traduct.error_fecha_promesa');
-      this.MensajeAlert = this.MensajeAlert.replace('ParamDate', JSON.stringify(this.RespPromesa?.DiasMaximo || this.RespPromesa?.DiasMaximoParam));
+      this.MensajeAlert = this.MensajeAlert.replace(
+        'ParamDate',
+        JSON.stringify(
+          this.RespPromesa?.DiasMaximo || this.RespPromesa?.DiasMaximoParam
+        )
+      );
       document.querySelector('.overlay').classList.add('active');
     } else {
       this.formatfecha(e);

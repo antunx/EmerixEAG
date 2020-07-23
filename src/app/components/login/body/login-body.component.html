@@ -95,7 +95,7 @@
                           <p class="text-large"><strong>{{ 'Traduct.pregunta_clave' | translate }}</strong></p>
                         </div>
 
-                         <div *ngIf="mostrarTelefonos">
+                         <div *ngIf="MedioEnvioSeleccionado==='T'">
                           <div class="form-group flex-column phone-list">
                               <div>
                                 <div *ngFor="let telefono of telefonos; let i = index" class="input-wrapper radio">
@@ -111,7 +111,7 @@
                           </div>
                         </div>
 
-                        <div *ngIf="mostrarMails">
+                        <div *ngIf="MedioEnvioSeleccionado==='M'">
                           <div class="form-group flex-column phone-list">
                             <div>
                               <div *ngFor="let mail of mails; let i = index" class="input-wrapper radio">
@@ -220,6 +220,31 @@
                     </div>
                   </div>
                 </div>
+            </div>
+          </div>
+
+          <!-- mensaje para cuando no tiene telefonos/mails -->
+          <div *ngIf="popupNro===4" class="dialog-container login-dialog login-dialog-1" role="dialog">
+            <a class="close-btn">
+              <img src="assets/images/ui/close-btn.svg" alt="Close">
+            </a>
+            <div class="dialog-content login-dialog login-dialog-1-content">
+
+              <div>
+                <div class="flex-column flex-center">
+                  <div>
+                    <img width="70px" height="70px" src="assets/images/ui/exclamation-triangle-solid.svg" alt="">
+                  </div>
+                  <div class="text-center">
+                    <h1 class="text-large">
+                      {{ MensajeTituloAlert }}
+                    </h1>
+                    <p>
+                      {{ MensajeAlert }}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
