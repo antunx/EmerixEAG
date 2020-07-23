@@ -5,7 +5,7 @@ export interface RtagetPageInfoModel {
   PageTitle: string;
   PageSubTitle: string;
   PageParagraph: string;
- Items: Item[];
+  Items: Item[];
 }
 
 export interface Item {

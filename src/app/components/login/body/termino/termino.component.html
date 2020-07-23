@@ -1,13 +1,26 @@
-<div class="dialog-content login-dialog login-tyc-content">
+<!-- <div class="dialog-content login-dialog login-tyc-content">
   <h2>{{titulo}}</h2>
   <div>
       <h1 class="text-large">{{parrafo}}</h1>
-      <p>
-        {{subTitulo}}
-      </p>
-      <div *ngFor="let item of items">
-        <h1 class="text-large">{{ item.ItemTitle }}</h1>
+      <p>{{subTitulo}}</p>
+
+      <ng-container *ngFor="let item of items">
+        <h2>{{ item.ItemTitle }}</h2>
         <p>{{ item.ItemParagraph }}</p>
-      </div>
+      </ng-container>
+  </div>
+</div> -->
+
+
+<div class="dialog-content login-dialog login-tyc-content">
+  <h2>{{titulo}}</h2>
+  <div>
+    <h1 class="text-large">{{subTitulo}}</h1>
+    <p>{{parrafo}}</p>
+
+    <ng-container *ngFor="let item of items">
+      <h2>{{ item.ItemTitle }}</h2>
+      <p>{{ item.ItemParagraph }}</p>
+    </ng-container>
   </div>
 </div>

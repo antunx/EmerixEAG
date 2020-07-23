@@ -15,10 +15,10 @@ export class TerminoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getservices.getPageInfo('TERCOND').subscribe( (res) => {
-      // console.log(res);
+      // console.log(res.Items);
       this.titulo = res.PageTitle;
-      this.parrafo = res.PageParagraph;
       this.subTitulo = res.PageSubTitle;
+      this.parrafo = res.PageParagraph;
       this.items = res.Items;
     }, (err) => {
         // console.log(err);
