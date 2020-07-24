@@ -21,26 +21,20 @@ export class PostService {
   constructor( private http: HttpClient) { }
 
   postGenerateToken( persona: string, tipoEnvio: string, destino: string ): Observable<RtapostGeneraTetokenModel>{
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' });
     const authData = { Person: persona , ModeSend: tipoEnvio, Destination: destino };
-
-    return this.http.post<RtapostGeneraTetokenModel>(this.API_URL + 'eaglogin/postgeneratetoken', authData, { headers });
+    return this.http.post<RtapostGeneraTetokenModel>(this.API_URL + 'eaglogin/postgeneratetoken', authData);
   }
 
   postValidateToken( login: string, persona: string, tokenCod: string ): Observable<RtapostValidateTokenModel>{
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' });
     const authData = { UserLogin: login , Person: persona , UserToken: tokenCod };
-
-    return this.http.post<RtapostValidateTokenModel>(this.API_URL  + 'eaglogin/postvalidatetoken', authData, { headers });
+    return this.http.post<RtapostValidateTokenModel>(this.API_URL  + 'eaglogin/postvalidatetoken', authData);
   }
 
   postComprobante(comprobante: Comprobante): Observable<StandardPost>{
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json;charset=utf-8' });
-    return this.http.post<StandardPost>(this.API_URL  + 'emerixautog/ingresarcomprobante', comprobante, { headers });
+    return this.http.post<StandardPost>(this.API_URL  + 'emerixautog/ingresarcomprobante', comprobante);
   }
-  /** AGREGADO */
+
   postPromesaPago(promesa: Promesa): Observable<rtaPostPromesaPago> {
-    const headers = new HttpHeaders({'Content-Type': 'application/json;charset=utf-8' });
-    return this.http.post<rtaPostPromesaPago>(this.API_URL + 'emerixautog/ingresarpromesa', promesa, { headers });
+    return this.http.post<rtaPostPromesaPago>(this.API_URL + 'emerixautog/ingresarpromesa', promesa);
   }
 }

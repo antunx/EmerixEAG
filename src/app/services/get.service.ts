@@ -67,7 +67,6 @@ export class GetService {
     return this.http.get<RtagetDebtFreeModel>(this.API_URL + 'emerixautog/getdebtfree/' + id);
   }
 
-  /** AGREGADO */
   getProductProm(id: string): Observable<Promesa> {
     return this.http.get<Promesa>(this.API_URL + 'emerixautog/getproductosprom/' + id);
   }

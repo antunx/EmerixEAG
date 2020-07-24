@@ -76,7 +76,7 @@ export class InterceptorService implements HttpInterceptor {
     );
   }
 
-  delay(ms: number): any {
+  /*delay(ms: number): any {
     return new Promise( resolve => setTimeout(resolve, ms) );
-  }
+  }*/
 }

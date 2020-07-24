@@ -16,35 +16,27 @@ export class MetodosEstandarService {
      UsuId = ''; // JSON.parse(localStorage.getItem('currentUser')).Id;
 
   getAll(): Observable<any> {
-    // console.log(this.API_URL  + this.Entidad);
     return this.http.get<any>(this.API_URL + this.Entidad);
   }
 
   getById(id: string): Observable<any> {
-    // console.log(this.API_URL  + this.Entidad);
     return this.http.get<any>(this.API_URL + this.Entidad + '/' + id);
   }
 
   create(entidad: any): Observable<any> {
-    // console.log(this.API_URL  + '/create/' + this.Entidad);
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
     entidad.Usu =  this.UsuId;
-    return this.http.post<any>(this.API_URL + this.Entidad + '/', entidad, httpOptions);
+    return this.http.post<any>(this.API_URL + this.Entidad + '/', entidad);
   }
 
   update(entidad: any): Observable<any> {
-    // console.log(this.API_URL + this.Entidad + '_upd');
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
     entidad.Usu =  this.UsuId;
-    return this.http.put<any>(this.API_URL + this.Entidad + '_upd', entidad, httpOptions);
+    return this.http.put<any>(this.API_URL + this.Entidad + '_upd', entidad);
   }
 
   deleteById(id: string): Observable<number> {
-    // console.log(this.API_URL + this.Entidad + '?id=' + id);
-
     // forma 1
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
-    return this.http.delete<number>(this.API_URL + this.Entidad + '?id=' + id, httpOptions);
+    // const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
+    return this.http.delete<number>(this.API_URL + this.Entidad + '?id=' + id); // , httpOptions
     /*
     let params = new HttpParams();
     params = params.append('id', id);
@@ -64,7 +56,6 @@ export class MetodosEstandarService {
   }
 
   getObjectCombo(endPoint: string): Observable<RtagetObjetoComboModel> {
-    // console.log(this.API_URL + 'emerixautog/' + endPoint);
     return this.http.get<RtagetObjetoComboModel>(this.API_URL + 'emerixautog/' + endPoint);
   }
 }
