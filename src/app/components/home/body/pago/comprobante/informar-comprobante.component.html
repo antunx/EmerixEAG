@@ -11,7 +11,7 @@
                  <div class="flex-column">
                     <img src="https://placekitten.com/g/165/165" alt="">
                     <h1>{{ 'Traduct.pago_ingresado' | translate }}</h1>
-                    <p>{{MensajePago}}</p>
+                    <p [innerHTML]="MensajePago"></p>
                     <button type="button" class="btn" (click) ="CerrarPopup()">{{ 'Traduct.continuar' | translate }}</button>
                  </div>
               </div>

@@ -1,7 +1,6 @@
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
 import { PostService } from '@app/services/post.service';
 import { MetodosEstandarService } from '@app/services/metodos-estandar.service';
 import { Item } from '@app/models/rtagetobjetocombo.model';
@@ -139,53 +138,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     Mensaje = this.Validate();
 
     if (Mensaje === ''){
-      const entidad: Comprobante = this.pagoForm.value;
-      entidad.IdCuenta = '0';
-      entidad.IdPersona = localStorage.getItem('version_core');
-      // console.log(entidad);
-      // return;
-      this.subscription.add(this.postservices.postComprobante(entidad).subscribe(
-        (res) => {
-          if (res.ErrorCode > 0){
-            // console.log(res.ErrorMessage);
-            this.swalWithBootstrapButtons.fire({
-              icon: 'error',
-              title: this.translate.instant('Traduct.validacion'),
-              text: res.ErrorMessage
-            });
-          } else{
-            this.ResetForm();
-            this.MensajePago = res.Mensaje;
-            document.querySelector('#pay-sidebar').classList.add('active');
-            document.querySelector('html').classList.add('no-scroll');
-          }
-        },
-        (err) => {
-          console.log(err);
-        }
-      ));
-    }else{
-      this.swalWithBootstrapButtons.fire({
-        icon: 'error',
-        title: this.translate.instant('Traduct.validacion'),
-        text: Mensaje
-      });
-    }
-  }
-
-  IngresarPago2(): void{
-    let Mensaje = '';
-    Mensaje = this.Validate();
-    if (Mensaje === ''){
       // console.log(this.pagoForm.value);
-      /*Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Su pago ha sido registrado',
-        showConfirmButton: false,
-        timer: 1500
-      });
-      */
       this.swalWithBootstrapButtons.fire({
         title: this.translate.instant('Traduct.registrar_el_pago'),
         text: this.translate.instant('Traduct.confirme_accion'),
@@ -196,7 +149,6 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
         reverseButtons: true
       }).then((result) => {
         if (result.value) {
-
           const entidad: Comprobante = this.pagoForm.value;
           entidad.IdCuenta = '0';
           entidad.IdPersona = localStorage.getItem('version_core');
@@ -205,43 +157,33 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
           this.subscription.add(this.postservices.postComprobante(entidad).subscribe(
             (res) => {
               if (res.ErrorCode > 0){
-                console.log(res.ErrorMessage);
+                // console.log(res.ErrorMessage);
                 this.swalWithBootstrapButtons.fire({
                   icon: 'error',
                   title: this.translate.instant('Traduct.validacion'),
                   text: res.ErrorMessage
                 });
               } else{
-                // this.ResetForm();
+                this.ResetForm();
                 this.MensajePago = res.Mensaje;
-                document.querySelectorAll('.btn.next').forEach((tr) => {
-                  tr.addEventListener('click', () => {
-                    document.querySelector('#pay-sidebar').classList.add('active');
-                    document.querySelector('html').classList.add('no-scroll');
-                  });
-                });
-                /*this.swalWithBootstrapButtons.fire(
-                  this.translate.instant('Traduct.confirmado'),
-                  res.Mensaje === '' ? this.translate.instant('Traduct.pago_ingresado') : res.Mensaje,
-                  'success'
-                );
-                */
+                document.querySelector('#pay-sidebar').classList.add('active');
+                document.querySelector('html').classList.add('no-scroll');
               }
             },
             (err) => {
               console.log(err);
             }
           ));
-        } else if (
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          /*this.swalWithBootstrapButtons.fire(
-            'Acción Cancelada',
-            'Su pago no fue registrado.',
-            'error'
-          );*/
-        }
-      });
+            } else if (
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              /*this.swalWithBootstrapButtons.fire(
+                'Acción Cancelada',
+                'Su pago no fue registrado.',
+                'error'
+              );*/
+            }
+          });
     }else{
       this.swalWithBootstrapButtons.fire({
         icon: 'error',
