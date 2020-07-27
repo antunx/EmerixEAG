@@ -18,7 +18,7 @@
                 </td>
               </tr>
               <tr></tr>
-              <tr *ngFor="let item of cuentas; let i = index">
+              <tr *ngFor="let item of cuentas; let i = index" style= "cursor: default;">
                 <td style="width: 33.33%;">
                   {{ item.NombreProducto }}
                 </td>
@@ -76,16 +76,18 @@
           </table>
         </div>
       </div>
+
+      <div class="flex-row flex-center">
+        <button
+          type="button"
+          class="btn"
+          (click)="volver()"
+          *ngIf="!detalle.desdeHome"
+        >
+          {{ "Traduct.volver" | translate }}
+        </button>
+      </div>
+
     </section>
-  </div>
-  <div class="flex-row flex-center">
-    <button
-      type="button"
-      class="btn"
-      (click)="volver()"
-      *ngIf="!detalle.desdeHome"
-    >
-      {{ "Traduct.volver" | translate }}
-    </button>
   </div>
 </div>

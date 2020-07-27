@@ -20,7 +20,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class InformarComprobanteComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
     private postservices: PostService,
     private metodosEstandarService: MetodosEstandarService,
     private servicioComunicacion: ComunicacionService,
@@ -29,6 +28,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
       this.metodosEstandarService.Entidad = ''; // SOLO SE USA PARA CRUD
     }
   private subscription: Subscription = new Subscription();
+  MensajePago: string;
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -65,8 +65,8 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   monedas: Item[];
 
   pagoForm = this.formBuilder.group({
-    IdMedioPago: ['1', Validators.required],
-    IdMoneda: ['1', Validators.required],
+    IdMedioPago: ['0', Validators.required],
+    IdMoneda: ['0', Validators.required],
     Importe: ['', [Validators.required, Validators.min(0.01), Validators.max(999999999)]],
     Fecha: ['', Validators.required],
     NumeroComprobante: ['', Validators.required],
@@ -119,18 +119,61 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   Validate(): string{
     const hoy = new Date();
     const fechaSeleccionada = new Date(this.pagoForm.controls.Fecha.value);
-    let sReturn = '';
-
-    if (fechaSeleccionada < hoy) {
-      sReturn = '';
-    } else {
-      sReturn = 'La fecha debe ser anterior o igual a la fecha actual.';
+    if (fechaSeleccionada > hoy) {
+      return this.translate.instant('Traduct.fecha_error');
     }
 
-    return sReturn;
+    if (this.pagoForm.controls.IdMoneda.value === '0') {
+      return this.translate.instant('Traduct.seleccione_moneda');
+    }
+
+    if (this.pagoForm.controls.IdMedioPago.value === '0') {
+     return this.translate.instant('Traduct.seleccione_medio_pago');
+    }
+
+    return '';
   }
 
   IngresarPago(): void{
+    let Mensaje = '';
+    Mensaje = this.Validate();
+
+    if (Mensaje === ''){
+      const entidad: Comprobante = this.pagoForm.value;
+      entidad.IdCuenta = '0';
+      entidad.IdPersona = localStorage.getItem('version_core');
+      // console.log(entidad);
+      // return;
+      this.subscription.add(this.postservices.postComprobante(entidad).subscribe(
+        (res) => {
+          if (res.ErrorCode > 0){
+            // console.log(res.ErrorMessage);
+            this.swalWithBootstrapButtons.fire({
+              icon: 'error',
+              title: this.translate.instant('Traduct.validacion'),
+              text: res.ErrorMessage
+            });
+          } else{
+            this.ResetForm();
+            this.MensajePago = res.Mensaje;
+            document.querySelector('#pay-sidebar').classList.add('active');
+            document.querySelector('html').classList.add('no-scroll');
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      ));
+    }else{
+      this.swalWithBootstrapButtons.fire({
+        icon: 'error',
+        title: this.translate.instant('Traduct.validacion'),
+        text: Mensaje
+      });
+    }
+  }
+
+  IngresarPago2(): void{
     let Mensaje = '';
     Mensaje = this.Validate();
     if (Mensaje === ''){
@@ -144,12 +187,12 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
       });
       */
       this.swalWithBootstrapButtons.fire({
-        title: '¿Registra el pago?',
-        text: 'Confirme la acción.',
+        title: this.translate.instant('Traduct.registrar_el_pago'),
+        text: this.translate.instant('Traduct.confirme_accion'),
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Si',
-        cancelButtonText: 'No',
+        confirmButtonText: this.translate.instant('Traduct.si'),
+        cancelButtonText: this.translate.instant('Traduct.no'),
         reverseButtons: true
       }).then((result) => {
         if (result.value) {
@@ -165,16 +208,24 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
                 console.log(res.ErrorMessage);
                 this.swalWithBootstrapButtons.fire({
                   icon: 'error',
-                  title: 'Validación',
+                  title: this.translate.instant('Traduct.validacion'),
                   text: res.ErrorMessage
                 });
               } else{
-                this.ResetForm();
-                this.swalWithBootstrapButtons.fire(
-                  'Confirmado!',
-                  res.Mensaje === '' ? 'Su pago ha sido ingresado' : res.Mensaje,
+                // this.ResetForm();
+                this.MensajePago = res.Mensaje;
+                document.querySelectorAll('.btn.next').forEach((tr) => {
+                  tr.addEventListener('click', () => {
+                    document.querySelector('#pay-sidebar').classList.add('active');
+                    document.querySelector('html').classList.add('no-scroll');
+                  });
+                });
+                /*this.swalWithBootstrapButtons.fire(
+                  this.translate.instant('Traduct.confirmado'),
+                  res.Mensaje === '' ? this.translate.instant('Traduct.pago_ingresado') : res.Mensaje,
                   'success'
                 );
+                */
               }
             },
             (err) => {
@@ -194,7 +245,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     }else{
       this.swalWithBootstrapButtons.fire({
         icon: 'error',
-        title: 'Validación',
+        title: this.translate.instant('Traduct.validacion'),
         text: Mensaje
       });
     }
@@ -202,12 +253,12 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
 
   ResetForm(): void{
     this.pagoForm = this.formBuilder.group({
-      IdMedioPago: ['1'],
-      IdMoneda: ['1'],
+      IdMedioPago: ['0'],
+      IdMoneda: ['0'],
       Importe: [''],
       Fecha: [''],
-      NumeroComprobante: ['', Validators.maxLength(50)],
-      Comentario: ['', Validators.maxLength(255)]
+      NumeroComprobante: [''],
+      Comentario: ['']
     });
   }
 
@@ -216,5 +267,10 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     let ret: boolean;
     ret = reg.test(event);
     return ret;
+  }
+
+  CerrarPopup(): void{
+    document.querySelector('.overlay').classList.remove('active');
+    document.querySelector('html').classList.remove('no-scroll');
   }
 }

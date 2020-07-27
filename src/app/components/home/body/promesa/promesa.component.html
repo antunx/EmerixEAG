@@ -3,9 +3,9 @@
 <p><a [routerLink]="" (click)="IrPromesaDetalle()" class="wide-link">Ir Promesa Detalle</a></p> -->
 <div class="flex-column flex-grow">
   <div class="pages-container">
-    <section class="page-deals" [hidden]="promesaGenerada">
+    <section class="page-deals">
       <!-- START PAGE HEADER -->
-      <div class="flex-row flex-center">
+      <div *ngIf="!promesaGenerada" class="flex-row flex-center">
         <h1 class="flex-grow">{{ "Traduct.generar_promesa" | translate }}</h1>
         <div>
           <div class="breadcrumb-container" id="">
@@ -22,7 +22,7 @@
         </div>
       </div>
       <!-- END PAGE HEADER -->
-      <div class="flex-row">
+      <div *ngIf="!promesaGenerada" class="flex-row">
         <!-- START DESKTOP TABLE -->
         <div class="table-container desktop-only">
           <table class="table" width="100%" border="0">
@@ -239,7 +239,7 @@
         <!-- END MOBILE TABLE -->
       </div>
       <!-- START CONTROLLERS -->
-      <div class="flex-column deal-mini">
+      <div *ngIf="!promesaGenerada" class="flex-column deal-mini">
         <div>
           <div
             class="input-wrapper radio"
@@ -393,41 +393,41 @@
           {{ "Traduct.generar_promesa" | translate }}
         </button>
       </div>
+
+      <app-promesa-mensaje
+        *ngIf="promesaGenerada" [promesaGenerada]="promesaGenerada" (volviendo)="onVolviendo($event)" [promesa]="promesa">
+      </app-promesa-mensaje>
       <!-- END CONTROLLERS -->
-    </section>
-  </div>
-  <!-- START POPUP -->
-  <div (click)="cerrarPopup()" class="overlay">
-    <div class="dialog-container sidebar" role="dialog">
-      <a class="close-btn" (click)="cerrarPopup()">
-        <img src="assets/images/ui/close-btn.svg" alt="Close" />
-      </a>
-      <div class="dialog-content login-dialog">
-        <div>
-          <div class="flex-column flex-center">
+
+      <!-- START POPUP -->
+      <div (click)="cerrarPopup()" class="overlay">
+        <div *ngIf="popupNro===1" class="dialog-container sidebar" role="dialog">
+          <a class="close-btn" (click)="cerrarPopup()">
+            <img src="assets/images/ui/close-btn.svg" alt="Close" />
+          </a>
+          <div class="dialog-content login-dialog">
             <div>
-              <img
-                width="70px"
-                height="70px"
-                src="assets/images/ui/exclamation-triangle-solid.svg"
-                alt=""
-              />
-            </div>
-            <div class="text-center">
-              <p>{{ MensajeAlert }}</p>
+              <div class="flex-column flex-center">
+                <div>
+                  <img
+                    width="70px"
+                    height="70px"
+                    src="assets/images/ui/exclamation-triangle-solid.svg"
+                    alt=""
+                  />
+                </div>
+                <div class="text-center">
+                  <p>{{ MensajeAlert }}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <!-- END POPUP -->
+    </section>
   </div>
-  <!-- END POPUP -->
 </div>
 
 <!-- COMPONENTE PROMESA-MENSAJE -->
-<app-promesa-mensaje
-  *ngIf="promesaGenerada"
-  [promesaGenerada]="promesaGenerada"
-  (volviendo)="onVolviendo($event)"
-  [promesa]="promesa"
-></app-promesa-mensaje>
+

@@ -63,7 +63,6 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   // descagamos el libre de deuda
   libreDeuda(id: string, producto: string): void{
     this.subscription.add(this.getservices.getDebtFree(id).subscribe((res) => {
-      // console.log(res);
       pdfMake.createPdf(JSON.parse(res.ComprobanteJSON)).download( this.translate.instant('Traduct.libre_deuda')  + producto + '.pdf');
     }, (err) => {
         console.log(err);

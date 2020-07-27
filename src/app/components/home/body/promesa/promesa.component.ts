@@ -20,6 +20,7 @@ export class PromesaComponent implements OnInit, OnDestroy {
   periodo: string;
   private sub: Subscription;
   promesa: any;
+  popupNro: number;
   MensajeAlert = '';
   checked: boolean;
 
@@ -44,7 +45,7 @@ export class PromesaComponent implements OnInit, OnDestroy {
         // data.ActivoProducto = true;
         this.RespPromesa = data;
         this.allChecked();
-        console.log(this.checked);
+        // console.log(this.checked);
         this.montoAPagar = data.DeudaTotal;
         if (!data.ActivoProducto && data.ActivoMonto) {
           this.tipoPago = 'IMPORTE';
@@ -72,6 +73,7 @@ export class PromesaComponent implements OnInit, OnDestroy {
   cerrarPopup(): void {
     document.querySelector('.overlay').classList.remove('active');
     this.MensajeAlert = '';
+    this.popupNro = 0;
   }
 
   cambiarCheck(id: number, e): void {
@@ -121,14 +123,32 @@ export class PromesaComponent implements OnInit, OnDestroy {
 
   checkAll(e): void {
     if (e.target.checked) {
-      this.montoAPagar = this.RespPromesa.DeudaTotal;
       this.RespPromesa.Cuentas.forEach((producto) => {
         producto.Check = true;
+        document.getElementById(
+          `monto-cancelar-${producto.IdCuenta}`
+        ).innerHTML = producto.Deuda.toString();
+        (document.getElementById(
+          `monto-cancelar-${producto.IdCuenta}`
+        ) as HTMLInputElement).value = (document.getElementById(
+          `monto-cancelar-${producto.IdCuenta}`
+        ) as HTMLInputElement).dataset.valor;
+        this.montoAPagar += parseFloat(
+          (document.getElementById(
+            `monto-cancelar-${producto.IdCuenta}`
+          ) as HTMLInputElement).value
+        );
       });
     } else {
       this.montoAPagar = 0;
       this.RespPromesa.Cuentas.forEach((producto) => {
         producto.Check = false;
+        document.getElementById(
+          `monto-cancelar-${producto.IdCuenta}`
+        ).innerHTML = '0';
+        (document.getElementById(
+          `monto-cancelar-${producto.IdCuenta}`
+        ) as HTMLInputElement).value = '0';
       });
     }
   }
@@ -213,6 +233,7 @@ export class PromesaComponent implements OnInit, OnDestroy {
           this.RespPromesa?.DiasMaximo || this.RespPromesa?.DiasMaximoParam
         )
       );
+      this.popupNro = 1;
       document.querySelector('.overlay').classList.add('active');
     } else {
       this.formatfecha(e);
