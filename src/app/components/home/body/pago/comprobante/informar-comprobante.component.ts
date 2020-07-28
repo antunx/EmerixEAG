@@ -199,28 +199,12 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     }
   }
 
-  formato(texto: string): string{
-    return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
-  }
-
-  formatfecha(e): void{
-    const nfecha = (document.getElementById('nfecha') as HTMLInputElement).value = this.formato(e.target.value);
-    document.getElementById('nfecha').hidden = false;
-    document.getElementById('fecha').hidden = true;
-  }
-
-  cambiarInputFecha(): void {
-    document.getElementById('fecha').hidden = false;
-    document.getElementById('nfecha').hidden = true;
-    document.getElementById('fecha').focus();
-  }
-
   ResetForm(): void{
     this.pagoForm = this.formBuilder.group({
       IdMedioPago: ['0'],
       IdMoneda: ['0'],
       Importe: [''],
-      FechaPago: [this.datePipe.transform(this.FechaActual, 'yyyy-MM-dd')],
+      FechaPago: [this.datePipe.transform(this.FechaActual, 'dd-MM-yyyy')],
       NumeroComprobante: [''],
       Comentario: ['']
     });

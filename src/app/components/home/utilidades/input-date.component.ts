@@ -1,47 +1,65 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input-date',
   templateUrl: './input-date.component.html',
   styles: [
+  ],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputDateComponent),
+      multi: true
+    }
   ]
 })
-export class InputDateComponent implements OnInit  {
-
-  // Hay que llamar a la variable @Output() fechaSeleccionada en el componente para poder obtener la fecha.
-  // Ejemplo:
-  // -En HTML-
-  // // <app-input-date (fechaseleccionada)="Fecha($event)"></app-input-date>
-  // -En TS-
-  // setearFecha(e): void {
-  //   console.log(e)
-  // }
-
-  @Output() fechaSeleccionada = new EventEmitter<Date>();
-  private fechaDate: Date;
+export class InputDateComponent implements OnInit, ControlValueAccessor   {
+  value: string;
+  isDisabled: boolean;
+  onChange = (_: any) => { };
+  onTouch = () => { };
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  formatfecha(e): void{
-    e = new Date(e.target.value);
-    this.fechaDate = e;
-    let dt = e.getDate();
-    dt++;
-    let mn = e.getMonth();
-    mn++;
-    const yy = e.getFullYear();
-    const nfecha = (document.getElementById('nfecha') as HTMLInputElement).value = dt + '/' + mn + '/' + yy
-    this.fecha();
-    document.getElementById('nfecha').hidden = false;
-    document.getElementById('fecha').hidden = true;
+  onInput(value: string): void {
+    this.value = value;
+    this.onTouch();
+    this.onChange(this.value);
   }
 
-  fecha(): void{
-    console.log(this.fechaDate);
-    this.fechaSeleccionada.emit(this.fechaDate);
+  writeValue(value: any): void {
+    if (value) {
+      this.value = value || '';
+    } else {
+      this.value = '';
+    }
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouch = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
+  }
+
+  formato(texto: string): string{
+    return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+  }
+
+  formatfecha(e): void{
+    const nfecha = (document.getElementById('nfecha') as HTMLInputElement).value = this.formato(e.target.value);
+    document.getElementById('nfecha').hidden = false;
+    document.getElementById('fecha').hidden = true;
   }
 
   cambiarInputFecha(): void {

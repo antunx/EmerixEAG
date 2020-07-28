@@ -75,9 +75,9 @@
                  <div class="flex-grow">
                     <div class="form-group">
                       <div [ngClass] = "!(FechaPago.invalid && (FechaPago.dirty || FechaPago.touched)) ? 'input-wrapper text flex-center flex-column' : 'input-wrapper text flex-center flex-column error'">
-                          <input class="input-elem" formControlName="FechaPago" type="date" name="fecha" id="fecha" (change)="formatfecha($event)" />
-                          <input class="input-elem" type="text" name="nfecha" id="nfecha" (click)="cambiarInputFecha()" hidden/>
-
+                          <!-- <input class="input-elem" formControlName="FechaPago" type="date" name="fecha" id="fecha" (change)="formatfecha($event)" />
+                          <input class="input-elem" type="text" name="nfecha" id="nfecha" (click)="cambiarInputFecha()" hidden/> -->
+                          <app-input-date formControlName="FechaPago"></app-input-date>
                           <div class="input-error-icon" role="alert"></div>
                           <div class="input-error-popup" role="alert">{{ 'Traduct.seleccione_fecha' | translate }}</div>
                        </div>

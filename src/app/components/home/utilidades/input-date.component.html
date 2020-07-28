@@ -1,15 +1,22 @@
 <input
-class="input-elem"
-type="date"
-name="fecha"
-id="fecha"
-(change)="formatfecha($event)"
+  class="input-elem"
+  type="date"
+  name="fecha"
+  id="fecha"
+  [value]="value"
+  [disabled]="isDisabled"
+  (change)="formatfecha($event)"
+  (input)="onInput($event.target.value)"
 />
 <input
-class="input-elem"
-type="text"
-name="nfecha"
-id="nfecha"
-(click)="cambiarInputFecha()"
-hidden
+  class="input-elem"
+  type="text"
+  name="nfecha"
+  id="nfecha"
+  [value]="value"
+  [disabled]="isDisabled"
+  (click)="cambiarInputFecha()"
+  (input)="onInput($event.target.value)"
+  hidden
 />
+
