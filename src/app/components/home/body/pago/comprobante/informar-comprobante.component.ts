@@ -26,6 +26,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     ) {
       this.metodosEstandarService.Entidad = ''; // SOLO SE USA PARA CRUD
     }
+  private fechaDate: Date;
   private subscription: Subscription = new Subscription();
   MensajePago: string;
   swalWithBootstrapButtons = Swal.mixin({
@@ -48,8 +49,8 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     return this.pagoForm.get('Importe');
   }
 
-  get Fecha(): AbstractControl {
-    return this.pagoForm.get('Fecha');
+  get FechaPago(): AbstractControl {
+    return this.pagoForm.get('FechaPago');
   }
 
   get NumeroComprobante(): AbstractControl {
@@ -62,12 +63,13 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   // Combos
   mediosPago: Item[];
   monedas: Item[];
+  current_date = new Date();
 
   pagoForm = this.formBuilder.group({
     IdMedioPago: ['0', Validators.required],
     IdMoneda: ['0', Validators.required],
     Importe: ['', [Validators.required, Validators.min(0.01), Validators.max(999999999)]],
-    Fecha: ['', Validators.required],
+    FechaPago: [this.current_date, Validators.required],
     NumeroComprobante: ['', Validators.required],
     Comentario: ['']
   });
@@ -117,8 +119,8 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
 
   Validate(): string{
     const hoy = new Date();
-    const fechaSeleccionada = new Date(this.pagoForm.controls.Fecha.value);
-    if (fechaSeleccionada > hoy) {
+    const FechaPago = new Date(this.pagoForm.controls.FechaPago.value);
+    if (FechaPago > hoy) {
       return this.translate.instant('Traduct.fecha_error');
     }
 
@@ -150,6 +152,8 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
       }).then((result) => {
         if (result.value) {
           const entidad: Comprobante = this.pagoForm.value;
+          const FechaPago = new Date(this.pagoForm.controls.FechaPago.value + 'T00:00:00');
+          entidad.Fecha = FechaPago;
           entidad.IdCuenta = '0';
           entidad.IdPersona = localStorage.getItem('version_core');
           // console.log(entidad);
@@ -193,12 +197,28 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     }
   }
 
+  formato(texto: string): string{
+    return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
+  }
+
+  formatfecha(e): void{
+    const nfecha = (document.getElementById('nfecha') as HTMLInputElement).value = this.formato(e.target.value);
+    document.getElementById('nfecha').hidden = false;
+    document.getElementById('fecha').hidden = true;
+  }
+
+  cambiarInputFecha(): void {
+    document.getElementById('fecha').hidden = false;
+    document.getElementById('nfecha').hidden = true;
+    document.getElementById('fecha').focus();
+  }
+
   ResetForm(): void{
     this.pagoForm = this.formBuilder.group({
       IdMedioPago: ['0'],
       IdMoneda: ['0'],
       Importe: [''],
-      Fecha: [''],
+      FechaPago: [''],
       NumeroComprobante: [''],
       Comentario: ['']
     });

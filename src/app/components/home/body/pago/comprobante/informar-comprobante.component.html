@@ -1,4 +1,5 @@
 <!-- {{ pagoForm.value | json}} -->
+{{current_date}}
 <div class="flex-column flex-grow">
   <div class="pages-container">
      <div class="overlay" id="pay-sidebar">
@@ -29,7 +30,7 @@
                        <div [ngClass] = "!(Importe.invalid && (Importe.dirty || Importe.touched)) ? 'input-wrapper text' : 'input-wrapper text error'">
                           <input id="Importe" type="number" class="input-elem" placeholder="{{ 'Traduct.total_abonado' | translate }}" formControlName="Importe" step="0.01">
                           <div class="input-error-icon" role="alert"></div>
-                          <div class="input-error-popup" role="alert">{{ 'Traduct.monto_requerido' | translate }}</div>
+                          <div class="input-error-popup" role="alert">{{ 'Traduct.total_abonado' | translate }} {{ 'Traduct.requerido' | translate }}</div>
                        </div>
                     </div>
                 </div>
@@ -67,15 +68,17 @@
                        <div [ngClass] = "!(NumeroComprobante.invalid && (NumeroComprobante.dirty || NumeroComprobante.touched)) ? 'input-wrapper text flex-center flex-column' : 'input-wrapper text flex-center flex-column error'">
                           <input id="NumeroComprobante" type="text" class="input-elem" placeholder="{{ 'Traduct.nro_boleta' | translate }}" maxlength="50" (keypress)="SoloNumerosLetras($event.key)" formControlName="NumeroComprobante">
                           <div class="input-error-icon" role="alert"></div>
-                          <div class="input-error-popup" role="alert">{{ 'Traduct.numero_requerido' | translate }}</div>
+                          <div class="input-error-popup" role="alert">{{ 'Traduct.nro_boleta' | translate }} {{ 'Traduct.requerido' | translate }}</div>
                        </div>
                     </div>
                  </div>
 
                  <div class="flex-grow">
                     <div class="form-group">
-                      <div [ngClass] = "!(Fecha.invalid && (Fecha.dirty || Fecha.touched)) ? 'input-wrapper text flex-center flex-column' : 'input-wrapper text flex-center flex-column error'">
-                        <input type="date" formControlName="Fecha"/>
+                      <div [ngClass] = "!(FechaPago.invalid && (FechaPago.dirty || FechaPago.touched)) ? 'input-wrapper text flex-center flex-column' : 'input-wrapper text flex-center flex-column error'">
+                          <input class="input-elem" formControlName="FechaPago" type="date" name="fecha" id="fecha" (change)="formatfecha($event)" />
+                          <input class="input-elem" type="text" name="nfecha" id="nfecha" (click)="cambiarInputFecha()" hidden/>
+
                           <div class="input-error-icon" role="alert"></div>
                           <div class="input-error-popup" role="alert">{{ 'Traduct.seleccione_fecha' | translate }}</div>
                        </div>

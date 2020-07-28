@@ -33,25 +33,13 @@ import { PromesaMensajeComponent } from './body/promesa/promesa-mensaje/promesa-
 import { PromesaDetalleComponent } from './body/promesa/promesa-detalle/promesa-detalle.component';
 import { PreguntasComponent } from './body/preguntas/preguntas.component';
 import { UltimosComprobantesComponent } from './body/pago/comprobante/ultimos-comprobantes.component';
+import { InputDateComponent } from './utilidades/input-date.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
 }
 
 @NgModule({
-  imports: [
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
-    HomeRoutingModule,
-    TranslateModule.forRoot({ defaultLanguage: 'es',
-                              loader: {
-                                      provide: TranslateLoader,
-                                      useFactory: (createTranslateLoader),
-                                      deps: [HttpClient]
-                                      }
-                            })
-  ],
   declarations: [
     DefaultComponent,
     HomeComponent,
@@ -74,7 +62,24 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     PromesaMensajeComponent,
     PromesaDetalleComponent,
     PreguntasComponent,
-    UltimosComprobantesComponent
+    UltimosComprobantesComponent,
+    InputDateComponent
+  ],
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+    HomeRoutingModule,
+    TranslateModule.forRoot({ defaultLanguage: 'es',
+                              loader: {
+                                      provide: TranslateLoader,
+                                      useFactory: (createTranslateLoader),
+                                      deps: [HttpClient]
+                                      }
+                            })
+  ],
+  exports: [
+    InputDateComponent
   ]
 })
 export class HomeModule { }

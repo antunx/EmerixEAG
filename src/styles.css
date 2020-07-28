@@ -948,7 +948,6 @@ html.no-scroll body {
   position: relative;
   margin-right: .5rem;
   pointer-events: none;
-  opacity: 0;
 }
 
 .emerix-page .input-wrapper .input-fake-radio .input-caret {
@@ -1864,6 +1863,10 @@ html.no-scroll body {
   margin-right: 2rem;
 }
 
+.emerix-page .page-login .login-method .input-fake-radio {
+  opacity: 0;
+}
+
 .emerix-page .page-login .login-method input:hover ~ label,
 .emerix-page .page-login .login-method input:checked ~ label {
   border: 1px solid #8569b4;
@@ -2247,6 +2250,7 @@ html.no-scroll body {
 
 .emerix-page .page-deals .table tr:not(.table-header) {
   /*cursor: pointer;
+
 			&:hover * {
 				color: $violet;
             }*/
@@ -2281,6 +2285,10 @@ html.no-scroll body {
 
 .emerix-page .page-deals .deal-mini input:checked ~ label .payment-title {
   color: #8569b4;
+}
+
+.emerix-page .page-deals .deal-mini .input-fake-radio {
+  opacity: 0;
 }
 
 .emerix-page .page-deals .deal-mini .payment-title {
@@ -2370,6 +2378,7 @@ html.no-scroll body {
 
 .emerix-page .page-pay .table tr:not(.table-header) {
   /*cursor: pointer;
+
 			&:hover * {
 				color: $violet;
             }*/
@@ -2408,6 +2417,10 @@ html.no-scroll body {
 
 .emerix-page .page-pay .pay-mini input:checked ~ label .payment-title {
   color: #8569b4;
+}
+
+.emerix-page .page-pay .pay-mini .input-fake-radio {
+  opacity: 0;
 }
 
 .emerix-page .page-pay .pay-mini .payment-title {
