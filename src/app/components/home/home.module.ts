@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 /** TRANSLATION */
@@ -80,6 +80,11 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   ],
   exports: [
     InputDateComponent
-  ]
+  ],
+  providers: [
+    {
+      provide: DatePipe
+    }
+  ],
 })
 export class HomeModule { }

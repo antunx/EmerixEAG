@@ -9,6 +9,7 @@ import { Comprobante } from '@app/models/comprobante.models';
 import { Subscription } from 'rxjs';
 import { ComunicacionService } from '@app/services/comunicacion.service';
 import { TranslateService } from '@ngx-translate/core';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-informar-comprobante',
@@ -22,7 +23,8 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     private postservices: PostService,
     private metodosEstandarService: MetodosEstandarService,
     private servicioComunicacion: ComunicacionService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private datePipe: DatePipe
     ) {
       this.metodosEstandarService.Entidad = ''; // SOLO SE USA PARA CRUD
     }
@@ -63,13 +65,13 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   // Combos
   mediosPago: Item[];
   monedas: Item[];
-  current_date = new Date();
+  FechaActual = new Date();
 
   pagoForm = this.formBuilder.group({
     IdMedioPago: ['0', Validators.required],
     IdMoneda: ['0', Validators.required],
     Importe: ['', [Validators.required, Validators.min(0.01), Validators.max(999999999)]],
-    FechaPago: [this.current_date, Validators.required],
+    FechaPago: [this.datePipe.transform(this.FechaActual, 'yyyy-MM-dd'), Validators.required],
     NumeroComprobante: ['', Validators.required],
     Comentario: ['']
   });
@@ -218,7 +220,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
       IdMedioPago: ['0'],
       IdMoneda: ['0'],
       Importe: [''],
-      FechaPago: [''],
+      FechaPago: [this.datePipe.transform(this.FechaActual, 'yyyy-MM-dd')],
       NumeroComprobante: [''],
       Comentario: ['']
     });
