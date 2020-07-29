@@ -1,19 +1,20 @@
 <input
   class="input-elem"
   type="date"
-  name="fecha"
-  id="fecha"
+  name="dt_fecha"
+  id="dt_fecha"
+  on-focusout="cambiarFechaInput()"
   [value]="value"
   [disabled]="isDisabled"
-  (change)="formatfecha($event)"
   (input)="onInput($event.target.value)"
 />
+
 <input
   class="input-elem"
   type="text"
-  name="nfecha"
-  id="nfecha"
-  [value]="value"
+  name="txt_fecha"
+  id="txt_fecha"
+  [value]="this.formato(value)"
   [disabled]="isDisabled"
   (click)="cambiarInputFecha()"
   (input)="onInput($event.target.value)"

@@ -16,6 +16,16 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class InputDateComponent implements OnInit, ControlValueAccessor   {
+  // ---------------------------------------------------------------------------------------
+  // Desarrollado por Tony: Uso del Custom Form Control
+  // NgModel:
+  // <app-input-date [(ngModel)]="valorFecha"></app-input-date>
+  // Reactive Forms
+  // <app-input-date formControlName="NombreControl"></app-input-date>
+  // tambien soporta invalid, dirty, touched, disabled.
+
+  // NOTA: NO TOQUES ESTE CONTROL A MENOS QUE TENGAS UNA BUENA EXCUSA...
+  // ---------------------------------------------------------------------------------------
   value: string;
   isDisabled: boolean;
   onChange = (_: any) => { };
@@ -28,6 +38,10 @@ export class InputDateComponent implements OnInit, ControlValueAccessor   {
 
   onInput(value: string): void {
     this.value = value;
+    (document.getElementById('txt_fecha') as HTMLInputElement).value = this.formato(value);
+    document.getElementById('txt_fecha').hidden = false;
+    document.getElementById('dt_fecha').hidden = true;
+
     this.onTouch();
     this.onChange(this.value);
   }
@@ -56,15 +70,14 @@ export class InputDateComponent implements OnInit, ControlValueAccessor   {
     return texto.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, '$3/$2/$1');
   }
 
-  formatfecha(e): void{
-    const nfecha = (document.getElementById('nfecha') as HTMLInputElement).value = this.formato(e.target.value);
-    document.getElementById('nfecha').hidden = false;
-    document.getElementById('fecha').hidden = true;
+  cambiarInputFecha(): void {
+    document.getElementById('dt_fecha').hidden = false;
+    document.getElementById('txt_fecha').hidden = true;
+    document.getElementById('dt_fecha').focus();
   }
 
-  cambiarInputFecha(): void {
-    document.getElementById('fecha').hidden = false;
-    document.getElementById('nfecha').hidden = true;
-    document.getElementById('fecha').focus();
+  cambiarFechaInput(): void {
+    document.getElementById('dt_fecha').hidden = true;
+    document.getElementById('txt_fecha').hidden = false;
   }
 }
