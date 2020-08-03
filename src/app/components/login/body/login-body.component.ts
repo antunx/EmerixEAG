@@ -244,7 +244,6 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
         // return ;
 
         if (!res.IsValid){
-          this.authService.logout();
           this.MensajeAlert = res.ErrorMessage;
           this.mostrarPopu(3);
         }else {
