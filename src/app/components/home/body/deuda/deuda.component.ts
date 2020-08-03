@@ -33,7 +33,7 @@ export class DeudaComponent implements OnInit, OnDestroy {
 
   Redireccionar(destino: string): void {
     if (destino === 'PAG'){
-      this.router.navigateByUrl('/home/informar_comprobante');
+      this.router.navigateByUrl('/home/pagar');
     }else{
       this.router.navigateByUrl('/home/producto');
     }

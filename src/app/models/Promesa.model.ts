@@ -10,6 +10,7 @@ export interface Promesa {
   DiasMaximoParam: number;
   Mensajes: Mensaje[];
   DeudaTotal: number;
+  PagoMinimo: number;
 }
 
 interface Mensaje {

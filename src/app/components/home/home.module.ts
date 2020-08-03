@@ -34,6 +34,11 @@ import { PromesaDetalleComponent } from './body/promesa/promesa-detalle/promesa-
 import { PreguntasComponent } from './body/preguntas/preguntas.component';
 import { UltimosComprobantesComponent } from './body/pago/comprobante/ultimos-comprobantes.component';
 import { InputDateComponent } from './utilidades/input-date.component';
+import { LoginChatbotComponent } from '../login-chatbot/login-chatbot.component';
+import { PagarComponent } from './body/pagar/pagar.component';
+import { DetallePlanpagoComponent } from './body/pagar/detalle-planpago/detalle-planpago.component';
+import { ConfirmarPagoComponent } from './body/pagar/confirmar-pago/confirmar-pago.component';
+import { PagoMetodosComponent } from './body/pagar/pago-metodos/pago-metodos.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
@@ -63,7 +68,12 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     PromesaDetalleComponent,
     PreguntasComponent,
     UltimosComprobantesComponent,
-    InputDateComponent
+    InputDateComponent,
+    LoginChatbotComponent,
+    PagarComponent,
+    DetallePlanpagoComponent,
+    ConfirmarPagoComponent,
+    PagoMetodosComponent
   ],
   imports: [
     ReactiveFormsModule,

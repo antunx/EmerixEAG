@@ -28,7 +28,11 @@
           <table class="table" width="100%" border="0">
             <tbody>
               <tr class="table-header">
-                <td style="width: 25%;">
+                <td
+                  [ngStyle]="{
+                    width: tipoPago === 'PRODUCTO' ? '25%' : '33.3%'
+                  }"
+                >
                   <div class="input-wrapper checkbox">
                     <input
                       id="select-all"
@@ -57,21 +61,21 @@
                   </div>
                 </td>
 
-                <td style="width: 25%;">
+                <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '33.3%' }">
                   {{ "Traduct.cant_dias_mora" | translate }}
                 </td>
 
-                <td style="width: 25%;">
+                <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '33.3%' }">
                   {{ "Traduct.monto_deuda" | translate }}
                 </td>
 
-                <td style="width: 25%;" [hidden]="tipoPago == 'IMPORTE'">
+                <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '0%' }" [hidden]="tipoPago == 'IMPORTE'">
                   {{ "Traduct.importe_a_pagar" | translate }}
                 </td>
               </tr>
               <div *ngFor="let cuenta of RespPromesa?.Cuentas">
                 <tr>
-                  <td style="width: 25%;">
+                  <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '33.3%' }">
                     <div class="input-wrapper checkbox">
                       <input
                         id="table-select-{{ cuenta.IdCuenta }}"
@@ -97,18 +101,18 @@
                     </div>
                   </td>
 
-                  <td style="width: 25%;">
+                  <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '33.3%' }">
                     {{ cuenta.DiasMora }}
                   </td>
 
-                  <td style="width: 25%;">
+                  <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '33.3%' }">
                     {{
                       cuenta.Deuda
                         | currency: cuenta.CodigoMoneda:"symbol-narrow"
                     }}
                   </td>
 
-                  <td style="width: 25%;" [hidden]="tipoPago == 'IMPORTE'">
+                  <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '0%' }" [hidden]="tipoPago == 'IMPORTE'">
                     <input
                       type="number"
                       id="monto-cancelar-{{ cuenta.IdCuenta }}"
@@ -200,7 +204,7 @@
               </tr>
 
               <tr>
-                <td>
+                <td [hidden]="tipoPago == 'IMPORTE'">
                   <p>
                     <strong>{{ "Traduct.importe_a_pagar" | translate }}</strong>
                   </p>
@@ -395,13 +399,21 @@
       </div>
 
       <app-promesa-mensaje
-        *ngIf="promesaGenerada" [promesaGenerada]="promesaGenerada" (volviendo)="onVolviendo($event)" [promesa]="promesa">
+        *ngIf="promesaGenerada"
+        [promesaGenerada]="promesaGenerada"
+        (volviendo)="onVolviendo($event)"
+        [promesa]="promesa"
+      >
       </app-promesa-mensaje>
       <!-- END CONTROLLERS -->
 
       <!-- START POPUP -->
       <div (click)="cerrarPopup()" class="overlay">
-        <div *ngIf="popupNro===1" class="dialog-container sidebar" role="dialog">
+        <div
+          *ngIf="popupNro === 1"
+          class="dialog-container sidebar"
+          role="dialog"
+        >
           <a class="close-btn" (click)="cerrarPopup()">
             <img src="assets/images/ui/close-btn.svg" alt="Close" />
           </a>
@@ -430,4 +442,3 @@
 </div>
 
 <!-- COMPONENTE PROMESA-MENSAJE -->
-

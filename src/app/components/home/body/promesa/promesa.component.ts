@@ -23,6 +23,7 @@ export class PromesaComponent implements OnInit, OnDestroy {
   popupNro: number;
   MensajeAlert = '';
   checked: boolean;
+  pagoMinimo: number;
 
   constructor(
     private getService: GetService,
@@ -43,6 +44,7 @@ export class PromesaComponent implements OnInit, OnDestroy {
         // data.ActivoMonto = true;
         // data.ActivoParcial = true;
         // data.ActivoProducto = true;
+        this.pagoMinimo = data.PagoMinimo;
         this.RespPromesa = data;
         this.allChecked();
         // console.log(this.checked);
@@ -284,20 +286,26 @@ export class PromesaComponent implements OnInit, OnDestroy {
         (document.getElementById('monto-monto') as HTMLInputElement).innerHTML
       );
     // ESTOS IF CREO QUE YA NO SIRVEN PORQUE EL BOTON SE BLOQUEA SI NO ESTAN LAS CONDICIONES DADAS PARA CREAR LA PROMESA
-    if (!this.fechaPromesa) {
-      alert('No se puede generar una promesa ya que la fecha es invalida');
-    } else if (
-      (this.montoAPagar < 1 && this.tipoPago === 'PRODUCTO') ||
-      (pagoPorMonto < 1 && this.tipoPago === 'IMPORTE') ||
+    if (
+      (this.montoAPagar < this.pagoMinimo && this.tipoPago === 'PRODUCTO') ||
+      (this.montoAPagar <= 0 && this.tipoPago === 'PRODUCTO') ||
+      (pagoPorMonto < this.pagoMinimo && this.tipoPago === 'IMPORTE') ||
+      (pagoPorMonto <= 0 && this.tipoPago === 'IMPORTE') ||
       (pagoPorMonto > this.RespPromesa.DeudaTotal &&
         this.tipoPago === 'IMPORTE') ||
       isNaN(pagoPorMonto)
     ) {
-      alert(
-        'No se puede generar una promesa ya que el monto debe ser mayor a 0 y menor a la deuda total (' +
-          this.RespPromesa.DeudaTotal +
-          ')'
+      this.MensajeAlert = this.translate.instant('Traduct.error_monto_promesa');
+      this.MensajeAlert = this.MensajeAlert.replace(
+        '<PAGO_MINIMO>',
+        JSON.stringify(this.RespPromesa.PagoMinimo)
       );
+      this.MensajeAlert = this.MensajeAlert.replace(
+        '<PAGO_MAXIMO>',
+        JSON.stringify(this.RespPromesa.DeudaTotal)
+      );
+      this.popupNro = 1;
+      document.querySelector('.overlay').classList.add('active');
     } else {
       const promesa = {
         totalPagar: this.montoAPagar,

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/standard/not-found/not-found.component';
+import { LoginChatbotComponent } from './components/login-chatbot/login-chatbot.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
   },
 
   { path: 'login', component: LoginComponent },
+  { path: 'loginchatbot/:versionWeb', component: LoginChatbotComponent },
   { path: '', component: LoginComponent },
   { path: '**', component: NotFoundComponent }
 ];

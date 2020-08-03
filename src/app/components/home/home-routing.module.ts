@@ -15,6 +15,8 @@ import { PromesaHistoricaComponent } from './body/promesa/promesa-historica.comp
 import { PromesaMensajeComponent } from './body/promesa/promesa-mensaje/promesa-mensaje.component';
 import { PromesaDetalleComponent } from './body/promesa/promesa-detalle/promesa-detalle.component';
 import { PreguntasComponent } from './body/preguntas/preguntas.component';
+import { PagarComponent } from './body/pagar/pagar.component';
+import { PagoMetodosComponent } from './body/pagar/pago-metodos/pago-metodos.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent,
@@ -27,6 +29,9 @@ const routes: Routes = [
       {path: 'promesa-historica', component: PromesaHistoricaComponent, canActivate: [ AuthGeneralGuard ]},
       {path: 'promesa-detalle', component: PromesaDetalleComponent, canActivate: [ AuthGeneralGuard ]},
       {path: 'promesa-mensaje', component: PromesaMensajeComponent, canActivate: [ AuthGeneralGuard ]},
+
+      {path: 'pagar', component: PagarComponent, canActivate: [ AuthGeneralGuard ]},
+      {path: 'metodos-pago', component: PagoMetodosComponent, canActivate: [ AuthGeneralGuard ]},
 
       {path: 'comprobante', component: ListaComprobanteComponent, canActivate: [ AuthGeneralGuard ]  },
       {path: 'informar_comprobante', component: InformarComprobanteComponent, canActivate: [ AuthGeneralGuard ]},

@@ -1,0 +1,237 @@
+<div class="flex-column flex-grow">
+    <div class="pages-container">
+      <div class="overlay" id="deals-sidebar">
+        <div class="dialog-container sidebar" role="dialog">
+          <!--         <a class="close-btn">
+            <img
+              src="assets/images/ui/close-btn.svg"
+              alt="Close"
+            />
+          </a> -->
+          <div class="dialog-content sidebar-content">
+            <div>
+              <div class="flex-column">
+                <img src="https://placekitten.com/g/165/165" alt="" />
+                <!-- <h1>¡Promesa de pago generada con éxito!</h1> -->
+                <!-- <button class="btn" routerLink="/pagos">Pagar ahora</button -->
+                <button class="btn secondary" routerLink="/home/default">
+                  {{ "Traduct.continuar_navegando" | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <section class="page-deals restrict-desktop">
+        <div class="flex-row flex-center">
+          <h1 class="flex-grow">{{ "Traduct.confirmar_pago" | translate }}</h1>
+          <div>
+            <div class="breadcrumb-container" id="">
+              <ul class="flex-row">
+                <li class="active breadcrumb">
+                  item1
+                </li>
+                <li class="active last-of-type breadcrumb">
+                  item2
+                </li>
+                <li class="breadcrumb">
+                  item2
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <div class="flex-row">
+          <div class="box flex-grow text-center">
+            <h3>{{ "Traduct.monto_deuda" | translate }}</h3>
+            <!-- <p class="text-xlarge">
+              ${{
+                removerComas(this.respuesta.totalPagar | number:'1.2-2')
+              }}
+            </p> -->
+            <p class="text-xlarge">
+              {{
+                removerComas(
+                    this.importeDeuda
+                    | currency: "ARS":"symbol-narrow":"1.2-2"
+                )
+              }}
+            </p>
+          </div>
+          <div class="box flex-grow text-center">
+            <h3>{{ "Traduct.importe_a_pagar" | translate }}</h3>
+            <p class="text-xlarge">
+              {{
+                removerComas(
+                    this.importeApagar
+                      | currency: "ARS":"symbol-narrow":"1.2-2"
+                  )
+              }}
+            </p>
+          </div>
+        </div>
+  
+        <div class="flex-row">
+          <div class="table-container desktop-only">
+            <table class="table disabled" width="100%" border="0">
+              <tbody>
+                <tr class="table-header">
+                  <td style="width: 20%;">
+                    {{ "Traduct.producto" | translate }}
+                  </td>
+                  <td style="width: 20%;">
+                    {{ "Traduct.producto" | translate }}
+                  </td>
+                  <td style="width: 20%;">
+                    {{ "Traduct.dias_deuda" | translate }}
+                  </td>
+                  <td style="width: 20%;">
+                    {{ "Traduct.monto_deuda" | translate }}
+                  </td>
+                  <td style="width: 20%;">
+                    {{ "Traduct.importe_a_pagar" | translate }}
+                  </td>
+                </tr>
+                <tr *ngFor="let item of productos">
+                  <td style="width: 20%;">
+                    {{ item.Nombre }}
+                  </td>
+                  <td style="width: 20%;">{{ item.Tipo }}</td>
+                  <td style="width: 20%;">{{ item.DiasMora }} dias</td>
+                  <td style="width: 20%;">${{ item.Deuda }}</td>
+                  <td style="width: 20%;">${{ item.ImportePagar }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mobile-only flex-column flex-grow table-container">
+            <table
+              class="box table flex-orw disabled"
+              *ngFor="let item of productos"
+            >
+              <tbody>
+                <tr class="table-header">
+                  <td>
+                    <p>{{ item.Nombre }}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>
+                      <strong>{{ "Traduct.producto" | translate }}</strong>
+                    </p>
+                    <p>{{ item.Tipo }}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>
+                      <strong>{{ "Traduct.dias_deuda" | translate }}</strong>
+                    </p>
+                    <p>{{ item.DiasMora }}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>
+                      <strong>{{ "Traduct.monto_deuda" | translate }}</strong>
+                    </p>
+                    ${{ item.Deuda }}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>
+                      <strong>{{ "Traduct.importe_a_pagar" | translate }}</strong>
+                    </p>
+                    ${{ item.ImportePagar }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="flex-row">
+            <div class="table-container desktop-only">
+              <table class="table disabled" width="100%" border="0">
+                <tbody>
+                  <tr class="table-header">
+                    <td style="width: 20%;">
+                      {{ "Traduct.promesa_pago" | translate }}
+                    </td>
+                    <td style="width: 20%;">
+                      {{ "Traduct.fecha_vencimiento" | translate }}
+                    </td>
+                    <td style="width: 20%;">
+                      {{ "Traduct.monto_deuda" | translate }}
+                    </td>
+                    <td style="width: 20%;">
+                      {{ "Traduct.importe_a_pagar" | translate }}
+                    </td>
+                  </tr>
+                  <tr *ngFor="let item of promesas; let i = index;">
+                    <td style="width: 20%;">
+                      Promesa {{ i+1 }}
+                    </td>
+                    <td style="width: 20%;">{{ item.FechaComprometida | date: 'yy/MM/dd'}}</td>
+                    <td style="width: 20%;">${{ item.Deuda }}</td>
+                    <td style="width: 20%;">${{ item.ImportePagar }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mobile-only flex-column flex-grow table-container">
+              <table
+                class="box table flex-orw disabled"
+                *ngFor="let item of promesas; let i = index"
+              >
+                <tbody>
+                  <tr class="table-header">
+                    <td>
+                      <p>Promesa {{ i+1 }}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>
+                        <strong>{{ "Traduct.fecha_vencimiento" | translate }}</strong>
+                      </p>
+                      <p>{{ item.FechaComprometida | date: 'yy/MM/dd' }}</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>
+                        <strong>{{ "Traduct.monto_deuda" | translate }}</strong>
+                      </p>
+                      ${{ item.Deuda }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>
+                        <strong>{{ "Traduct.importe_a_pagar" | translate }}</strong>
+                      </p>
+                      ${{ item.ImportePagar }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        <div class="deal-mini flex-row">
+          <button class="btn secondary" (click)="volver()">
+            {{ "Traduct.volver" | translate }}
+          </button>
+          <button class="btn" (click)="postPromesa()">
+            {{ "Traduct.confirmar" | translate }}
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+  

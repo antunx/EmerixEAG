@@ -21,11 +21,13 @@
   "Traduct.detalle_promesa": "Detalle de promesa",
   "Traduct.salir": "Salir",
   "Traduct.producto": "Producto",
+  "Traduct.promesa": "Promesa",
   "Traduct.tipo_producto": "Tipo Producto",
   "Traduct.dias_deuda": "Días Deuda",
   "Traduct.monto": "Monto",
   "Traduct.monto_pagado": "Monto pagado",
   "Traduct.monto_deuda": "Monto Deuda",
+  "Traduct.detalle": "Detalle",
   "Traduct.libre_deuda": "Libre Deuda",
   "Traduct.listado_productos": "Tus productos",
   "Traduct.descargar": "Descargar",
@@ -39,6 +41,8 @@
   "Traduct.total_abonado": "Total Abonado",
   "Traduct.fecha": "Fecha",
   "Traduct.fecha_pago": "Fecha de pago",
+  "Traduct.fecha_promesa": "Fecha de Promesa",
+  "Traduct.fecha_comprometida": "Fecha Comprometida",
   "Traduct.nro_boleta": "N° de Comprobante",
   "Traduct.moneda": "Moneda",
   "Traduct.registrar": "Registrar",
@@ -53,6 +57,7 @@
   "Traduct.cant_dias_mora": "Días de Mora",
   "Traduct.importe": "Importe Acordado",
   "Traduct.plazo_de_pago": "Plazo de Pago",
+  "Traduct.importe_comprometido": "Importe Comprometido",
   "Traduct.importe_a_pagar": "Importe a pagar",
 
   "Traduct.seleccione_medio_pago": "Seleccione un Medio de pago",
@@ -92,6 +97,7 @@
   "Traduct.acepto_los": "Acepto los",
 
   "Traduct.confirmar_promesa": "Confirmar Promesa de Pago",
+  "Traduct.quiero_pagar": "Quiero Pagar",
   "Traduct.historial_promesa": "Historial de Promesas de Pago",
   "Traduct.generar_promesa": "Generar Promesa de Pago",
   "Traduct.estado": "Estado",
@@ -102,6 +108,14 @@
   "Traduct.ultimas_promesas": "Ultimas Promesas de Pago",
   "Traduct.ver_todas_promesas": "Ver todas las Promesas",
   "Traduct.error_fecha_promesa": "Fecha Invalida. No puede ser menor a la fecha actual ni exceder en ParamDate dias la fecha actual",
+  "Traduct.error_monto_promesa": "No se puede generar una promesa ya que el monto debe ser mayor a <PAGO_MINIMO> y menor a la deuda total (<PAGO_MAXIMO>)",
+
+  "Traduct.confirmar_pago": "Confirmar Pago",
+  "Traduct.cuota": "Cuota",
+  "Traduct.capital": "Capital",
+  "Traduct.fecha_vencimiento": "Fecha de vencimiento",
+  "Traduct.seleccionar_una_cuota": "Debes seleccionar al menos una cuota",
+  "Traduct.metodos_de_pago":"Metodos de Pago",
 
   "Traduct.404_msg1": "404 Página No encontrada!!!",
   "Traduct.404_msg2": "Lo sentimos, se ha producido un error. ¡No se encontró la página solicitada!",
@@ -121,5 +135,7 @@
   "Traduct.credenciales": "Credenciales Invalidas",
   "Traduct.continuar_navegando": "Continuar Navegando",
   "Traduct.continuar": "Continuar",
-  "Traduct.confirmar": "Confirmar"
+  "Traduct.confirmar": "Confirmar",
+  "Traduct.ingresando_chatBot": "Ingresando desde ChatBot"
+
 }
