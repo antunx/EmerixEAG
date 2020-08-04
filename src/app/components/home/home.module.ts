@@ -39,6 +39,7 @@ import { PagarComponent } from './body/pagar/pagar.component';
 import { DetallePlanpagoComponent } from './body/pagar/detalle-planpago/detalle-planpago.component';
 import { ConfirmarPagoComponent } from './body/pagar/confirmar-pago/confirmar-pago.component';
 import { PagoMetodosComponent } from './body/pagar/pago-metodos/pago-metodos.component';
+import { NotificacionesComponent } from './body/notificaciones/notificaciones/notificaciones.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
@@ -73,7 +74,8 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     PagarComponent,
     DetallePlanpagoComponent,
     ConfirmarPagoComponent,
-    PagoMetodosComponent
+    PagoMetodosComponent,
+    NotificacionesComponent
   ],
   imports: [
     ReactiveFormsModule,

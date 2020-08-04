@@ -11,12 +11,14 @@ import { PromesaImporte } from '@app/models/rtagetproductpromimporte.model';
 import { RtagetDebtFreeModel } from '@models/rtagetdebtfree.model';
 import { Promesa } from '@app/models/Promesa.model';
 import {getPromesaPago} from '@models/getPromesaPago.model';
-import { DetallePrestamo } from '@models/detallePrestamo.model'
+import { DetallePrestamo } from '@models/detallePrestamo.model';
 
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { ComprobantesLst } from '@app/models/comprobante.models';
 import { RtapostValidateTokenModel } from '@app/models/rtapostvalidatetoken.model';
+import { RtagetNotificacionesModel } from '@app/models/rtagetnotificaciones.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -90,11 +92,16 @@ export class GetService {
   getChatBotJwt(id: string): Observable<RtapostValidateTokenModel> {
     return this.http.get<RtapostValidateTokenModel>(this.API_URL + 'eaglogin/getChatBotJwt/?id=' + id);
   }
+
   getDetallePrestamo(id: string): Observable<DetallePrestamo>{
-    return this.http.get<DetallePrestamo>(this.API_URL + 'emerixautog/getprestamodetalle/' + id)
+    return this.http.get<DetallePrestamo>(this.API_URL + 'emerixautog/getprestamodetalle/' + id);
   }
 
   getProductosYPromesas(id: string) {
     return this.http.get(this.API_URL + 'emerixautog/getproductospagar/' + id);
+  }
+
+  getNotificaciones(id: string): Observable<RtagetNotificacionesModel> {
+    return this.http.get<RtagetNotificacionesModel>(this.API_URL + 'emerixautog/getnotificaciones/' + id);
   }
 }

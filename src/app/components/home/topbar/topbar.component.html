@@ -7,21 +7,7 @@
         <p>¡{{ 'Traduct.hola' | translate }} <strong>{{ Cliente }}</strong>!</p>
      </li>
      <li class="notifications-menu">
-        <input aria-hidden="true" type="checkbox" class="dropdown-trigger" id="dropdown-trigger-topbar-dropdown">
-        <label class="dropdown-title item" for="dropdown-trigger-topbar-dropdown">
-           <img src="assets/images/ui/topbar/notificaciones.svg" alt="">
-           <div class="notifications-alert"></div>
-        </label>
-        <div class="dropdown-target">
-           <ul>
-              <li><strong>{{ 'Traduct.notificaciones' | translate }}</strong></li>
-              <li>
-                 <hr>
-              </li>
-              <li>Una promesa de pago está por vencer, podés pagar ahora.</li>
-              <li>Tu solicitud de plan de pago fue aprobada.</li>
-           </ul>
-        </div>
+        <app-notificaciones></app-notificaciones>
      </li>
   </ul>
 </nav>

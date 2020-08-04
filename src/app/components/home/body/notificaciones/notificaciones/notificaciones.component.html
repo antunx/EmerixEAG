@@ -1,0 +1,22 @@
+<input aria-hidden="true" type="checkbox" class="dropdown-trigger" id="dropdown-trigger-topbar-dropdown">
+<label class="dropdown-title item" for="dropdown-trigger-topbar-dropdown">
+    <img src="assets/images/ui/topbar/notificaciones.svg" alt="">
+    <ng-container *ngIf="Cant>0">
+      <div class="notifications-alert"></div>
+    </ng-container>
+</label>
+<div class="dropdown-target">
+    <ul>
+      <li><strong>{{ 'Traduct.notificaciones' | translate }}</strong></li>
+      <li>
+          <hr>
+      </li>
+      <li *ngFor="let not of Notificaciones">
+        {{ not.Notificacion }}
+      </li>
+    </ul>
+</div>
+<ng-container *ngIf="Cant>0">
+  {{Cant}}
+</ng-container>
+
