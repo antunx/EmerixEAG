@@ -3,7 +3,7 @@
     <section class="page-deals">
       <!-- START PAGE HEADER -->
       <div class="flex-row flex-center">
-        <h1 class="flex-grow">{{"Traduct.metodos_de_pago" | translate }}</h1>
+        <h1 class="flex-grow">{{ "Traduct.metodos_de_pago" | translate }}</h1>
         <div>
           <div class="breadcrumb-container" id="">
             <ul class="flex-row">
@@ -11,25 +11,24 @@
                 item1
               </li>
 
-              <li class=" active breadcrumb">
+              <li class="active breadcrumb">
                 item2
               </li>
 
-              <li class=" active breadcrumb">
+              <li class="active breadcrumb">
                 item3
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div>
-        <input type="radio"> MercadoPago
-    
-    
-        <button>siguiente</button>
-        </div>
-
-      </section>
+      <div><input type="radio" /> MercadoPago</div>
+      <div class="deal-mini flex-row">
+        <button class="btn secondary" (click)="volver()">
+          {{ "Traduct.volver" | translate }}
+        </button>
+        <button class="btn">siguiente</button>
       </div>
-      
-
+    </section>
+  </div>
+</div>

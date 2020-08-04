@@ -182,7 +182,7 @@ export class NavigationComponent implements OnInit {
     this.MenuHijoSel = '';
     this.MenuTuPerfil = this.translate.instant('Traduct.tu_perfil');
     this.cambioTexto(this.translate.instant('Traduct.tu_perfil'));
-    alert('TuPerfil(): en desarrollo |_(-.-)_T ');
+    this.router.navigateByUrl('/home/tu_perfil');
   }
 
   PreguntasFrecuentes(): void{

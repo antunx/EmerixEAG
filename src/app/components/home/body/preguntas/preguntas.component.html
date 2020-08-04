@@ -4,4 +4,9 @@
       <h1>{{ PageTitle }}</h1>
       <p>{{ PageParagraph }}</p>
   </div>
+
+  <div class="text-center" *ngFor="let item of Items">
+    <p>{{ item.ItemTitle }}</p>
+    <p>{{ item.ItemParagraph }}</p>
+  </div>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetService } from '../../../../services/get.service';
 import { Router } from '@angular/router';
 import { PropService } from '@app/services/prop.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-pagar',
@@ -15,25 +16,29 @@ export class PagarComponent implements OnInit {
   deudaTotal: number;
   montoAPagar: number;
   tipoPago: string;
-  pagoGenerado: boolean;
+  pagoGeneradoStep: number;
   checkedProd: boolean;
   checkedProm: boolean;
   button: boolean;
   cuotasId: Array<any>;
   mensajes: any;
-  pago: Object;
-  popupNro: number = 0;
+  pago: object;
+  popupNro = 0;
 
-  constructor(private getService: GetService, private router: Router, private propService: PropService) {}
+  constructor(
+    private getService: GetService,
+    private router: Router,
+    private propService: PropService
+  ) {}
 
   ngOnInit(): void {
     this.tipoPago = 'PRODUCTO';
-    this.pagoGenerado = false;
+    this.pagoGeneradoStep = 0;
     this.cuotasId = [];
     this.getService
       .getProductosYPromesas(localStorage.getItem('version_core'))
       .subscribe((data: any) => {
-        // console.log(data);
+        console.log(data);
         this.button = false;
         this.mensajes = data.Mensajes[0];
         // data.DeudaTotal = 45064.78;
@@ -73,7 +78,7 @@ export class PagarComponent implements OnInit {
     ) as HTMLInputElement).dataset.valor = e.monto;
     // console.log((document.getElementById(`monto-cancelar-${ id }`) as HTMLInputElement))
     // console.log(e.cuotas);
-    this.cuotasId.push({ id: {id}, cuotas: e.cuotas });
+    this.cuotasId.push({ id: { id }, cuotas: e.cuotas });
     // console.log(this.cuotasId);
   }
 
@@ -345,11 +350,18 @@ export class PagarComponent implements OnInit {
   }
 
   generarPago(e): void {
-    if(this.montoAPagar <= 0){
+    const pagoPorMonto = parseFloat(
+      (document.getElementById('monto-monto') as HTMLInputElement).value
+    );
+    if (
+      (this.montoAPagar <= 0 && this.tipoPago === 'PRODUCTO') ||
+      (pagoPorMonto <= 0 && this.tipoPago === 'IMPORTE')
+    ) {
       this.popupNro = 1;
       (document.getElementById(
         `overlay-error`
       ) as HTMLInputElement).classList.add('active');
+      return;
     }
     const pago = {
       TotalPagar: 0,
@@ -361,66 +373,64 @@ export class PagarComponent implements OnInit {
     if (this.tipoPago === 'PRODUCTO') {
       pago.TotalPagar = this.montoAPagar;
       this.productos.forEach((producto) => {
-        const objeto = {
-          Id: producto.IdCuenta,
-          Nombre: producto.NombreProducto,
-          Deuda: producto.Deuda,
-          CodigoMoneda: producto.CodigoMoneda,
-          Tipo: producto.CodigoProducto,
-          ImportePagar: 0,
-          Cuotas: [],
-          DiasMora: producto.DiasMora,
-        };
-        objeto.ImportePagar = parseFloat(
-          (document.getElementById(
-            `monto-cancelar-${producto.IdCuenta}`
-          ) as HTMLInputElement).value
-        );
-        if (objeto.Tipo === 'PRESTAMO') {
-          this.cuotasId.forEach((cuota) => {
-            // console.log(cuota);
-            if (cuota.id === producto.IdCuenta) {
-              objeto.Cuotas = cuota.cuotas;
-            }
-          });
+        if (producto.Check) {
+          const objeto = {
+            Id: producto.IdCuenta,
+            Nombre: producto.NombreProducto,
+            Deuda: producto.Deuda,
+            CodigoMoneda: producto.CodigoMoneda,
+            Tipo: producto.CodigoProducto,
+            ImportePagar: 0,
+            Cuotas: [],
+            DiasMora: producto.DiasMora,
+          };
+          objeto.ImportePagar = parseFloat(
+            (document.getElementById(
+              `monto-cancelar-${producto.IdCuenta}`
+            ) as HTMLInputElement).value
+          );
+          if (objeto.Tipo === 'PRESTAMO') {
+            this.cuotasId.forEach((cuota) => {
+              // console.log(cuota);
+              if (cuota.id === producto.IdCuenta) {
+                objeto.Cuotas = cuota.cuotas;
+              }
+            });
+          }
+          pago.Items.push(objeto);
         }
-        pago.Items.push(objeto);
       });
       this.promesas.forEach((promesa) => {
-        const objeto = {
-          Id: promesa.IdPromesa,
-          Nombre: '',
-          Deuda: promesa.ImporteComprometido,
-          CodigoMoneda: promesa.CodigoMoneda,
-          Tipo: 'PROMESA',
-          ImportePagar: 0,
-          FechaPromesa: promesa.FechaGenerada,
-          FechaComprometida: promesa.FechaComprometida,
-        };
-        objeto.ImportePagar = parseFloat(
-          (document.getElementById(
-            `monto-cancelar-${promesa.IdPromesa}`
-          ) as HTMLInputElement).value
-        );
-        pago.Items.push(objeto);
-
+        if (promesa.Check) {
+          const objeto = {
+            Id: promesa.IdPromesa,
+            Nombre: '',
+            Deuda: promesa.ImporteComprometido,
+            CodigoMoneda: promesa.CodigoMoneda,
+            Tipo: 'PROMESA',
+            ImportePagar: 0,
+            FechaPromesa: promesa.FechaGenerada,
+            FechaComprometida: promesa.FechaComprometida,
+          };
+          objeto.ImportePagar = parseFloat(
+            (document.getElementById(
+              `monto-cancelar-${promesa.IdPromesa}`
+            ) as HTMLInputElement).value
+          );
+          pago.Items.push(objeto);
+        }
       });
 
+      this.pagoGeneradoStep = this.pagoGeneradoStep + 1;
       this.pago = pago;
-      this.pagoGenerado = !this.pagoGenerado;
-
     } else {
-      const pagoPorMonto = parseFloat(
-        (document.getElementById('monto-monto') as HTMLInputElement).value
-      );
       pago.TotalPagar = pagoPorMonto;
       this.propService.setPago(pago);
-      this.router.navigateByUrl('home/metodos-pago')
+      this.pagoGeneradoStep = this.pagoGeneradoStep + 2;
+      // this.router.navigateByUrl('home/metodos-pago');
     }
-    // console.log(pago);
-
+    console.log(pago);
   }
-
 
   seleccionarPago(e): void {
     if (e.target.value === 'IMPORTE') {
@@ -474,7 +484,12 @@ export class PagarComponent implements OnInit {
   }
 
   onVolviendo(e): void {
-    this.pagoGenerado = e;
+    this.pagoGeneradoStep = e;
+  }
+
+  onContinuar(e): void {
+    console.log(e);
+    this.pagoGeneradoStep = e;
   }
 
   cerrarPopup(): void {
@@ -482,5 +497,11 @@ export class PagarComponent implements OnInit {
       `overlay-error`
     ) as HTMLInputElement).classList.remove('active');
     this.popupNro = 0;
+  }
+
+  cerrarCuotas(id): void {
+    (document.getElementById(
+      `overlay-${id}`
+    ) as HTMLInputElement).classList.remove('active');
   }
 }

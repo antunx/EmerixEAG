@@ -2543,3 +2543,7 @@ html.no-scroll body {
   width: 1.188rem;
   height: 1.188rem;
 }
+
+[hidden] {
+  display: none !important;
+}

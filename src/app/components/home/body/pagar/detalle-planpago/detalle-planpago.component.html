@@ -1,206 +1,201 @@
 <div class="table-container desktop-only">
-    <table class="table" width="100%" border="0">
-        <tbody>
-            <tr class="table-header">
-                <td style="width: 20%;">
-                    {{ "Traduct.cuota" | translate }}
-                </td>
+  <table class="table" width="100%" border="0">
+    <tbody>
+      <tr class="table-header">
+        <td style="width: 20%;">
+          {{ "Traduct.cuota" | translate }}
+        </td>
 
-                <td style="width: 20%;">
-                    {{ "Traduct.capital" | translate }}
-                </td>
+        <td style="width: 20%;">
+          {{ "Traduct.capital" | translate }}
+        </td>
 
-                <td style="width: 20%;">
-                    {{ "Traduct.fecha_vencimiento" | translate }}
-                </td>
+        <td style="width: 20%;">
+          {{ "Traduct.fecha_vencimiento" | translate }}
+        </td>
 
-                <td style="width: 20%;">
-                    {{ "Traduct.estado" | translate}}
-                </td>
-                <td style="width: 20%;">
-                    {{ "Traduct.importe_a_pagar" | translate }}
-                </td>
-            </tr>
-            <div *ngFor="let cuota of prestamo">
-            <tr>
-                <td style="width: 20%;">
-                    <div class="input-wrapper checkbox">
-                        <input
-                        id="table-select-{{ cuota.IdPrestamoCuota }}"
-                        type="checkbox"
-                        class="input-elem visually-hidden"
-                        required
-                        [disabled]="cuota.CodigoEstado == 'PAGADA'"
-                        name="selectAll"
-                        [checked]="cuota.Check"
-                        (change)="cambiarCheck(cuota.IdPrestamoCuota, $event)"
-                        />
+        <td style="width: 20%;">
+          {{ "Traduct.estado" | translate }}
+        </td>
+        <td style="width: 20%;">
+          {{ "Traduct.importe_a_pagar" | translate }}
+        </td>
+      </tr>
+      <div *ngFor="let cuota of prestamo">
+        <tr>
+          <td style="width: 20%;">
+            <div class="input-wrapper checkbox">
+              <input
+                id="table-select-{{ cuota.IdPrestamoCuota }}"
+                type="checkbox"
+                class="input-elem visually-hidden"
+                required
+                [disabled]="cuota.CodigoEstado == 'PAGADA'"
+                name="selectAll"
+                [checked]="cuota.Check"
+                (change)="cambiarCheck(cuota.IdPrestamoCuota, $event)"
+              />
 
-                        <div class="input-fake-checkbox">
-                            <span class="input-caret"></span>
-                        </div>
-
-                        <label for="table-select-{{ cuota.IdPrestamoCuota }}">
-                            {{ cuota.NumeroCuota }}
-                        </label>
-                    </div>
-                </td>
-
-                <td style="width: 25%;">
-                {{ cuota.ImporteCapital }}
-                </td>
-
-                <td style="width: 25%;">
-                {{ cuota.FechaVemcimiento | date: "dd/MM/yyyy" }}
-                </td>
-
-                <td style="width: 25%;"
-                    [ngClass]="{
-                        'red' : cuota.CodigoEstado === 'VENCIDA',
-                        'green' : cuota.CodigoEstado === 'PAGADA'
-                        }">
-                    {{ cuota.CodigoEstado }}
-                </td>
-
-                <td style="width: 25%;">
-                    {{ cuota.ImporteTotal }}
-                </td>
-            </tr>
-            </div>
-        </tbody>
-    </table>
-</div>
-  <!-- END DESKTOP TABLE -->
-
-  <!-- START MOBILE TABLE -->
-<div class="mobile-only flex-column flex-grow table-container">
-    <table
-      class="box table flex-row"
-      *ngFor="let cuota of prestamo"
-    >
-        <tbody>
-            <tr class="table-header">
-                <td>
-                    <div class="input-wrapper checkbox">
-                        <input
-                            id="table-select-m{{ cuota.IdPrestamoCuota }}"
-                            type="checkbox"
-                            class="input-elem visually-hidden"
-                            required
-                            [disabled]="cuota.CodigoEstado == 'PAGADA'"
-                            name="selectAll"
-                            [checked]="cuota.CodigoEstado == 'PENDIENTE'"
-                            (change)="cambiarCheck(cuota.IdPrestamoCuota, $event)"
-                        />
-
-                        <div class="input-fake-checkbox">
-                            <span class="input-caret"></span>
-                        </div>
-
-                        <label for="table-select-m{{ cuota.IdPrestamoCuota }}">
-                            {{cuota.NumeroCuota}}
-                        </label>
-
-                        <div class="input-error-icon" role="alert"></div>
-                        <div class="input-error-popup" role="alert">Required</div>
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <p>
-                      <strong>{{ "Traduct.capital" | translate }}</strong>
-                    </p>
-
-                    <p>{{ cuota.ImporteCapital }}</p>
-                 </td>
-             </tr>
-
-            <tr>
-                <td>
-                    <p>
-                        <strong>{{ "Traduct.vencimiento" | translate }}</strong>
-                    </p>
-
-                    <p>{{ cuota.FechaVemcimiento }}</p>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <p>
-                        <strong>{{ "Traduct.estado" | translate}}</strong>
-                    </p>
-
-                    <p>{{cuota.CodigoEstado}}</p>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <p>
-                        <strong>{{ "Traduct.importeTotal" | translate }}</strong>
-                    </p>
-        
-                    <p>{{cuota.ImporteTotal}}</p>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-  <!-- END MOBILE TABLE -->
-
-      <!-- INICIO POPUP -->
-
-      <div (click)="cerrarPopup()" class="overlay" id="overlay-error-detalle">
-        <div
-          *ngIf="error"
-          class="dialog-container sidebar"
-          role="dialog"
-        >
-          <a class="close-btn" (click)="cerrarPopup()">
-            <img src="assets/images/ui/close-btn.svg" alt="Close" />
-          </a>
-          <div class="dialog-content login-dialog">
-            <div>
-              <div class="flex-column flex-center">
-                <div>
-                  <img
-                    width="70px"
-                    height="70px"
-                    src="assets/images/ui/exclamation-triangle-solid.svg"
-                    alt=""
-                  />
-                </div>
-                <div class="text-center">
-                  <p>{{ "Traduct.seleccionar_una_cuota" | translate }}</p>
-                </div>
+              <div class="input-fake-checkbox">
+                <span class="input-caret"></span>
               </div>
+
+              <label for="table-select-{{ cuota.IdPrestamoCuota }}">
+                {{ cuota.NumeroCuota }}
+              </label>
             </div>
+          </td>
+
+          <td style="width: 25%;">
+            {{ cuota.ImporteCapital }}
+          </td>
+
+          <td style="width: 25%;">
+            {{ cuota.FechaVemcimiento | date: "dd/MM/yyyy" }}
+          </td>
+
+          <td
+            style="width: 25%;"
+            [ngClass]="{
+              red: cuota.CodigoEstado === 'VENCIDA',
+              green: cuota.CodigoEstado === 'PAGADA'
+            }"
+          >
+            {{ cuota.CodigoEstado }}
+          </td>
+
+          <td style="width: 25%;">
+            {{ cuota.ImporteTotal }}
+          </td>
+        </tr>
+      </div>
+    </tbody>
+  </table>
+</div>
+<!-- END DESKTOP TABLE -->
+
+<!-- START MOBILE TABLE -->
+<div class="mobile-only flex-column flex-grow table-container">
+  <table class="box table flex-row" *ngFor="let cuota of prestamo">
+    <tbody>
+      <tr class="table-header">
+        <td>
+          <div class="input-wrapper checkbox">
+            <input
+              id="table-select-m{{ cuota.IdPrestamoCuota }}"
+              type="checkbox"
+              class="input-elem visually-hidden"
+              required
+              [disabled]="cuota.CodigoEstado == 'PAGADA'"
+              name="selectAll"
+              [checked]="cuota.CodigoEstado == 'PENDIENTE'"
+              (change)="cambiarCheck(cuota.IdPrestamoCuota, $event)"
+            />
+
+            <div class="input-fake-checkbox">
+              <span class="input-caret"></span>
+            </div>
+
+            <label for="table-select-m{{ cuota.IdPrestamoCuota }}">
+              {{ cuota.NumeroCuota }}
+            </label>
+
+            <div class="input-error-icon" role="alert"></div>
+            <div class="input-error-popup" role="alert">Required</div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>
+            <strong>{{ "Traduct.capital" | translate }}</strong>
+          </p>
+
+          <p>{{ cuota.ImporteCapital }}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>
+            <strong>{{ "Traduct.vencimiento" | translate }}</strong>
+          </p>
+
+          <p>{{ cuota.FechaVemcimiento }}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>
+            <strong>{{ "Traduct.estado" | translate }}</strong>
+          </p>
+
+          <p>{{ cuota.CodigoEstado }}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>
+            <strong>{{ "Traduct.importeTotal" | translate }}</strong>
+          </p>
+
+          <p>{{ cuota.ImporteTotal }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- END MOBILE TABLE -->
+
+<!-- INICIO POPUP -->
+
+<div (click)="cerrarPopup()" class="overlay" id="overlay-error-detalle">
+  <div *ngIf="error" class="dialog-container sidebar" role="dialog">
+    <a class="close-btn" (click)="cerrarPopup()">
+      <img src="assets/images/ui/close-btn.svg" alt="Close" />
+    </a>
+    <div class="dialog-content login-dialog">
+      <div>
+        <div class="flex-column flex-center">
+          <div>
+            <img
+              width="70px"
+              height="70px"
+              src="assets/images/ui/exclamation-triangle-solid.svg"
+              alt=""
+            />
+          </div>
+          <div class="text-center">
+            <p>{{ "Traduct.seleccionar_una_cuota" | translate }}</p>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
-      <!-- FIN POPUP -->
-
+<!-- FIN POPUP -->
 
 <!-- START CONTROLLERS -->
-<div>
+<div class="flex-row deal-mini">
   <button
     value="Generar Promesa"
     id="generar-promesa"
     (click)="volver()"
+    class="btn secondary"
   >
     {{ "Traduct.volver" | translate }}
   </button>
 
   <button
-  class="btn"
-  value="Generar Promesa"
-  id="generar-promesa"
-  (click)="confirmarCuotas($event)"
->
-  {{ "Traduct.confirmar" | translate }}
-</button>
+    class="btn"
+    value="Generar Promesa"
+    id="generar-promesa"
+    (click)="confirmarCuotas($event)"
+  >
+    {{ "Traduct.confirmar" | translate }}
+  </button>
 </div>

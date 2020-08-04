@@ -18,6 +18,7 @@ import { Observable } from 'rxjs';
 import { ComprobantesLst } from '@app/models/comprobante.models';
 import { RtapostValidateTokenModel } from '@app/models/rtapostvalidatetoken.model';
 import { RtagetNotificacionesModel } from '@app/models/rtagetnotificaciones.model';
+import { RtagetTuPerfilModel } from '@app/models/rtagettuperfil.model';
 
 
 @Injectable({
@@ -103,5 +104,9 @@ export class GetService {
 
   getNotificaciones(id: string): Observable<RtagetNotificacionesModel> {
     return this.http.get<RtagetNotificacionesModel>(this.API_URL + 'emerixautog/getnotificaciones/' + id);
+  }
+
+  getTuPerfil(id: string): Observable<RtagetTuPerfilModel> {
+    return this.http.get<RtagetTuPerfilModel>(this.API_URL + 'emerixautog/getperfil/' + id);
   }
 }

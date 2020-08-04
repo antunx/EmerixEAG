@@ -12,6 +12,7 @@ export class PreguntasComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   PageTitle = '';
   PageParagraph = '';
+  Items = [];
   constructor( private getservices: GetService ) { }
 
   ngOnInit(): void {
@@ -23,10 +24,11 @@ export class PreguntasComponent implements OnInit, OnDestroy {
   }
 
   PreguntasFrecuentes(): void {
-    this.getservices.getPageInfo('PBLING').subscribe( (res) => {
+    this.getservices.getPageInfo('PREGFRE').subscribe( (res) => {
       // console.log(res);
       this.PageTitle = res.PageTitle;
       this.PageParagraph = res.PageParagraph;
+      this.Items = res.Items;
     }, (err) => {
         // console.log(err);
       }

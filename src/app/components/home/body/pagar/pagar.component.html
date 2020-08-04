@@ -2,8 +2,9 @@
   <div class="pages-container">
     <section class="page-deals">
       <!-- START PAGE HEADER -->
-      <div *ngIf="!pagoGenerado" class="flex-row flex-center">
-        <h1 class="flex-grow">{{"Traduct.quiero_pagar" | translate }}</h1>
+      <!-- <div *ngIf="!pagoGenerado" class="flex-row flex-center"> -->
+      <div [hidden]="pagoGeneradoStep != 0" class="flex-row flex-center">
+        <h1 class="flex-grow">{{ "Traduct.quiero_pagar" | translate }}</h1>
         <div>
           <div class="breadcrumb-container" id="">
             <ul class="flex-row">
@@ -23,7 +24,8 @@
         </div>
       </div>
       <!-- END PAGE HEADER -->
-      <div *ngIf="!pagoGenerado" class="flex-column">
+      <!-- <div *ngIf="!pagoGenerado" class="flex-column"> -->
+      <div [hidden]="pagoGeneradoStep != 0" class="flex-column">
         <!-- START DESKTOP -->
         <div class="table-container desktop-only">
           <!-- START DESKTOP TABLE PRODUCTOS-->
@@ -138,6 +140,8 @@
                     [ngStyle]="{
                       width: tipoPago === 'PRODUCTO' ? '20%' : '25%'
                     }"
+                    class="input-wrapper"
+                    #input
                   >
                     {{
                       removerComas(
@@ -148,7 +152,15 @@
                     <span
                       *ngIf="producto?.CodigoMoneda != 'ARS'"
                       class="bullet green"
+                      (mouseover)="input.classList.add('error')"
+                      (mouseout)="input.classList.remove('error')"
                     ></span>
+                    <div *ngIf="producto?.CodigoMoneda != 'ARS'">
+                      <div class="input-error-icon" role="alert"></div>
+                      <div class="input-error-popup" role="alert">
+                        {{ producto?.InfoCotizacion }}
+                      </div>
+                    </div>
                   </td>
 
                   <td
@@ -160,6 +172,7 @@
                   >
                     <input
                       type="number"
+                      step=".01"
                       id="monto-cancelar-{{ producto?.IdCuenta }}"
                       [value]="producto?.Deuda"
                       [disabled]="
@@ -185,12 +198,19 @@
                       width: tipoPago === 'PRODUCTO' ? '20%' : '25%'
                     }"
                   >
-                    <button
-                      *ngIf="producto?.CodigoProducto === 'PRESTAMO'"
-                      (click)="abrirPopup(producto?.IdCuenta)"
+                    <p
+                      class="wide-link"
+                      style="cursor: pointer; margin-top: 0;"
                     >
-                      {{ "Traduct.detalle" | translate }}
-                    </button>
+                      <a
+                        style="margin-top: 0;"
+                        class="wide-link"
+                        *ngIf="producto?.CodigoProducto === 'PRESTAMO'"
+                        (click)="abrirPopup(producto?.IdCuenta)"
+                      >
+                        {{ "Traduct.detalle" | translate }}
+                      </a>
+                    </p>
                   </td>
                 </tr>
               </div>
@@ -576,7 +596,8 @@
       </div>
 
       <!-- START CONTROLLERS -->
-      <div *ngIf="!pagoGenerado" class="flex-column deal-mini">
+      <!-- <div *ngIf="!pagoGenerado" class="flex-column deal-mini"> -->
+      <div [hidden]="pagoGeneradoStep != 0" class="flex-column deal-mini">
         <div>
           <div class="input-wrapper radio">
             <input
@@ -708,23 +729,48 @@
     </section>
 
     <!-- COMPONENTE CONFIRMAR-PAGO -->
-    <app-confirmar-pago *ngIf="pagoGenerado" [pago]="pago" [pagoGenerado]="pagoGenerado" (volviendo)="onVolviendo($event)"></app-confirmar-pago>
-  </div>
-</div>
+    <!-- <app-confirmar-pago
+      *ngIf="pagoGenerado"
+      [pago]="pago"
+      [pagoGenerado]="pagoGenerado"
+      (volviendo)="onVolviendo($event)"
+    ></app-confirmar-pago> -->
+    <app-confirmar-pago
+      [hidden]="pagoGeneradoStep != 1"
+      [pago]="pago"
+      [pagoGeneradoStep]="pagoGeneradoStep"
+      (volviendo)="onVolviendo($event)"
+      (continuar)="onContinuar($event)"
+    ></app-confirmar-pago>
 
-<!-- COMPONENTE DETALLE PRESTAMO -->
-<div *ngFor="let item of prestamos">
-  <div class="overlay" id="overlay-{{ item?.IdCuenta }}">
-    <div class="dialog-container login-dialog login-tyc" role="dialog">
-      <a class="close-btn">
-        <img src="assets/images/ui/close-btn.svg" alt="Close" />
-      </a>
-      <div>
-        <div class="dialog-content login-dialog login-tyc-content">
-          <app-detalle-planpago
-            [idCuenta]="item?.IdCuenta"
-            (TotalPago)="cambiarMontoPrestamo($event, item?.IdCuenta)"
-          ></app-detalle-planpago>
+    <!-- COMPONENTE MEDIOS DE PAGO -->
+    <app-pago-metodos
+      [hidden]="pagoGeneradoStep != 2"
+      [pagoGeneradoStep]="pagoGeneradoStep"
+      (volviendo)="onVolviendo($event)"
+    >
+    </app-pago-metodos>
+    <!-- </div> -->
+  </div>
+
+  <!-- COMPONENTE DETALLE PRESTAMO -->
+  <div *ngFor="let item of prestamos">
+    <div class="overlay" id="overlay-{{ item?.IdCuenta }}">
+      <div
+        class="dialog-container login-dialog login-tyc"
+        role="dialog"
+        style="margin-top: 30px;"
+      >
+        <!-- <a class="close-btn" (click)="cerrarCuotas(item?.IdCuenta)">
+          <img src="assets/images/ui/close-btn.svg" alt="Close" />
+        </a> -->
+        <div>
+          <div class="dialog-content login-dialog login-tyc-content">
+            <app-detalle-planpago
+              [idCuenta]="item?.IdCuenta"
+              (TotalPago)="cambiarMontoPrestamo($event, item?.IdCuenta)"
+            ></app-detalle-planpago>
+          </div>
         </div>
       </div>
     </div>

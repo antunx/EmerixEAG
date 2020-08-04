@@ -134,5 +134,9 @@
   "Traduct.continuar_navegando": "Continue browsing",
   "Traduct.continuar": "Continue browsing",
   "Traduct.confirmar": "Confirm",
-  "Traduct.ingresando_chatBot": "Entering from ChatBot"
+  "Traduct.ingresando_chatBot": "Entering from ChatBot",
+
+  "Traduct.nombre": "Name",
+  "Traduct.documento": "Document",
+  "Traduct.telefono": "Telephone"
 }

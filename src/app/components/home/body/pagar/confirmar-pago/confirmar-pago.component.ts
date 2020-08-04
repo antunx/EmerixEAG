@@ -1,30 +1,55 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { PropService } from '@app/services/prop.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirmar-pago',
   templateUrl: './confirmar-pago.component.html',
-  styles: [
-  ]
+  styles: [],
 })
-export class ConfirmarPagoComponent implements OnInit {
+export class ConfirmarPagoComponent implements OnInit, OnChanges {
   @Input() pago;
-  @Input() pagoGenerado: boolean;
-  @Output() volviendo = new EventEmitter<boolean>();
+  @Input() pagoGeneradoStep: number;
+  @Output() volviendo = new EventEmitter<number>();
+  @Output() continuar = new EventEmitter<number>();
   productos = [];
   promesas = [];
-  importeDeuda:number;
-  importeApagar:number;
+  importeDeuda: number;
+  importeApagar: number;
 
-  constructor(private propService:PropService, private router:Router) { }
+  constructor(private propService: PropService, private router: Router) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.importeApagar = 0;
+    this.importeDeuda = 0;
+    this.promesas = [];
+    this.productos = [];
+
+    this.importeApagar = this.pago?.TotalPagar;
+    this.importeDeuda = this.pago?.DeudaTotal;
+    this.pago?.Items.map((item) => {
+      item.Tipo === 'PROMESA'
+        ? this.promesas.push(item)
+        : this.productos.push(item);
+    });
+  }
 
   ngOnInit(): void {
-    this.importeApagar = this.pago.TotalPagar;
-    this.importeDeuda = this.pago.DeudaTotal;
-    this.pago.Items.map(item=>{
-      item.Tipo === 'PROMESA' ? this.promesas.push(item) : this.productos.push(item);
-    });
+    /*this.importeApagar = this.pago?.TotalPagar;
+    this.importeDeuda = this.pago?.DeudaTotal;
+    this.pago?.Items.map((item) => {
+      item.Tipo === 'PROMESA'
+        ? this.promesas.push(item)
+        : this.productos.push(item);
+    });*/
     // console.log(this.productos)
     // console.log(this.promesas)
   }
@@ -36,33 +61,33 @@ export class ConfirmarPagoComponent implements OnInit {
     return numero.replace(',', '');
   }
 
-  postPromesa(){
-    let cuentas = [];
-    this.pago.Items.map(prod=>{
-      let cta = {
+  postPromesa(): void {
+    const cuentas = [];
+    this.pago.Items.map((prod) => {
+      const cta = {
         id: prod.Id,
         importe: prod.ImportePagar,
         tipo: prod.Tipo,
-        cuotas: prod.Cuotas
+        cuotas: prod.Cuotas,
       };
 
       cuentas.push(cta);
-
     });
 
-    let obj={
+    const obj = {
       Items: cuentas,
       TotalPagar: this.pago.TotalPagar,
       Cliente: this.pago.Cliente,
     };
 
     this.propService.setPago(obj);
-    this.router.navigateByUrl('home/metodos-pago');
+    this.pagoGeneradoStep = this.pagoGeneradoStep + 1;
+    this.continuar.emit(this.pagoGeneradoStep);
+    // this.router.navigateByUrl('home/metodos-pago');
   }
 
   volver(): void {
-    this.pagoGenerado = !this.pagoGenerado;
-    this.volviendo.emit(this.pagoGenerado);
+    this.pagoGeneradoStep = this.pagoGeneradoStep - 1;
+    this.volviendo.emit(this.pagoGeneradoStep);
   }
-
 }
