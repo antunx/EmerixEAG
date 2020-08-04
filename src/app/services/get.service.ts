@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { RtagetValidateUserModel } from '@models/rtagetvalidateuser.model';
@@ -10,7 +10,7 @@ import { RtagetDetailProductModel } from '@models/rtagetdetailproduct.model';
 import { PromesaImporte } from '@app/models/rtagetproductpromimporte.model';
 import { RtagetDebtFreeModel } from '@models/rtagetdebtfree.model';
 import { Promesa } from '@app/models/Promesa.model';
-import {getPromesaPago} from '@models/getPromesaPago.model';
+import { getPromesaPago } from '@models/getPromesaPago.model';
 import { DetallePrestamo } from '@models/detallePrestamo.model';
 
 import { environment } from '../../environments/environment';

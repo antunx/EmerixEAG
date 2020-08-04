@@ -2135,7 +2135,7 @@ html.no-scroll body {
 }
 
 .emerix-page .page-home .list-view-add:hover {
-  background-image: url("/assets/images/ui/btn-agregar-active.svg");
+  background-image: url("assets/images/ui/btn-agregar-active.svg");
 }
 
 @media all and (max-width: 1024px) {

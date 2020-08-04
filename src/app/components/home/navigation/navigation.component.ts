@@ -129,7 +129,7 @@ export class NavigationComponent implements OnInit {
     this.MenuPagos = this.translate.instant('Traduct.pagos');
     this.MenuPagosSubMenuPagar = this.translate.instant('Traduct.pagar');
     this.cambioTexto(this.translate.instant('Traduct.pagar'));
-    alert('Pagar(): en desarrollo |_(-.-)_T ');
+    this.router.navigateByUrl('/home/pagar');
   }
 
   RegistrarPago(): void{
