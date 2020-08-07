@@ -27,7 +27,13 @@
       <!-- <div *ngIf="!pagoGenerado" class="flex-column"> -->
       <div [hidden]="pagoGeneradoStep != 0" class="flex-column">
         <!-- START DESKTOP -->
-        <div class="table-container desktop-only">
+        <h2 *ngIf="productos?.length === 0" class="text-center">
+          Sin Productos
+        </h2>
+        <div
+          class="table-container desktop-only"
+          *ngIf="productos?.length !== 0"
+        >
           <!-- START DESKTOP TABLE PRODUCTOS-->
           <table class="table" width="100%" border="0">
             <tbody>
@@ -172,9 +178,9 @@
                   >
                     <input
                       type="number"
-                      step=".01"
+                      step="0.01"
                       id="monto-cancelar-{{ producto?.IdCuenta }}"
-                      [value]="producto?.Deuda"
+                      value="{{ producto?.Deuda.toFixed(2) }}"
                       [disabled]="
                         !producto?.Check ||
                         producto?.CodigoProducto == 'PRESTAMO'
@@ -201,15 +207,18 @@
                     <p
                       class="wide-link"
                       style="cursor: pointer; margin-top: 0;"
+                      *ngIf="producto?.CodigoProducto === 'PRESTAMO'"
                     >
                       <a
                         style="margin-top: 0;"
                         class="wide-link"
-                        *ngIf="producto?.CodigoProducto === 'PRESTAMO'"
                         (click)="abrirPopup(producto?.IdCuenta)"
                       >
                         {{ "Traduct.detalle" | translate }}
                       </a>
+                    </p>
+                    <p *ngIf="producto?.CodigoProducto !== 'PRESTAMO'">
+                      Sin Detalle
                     </p>
                   </td>
                 </tr>
@@ -219,7 +228,13 @@
         </div>
         <!-- END DESKTOP TABLE PRODUCTOS -->
         <!-- START DESKTOP TABLE PROMESAS -->
-        <div class="table-container desktop-only">
+        <h2 *ngIf="promesas?.length === 0" class="text-center">
+          Sin Promesas
+        </h2>
+        <div
+          class="table-container desktop-only"
+          *ngIf="promesas?.length !== 0"
+        >
           <table class="table" width="100%" border="0">
             <tbody>
               <tr class="table-header">
@@ -359,7 +374,7 @@
                     <input
                       type="number"
                       id="monto-cancelar-{{ promesa?.IdPromesa }}"
-                      [value]="promesa?.ImporteComprometido"
+                      value="{{ promesa?.ImporteComprometido.toFixed(2) }}"
                       [disabled]="!promesa?.Check"
                       [max]="promesa?.ImporteComprometido"
                       [min]="promesa?.ImporteMinimo"
@@ -451,7 +466,7 @@
                     <input
                       type="number"
                       id="monto-cancelar-{{ producto.IdCuenta }}"
-                      [value]="producto.Deuda"
+                      value="{{ producto?.Deuda.toFixed(2) }}"
                       [disabled]="!producto.Check"
                       [max]="producto.ImporteMaximo"
                       min="0"
@@ -480,8 +495,10 @@
               </tr>
             </tbody>
           </table>
-          <!-- END MOBILE TABLE PRODUCTOS -->
-          <!-- START MOBILE TABLE PROMESAS -->
+        </div>
+        <!-- END MOBILE TABLE PRODUCTOS -->
+        <!-- START MOBILE TABLE PROMESAS -->
+        <div class="mobile-only flex-column flex-grow table-container">
           <table
             class="box table flex-row"
             *ngFor="let promesa of promesas; let i = index"
@@ -570,7 +587,7 @@
                     <input
                       type="number"
                       id="monto-cancelar-{{ promesa?.IdPromesa }}"
-                      [value]="promesa?.ImporteComprometido"
+                      value="{{ promesa?.ImporteComprometido.toFixed(2) }}"
                       [disabled]="!promesa?.Check"
                       [max]="promesa?.ImporteComprometido"
                       [min]="promesa?.ImporteMinimo"
@@ -746,8 +763,10 @@
     <!-- COMPONENTE MEDIOS DE PAGO -->
     <app-pago-metodos
       [hidden]="pagoGeneradoStep != 2"
+      [pago]="pago"
       [pagoGeneradoStep]="pagoGeneradoStep"
       (volviendo)="onVolviendo($event)"
+      (pagando)="onPagando($event)"
     >
     </app-pago-metodos>
     <!-- </div> -->

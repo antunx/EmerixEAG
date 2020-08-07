@@ -7,8 +7,8 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import { PropService } from '@app/services/prop.service';
-import { Router } from '@angular/router';
+/*import { PropService } from '@app/services/prop.service';
+import { Router } from '@angular/router';*/
 
 @Component({
   selector: 'app-confirmar-pago',
@@ -20,12 +20,13 @@ export class ConfirmarPagoComponent implements OnInit, OnChanges {
   @Input() pagoGeneradoStep: number;
   @Output() volviendo = new EventEmitter<number>();
   @Output() continuar = new EventEmitter<number>();
+  @Output() pagando = new EventEmitter<any>();
   productos = [];
   promesas = [];
   importeDeuda: number;
   importeApagar: number;
 
-  constructor(private propService: PropService, private router: Router) {}
+  constructor(/*private propService: PropService, private router: Router*/) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.importeApagar = 0;
@@ -80,9 +81,10 @@ export class ConfirmarPagoComponent implements OnInit, OnChanges {
       Cliente: this.pago.Cliente,
     };
 
-    this.propService.setPago(obj);
+    // this.propService.setPago(obj);
     this.pagoGeneradoStep = this.pagoGeneradoStep + 1;
     this.continuar.emit(this.pagoGeneradoStep);
+    this.pagando.emit(obj);
     // this.router.navigateByUrl('home/metodos-pago');
   }
 

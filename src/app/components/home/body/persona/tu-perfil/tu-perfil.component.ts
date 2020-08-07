@@ -33,8 +33,8 @@ export class TuPerfilComponent implements OnInit, OnDestroy {
     this.subscription.add(this.getservices.getTuPerfil(this.IdPersona).subscribe( (res) => {
       // console.log(res);
       this.Nombre = res.Nombre;
-      this.Documento = res.Documento;
       this.Telefono = res.Telefono;
+      this.Documento = res.Documento;
     }, (err) => {
         console.log(err);
       }

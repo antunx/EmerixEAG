@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PropService } from '@app/services/prop.service';
-import { GetService } from '@app/services/get.service';
-import { PostService } from '@app/services/post.service';
+/*import { GetService } from '@app/services/get.service';
+import { PostService } from '@app/services/post.service';*/
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -10,22 +10,29 @@ import { TranslateService } from '@ngx-translate/core';
   styles: [],
 })
 export class PagoMetodosComponent implements OnInit {
-  pago: any;
+  // pago: any;
   @Input() pagoGeneradoStep: number;
+  @Input() pago;
   @Output() volviendo = new EventEmitter<number>();
   constructor(
     private propService: PropService,
-    private postService: PostService,
+    // private postService: PostService,
     private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
-    this.pago = this.propService.getPego();
-    // console.log(pago)
+    // this.pago = this.propService.getPego();
+    // console.log(this.pago);
   }
 
   volver(): void {
-    this.pagoGeneradoStep = this.pagoGeneradoStep - 1;
+    // this.pago = this.propService.getPego();
+    // console.log(this.pago);
+    if (this.pago?.Items.length !== 0) {
+      this.pagoGeneradoStep = this.pagoGeneradoStep - 1;
+    } else {
+      this.pagoGeneradoStep = this.pagoGeneradoStep - 2;
+    }
     this.volviendo.emit(this.pagoGeneradoStep);
   }
 

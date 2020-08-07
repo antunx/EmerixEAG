@@ -4,7 +4,7 @@
       <section class="page-login">
         <div class="flex-row flex-center flex-grow" style="height: 100%">
           <div class="form-container">
-            <form [formGroup]="loginForm" class="form flex-column box">
+            <form [formGroup]="loginForm" class="form flex-column box" novalidate>
               <div *ngIf="loginAction===1" class="slide-page">
                   <div class="login-content flex flex-column">
                     <div>
@@ -139,7 +139,7 @@
                   </div>
               </div>
 
-              <form [formGroup]="loginFormIngreso">
+              <form [formGroup]="loginFormIngreso" novalidate>
                 <div class="slide-page">
                     <div *ngIf="loginAction===3" class="login-content flex flex-column">
                       <div>

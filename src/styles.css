@@ -1425,7 +1425,7 @@ html.no-scroll body {
 }
 
 .emerix-page .sidebar-content h1 {
-  margin-top: 5rem;
+  margin-top: 0rem; /* pedido por Nahuel*/
   margin-bottom: 0;
 }
 
@@ -2544,6 +2544,7 @@ html.no-scroll body {
   height: 1.188rem;
 }
 
+/* ingresado para Promesas */
 [hidden] {
   display: none !important;
 }

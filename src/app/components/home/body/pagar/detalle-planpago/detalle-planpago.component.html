@@ -7,10 +7,6 @@
         </td>
 
         <td style="width: 20%;">
-          {{ "Traduct.capital" | translate }}
-        </td>
-
-        <td style="width: 20%;">
           {{ "Traduct.fecha_vencimiento" | translate }}
         </td>
 
@@ -19,6 +15,9 @@
         </td>
         <td style="width: 20%;">
           {{ "Traduct.importe_a_pagar" | translate }}
+        </td>
+        <td style="width: 20%;">
+          {{ "Traduct.monto_deuda" | translate }}
         </td>
       </tr>
       <div *ngFor="let cuota of prestamo">
@@ -47,25 +46,23 @@
           </td>
 
           <td style="width: 25%;">
-            {{ cuota.ImporteCapital }}
-          </td>
-
-          <td style="width: 25%;">
             {{ cuota.FechaVemcimiento | date: "dd/MM/yyyy" }}
           </td>
 
           <td
             style="width: 25%;"
-            [ngClass]="{
-              red: cuota.CodigoEstado === 'VENCIDA',
-              green: cuota.CodigoEstado === 'PAGADA'
-            }"
+            [ngStyle]="{'color': cuota.CodigoEstado === 'PAGADA' ? 'green' : (cuota.CodigoEstado === 'VENCIDA' ? 'red' : null) }"
+
           >
             {{ cuota.CodigoEstado }}
           </td>
 
           <td style="width: 25%;">
-            {{ cuota.ImporteTotal }}
+            {{ removerComas(cuota.ImporteTotal  |  currency:'ARS':'symbol-narrow':'1.2-2')}}
+          </td>
+
+          <td style="width: 25%;">
+            {{ removerComas(cuota.ImporteCapital | currency:'ARS':'symbol-narrow':'1.2-2')}}
           </td>
         </tr>
       </div>
@@ -109,16 +106,6 @@
       <tr>
         <td>
           <p>
-            <strong>{{ "Traduct.capital" | translate }}</strong>
-          </p>
-
-          <p>{{ cuota.ImporteCapital }}</p>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <p>
             <strong>{{ "Traduct.vencimiento" | translate }}</strong>
           </p>
 
@@ -142,7 +129,17 @@
             <strong>{{ "Traduct.importeTotal" | translate }}</strong>
           </p>
 
-          <p>{{ cuota.ImporteTotal }}</p>
+          <p>{{ removerComas(cuota.ImporteTotal |  currency:'ARS':'symbol-narrow':'1.2-2') }}</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>
+            <strong>{{ "Traduct.monto_deuda" | translate }}</strong>
+          </p>
+
+          <p>{{ removerComas(cuota.ImporteCapital |  currency:'ARS':'symbol-narrow':'1.2-2') }}</p>
         </td>
       </tr>
     </tbody>
@@ -180,7 +177,7 @@
 <!-- FIN POPUP -->
 
 <!-- START CONTROLLERS -->
-<div class="flex-row deal-mini">
+<div class="flex-row flex-end deal-mini">
   <button
     value="Generar Promesa"
     id="generar-promesa"

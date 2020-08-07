@@ -27,8 +27,7 @@ export class PagarComponent implements OnInit {
 
   constructor(
     private getService: GetService,
-    private router: Router,
-    private propService: PropService
+    private router: Router // private propService: PropService
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +49,8 @@ export class PagarComponent implements OnInit {
         });
         this.deudaTotal = data.DeudaTotal;
         this.montoAPagar = data.DeudaTotal;
+        /*data.Productos = [];
+        data.Promesas = [];*/
         this.productos = data.Productos;
         this.promesas = data.Promesas;
         this.allCheckedProd();
@@ -174,7 +175,7 @@ export class PagarComponent implements OnInit {
 
   allCheckedProd(): void {
     this.checkedProd = true;
-    this.productos.forEach((producto) => {
+    this.productos?.forEach((producto) => {
       if (!producto.Check) {
         this.checkedProd = false;
       }
@@ -425,7 +426,8 @@ export class PagarComponent implements OnInit {
       this.pago = pago;
     } else {
       pago.TotalPagar = pagoPorMonto;
-      this.propService.setPago(pago);
+      // this.propService.setPago(pago);
+      this.pago = pago;
       this.pagoGeneradoStep = this.pagoGeneradoStep + 2;
       // this.router.navigateByUrl('home/metodos-pago');
     }
@@ -490,6 +492,10 @@ export class PagarComponent implements OnInit {
   onContinuar(e): void {
     // console.log(e);
     this.pagoGeneradoStep = e;
+  }
+
+  onPagando(e): void {
+    this.pago = e;
   }
 
   cerrarPopup(): void {
