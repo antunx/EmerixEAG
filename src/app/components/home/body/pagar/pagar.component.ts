@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetService } from '../../../../services/get.service';
 import { Router } from '@angular/router';
-import { PropService } from '@app/services/prop.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-pagar',
@@ -37,7 +35,7 @@ export class PagarComponent implements OnInit {
     this.getService
       .getProductosYPromesas(localStorage.getItem('version_core'))
       .subscribe((data: any) => {
-        // console.log(data);
+        console.log(data);
         this.button = false;
         this.mensajes = data.Mensajes[0];
         // data.DeudaTotal = 45064.78;
@@ -431,7 +429,7 @@ export class PagarComponent implements OnInit {
       this.pagoGeneradoStep = this.pagoGeneradoStep + 2;
       // this.router.navigateByUrl('home/metodos-pago');
     }
-    // console.log(pago);
+    console.log(pago);
   }
 
   seleccionarPago(e): void {
@@ -490,7 +488,7 @@ export class PagarComponent implements OnInit {
   }
 
   onContinuar(e): void {
-    // console.log(e);
+    console.log(e);
     this.pagoGeneradoStep = e;
   }
 

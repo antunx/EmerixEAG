@@ -135,12 +135,4 @@ export class DetallePlanpagoComponent implements OnInit {
       `overlay-${this.idCuenta}`
     ) as HTMLInputElement).classList.remove('active');
   }
-
-
-  removerComas(numero: string): string {
-    if (numero === '' || numero === null) {
-      return numero;
-    }
-    return numero.replace(',', '');
-  }
 }

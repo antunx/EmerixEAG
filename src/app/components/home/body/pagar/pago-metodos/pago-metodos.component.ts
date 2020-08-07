@@ -27,7 +27,7 @@ export class PagoMetodosComponent implements OnInit {
 
   volver(): void {
     // this.pago = this.propService.getPego();
-    // console.log(this.pago);
+    console.log(this.pago);
     if (this.pago?.Items.length !== 0) {
       this.pagoGeneradoStep = this.pagoGeneradoStep - 1;
     } else {

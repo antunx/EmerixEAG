@@ -28,7 +28,7 @@
       <div [hidden]="pagoGeneradoStep != 0" class="flex-column">
         <!-- START DESKTOP -->
         <h2 *ngIf="productos?.length === 0" class="text-center">
-          Sin Productos
+          Felicitaciones, usted no tiene ningún producto con deuda
         </h2>
         <div
           class="table-container desktop-only"
@@ -228,9 +228,6 @@
         </div>
         <!-- END DESKTOP TABLE PRODUCTOS -->
         <!-- START DESKTOP TABLE PROMESAS -->
-        <h2 *ngIf="promesas?.length === 0" class="text-center">
-          Sin Promesas
-        </h2>
         <div
           class="table-container desktop-only"
           *ngIf="promesas?.length !== 0"
