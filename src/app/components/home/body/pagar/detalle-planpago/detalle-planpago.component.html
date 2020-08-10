@@ -5,11 +5,6 @@
         <td style="width: 20%;">
           {{ "Traduct.cuota" | translate }}
         </td>
-
-        <td style="width: 20%;">
-          {{ "Traduct.capital" | translate }}
-        </td>
-
         <td style="width: 20%;">
           {{ "Traduct.fecha_vencimiento" | translate }}
         </td>
@@ -44,10 +39,6 @@
                 {{ cuota.NumeroCuota }}
               </label>
             </div>
-          </td>
-
-          <td style="width: 25%;">
-            {{ cuota.ImporteCapital }}
           </td>
 
           <td style="width: 25%;">
@@ -109,17 +100,7 @@
       <tr>
         <td>
           <p>
-            <strong>{{ "Traduct.capital" | translate }}</strong>
-          </p>
-
-          <p>{{ cuota.ImporteCapital }}</p>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <p>
-            <strong>{{ "Traduct.vencimiento" | translate }}</strong>
+            <strong>{{ "Traduct.fecha_vencimiento" | translate }}</strong>
           </p>
 
           <p>{{ cuota.FechaVemcimiento }}</p>
@@ -139,7 +120,7 @@
       <tr>
         <td>
           <p>
-            <strong>{{ "Traduct.importeTotal" | translate }}</strong>
+            <strong>{{ "Traduct.importe_a_pagar" | translate }}</strong>
           </p>
 
           <p>{{ cuota.ImporteTotal }}</p>

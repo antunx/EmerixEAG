@@ -3,6 +3,7 @@ import { PropService } from '@app/services/prop.service';
 /*import { GetService } from '@app/services/get.service';
 import { PostService } from '@app/services/post.service';*/
 import { TranslateService } from '@ngx-translate/core';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-pago-metodos',
@@ -34,6 +35,38 @@ export class PagoMetodosComponent implements OnInit {
       this.pagoGeneradoStep = this.pagoGeneradoStep - 2;
     }
     this.volviendo.emit(this.pagoGeneradoStep);
+  }
+
+  GenerarPrepago(): void {
+    const obj = {
+      IdPersona: localStorage.getItem('version_core'),
+      Fecha: new Date(Date.now()),
+      ImporteTotal: this.pago.TotalPagar,
+      Items: [],
+    };
+
+    this.pago.Items.forEach((producto) => {
+      const productoAux = {
+        IdObjeto: producto.Id,
+        Importe: producto.ImportePagar,
+        TipoObjeto: producto.Tipo === 'PROMESA' ? 'PROMESA' : 'CUENTA',
+      };
+      obj.Items.push(productoAux);
+      if (producto.Tipo !== 'PROMESA') {
+        if (producto.Cuotas.length > 0) {
+          const importeCuota = producto.ImportePagar / producto.Cuotas.length;
+          producto.Cuotas.forEach((cuota) => {
+            const cuotaAux = {
+              IdObjeto: cuota,
+              Importe: importeCuota,
+              TipoObjeto: 'CUOPREST',
+            };
+            obj.Items.push(cuotaAux);
+          });
+        }
+      }
+    });
+    console.log(obj);
   }
 
   // siguiente(){

@@ -65,6 +65,7 @@ export class PagarComponent implements OnInit {
   }
 
   cambiarMontoPrestamo(e, id): void {
+    const cuotas = [];
     const montoAnterior = (document.getElementById(
       `monto-cancelar-${id}`
     ) as HTMLInputElement).dataset.valor;
@@ -77,8 +78,12 @@ export class PagarComponent implements OnInit {
     ) as HTMLInputElement).dataset.valor = e.monto;
     // console.log((document.getElementById(`monto-cancelar-${ id }`) as HTMLInputElement))
     // console.log(e.cuotas);
-    this.cuotasId.push({ id: { id }, cuotas: e.cuotas });
+    for (let cuota in e.cuotas) {
+      cuotas.push(e.cuotas[cuota]);
+    }
+    this.cuotasId.push({ id, cuotas });
     // console.log(this.cuotasId);
+    console.log(this.cuotasId);
   }
 
   cambiarCheckProductos(id: number, e): void {

@@ -76,29 +76,25 @@
           <table class="table disabled" width="100%" border="0">
             <tbody>
               <tr class="table-header">
-                <td style="width: 20%;">
+                <td style="width: 25%;">
                   {{ "Traduct.producto" | translate }}
                 </td>
-                <td style="width: 20%;">
-                  {{ "Traduct.producto" | translate }}
-                </td>
-                <td style="width: 20%;">
+                <td style="width: 25%;">
                   {{ "Traduct.dias_deuda" | translate }}
                 </td>
-                <td style="width: 20%;">
+                <td style="width: 25%;">
                   {{ "Traduct.monto_deuda" | translate }}
                 </td>
-                <td style="width: 20%;">
+                <td style="width: 25%;">
                   {{ "Traduct.importe_a_pagar" | translate }}
                 </td>
               </tr>
               <tr *ngFor="let item of productos">
-                <td style="width: 20%;">
+                <td style="width: 25%;">
                   {{ item.Nombre }}
                 </td>
-                <td style="width: 20%;">{{ item.Tipo }}</td>
-                <td style="width: 20%;">{{ item.DiasMora }} dias</td>
-                <td style="width: 20%;">
+                <td style="width: 25%;">{{ item.DiasMora }} dias</td>
+                <td style="width: 25%;">
                   {{
                     removerComas(
                       item.Deuda
@@ -106,7 +102,7 @@
                     )
                   }}
                 </td>
-                <td style="width: 20%;">
+                <td style="width: 25%;">
                   {{
                     removerComas(
                       item.ImportePagar
@@ -127,14 +123,6 @@
               <tr class="table-header">
                 <td>
                   <p>{{ item.Nombre }}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>
-                    <strong>{{ "Traduct.producto" | translate }}</strong>
-                  </p>
-                  <p>{{ item.Tipo }}</p>
                 </td>
               </tr>
               <tr>
