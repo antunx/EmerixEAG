@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { GetService } from '@services/get.service';
 import { Comprobante } from '@app/models/comprobante.models';
@@ -18,7 +18,7 @@ export class ListaComprobanteComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private servicioComunicacion: ComunicacionService,
     private getservices: GetService) {}
-
+  @HostBinding('class') class = 'pages-container flex-grow';
   private subscription: Subscription = new Subscription();
   Comprobantes: Comprobante[];
   ngOnInit(): void{

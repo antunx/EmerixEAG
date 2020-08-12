@@ -18,6 +18,8 @@ export class DeudaComponent implements OnInit, OnDestroy {
   IdPersona = '';
   Persona = '';
   Monto = 0;
+  Entero = 0;
+  Decimal = '';
   CantDiasMora = 0;
   CantProductos = 0;
 
@@ -47,8 +49,10 @@ export class DeudaComponent implements OnInit, OnDestroy {
       // console.log(res);
       this.Persona = res.FullName;
       this.Monto = res.TotalDebt;
+      this.Entero = Math.trunc(this.Monto);
+      this.Decimal = Number((this.Monto-this.Entero).toFixed(2)).toString().replace('0.','');
       this.CantDiasMora = res.DaysDebt;
-      this.CantProductos = res.CountProductDebt;
+      this.CantProductos = res.CountProductDebt;      
       }
     }, (err) => {
         console.log(err);

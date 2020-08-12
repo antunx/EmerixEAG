@@ -1,10 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 26 19.5" style="enable-background:new 0 0 26 19.5;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:none;stroke:#8569B4;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-</style>
-<path class="st0" d="M1,7.5h24 M3.2,1h19.6C24,1,25,2,25,3.2v13.1c0,1.2-1,2.2-2.2,2.2H3.2c-1.2,0-2.2-1-2.2-2.2V3.2C1,2,2,1,3.2,1z
-	"/>
+<svg width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.5455 1V25M17 5.36364H8.81818C7.80554 5.36364 6.83437 5.76591 6.11832 6.48196C5.40227 7.198 5 8.16917 5 9.18182C5 10.1945 5.40227 11.1656 6.11832 11.8817C6.83437 12.5977 7.80554 13 8.81818 13H14.2727C15.2854 13 16.2565 13.4023 16.9726 14.1183C17.6886 14.8344 18.0909 15.8055 18.0909 16.8182C18.0909 17.8308 17.6886 18.802 16.9726 19.518C16.2565 20.2341 15.2854 20.6364 14.2727 20.6364H5" stroke="#B6A1DA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

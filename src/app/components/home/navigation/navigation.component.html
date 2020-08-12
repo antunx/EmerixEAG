@@ -1,7 +1,7 @@
 <!-- menuSeleccionado: {{MenuSel}}
 <br>
 menuhijoSeleccionado: {{MenuHijoSel}}
- -->
+
 <nav class="main-navigation" style="height: 100%;">
   <input type="checkbox" class="visually-hidden mobile-menu-toggle" id="mobile-menu-toggle">
   <label class="mobile-menu-toggle-label" for="mobile-menu-toggle">
@@ -77,3 +77,79 @@ menuhijoSeleccionado: {{MenuHijoSel}}
      </ul>
   </div>
 </nav>
+ -->
+
+ <nav class="main-navigation">
+  <input type="checkbox" class="visually-hidden mobile-menu-toggle" id="mobile-menu-toggle">
+  <label class="mobile-menu-toggle-label" for="mobile-menu-toggle">
+  <img src="assets/images/ui/menu.svg" alt="">
+  </label>
+  <div class="navigation-container">
+     <ul>
+        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuInicio,' active' : MenuSel === MenuInicio}" style="--icon: url('assets/images/ui/navigation/icono-home.svg');">
+           <a class="item" [routerLink]="" (click)="Inicio()">{{ 'Traduct.inicio' | translate }}</a>
+        </li>
+        <li class="navigation-item collapsed-item" style="--icon: url('');">
+           <hr>
+        </li>
+        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPagar,' active' : MenuSel === MenuPagar}" style="--icon: url('assets/images/ui/navigation/icono-info.svg');">
+           <a class="item" [routerLink]="" (click)="Pagar()">{{ 'Traduct.pagar' | translate }}</a>
+        </li>
+        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuAvisarPago,' active' : MenuSel === MenuAvisarPago}" style="--icon: url('assets/images/ui/navigation/icono-avisar.svg');">
+           <a class="item" [routerLink]="" (click)="AvisarPago()">{{ 'Traduct.avisar_pago' | translate }}</a>
+        </li>
+        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPrometerFecha,' active' : MenuSel === MenuPrometerFecha}" style="--icon: url('assets/images/ui/navigation/icono-prometer.svg');">
+           <a class="item" [routerLink]="" (click)="PrometeFecha()">{{ 'Traduct.prometer_fecha' | translate }}</a>
+        </li>
+        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPagarCuotas,' active' : MenuSel === MenuPagarCuotas}" style="--icon: url('assets/images/ui/navigation/icono-cuotas.svg');">
+           <a class="item" [routerLink]="" (click)="PagarCuotas()">{{ 'Traduct.pagar_cuotas' | translate }}</a>
+        </li>
+        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPromesasHechas,' active' : MenuSel === MenuPromesasHechas}" style="--icon: url('assets/images/ui/navigation/icono-hechas.svg');">
+	 		  <a class="item" [routerLink]="" (click)="PromesasHechas()">{{ 'Traduct.promesas_hechas' | translate }}</a>
+		  </li>
+		  <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPlanesPedidos,' active' : MenuSel === MenuPlanesPedidos}" style="--icon: url('assets/images/ui/navigation/icono-planes.svg');">
+				<a class="item" [routerLink]="" (click)="PlanesPedidos()">{{ 'Traduct.planes_pedidos' | translate }}</a>
+		  </li>
+        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuComprobantes,' active' : MenuSel === MenuComprobantes}" style="--icon: url('assets/images/ui/navigation/icono-actividad.svg');">
+           <a class="item" [routerLink]="" (click)="Comprobantes()">{{ 'Traduct.tus_comprobantes' | translate }}</a>
+        </li>
+        <li class="navigation-item collapsed-item" style="--icon: url('');">
+           <hr>
+        </li>
+        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuTuPerfil,' active' : MenuSel === MenuTuPerfil}" style="--icon: url('assets/images/ui/navigation/icono-perfil.svg');">
+          <a class="item" [routerLink]="" (click)="TuPerfil()">{{ 'Traduct.tu_perfil' | translate }}</a>
+        </li>
+        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPreguntas,' active' : MenuSel === MenuPreguntas}" style="--icon: url('assets/images/ui/navigation/icono-faq.svg');">
+          <a class="item" [routerLink]="" (click)="PreguntasFrecuentes()">{{ 'Traduct.preguntas_frecuentes' | translate }}</a>
+        </li>
+
+        <li class="navigation-item" style="--icon: url('assets/images/ui/navigation/icono-salir.svg');">
+           <a class="item" [routerLink]="" (click)="Salir()">{{ 'Traduct.salir' | translate }}</a>
+        </li>
+     </ul>
+  </div>
+</nav>
+<script>
+  const mobileMenuBtn = document.querySelector('#mobile-menu-toggle')
+  const navOverlay = document.querySelector('#nav-overlay')
+
+
+  mobileMenuBtn.checked = false
+
+  mobileMenuBtn.addEventListener('click', () => {
+    console.log(mobileMenuBtn.getAttribute('checked'))
+
+    if (mobileMenuBtn.getAttribute('checked')) {
+      navOverlay.classList.remove('active')
+    } else {
+      navOverlay.classList.add('active')
+    }
+  })
+
+  navOverlay.addEventListener('click', () => {
+    //mobileMenuBtn.click()
+    navOverlay.classList.remove('active')
+    mobileMenuBtn.checked = false
+  })
+
+</script>

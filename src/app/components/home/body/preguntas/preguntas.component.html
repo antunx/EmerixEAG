@@ -1,12 +1,28 @@
-<div class="flex-column flex-center">
-  <div><img src="assets/images/ui/dialogs/login-dialog.svg" alt=""></div>
-  <div class="text-center">
-      <h1>{{ PageTitle }}</h1>
-      <p>{{ PageParagraph }}</p>
-  </div>
-
-  <div class="text-center" *ngFor="let item of Items">
-    <p>{{ item.ItemTitle }}</p>
-    <p>{{ item.ItemParagraph }}</p>
-  </div>
+<div class="pages-container flex-grow">
+  <section class="page-faqs">
+    <div class="flex-column page-header">
+      <p class="top-decoration">{{ 'Traduct.preguntas_frecuentes' | translate }}</p>
+    </div>
+    <div class="restrict-desktop">
+      <div class="title">
+          <h1 class="page-title text-large">{{ 'Traduct.preguntas_frecuentes_t1' | translate }}</h1>
+          <p class="page-subtitle"><span></span>{{ 'Traduct.preguntas_frecuentes_t2' | translate }}</p>
+      </div>
+      <div class="box">
+          <div class="input-wrapper search">
+            <input id="faqs_search" type="search" class="input-elem" placeholder="{{ 'Traduct.preguntas_frecuentes_t3' | translate }}" required>
+            <div class="input-error-icon" role="alert"></div>
+            <div class="input-error-popup" role="alert">El número ingresado es incorrecto. </div>
+          </div>
+      </div>
+      <div>
+          <ul class="accordion" id="accordion-7530753671">
+            <li class="flex-column" *ngFor="let item of Items">
+              <div class="accordion-title"><a [routerLink]="" (click)="Desplegar()">{{ item.ItemTitle }}</a></div>
+              <div class="accordion-content">{{ item.ItemParagraph }}</div>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </section>
 </div>

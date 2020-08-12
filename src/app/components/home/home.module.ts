@@ -5,7 +5,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 /** TRANSLATION */
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient } from '@angular/common/http';
 
 /* ROUTING */
 import { HomeRoutingModule } from './home-routing.module';
@@ -34,13 +33,16 @@ import { PromesaDetalleComponent } from './body/promesa/promesa-detalle/promesa-
 import { PreguntasComponent } from './body/preguntas/preguntas.component';
 import { UltimosComprobantesComponent } from './body/pago/comprobante/ultimos-comprobantes.component';
 import { InputDateComponent } from './utilidades/input-date.component';
-import { LoginChatbotComponent } from '../login-chatbot/login-chatbot.component';
+
 import { PagarComponent } from './body/pagar/pagar.component';
 import { DetallePlanpagoComponent } from './body/pagar/detalle-planpago/detalle-planpago.component';
 import { ConfirmarPagoComponent } from './body/pagar/confirmar-pago/confirmar-pago.component';
 import { PagoMetodosComponent } from './body/pagar/pago-metodos/pago-metodos.component';
 import { NotificacionesComponent } from './body/notificaciones/notificaciones/notificaciones.component';
 import { TuPerfilComponent } from './body/persona/tu-perfil/tu-perfil.component';
+import { HttpClient } from '@angular/common/http';
+import { MensajeMpComponent } from './body/pagar/mercado_pago/mensaje-mp.component';
+import { NotificacionMpComponent } from './body/pagar/mercado_pago/notificacion-mp/notificacion-mp.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
@@ -71,26 +73,28 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     PreguntasComponent,
     UltimosComprobantesComponent,
     InputDateComponent,
-    LoginChatbotComponent,
     PagarComponent,
     DetallePlanpagoComponent,
     ConfirmarPagoComponent,
     PagoMetodosComponent,
     NotificacionesComponent,
-    TuPerfilComponent
+    TuPerfilComponent,
+    MensajeMpComponent,
+    NotificacionMpComponent
   ],
   imports: [
+    TranslateModule.forRoot({
+      defaultLanguage: 'es',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    HomeRoutingModule,
-    TranslateModule.forRoot({ defaultLanguage: 'es',
-                              loader: {
-                                      provide: TranslateLoader,
-                                      useFactory: (createTranslateLoader),
-                                      deps: [HttpClient]
-                                      }
-                            })
+    HomeRoutingModule
   ],
   exports: [
     InputDateComponent

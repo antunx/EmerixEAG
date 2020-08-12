@@ -1,4 +1,4 @@
-<nav class="topbar">
+<!-- <nav class="topbar">
   <ul class="flex-row flex-center">
      <li class="flex-grow">
         <h1 class="page-name">{{ Menu }}</h1>
@@ -10,4 +10,17 @@
         <app-notificaciones></app-notificaciones>
      </li>
   </ul>
+</nav> -->
+
+<nav class="topbar">
+  <div class="flex-row flex-center">
+      <div class="flex-grow">
+          <div class="logo-container flex-grow">
+              <a [routerLink]="" (click)="Inicio()"><img id="site-logo" class="site-logo" src="assets/images/logos/emerix.png"></a>
+          </div>
+      </div>
+      <div class="notifications-menu">
+        <app-notificaciones></app-notificaciones>
+      </div>
+  </div>
 </nav>

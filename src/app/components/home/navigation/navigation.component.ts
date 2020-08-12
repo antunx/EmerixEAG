@@ -12,18 +12,24 @@ import { AuthService } from '@app/services/auth.service';
 })
 export class NavigationComponent implements OnInit {
   MenuSel: string;
-  MenuHijoSel: string;
 
-  MenuInicio: string;
   MenuCuentas: string;
   MenuPagos: string;
   MenuPagosSubMenuPagar: string;
   MenuPagosSubRegistraPagos: string;
-  MenuPagosSubComprobantes: string;
   MenuAcuerdos: string;
   MenuAcuerdosSubPromesaPago: string;
   MenuAcuerdosSubPlanPago: string;
   MenuAcuerdosSubEstadoSolicitudes: string;
+
+  MenuInicio: string;
+  MenuPagar: string;
+  MenuAvisarPago: string;
+  MenuPrometerFecha: string;
+  MenuPagarCuotas: string;
+  MenuPromesasHechas: string;
+  MenuPlanesPedidos: string;
+  MenuComprobantes: string;
   MenuTuPerfil: string;
   MenuPreguntas: string;
 
@@ -35,80 +41,11 @@ export class NavigationComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    // LA FORMA CLASICA DEL TRADUCTOR NO ANDA BIEN EN EL INICIO POR ESO SE USA LA SIGUIENTE.
-      this.traducirEtiqueta(this.router.url);
-
-    // LA FORMA CLASICA DEL TRADUCTOR NO ANDA BIEN EN EL INICIO POR ESO SE USA LA SIGUIENTE.
       this.translate.get('Traduct.inicio').subscribe((translated: string) => {
        this.MenuSel = translated;
-       this.MenuHijoSel = translated;
        this.MenuInicio = translated;
+       this.router.navigateByUrl('/home/default');
       });
-  }
-
-  traducirEtiqueta(ruta: string): void {
-    switch (ruta) {
-      case '/home/default':
-        this.Traducir('Traduct.inicio');
-        break;
-
-      case '/home/producto':
-        this.Traducir('Traduct.mis_cuentas');
-        break;
-
-      case '/home/pagar':
-          this.Traducir('Traduct.pagar');
-          break;
-
-      case '/home/informar_comprobante':
-        this.Traducir('Traduct.registrar_pago');
-        break;
-
-      case '/home/comprobante':
-        this.Traducir('Traduct.comprobantes');
-        break;
-
-      case '/home/promesa':
-        this.Traducir('Traduct.promesa_pago');
-        break;
-
-      case '/home/plan_pago':
-        this.Traducir('Traduct.plan_pago');
-        break;
-
-      case '/home/estado_solicitudes':
-        this.Traducir('Traduct.estado_solicitudes');
-        break;
-
-      case '/home/tu_perfil':
-        this.Traducir('Traduct.tu_perfil');
-        break;
-
-      case '/home/preguntas':
-        this.Traducir('Traduct.preguntas_frecuentes');
-        break;
-
-      default:
-        this.Traducir('navigation: opcion de menu no controlada.');
-        break;
-    }
-  }
-
-  Traducir(termino: string): void {
-    this.translate.get(termino).subscribe((translated: string) => {
-      // translation =  translated;
-      this.cambioTexto(translated);
-      // const translation = this.translate.instant('Traduct.inicio');
-    });
-  }
-
-  Inicio(): void{
-    this.MenuSel = this.translate.instant('Traduct.inicio');
-    this.MenuHijoSel = '';
-    this.MenuInicio = this.translate.instant('Traduct.inicio');
-
-    this.cambioTexto(this.translate.instant('Traduct.inicio'));
-    this.router.navigateByUrl('/home/default');
   }
 
   MisCuentas(): void{
@@ -124,29 +61,12 @@ export class NavigationComponent implements OnInit {
     this.MenuSel = this.MenuPagos;
   }
 
-  Pagar(): void{
-    this.MenuHijoSel = this.translate.instant('Traduct.pagar');
-    this.MenuPagos = this.translate.instant('Traduct.pagos');
-    this.MenuPagosSubMenuPagar = this.translate.instant('Traduct.pagar');
-    this.cambioTexto(this.translate.instant('Traduct.pagar'));
-    this.router.navigateByUrl('/home/pagar');
-  }
-
-  RegistrarPago(): void{
-    this.MenuHijoSel = this.translate.instant('Traduct.registrar_pago');
+  /* RegistrarPago(): void{
     this.MenuPagos = this.translate.instant('Traduct.pagos');
     this.MenuPagosSubRegistraPagos = this.translate.instant('Traduct.registrar_pago');
     this.cambioTexto(this.translate.instant('Traduct.registrar_pago'));
     this.router.navigateByUrl('/home/informar_comprobante');
-  }
-
-  Comprobantes(): void{
-    this.MenuHijoSel = this.translate.instant('Traduct.comprobantes');
-    this.MenuPagos = this.translate.instant('Traduct.pagos');
-    this.MenuPagosSubComprobantes = this.translate.instant('Traduct.comprobantes');
-    this.cambioTexto(this.translate.instant('Traduct.comprobantes'));
-    this.router.navigateByUrl('/home/comprobante');
-  }
+  } */
 
   Acuerdos(): void{
     this.MenuAcuerdos = this.translate.instant('Traduct.acuerdos');
@@ -154,7 +74,6 @@ export class NavigationComponent implements OnInit {
   }
 
   PromesasPago(): void{
-    this.MenuHijoSel = this.translate.instant('Traduct.promesa_pago');
     this.MenuAcuerdos = this.translate.instant('Traduct.acuerdos');
     this.MenuAcuerdosSubPromesaPago = this.translate.instant('Traduct.promesa_pago');
     this.cambioTexto(this.translate.instant('Traduct.promesa_pago'));
@@ -162,7 +81,6 @@ export class NavigationComponent implements OnInit {
   }
 
   PlanPago(): void{
-    this.MenuHijoSel = this.translate.instant('Traduct.plan_pago');
     this.MenuAcuerdos = this.translate.instant('Traduct.acuerdos');
     this.MenuAcuerdosSubPlanPago = this.translate.instant('Traduct.plan_pago');
     this.cambioTexto(this.translate.instant('Traduct.plan_pago'));
@@ -170,16 +88,80 @@ export class NavigationComponent implements OnInit {
   }
 
   EstadoSolicitudes(): void{
-    this.MenuHijoSel = this.translate.instant('Traduct.estado_solicitudes');
     this.MenuAcuerdos = this.translate.instant('Traduct.acuerdos');
     this.MenuAcuerdosSubEstadoSolicitudes = this.translate.instant('Traduct.estado_solicitudes');
     this.cambioTexto(this.translate.instant('Traduct.estado_solicitudes'));
     alert('EstadoSolicitudes(): en desarrollo |_(-.-)_T ');
   }
 
+
+
+
+
+  Inicio(): void{
+    this.MenuSel = this.translate.instant('Traduct.inicio');
+    this.MenuInicio = this.translate.instant('Traduct.inicio');
+
+    this.cambioTexto(this.translate.instant('Traduct.inicio'));
+    this.router.navigateByUrl('/home/default');
+  }
+
+  Pagar(): void{
+    this.MenuSel = this.translate.instant('Traduct.pagar');
+    this.MenuPagar = this.translate.instant('Traduct.pagar');
+    this.cambioTexto(this.translate.instant('Traduct.pagar'));
+    this.router.navigateByUrl('/home/pagar');
+  }
+
+  AvisarPago(): void{
+    this.MenuSel = this.translate.instant('Traduct.avisar_pago');
+    this.MenuAvisarPago = this.translate.instant('Traduct.avisar_pago');
+    this.cambioTexto(this.translate.instant('Traduct.avisar_pago'));
+    this.router.navigateByUrl('/home/informar_comprobante');
+  }
+
+  PrometeFecha(): void{
+    this.MenuSel = this.translate.instant('Traduct.prometer_fecha');
+    this.MenuPrometerFecha  = this.translate.instant('Traduct.prometer_fecha');
+    this.cambioTexto(this.translate.instant('Traduct.prometer_fecha'));
+    // this.router.navigateByUrl('/home/prometer_fecha');
+    alert('PrometeFecha(): en desarrollo |_(-.-)_T ');
+  }
+
+  PagarCuotas(): void{
+    this.MenuSel = this.translate.instant('Traduct.pagar_cuotas');
+    this.MenuPagarCuotas = this.translate.instant('Traduct.pagar_cuotas');
+    this.cambioTexto(this.translate.instant('Traduct.pagar_cuotas'));
+    // this.router.navigateByUrl('/home/pagar_cuotas');
+    alert('PagarCuotas(): en desarrollo |_(-.-)_T ');
+  }
+
+  PromesasHechas(): void{
+    this.MenuSel = this.translate.instant('Traduct.promesas_hechas');
+    this.MenuPromesasHechas = this.translate.instant('Traduct.promesas_hechas');
+    this.cambioTexto(this.translate.instant('Traduct.promesas_hechas'));
+    // this.router.navigateByUrl('/home/promesas_hechas');
+    alert('PromesasHechas(): en desarrollo |_(-.-)_T ');
+  }
+
+  PlanesPedidos(): void{
+    this.MenuSel = this.translate.instant('Traduct.planes_pedidos');
+    this.MenuPlanesPedidos = this.translate.instant('Traduct.planes_pedidos');
+    this.cambioTexto(this.translate.instant('Traduct.planes_pedidos'));
+    // this.router.navigateByUrl('/home/planes_pedidos');
+    alert('PlanesPedidos(): en desarrollo |_(-.-)_T ');
+  }
+
+  Comprobantes(): void{
+    this.MenuSel = this.translate.instant('Traduct.tus_comprobantes');
+    this.MenuPagos = this.translate.instant('Traduct.pagos');
+    this.MenuComprobantes = this.translate.instant('Traduct.tus_comprobantes');
+    this.cambioTexto(this.translate.instant('Traduct.tus_comprobantes'));
+    this.router.navigateByUrl('/home/comprobante');
+  }
+
   TuPerfil(): void{
     this.MenuSel = this.translate.instant('Traduct.tu_perfil');
-    this.MenuHijoSel = '';
     this.MenuTuPerfil = this.translate.instant('Traduct.tu_perfil');
     this.cambioTexto(this.translate.instant('Traduct.tu_perfil'));
     this.router.navigateByUrl('/home/tu_perfil');
@@ -187,7 +169,6 @@ export class NavigationComponent implements OnInit {
 
   PreguntasFrecuentes(): void{
     this.MenuSel = this.translate.instant('Traduct.preguntas_frecuentes');
-    this.MenuHijoSel = '';
     this.MenuPreguntas = this.translate.instant('Traduct.preguntas_frecuentes');
     this.cambioTexto(this.translate.instant('Traduct.preguntas_frecuentes'));
     this.router.navigateByUrl('/home/preguntas');

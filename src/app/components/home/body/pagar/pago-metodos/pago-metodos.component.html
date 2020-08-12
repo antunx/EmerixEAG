@@ -22,13 +22,83 @@
           </div>
         </div>
       </div>
-      <div><input type="radio" /> MercadoPago</div>
-      <div class="deal-mini flex-row">
-        <button class="btn secondary" (click)="volver()">
-          {{ "Traduct.volver" | translate }}
-        </button>
-        <button class="btn" (click)="GenerarPrepago()">siguiente</button>
-      </div>
+      <form name="metodo" #forma="ngForm" (ngSubmit)="GenerarPrepago(forma)">
+        <div>
+          <input
+            [ngModel]="metodo.valor"
+            required
+            type="radio"
+            name="metodo"
+            id="MP"
+            value="MercadoPago"
+          />
+          MercadoPago
+          <input
+            [ngModel]="metodo.valor"
+            required
+            type="radio"
+            name="metodo"
+            id="BC"
+            value="Banco"
+          />
+          Banco
+        </div>
+        <div class="deal-mini flex-row">
+          <button class="btn secondary" (click)="volver()">
+            {{ "Traduct.volver" | translate }}
+          </button>
+          <button class="btn" type="submit">siguiente</button>
+        </div>
+      </form>
     </section>
+  </div>
+</div>
+
+<div (click)="cerrarPopup()" class="overlay" id="overlay-metodos">
+  <div class="dialog-container sidebar" role="dialog">
+    <a class="close-btn" (click)="cerrarPopup()">
+      <img src="assets/images/ui/close-btn.svg" alt="Close" />
+    </a>
+    <div class="dialog-content login-dialog">
+      <div>
+        <div class="flex-column flex-center">
+          <div>
+            <img
+              width="70px"
+              height="70px"
+              src="assets/images/ui/exclamation-triangle-solid.svg"
+              alt=""
+            />
+          </div>
+          <div class="text-center">
+            <h3>
+              Debe seleccionar un método de pago.
+            </h3>
+            <button class="btn btn-primary" (click)="cerrarPopup()">
+              {{ "Traduct.continuar" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-load-metodos">
+  <div class="dialog-container sidebar" role="dialog">
+    <div class="dialog-content login-dialog">
+      <div>
+        <div class="flex-column flex-center">
+          <div>
+            <i class="fas fa-spinner fa-spin"></i>
+          </div>
+          <div class="text-center">
+            <h3>
+              {{ mensajeLoad }}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

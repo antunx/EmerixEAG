@@ -38,7 +38,7 @@
   "Traduct.pagar": "Pagar",
   "Traduct.pagar_ahora": "¡Pagar ahora!",
   "Traduct.medio_pago": "Medio de Pago",
-  "Traduct.total_abonado": "Total Abonado",
+  "Traduct.total_abonado": "Total abonado",
   "Traduct.fecha": "Fecha",
   "Traduct.fecha_pago": "Fecha de pago",
   "Traduct.fecha_promesa": "Fecha de Promesa",
@@ -46,10 +46,12 @@
   "Traduct.nro_boleta": "N° de Comprobante",
   "Traduct.moneda": "Moneda",
   "Traduct.registrar": "Registrar",
-  "Traduct.comentario": "Comentario",
+  "Traduct.comentario": "Comentarios",
   "Traduct.comprobante": "Comprobante",
   "Traduct.comprobantes": "Comprobantes",
   "Traduct.tus_comprobantes": "Tus comprobantes",
+  "Traduct.tus_comprobantes_t1":  "Consultá las promesas de pago que realizaste",
+  "Traduct.tus_comprobantes_t2":  "Podés ver el detalle si no recordás lo prometido y pagar si aún están vigente.",
   "Traduct.ultimos_comprobantes": "Últimos Comprobantes",
   "Traduct.ver_todos_comprobantes": "Ver todos los comprobantes",
 
@@ -77,7 +79,9 @@
   "Traduct.inicio": "Inicio",
   "Traduct.mis_cuentas": "Mis Cuentas",
   "Traduct.pagos": "Pagos",
-  "Traduct.registrar_pago": "Registrar Pago",
+  "Traduct.registrar_pago": "Registrar pago",
+  "Traduct.registrar_pago_t1":"A continuación podés ingresar los datos del pago realizado",
+  "Traduct.registrar_pago_t2":"Medio pago por el cuál abonaste",
   "Traduct.fecha_error": "La fecha debe ser anterior o igual a la fecha actual.",
   "Traduct.registrar_el_pago": "¿Registra el pago?",
   "Traduct.confirme_accion": "Confirme la acción.",
@@ -91,7 +95,16 @@
   "Traduct.plan_pago": "Plan de pago",
   "Traduct.estado_solicitudes": "Estado de solicitudes",
   "Traduct.tu_perfil": "Tu Perfil",
+  "Traduct.tu_perfil_t1": "Esta es la información con la que contamos",
+  "Traduct.tu_perfil_t2": "Tus datos de acceso al portal",
+  "Traduct.tu_perfil_et1": "Mail principal",
+  "Traduct.tu_perfil_et2": "Teléfono principal",
+  "Traduct.guardar": "Guardar",
+  "Traduct.modificar": "Modificar",
   "Traduct.preguntas_frecuentes": "Preguntas frecuentes",
+  "Traduct.preguntas_frecuentes_t1": "Te ayudamos a resolver tus consultas",
+  "Traduct.preguntas_frecuentes_t2": "Ingresá la palabra clave de lo que querés averiguar",
+  "Traduct.preguntas_frecuentes_t3": "Ejemplo: Promesas de pago, Plan de pagos, Registrar un pago, Pagar...",
   "Traduct.notificaciones": "Notificaciones",
   "Traduct.hola": "Hola",
   "Traduct.acepto_los": "Acepto los",
@@ -140,5 +153,14 @@
 
   "Traduct.nombre": "Nombre",
   "Traduct.documento": "Documento",
-  "Traduct.telefono": "Teléfono"
+  "Traduct.telefono": "Teléfono",
+
+  "Traduct.pagar_cuotas": "Pagar en cuotas",
+  "Traduct.promesas_hechas": "Promesas hechas",
+  "Traduct.planes_pedidos": "Planes pedidos",  
+  "Traduct.prometer_fecha": "Prometer una fecha",
+  "Traduct.avisar_pago": "Avisar que pagué",
+
+  "Traduct.default_t1":"¡Es un gusto verte por acá! Queremos ayudarte a alivianar tus deudas ;)"
+
 }

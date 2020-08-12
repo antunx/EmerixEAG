@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:none;stroke:#FFFFFF;stroke-width:2;}
+	.st2{fill:#FFFFFF;}
+	.st3{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+<g>
+	
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="32" y1="36" x2="32" y2="100" gradientTransform="matrix(1 0 0 -1 0 100)">
+		<stop  offset="0" style="stop-color:#ED7F4F"/>
+		<stop  offset="1" style="stop-color:#FFC8B0"/>
+	</linearGradient>
+	<path class="st0" d="M16,0h32c8.8,0,16,7.2,16,16v32c0,8.8-7.2,16-16,16H16C7.2,64,0,56.8,0,48V16C0,7.2,7.2,0,16,0z"/>
+</g>
+<path class="st1" d="M19,25v17c0,2.2,1.8,4,4,4h18c2.2,0,4-1.8,4-4V25c0-2.2-1.8-4-4-4H23C20.8,21,19,22.8,19,25z"/>
+<rect x="18" y="26" class="st2" width="28" height="2"/>
+<rect x="25" y="17" class="st2" width="2" height="5"/>
+<rect x="37" y="17" class="st2" width="2" height="5"/>
+<path class="st3" d="M27,36.5l3.5,3.5l7.5-7"/>
+</svg>

@@ -15,12 +15,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 /** COMPONENTES */
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { ConsultaComponent } from './components/login/body/consulta/consulta.component';
-import { TerminoComponent } from './components/login/body/termino/termino.component';
-import { LoginBodyComponent } from './components/login/body/login-body.component';
-import { LoginFooterComponent } from './components/login/footer/login-footer.component';
-import { LoginHeaderComponent } from './components/login/header/login-header.component';
 import { NotFoundComponent } from './components/standard/not-found/not-found.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
@@ -30,12 +24,6 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [
     AppComponent,
-    ConsultaComponent,
-    TerminoComponent,
-    LoginComponent,
-    LoginBodyComponent,
-    LoginFooterComponent,
-    LoginHeaderComponent,
     NotFoundComponent
   ],
   imports: [

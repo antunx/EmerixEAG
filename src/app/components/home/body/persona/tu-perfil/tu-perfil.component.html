@@ -1,4 +1,4 @@
-<div class="flex-column flex-center">
+<!-- <div class="flex-column flex-center">
   <div><img src="assets/images/ui/tu_perfil.png" alt="" width="100px" height="100px"></div>
   <div class="text-center">
       <h1>{{ 'Traduct.tu_perfil' | translate }}</h1>
@@ -9,4 +9,58 @@
     <p>{{ 'Traduct.telefono' | translate }}: {{ Telefono }}</p>
     <p>{{ 'Traduct.documento' | translate }}: {{ Documento }}</p>
   </div>
-</div>
+</div> -->
+
+<!-- <div class="pages-container flex-grow"> --> <!-- LO HACE EN EL TS -->
+  <section class="page-account">
+    <div class="flex-column page-header">
+      <p class="top-decoration">{{ 'Traduct.tu_perfil' | translate }}</p>
+    </div>
+    <div class="restrict-width small">
+      <div class="title">
+          <h1 class="page-title text-large">{{ 'Traduct.tu_perfil_t1' | translate }}</h1>
+          <p class="page-subtitle"><span></span>{{ 'Traduct.tu_perfil_t2' | translate }}</p>
+      </div>
+      <div class="flex-column flex-center box">
+          <img src="assets/images/sections/account/icon.svg" alt="User icon">
+          <h3>{{ Nombre }}</h3>
+          <p>{{ Documento }}</p>
+          <div class="flex-row full-width flex-center">
+            <div class="col-1-2 flex-row">
+                <div class="icns">
+                  <p><img src="assets/images/sections/account/mail.svg" alt=""></p>
+                </div>
+                <div class="flex-grow">
+                  <p class="flex-row"><strong>{{ 'Traduct.tu_perfil_et1' | translate }}</strong></p>
+                  <p>
+                  </p>
+                  <div class="input-wrapper text">
+                      <input id="" type="text" class="input-elem" placeholder="{{ Mail }}" required>
+                      <div class="input-error-icon" role="alert"></div>
+                      <div class="input-error-popup" role="alert">Required</div>
+                  </div>
+                  <p></p>
+                </div>
+            </div>
+            <div class="col-1-2">
+                <p style="display: none" class="text-right"><button class="btn secondary save">{{ 'Traduct.guardar' | translate }}</button></p>
+            </div>
+          </div>
+          <div class="flex-row full-width flex-center">
+            <div class="col-1-2 flex-row">
+                <div class="icns">
+                  <p><img src="assets/images/sections/account/phone.svg" alt=""></p>
+                </div>
+                <div class="flex-grow">
+                  <p class="flex-row"><strong>{{ 'Traduct.tu_perfil_et2' | translate }}</strong></p>
+                  <p>{{ Telefono }}</p>
+                </div>
+            </div>
+            <div class="col-1-2">
+                <p style="display: none" class="text-right"><button class="btn secondary edit">{{ 'Traduct.modificar' | translate }}</button></p>
+            </div>
+          </div>
+      </div>
+    </div>
+</section>
+<!-- </div> -->

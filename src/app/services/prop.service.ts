@@ -7,7 +7,8 @@ import { PromesaDetalle } from '../models/promesdetalle.model';
 export class PropService {
   private promesaDetalle: PromesaDetalle;
   private desdeHome: boolean;
-  private pago: any;
+  private AccessToken: string;
+
 
   constructor() {}
 
@@ -20,11 +21,11 @@ export class PropService {
     return { detalle: this.promesaDetalle, desdeHome: this.desdeHome };
   }
 
-  setPago(obj: any): void{
-    this.pago = obj;
+  setAccesToken(accesToken: string): void {
+    this.AccessToken = accesToken;
   }
 
-  getPego(): any{
-    return this.pago;
+  getAccesToken(): string {
+    return this.AccessToken;
   }
 }

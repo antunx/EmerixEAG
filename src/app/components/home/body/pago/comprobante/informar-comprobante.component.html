@@ -1,5 +1,5 @@
 <!-- {{ pagoForm.value | json}} -->
-<div class="flex-column flex-grow">
+<!-- <div class="flex-column flex-grow">
   <div class="pages-container">
      <div class="overlay" id="pay-sidebar">
         <div class="dialog-container sidebar" role="dialog">
@@ -103,106 +103,99 @@
         </div>
      </section>
   </div>
-</div>
+</div> -->
 
-
-<!--
-<h3>{{ 'Traduct.informar_pago' | translate }}</h3>
-<form [formGroup]="pagoForm" autocomplete="off" (ngSubmit)="IngresarPago()">
-  <div class="form-group">
-
-
-    <div class="form-row mt-1" appearance="fill">
-      <div class="form-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-2">
-        <label for="MedioPago">{{ 'Traduct.medio_pago' | translate }}:</label>
-      </div>
-      <div class="form-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3">
-        <select name="IdMedioPago" class="form-control" formControlName="IdMedioPago" [class.is-invalid]="pagoForm.get('IdMedioPago').touched && pagoForm.get('IdMedioPago').invalid">
-          <option [value]="medio.Id" *ngFor="let medio of mediosPago">{{medio.Nombre}}</option>
-        </select>
-
-        <div *ngIf="IdMedioPago.invalid && (IdMedioPago.dirty || IdMedioPago.touched)" class="alert alert-danger">
-          <div *ngIf="IdMedioPago.errors.required">
-            {{ 'Traduct.seleccione_medio_pago' | translate }}
-          </div>
+<!-- <div class="pages-container flex-grow"> --> <!-- LO HACE EL TS -->
+  <section class="page-payments">
+     <div class="page-progress">
+        <div class="progress progress-5"></div>
+     </div>
+     <div class="flex-column page-header">
+        <p class="top-decoration">{{ 'Traduct.avisar_pago' | translate }}</p>
+     </div>
+     <div class="restrict-width small">
+        <div class="title">
+           <h1 class="page-title text-large">{{ 'Traduct.registrar_pago' | translate }}</h1>
+           <p class="page-subtitle"><span></span>{{ 'Traduct.registrar_pago_t1' | translate }}</p>
         </div>
-      </div>
-    </div>
-
-    <div class="form-row mt-1" appearance="fill">
-      <div class="form-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-2">
-        <label for="Moneda">{{ 'Traduct.moneda' | translate }}:</label>
-      </div>
-      <div class="form-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3">
-        <select name="IdMoneda" class="form-control" formControlName="IdMoneda" [class.is-invalid]="pagoForm.get('IdMoneda').touched && pagoForm.get('IdMoneda').invalid">
-          <option [value]="mon.Id" *ngFor="let mon of monedas">{{mon.Nombre}}</option>
-        </select>
-
-        <div *ngIf="IdMoneda.invalid && (IdMoneda.dirty || IdMoneda.touched)" class="alert alert-danger">
-          <div *ngIf="IdMoneda.errors.required">
-            {{ 'Traduct.seleccione_moneda' | translate }}
-          </div>
+        <form class="" [formGroup]="pagoForm">
+        <div class="box flex-column">
+           <div class="flex-row col-container">
+              <div class="col-2-3">
+                <div class="form-group">
+                  <div [ngClass] = "!(Importe.invalid && (Importe.dirty || Importe.touched)) ? 'input-wrapper text' : 'input-wrapper text error'">
+                     <input id="Importe" type="number" class="input-elem" placeholder="{{ 'Traduct.total_abonado' | translate }}" formControlName="Importe" step="0.01">
+                     <div class="input-error-icon" role="alert"></div>
+                     <div class="input-error-popup" role="alert">{{ 'Traduct.total_abonado' | translate }} {{ 'Traduct.requerido' | translate }}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1-3">
+                <div class="form-group">
+                  <div Class = "input-wrapper select">
+                    <select name="IdMoneda" id="IdMoneda" formControlName="IdMoneda">
+                        <option selected="selected" class="placeholder" value="0">{{ 'Traduct.moneda' | translate }}</option>
+                        <option [value]="mon.Id" *ngFor="let mon of monedas">{{mon.Nombre}}</option>
+                    </select>
+                    <div class="input-error-icon" role="alert"></div>
+                    <div class="input-error-popup" role="alert">{{ 'Traduct.seleccione_moneda' | translate }}</div>
+                  </div>
+                </div>
+              </div>
+           </div>
+           <div class="flex-row col-container">
+              <div class="col-2-3">
+                <div class="form-group">
+                  <div [ngClass] = "!(NumeroComprobante.invalid && (NumeroComprobante.dirty || NumeroComprobante.touched)) ? 'input-wrapper text flex-center flex-column' : 'input-wrapper text flex-center flex-column error'">
+                     <input id="NumeroComprobante" type="text" class="input-elem" placeholder="{{ 'Traduct.nro_boleta' | translate }}" maxlength="50" (keypress)="SoloNumerosLetras($event.key)" formControlName="NumeroComprobante">
+                     <div class="input-error-icon" role="alert"></div>
+                     <div class="input-error-popup" role="alert">{{ 'Traduct.nro_boleta' | translate }} {{ 'Traduct.requerido' | translate }}</div>
+                  </div>
+               </div>
+              </div>
+              <div class="col-1-3">
+                <div class="form-group">
+                  <div [ngClass] = "!(FechaPago.invalid && (FechaPago.dirty || FechaPago.touched)) ? 'input-wrapper text flex-center flex-column' : 'input-wrapper text flex-center flex-column error'">
+                      <app-input-date formControlName="FechaPago"></app-input-date>
+                      <div class="input-error-icon" role="alert"></div>
+                      <div class="input-error-popup" role="alert">{{ 'Traduct.seleccione_fecha' | translate }}</div>
+                   </div>
+                </div>
+              </div>
+           </div>
+           <div>
+              <p>{{ 'Traduct.registrar_pago_t2' | translate }}:</p>
+              <div class="payment-selector">
+                 <ul class="flex-row">
+                    <li class="flex-column flex-center" (click)="MenuSel='MP'"   [ngClass]="{'' : MenuSel != MercadoPago,' active' : MenuSel === MercadoPago}"><img src="assets/images/sections/payments/mercadopago.svg" alt=""></li>
+                    <li class="flex-column flex-center" (click)="MenuSel='VISA'" [ngClass]="{'' : MenuSel != Visa,' active' : MenuSel === Visa}"><img src="assets/images/sections/payments/visa.svg" alt=""></li>
+                    <li class="flex-column flex-center" (click)="MenuSel='MSTC'" [ngClass]="{'' : MenuSel != Master,' active' : MenuSel === Master}"><img src="assets/images/sections/payments/mastercard.svg" alt=""></li>
+                    <li class="flex-column flex-center" (click)="MenuSel='EMEC'" [ngClass]="{'' : MenuSel != Emec,' active' : MenuSel === Emec}"><img src="assets/images/sections/payments/amex.svg" alt=""></li>
+                    <li class="flex-column flex-center"><img src="assets/images/sections/payments/generic.svg" alt=""></li>
+                    <li class="flex-column flex-center"><img src="assets/images/sections/payments/generic.svg" alt=""></li>
+                    <li class="flex-column flex-center"><img src="assets/images/sections/payments/generic.svg" alt=""></li>
+                 </ul>
+              </div>
+           </div>
+           <div class="form-group">
+            <div class="input-wrapper textarea">
+               <textarea id="Comentario" formControlName="Comentario" maxlength="255" placeholder="{{ 'Traduct.comentario' | translate }}">
+               </textarea>
+               <div class="input-error-icon" role="alert"></div>
+               <div class="input-error-popup" role="alert">Required</div>
+            </div>
+         </div>
         </div>
-      </div>
-    </div>
-
-    <div class="form-row mt-1" appearance="fill">
-      <div class="form-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-2">
-        <label for="Importe">{{ 'Traduct.total_abonado' | translate }}:</label>
-      </div>
-      <div class="form-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3">
-        <input type="number" placeholder="100.25" class="form-control" formControlName="Importe" step="0.01" [class.is-invalid]="pagoForm.get('Importe').touched && pagoForm.get('Importe').invalid">
-        <div *ngIf="Importe.invalid && (Importe.dirty || Importe.touched)" class="alert alert-danger">
-          <div *ngIf="Importe.errors.required">
-            {{ 'Traduct.monto_requerido' | translate }}
-          </div>
-          <div *ngIf="Importe.errors.min">
-            {{ 'Traduct.monto_mayor_cero' | translate }}
-          </div>
-          <div *ngIf="Importe.errors.max">
-            {{ 'Traduct.monto_mayor_superado' | translate }}
-          </div>
+        <div>
+          <button type="submit" class="btn next" [disabled]="pagoForm.invalid" (click)="IngresarPago()">{{ 'Traduct.registrar_pago' | translate }}</button>
         </div>
+        </form>
       </div>
-    </div>
+  </section>
+  <script> document.querySelector('[data-next]').addEventListener('click', () => {
+     window.location.href = '/avisar_exito.html'
+     })
+  </script>
+<!-- </div> -->
 
-    <div class="form-row mt-1" appearance="fill">
-      <div class="form-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-2">
-        <label for="Fecha">{{ 'Traduct.fecha' | translate }}:</label>
-      </div>
-      <div class="form-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3">
-        <input type="date" placeholder="Fecha" class="form-control" formControlName="Fecha" [class.is-invalid]="pagoForm.get('Fecha').touched && pagoForm.get('Fecha').invalid"/>
-        <div *ngIf="pagoForm.controls['Fecha'].touched && pagoForm.controls['Fecha'].errors?.required" class="alert alert-danger">
-          {{ 'Traduct.seleccione_fecha' | translate }}
-        </div>
-      </div>
-    </div>
 
-    <div class="form-row mt-1" appearance="fill">
-      <div class="form-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-2">
-        <label for="NumeroComprobante">{{ 'Traduct.nro_boleta' | translate }}:</label>
-      </div>
-      <div class="form-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3">
-        <input type="text" placeholder="00020000000058" class="form-control" maxlength="50" (keypress)="SoloNumerosLetras($event.key)" formControlName="NumeroComprobante" [class.is-invalid]="pagoForm.get('NumeroComprobante').touched && pagoForm.get('NumeroComprobante').invalid">
-        <div *ngIf="NumeroComprobante.invalid && (NumeroComprobante.dirty || NumeroComprobante.touched)" class="alert alert-danger">
-          <div *ngIf="NumeroComprobante.errors.required">
-            {{ 'Traduct.numero_requerido' | translate }}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-row mt-1" appearance="fill">
-      <div class="form-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-2">
-        <label for="Comentario">{{ 'Traduct.comentario' | translate }}:</label>
-      </div>
-      <div class="form-col col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3">
-        <textarea rows="4" placeholder="Comentario" class="form-control rounded-0" formControlName="Comentario" maxlength="255"></textarea>
-       </div>
-    </div>
-  </div>
-  <div class="form-row mt-3" appearance="fill">
-    <input type="submit" class="btn" value="{{ 'Traduct.registrar' | translate }}" [disabled]="pagoForm.invalid">
-  </div>
-</form>
--->

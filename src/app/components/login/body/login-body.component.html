@@ -4,15 +4,14 @@
       <section class="page-login">
         <div class="flex-row flex-center flex-grow" style="height: 100%">
           <div class="form-container">
+            <div class="flex-row flex-center emerix-logo">
+              <img class="logo" src="/assets/images/logos/emerix.png" alt="">
+            </div>
             <form [formGroup]="loginForm" class="form flex-column box" novalidate>
               <div *ngIf="loginAction===1" class="slide-page">
                   <div class="login-content flex flex-column">
                     <div>
-                        <div class="flex-row flex-center">
-                          <h1 class="visually-hidden">Emerix Login</h1>
-                          <img class="logo" src="assets/images/logos/emerix.png" alt="">
-                        </div>
-                        <div class="form-group flex-row">
+                          <div class="form-group flex-row">
                           <div class="login-dnitype-container">
                               <div [ngClass] = "!(tipoDoc.invalid && (tipoDoc.dirty || tipoDoc.touched)) ? 'input-wrapper select' : 'input-wrapper select error'" >
                                 <select formControlName="tipoDoc" id="login_dni_type" required>
@@ -87,10 +86,6 @@
               <div *ngIf="loginAction===2" class="slide-page">
                   <div class="login-content flex flex-column">
                     <div>
-                        <div class="flex-row flex-center">
-                          <h1 class="visually-hidden">Emerix Login</h1>
-                          <img class="logo" src="assets/images/logos/emerix.png" alt="">
-                        </div>
                         <div class="form-group">
                           <p class="text-large"><strong>{{ 'Traduct.pregunta_clave' | translate }}</strong></p>
                         </div>
@@ -143,10 +138,6 @@
                 <div class="slide-page">
                     <div *ngIf="loginAction===3" class="login-content flex flex-column">
                       <div>
-                          <div class="flex-row flex-center">
-                            <h1 class="visually-hidden">Emerix Login</h1>
-                            <img class="logo" src="assets/images/logos/emerix.png" alt="">
-                          </div>
                           <div class="form-group">
                             <p><strong>{{ 'Traduct.ingrese_token' | translate }}</strong></p>
                             <div class="input-wrapper text">

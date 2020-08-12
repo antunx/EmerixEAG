@@ -4,5 +4,6 @@ export interface RtagetTuPerfilModel {
   Nombre: string;
   Telefono: string;
   Documento: string;
+  Mail: string;
 }
 

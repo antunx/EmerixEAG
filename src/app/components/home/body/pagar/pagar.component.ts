@@ -35,7 +35,7 @@ export class PagarComponent implements OnInit {
     this.getService
       .getProductosYPromesas(localStorage.getItem('version_core'))
       .subscribe((data: any) => {
-        console.log(data);
+        // console.log(data);
         this.button = false;
         this.mensajes = data.Mensajes[0];
         // data.DeudaTotal = 45064.78;
@@ -43,6 +43,7 @@ export class PagarComponent implements OnInit {
           if (prod.CodigoProducto === 'PRESTAMO') {
             // prod.Deuda = 82041.67;
             this.prestamos.push(prod);
+            this.guardarCuotas(prod); 
           }
         });
         this.deudaTotal = data.DeudaTotal;
@@ -54,6 +55,15 @@ export class PagarComponent implements OnInit {
         this.allCheckedProd();
         this.allCheckedProm();
       });
+  }
+
+  private guardarCuotas(producto: any): void {
+    const id = producto.IdCuenta;
+    const cuotas = [];
+    producto.CuotasPrestamo.forEach((cuota) => {
+      cuotas.push(cuota.id_prestamo_cuota);
+    });
+    this.cuotasId.push({ id, cuotas });
   }
 
   abrirPopup(id): void {
@@ -81,9 +91,15 @@ export class PagarComponent implements OnInit {
     for (let cuota in e.cuotas) {
       cuotas.push(e.cuotas[cuota]);
     }
-    this.cuotasId.push({ id, cuotas });
+    this.cuotasId.forEach((prestamo) => {
+      if (prestamo.id === id) {
+        prestamo.cuotas = cuotas;
+      } else {
+        this.cuotasId.push({ id, cuotas });
+      }
+    });
     // console.log(this.cuotasId);
-    console.log(this.cuotasId);
+    // console.log(this.cuotasId);
   }
 
   cambiarCheckProductos(id: number, e): void {
@@ -434,7 +450,7 @@ export class PagarComponent implements OnInit {
       this.pagoGeneradoStep = this.pagoGeneradoStep + 2;
       // this.router.navigateByUrl('home/metodos-pago');
     }
-    console.log(pago);
+    // console.log(pago);
   }
 
   seleccionarPago(e): void {
@@ -493,7 +509,7 @@ export class PagarComponent implements OnInit {
   }
 
   onContinuar(e): void {
-    console.log(e);
+    // console.log(e);
     this.pagoGeneradoStep = e;
   }
 

@@ -25,4 +25,14 @@ export class TopbarComponent implements OnInit {
     });
     this.Cliente = localStorage.getItem('Cliente');
   }
+
+  Inicio(): void{
+    this.cambioTexto(this.translate.instant('Traduct.inicio'));
+    this.router.navigateByUrl('/home/default');
+  }
+
+  // NOTIFICAMOS
+  cambioTexto(mensaje: string): void {
+    this.servicioComunicacion.enviarMensaje(mensaje);
+  }
 }

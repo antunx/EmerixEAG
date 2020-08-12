@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { GetService } from '@services/get.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,7 +14,9 @@ export class TuPerfilComponent implements OnInit, OnDestroy {
   Nombre: string;
   Documento: string;
   Telefono: string;
+  Mail: string;
   IdPersona: string;
+  @HostBinding('class') class = 'pages-container flex-grow';
   constructor(
     private getservices: GetService,
     private translate: TranslateService
@@ -35,6 +37,7 @@ export class TuPerfilComponent implements OnInit, OnDestroy {
       this.Nombre = res.Nombre;
       this.Telefono = res.Telefono;
       this.Documento = res.Documento;
+      this.Mail  = res.Mail;
     }, (err) => {
         console.log(err);
       }

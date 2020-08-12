@@ -1,0 +1,30 @@
+<div (click)="cerrarPopup()" class="overlay active">
+  <div class="dialog-container sidebar" role="dialog">
+    <a class="close-btn" (click)="cerrarPopup()">
+      <img src="assets/images/ui/close-btn.svg" alt="Close" />
+    </a>
+    <div class="dialog-content login-dialog">
+      <div>
+        <div class="flex-column flex-center">
+          <div>
+            <img
+              width="70px"
+              height="70px"
+              src="assets/images/ui/exclamation-triangle-solid.svg"
+              alt=""
+            />
+          </div>
+          <div class="text-center">
+            <h3>
+              El estado de su pago es:
+              {{ estadoPago }}
+            </h3>
+            <button class="btn btn-primary" (click)="cerrarPopup()">
+              {{ "Traduct.continuar" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

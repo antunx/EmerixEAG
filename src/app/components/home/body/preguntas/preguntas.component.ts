@@ -34,4 +34,18 @@ export class PreguntasComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+  Desplegar(): void{
+    const accordion = document.querySelector('#accordion-7530753671')
+    const items = accordion.querySelectorAll('li')
+
+
+    accordion.querySelectorAll('.accordion-title > a').forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault()
+        items.forEach((item) => item.classList.remove('active'))
+        trigger.closest('li').classList.add('active')
+      })
+    })
+  }
 }
