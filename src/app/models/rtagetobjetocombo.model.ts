@@ -8,4 +8,5 @@ export interface Item {
   Id: number;
   Codigo: string;
   Nombre: string;
+  Imagen: string;
 }

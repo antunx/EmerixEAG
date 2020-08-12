@@ -29,7 +29,6 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
       this.metodosEstandarService.Entidad = ''; // SOLO SE USA PARA CRUD
     }
   @HostBinding('class') class = 'pages-container flex-grow';
-  private fechaDate: Date;
   private subscription: Subscription = new Subscription();
   MensajePago: string;
   swalWithBootstrapButtons = Swal.mixin({
@@ -39,10 +38,6 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     },
     buttonsStyling: false
   });
-
-  get IdMedioPago(): AbstractControl {
-    return this.pagoForm.get('IdMedioPago');
-  }
 
   get IdMoneda(): AbstractControl {
     return this.pagoForm.get('IdMoneda');
@@ -64,19 +59,13 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     return this.pagoForm.get('Comentario');
   }
 
-  MenuSel: string;
-  MercadoPago: string;
-  Visa: string;
-  Master: string;
-  Emec: string;
-
   // Combos
   mediosPago: Item[];
   monedas: Item[];
   FechaActual = new Date();
+  IdMedioPago: number;
 
   pagoForm = this.formBuilder.group({
-    // IdMedioPago: ['0', Validators.required],
     IdMoneda: ['0', Validators.required],
     Importe: ['', [Validators.required, Validators.min(0.01), Validators.max(999999999)]],
     FechaPago: [this.datePipe.transform(this.FechaActual, 'yyyy-MM-dd'), Validators.required],
@@ -85,14 +74,9 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   });
 
   ngOnInit(): void{
-    this.MenuSel = 'MP';
-    this.MercadoPago = 'MP';
-    this.Visa = 'VISA';
-    this.Master = 'MSTC';
-    this.Emec = 'EMEC';
-
+    this.IdMedioPago = 0;
     this.cambioTexto(this.translate.instant('Traduct.registrar_pago'));
-    // this.LlenarMediosPago();
+    this.LlenarMediosPago();
     this.LlenarMonedas();
   }
 
@@ -103,7 +87,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   cambioTexto(mensaje: string): void {
     this.servicioComunicacion.enviarMensaje(mensaje);
   }
-/*   LlenarMediosPago(): void{
+   LlenarMediosPago(): void{
     this.subscription.add(this.metodosEstandarService.getObjectCombo('getmediospago').subscribe(
       (res) => {
         if (res.ErrorCode > 0){
@@ -117,7 +101,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
         console.log(err);
       }
     ));
-  } */
+  }
 
   LlenarMonedas(): void{
     this.subscription.add(this.metodosEstandarService.getObjectCombo('getmoneda').subscribe(
@@ -134,6 +118,21 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     ));
   }
 
+  MedioPago(id: number): void{
+    this.mediosPago.forEach(element => console.log(
+      (document.getElementById(`${element.Id}`) as HTMLInputElement).classList.remove('active')
+    ));
+    (document.getElementById(`${id}`) as HTMLInputElement).classList.add('active');
+    this.IdMedioPago = id;
+  }
+
+  MedioPagoDefault(): void{
+    this.mediosPago.forEach(element => console.log(
+      (document.getElementById(`${element.Id}`) as HTMLInputElement).classList.remove('active')
+    ));
+    this.IdMedioPago = 0;
+  }
+
   Validate(): string{
     const hoy = new Date();
     const FechaPago = new Date(this.pagoForm.controls.FechaPago.value);
@@ -145,9 +144,9 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
       return this.translate.instant('Traduct.seleccione_moneda');
     }
 
-/*     if (this.pagoForm.controls.IdMedioPago.value === '0') {
+    if (this.IdMedioPago === 0) {
      return this.translate.instant('Traduct.seleccione_medio_pago');
-    } */
+    }
 
     return '';
   }
@@ -155,26 +154,6 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   IngresarPago(): void{
     let Mensaje = '';
     Mensaje = this.Validate();
-
-/*
-{Id: 1, Codigo: "MERCPAG", Nombre: "Mercado Pago"}
-{Id: 2, Codigo: "PAGFAC", Nombre: "Pago Fácil"}
-{Id: 3, Codigo: "TRJCRED", Nombre: "Tarjeta Credito"}
-{Id: 4, Codigo: "TRJDEB", Nombre: "Tarjeta Debito"}
-*/
-
-
-    let IdMedioPago: number;
-    if (this.MenuSel === 'MP'){
-      IdMedioPago = 1;
-    } else if (this.MenuSel === 'VISA'){
-      IdMedioPago = 2;
-    } else if (this.MenuSel === 'MSTC'){
-      IdMedioPago = 3;
-    } else if (this.MenuSel === 'EMEC'){
-      IdMedioPago = 4;
-    }
-
 
     if (Mensaje === ''){
       // console.log(this.pagoForm.value);
@@ -193,7 +172,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
           entidad.Fecha = FechaPago;
           entidad.IdCuenta = '0';
           entidad.IdPersona = localStorage.getItem('version_core');
-          entidad.IdMedioPago = IdMedioPago;
+          entidad.IdMedioPago = this.IdMedioPago;
 
           // console.log(entidad);
           // return;
@@ -238,13 +217,13 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
 
   ResetForm(): void{
     this.pagoForm = this.formBuilder.group({
-      IdMedioPago: ['0'],
       IdMoneda: ['0'],
       Importe: [''],
       FechaPago: [this.datePipe.transform(this.FechaActual, 'dd-MM-yyyy')],
       NumeroComprobante: [''],
       Comentario: ['']
     });
+    this.MedioPagoDefault();
   }
 
   SoloNumerosLetras(event: string): boolean {

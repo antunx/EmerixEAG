@@ -167,13 +167,9 @@
               <p>{{ 'Traduct.registrar_pago_t2' | translate }}:</p>
               <div class="payment-selector">
                  <ul class="flex-row">
-                    <li class="flex-column flex-center" (click)="MenuSel='MP'"   [ngClass]="{'' : MenuSel != MercadoPago,' active' : MenuSel === MercadoPago}"><img src="assets/images/sections/payments/mercadopago.svg" alt=""></li>
-                    <li class="flex-column flex-center" (click)="MenuSel='VISA'" [ngClass]="{'' : MenuSel != Visa,' active' : MenuSel === Visa}"><img src="assets/images/sections/payments/visa.svg" alt=""></li>
-                    <li class="flex-column flex-center" (click)="MenuSel='MSTC'" [ngClass]="{'' : MenuSel != Master,' active' : MenuSel === Master}"><img src="assets/images/sections/payments/mastercard.svg" alt=""></li>
-                    <li class="flex-column flex-center" (click)="MenuSel='EMEC'" [ngClass]="{'' : MenuSel != Emec,' active' : MenuSel === Emec}"><img src="assets/images/sections/payments/amex.svg" alt=""></li>
-                    <li class="flex-column flex-center"><img src="assets/images/sections/payments/generic.svg" alt=""></li>
-                    <li class="flex-column flex-center"><img src="assets/images/sections/payments/generic.svg" alt=""></li>
-                    <li class="flex-column flex-center"><img src="assets/images/sections/payments/generic.svg" alt=""></li>
+                  <li *ngFor="let medio of mediosPago" id="{{medio.Id}}" class="flex-column flex-center" (click)="MedioPago(medio.Id)">
+                    <img src="assets/images/sections/payments/{{medio.Imagen}}" alt="">
+                  </li>
                  </ul>
               </div>
            </div>
