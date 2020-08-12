@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 /** TRANSLATION */
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -42,6 +43,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+    RouterModule
   ]
 })
 export class LoginModule { }
