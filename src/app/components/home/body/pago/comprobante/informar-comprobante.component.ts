@@ -94,7 +94,6 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
           console.log(res.ErrorMessage);
         } else{
           this.mediosPago = res.Items;
-          console.log(res.Items);
         }
       },
       (err) => {
@@ -119,17 +118,17 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   }
 
   MedioPago(id: number): void{
-    this.mediosPago.forEach(element => console.log(
-      (document.getElementById(`${element.Id}`) as HTMLInputElement).classList.remove('active')
-    ));
+    this.mediosPago.forEach(element =>
+            (document.getElementById(`${element.Id}`) as HTMLInputElement).classList.remove('active')
+    );
     (document.getElementById(`${id}`) as HTMLInputElement).classList.add('active');
     this.IdMedioPago = id;
   }
 
   MedioPagoDefault(): void{
-    this.mediosPago.forEach(element => console.log(
+    this.mediosPago.forEach(element =>
       (document.getElementById(`${element.Id}`) as HTMLInputElement).classList.remove('active')
-    ));
+    );
     this.IdMedioPago = 0;
   }
 
