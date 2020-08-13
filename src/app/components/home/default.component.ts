@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostService } from '@app/services/post.service';
 import { IPago } from '../../models/postPago.model';
+import { RtagetProductPersonModel, Product } from '@app/models/rtagetproductperson.model';
 
 @Component({
   selector: 'app-default',
@@ -15,6 +16,10 @@ export class DefaultComponent implements OnInit {
   @HostBinding('class') class = 'pages-container flex-grow';
   estadoPago: string;
   Cliente: string;
+  MostrarPopup: boolean;
+  IdPersona = '';
+  product: Product;
+  productos: Product[] = [];
   constructor(
     private translate: TranslateService,
     private servicioComunicacion: ComunicacionService,
@@ -71,4 +76,24 @@ export class DefaultComponent implements OnInit {
   onVolviendo(e): void {
     this.estadoPago = e;
   }
+
+    // navegamos al detalle de producto
+    detalleProducto(producto: Product): void{
+
+      // if (producto !== null){
+        // console.log('id: ' + id);
+        // this.producto  = producto;
+        const overlay = document.querySelector('#home-sidebar');
+
+        document.querySelectorAll('#products-table tr').forEach((tr) => {
+          tr.addEventListener('click', () => {
+            overlay.classList.add('active');
+          });
+        });
+
+        overlay.querySelector('.close-btn').addEventListener('click', () => {
+          overlay.classList.remove('active');
+        });
+      // }
+    }
 }

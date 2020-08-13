@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GetService } from '@app/services/get.service';
 import { Subscription } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-preguntas',
@@ -13,6 +14,7 @@ export class PreguntasComponent implements OnInit, OnDestroy {
   PageTitle = '';
   PageParagraph = '';
   Items = [];
+  ItemsOriginal = [];
   constructor( private getservices: GetService ) { }
 
   ngOnInit(): void {
@@ -29,6 +31,7 @@ export class PreguntasComponent implements OnInit, OnDestroy {
       this.PageTitle = res.PageTitle;
       this.PageParagraph = res.PageParagraph;
       this.Items = res.Items;
+      this.ItemsOriginal = res.Items;
     }, (err) => {
         // console.log(err);
       }
@@ -46,5 +49,21 @@ export class PreguntasComponent implements OnInit, OnDestroy {
         trigger.closest('li').classList.add('active');
       });
     });
+  }
+
+  Buscar(strBuscar: string): void{
+    if (strBuscar === '') {
+      this.Items = this.ItemsOriginal;
+    } else{
+      this.Items = this.ItemsOriginal.filter(
+        item =>
+        item.ItemTitle.toLowerCase().indexOf(strBuscar.toLowerCase()) > -1
+        ||
+        item.ItemParagraph.toLowerCase().indexOf(strBuscar.toLowerCase()) > -1);
+    }
+  }
+
+  Foco(): void{
+    this.Desplegar();
   }
 }
