@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -884,12 +883,12 @@ html.no-scroll body {
   margin-bottom: 1rem;
 }
 
-.emerix-page .selectable-box .box, .emerix-page .selectable-box .input-wrapper.select2.active, .emerix-page .selectable-box .overlay .dialog-container, .emerix-page .overlay .selectable-box .dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul {
+.emerix-page .selectable-box .box, .emerix-page .selectable-box .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .selectable-box ul, .emerix-page .selectable-box .overlay .dialog-container, .emerix-page .overlay .selectable-box .dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul {
   cursor: pointer;
   transition: border-color 0.15s ease;
 }
 
-.emerix-page .selectable-box .box.active, .emerix-page .selectable-box .active.input-wrapper.select2, .emerix-page .selectable-box .overlay .active.dialog-container, .emerix-page .overlay .selectable-box .active.dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul.active, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul.active {
+.emerix-page .selectable-box .box.active, .emerix-page .selectable-box .input-wrapper.select2.active ul.active, .emerix-page .input-wrapper.select2.active .selectable-box ul.active, .emerix-page .selectable-box .overlay .active.dialog-container, .emerix-page .overlay .selectable-box .active.dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul.active, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul.active {
   border-color: #8569b4;
 }
 
@@ -902,7 +901,7 @@ html.no-scroll body {
   }
 }
 
-.emerix-page .box, .emerix-page .input-wrapper.select2.active, .emerix-page .overlay .dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul {
+.emerix-page .box, .emerix-page .input-wrapper.select2.active ul, .emerix-page .overlay .dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul {
   background-color: #fff;
   border: 1px solid rgba(152, 152, 152, 0.15);
   padding: 1.5rem;
@@ -910,42 +909,42 @@ html.no-scroll body {
   box-shadow: 0.25rem 0.5rem 1rem rgba(60, 60, 59, 0.1);
 }
 
-.emerix-page .box:first-child, .emerix-page .input-wrapper.select2.active:first-child, .emerix-page .overlay .dialog-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:first-child {
+.emerix-page .box:first-child, .emerix-page .input-wrapper.select2.active ul:first-child, .emerix-page .overlay .dialog-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:first-child {
   margin-left: 0;
 }
 
-.emerix-page .box:last-child, .emerix-page .input-wrapper.select2.active:last-child, .emerix-page .overlay .dialog-container:last-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:last-child {
+.emerix-page .box:last-child, .emerix-page .input-wrapper.select2.active ul:last-child, .emerix-page .overlay .dialog-container:last-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:last-child {
   margin-right: 0;
 }
 
-.emerix-page .box hr, .emerix-page .input-wrapper.select2.active hr, .emerix-page .overlay .dialog-container hr, .emerix-page .topbar .notifications-menu .dropdown-target ul hr {
+.emerix-page .box hr, .emerix-page .input-wrapper.select2.active ul hr, .emerix-page .overlay .dialog-container hr, .emerix-page .topbar .notifications-menu .dropdown-target ul hr {
   margin-left: -1.5rem;
   margin-right: -1.5rem;
 }
 
 @media all and (max-width: 1024px) {
-  .emerix-page .box, .emerix-page .input-wrapper.select2.active, .emerix-page .overlay .dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul {
+  .emerix-page .box, .emerix-page .input-wrapper.select2.active ul, .emerix-page .overlay .dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul {
     margin: 1.5rem;
     margin-left: 0;
     margin-right: 0;
     padding: 1rem;
   }
-  .emerix-page .box:first-child, .emerix-page .input-wrapper.select2.active:first-child, .emerix-page .overlay .dialog-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:first-child,
+  .emerix-page .box:first-child, .emerix-page .input-wrapper.select2.active ul:first-child, .emerix-page .overlay .dialog-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:first-child,
   .emerix-page .box + .box,
-  .emerix-page .input-wrapper.select2.active + .box,
+  .emerix-page .input-wrapper.select2.active ul + .box,
   .emerix-page .overlay .dialog-container + .box,
   .emerix-page .topbar .notifications-menu .dropdown-target ul + .box,
-  .emerix-page .box + .input-wrapper.select2.active,
-  .emerix-page .input-wrapper.select2.active + .input-wrapper.select2.active,
-  .emerix-page .overlay .dialog-container + .input-wrapper.select2.active,
-  .emerix-page .topbar .notifications-menu .dropdown-target ul + .input-wrapper.select2.active,
+  .emerix-page .input-wrapper.select2.active .box + ul,
+  .emerix-page .input-wrapper.select2.active ul + ul,
+  .emerix-page .overlay .input-wrapper.select2.active .dialog-container + ul,
+  .emerix-page .input-wrapper.select2.active .overlay .dialog-container + ul,
   .emerix-page .overlay .box + .dialog-container,
-  .emerix-page .overlay .input-wrapper.select2.active + .dialog-container,
+  .emerix-page .input-wrapper.select2.active .overlay ul + .dialog-container,
+  .emerix-page .overlay .input-wrapper.select2.active ul + .dialog-container,
   .emerix-page .overlay .dialog-container + .dialog-container,
   .emerix-page .topbar .notifications-menu .dropdown-target .overlay ul + .dialog-container,
   .emerix-page .overlay .topbar .notifications-menu .dropdown-target ul + .dialog-container,
   .emerix-page .topbar .notifications-menu .dropdown-target .box + ul,
-  .emerix-page .topbar .notifications-menu .dropdown-target .input-wrapper.select2.active + ul,
   .emerix-page .overlay .topbar .notifications-menu .dropdown-target .dialog-container + ul,
   .emerix-page .topbar .notifications-menu .dropdown-target .overlay .dialog-container + ul,
   .emerix-page .topbar .notifications-menu .dropdown-target ul + ul {
@@ -983,6 +982,9 @@ html.no-scroll body {
   padding-top: .5rem;
   overflow: hidden;
   height: 3rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  z-index: 10;
 }
 
 .emerix-page .input-wrapper.select2:after {
@@ -997,23 +999,69 @@ html.no-scroll body {
 }
 
 .emerix-page .input-wrapper.select2.active {
-  padding: 0 !important;
-  height: auto;
+  overflow: visible;
 }
 
 .emerix-page .input-wrapper.select2.active:after {
   top: 1rem;
   -webkit-transform: scale(-1);
           transform: scale(-1);
+  margin-top: .5rem;
+}
+
+.emerix-page .input-wrapper.select2.active ul {
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+.emerix-page .input-wrapper.select2.date-selected {
+  padding-top: 1rem;
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
+
+.emerix-page .input-wrapper.select2.date-selected .select2-date {
+  display: block;
+  position: relative;
+}
+
+.emerix-page .input-wrapper.select2.date-selected .select2-date:after {
+  right: 2rem;
+}
+
+.emerix-page .input-wrapper.select2.date-selected ul {
+  display: none;
+}
+
+.emerix-page .input-wrapper.select2.date-selected:after {
+  display: none;
+}
+
+.emerix-page .input-wrapper.select2 .select2-date {
+  display: none;
+}
+
+.emerix-page .input-wrapper.select2 .select2-date .alternate-select {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translateY(-50%) scale(0.8);
+          transform: translateY(-50%) scale(0.8);
+}
+
+.emerix-page .input-wrapper.select2 ul {
+  background-color: #fff;
 }
 
 .emerix-page .input-wrapper.select2 li {
   transition: all 0.15s ease;
+  cursor: pointer;
 }
 
 .emerix-page .input-wrapper.select2 li div {
   padding: 1rem 0;
-  margin: 0 1.5rem;
+  margin: 0 1rem;
   line-height: 1rem;
   position: relative;
 }
@@ -1457,14 +1505,15 @@ html.no-scroll body {
 }
 
 .emerix-page .dropdown-title:after {
-  content: '↓';
+  content: url("assets/images/ui/dropdown.svg");
   position: absolute;
   top: 0;
   right: 0;
 }
 
 .emerix-page .dropdown-trigger:checked + .dropdown-title:after {
-  content: '↑';
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
 }
 
 .emerix-page .error-box {
@@ -1476,12 +1525,12 @@ html.no-scroll body {
   margin-bottom: 1rem;
 }
 
-.emerix-page .selectable-box .box, .emerix-page .selectable-box .input-wrapper.select2.active, .emerix-page .selectable-box .overlay .dialog-container, .emerix-page .overlay .selectable-box .dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul {
+.emerix-page .selectable-box .box, .emerix-page .selectable-box .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .selectable-box ul, .emerix-page .selectable-box .overlay .dialog-container, .emerix-page .overlay .selectable-box .dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul {
   cursor: pointer;
   transition: border-color 0.15s ease;
 }
 
-.emerix-page .selectable-box .box.active, .emerix-page .selectable-box .active.input-wrapper.select2, .emerix-page .selectable-box .overlay .active.dialog-container, .emerix-page .overlay .selectable-box .active.dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul.active, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul.active {
+.emerix-page .selectable-box .box.active, .emerix-page .selectable-box .input-wrapper.select2.active ul.active, .emerix-page .input-wrapper.select2.active .selectable-box ul.active, .emerix-page .selectable-box .overlay .active.dialog-container, .emerix-page .overlay .selectable-box .active.dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul.active, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul.active {
   border-color: #8569b4;
 }
 
@@ -1494,7 +1543,7 @@ html.no-scroll body {
   }
 }
 
-.emerix-page .box, .emerix-page .input-wrapper.select2.active, .emerix-page .overlay .dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul {
+.emerix-page .box, .emerix-page .input-wrapper.select2.active ul, .emerix-page .overlay .dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul {
   background-color: #fff;
   border: 1px solid rgba(152, 152, 152, 0.15);
   padding: 1.5rem;
@@ -1502,42 +1551,42 @@ html.no-scroll body {
   box-shadow: 0.25rem 0.5rem 1rem rgba(60, 60, 59, 0.1);
 }
 
-.emerix-page .box:first-child, .emerix-page .input-wrapper.select2.active:first-child, .emerix-page .overlay .dialog-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:first-child {
+.emerix-page .box:first-child, .emerix-page .input-wrapper.select2.active ul:first-child, .emerix-page .overlay .dialog-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:first-child {
   margin-left: 0;
 }
 
-.emerix-page .box:last-child, .emerix-page .input-wrapper.select2.active:last-child, .emerix-page .overlay .dialog-container:last-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:last-child {
+.emerix-page .box:last-child, .emerix-page .input-wrapper.select2.active ul:last-child, .emerix-page .overlay .dialog-container:last-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:last-child {
   margin-right: 0;
 }
 
-.emerix-page .box hr, .emerix-page .input-wrapper.select2.active hr, .emerix-page .overlay .dialog-container hr, .emerix-page .topbar .notifications-menu .dropdown-target ul hr {
+.emerix-page .box hr, .emerix-page .input-wrapper.select2.active ul hr, .emerix-page .overlay .dialog-container hr, .emerix-page .topbar .notifications-menu .dropdown-target ul hr {
   margin-left: -1.5rem;
   margin-right: -1.5rem;
 }
 
 @media all and (max-width: 1024px) {
-  .emerix-page .box, .emerix-page .input-wrapper.select2.active, .emerix-page .overlay .dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul {
+  .emerix-page .box, .emerix-page .input-wrapper.select2.active ul, .emerix-page .overlay .dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul {
     margin: 1.5rem;
     margin-left: 0;
     margin-right: 0;
     padding: 1rem;
   }
-  .emerix-page .box:first-child, .emerix-page .input-wrapper.select2.active:first-child, .emerix-page .overlay .dialog-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:first-child,
+  .emerix-page .box:first-child, .emerix-page .input-wrapper.select2.active ul:first-child, .emerix-page .overlay .dialog-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:first-child,
   .emerix-page .box + .box,
-  .emerix-page .input-wrapper.select2.active + .box,
+  .emerix-page .input-wrapper.select2.active ul + .box,
   .emerix-page .overlay .dialog-container + .box,
   .emerix-page .topbar .notifications-menu .dropdown-target ul + .box,
-  .emerix-page .box + .input-wrapper.select2.active,
-  .emerix-page .input-wrapper.select2.active + .input-wrapper.select2.active,
-  .emerix-page .overlay .dialog-container + .input-wrapper.select2.active,
-  .emerix-page .topbar .notifications-menu .dropdown-target ul + .input-wrapper.select2.active,
+  .emerix-page .input-wrapper.select2.active .box + ul,
+  .emerix-page .input-wrapper.select2.active ul + ul,
+  .emerix-page .overlay .input-wrapper.select2.active .dialog-container + ul,
+  .emerix-page .input-wrapper.select2.active .overlay .dialog-container + ul,
   .emerix-page .overlay .box + .dialog-container,
-  .emerix-page .overlay .input-wrapper.select2.active + .dialog-container,
+  .emerix-page .input-wrapper.select2.active .overlay ul + .dialog-container,
+  .emerix-page .overlay .input-wrapper.select2.active ul + .dialog-container,
   .emerix-page .overlay .dialog-container + .dialog-container,
   .emerix-page .topbar .notifications-menu .dropdown-target .overlay ul + .dialog-container,
   .emerix-page .overlay .topbar .notifications-menu .dropdown-target ul + .dialog-container,
   .emerix-page .topbar .notifications-menu .dropdown-target .box + ul,
-  .emerix-page .topbar .notifications-menu .dropdown-target .input-wrapper.select2.active + ul,
   .emerix-page .overlay .topbar .notifications-menu .dropdown-target .dialog-container + ul,
   .emerix-page .topbar .notifications-menu .dropdown-target .overlay .dialog-container + ul,
   .emerix-page .topbar .notifications-menu .dropdown-target ul + ul {
@@ -1985,6 +2034,18 @@ html.no-scroll body {
   margin-bottom: 1rem;
 }
 
+@media all and (max-width: 1024px) {
+  .emerix-page .selectable-box.special-mobile-selectable-box * {
+    font-size: 0.85rem;
+  }
+  .emerix-page .selectable-box.special-mobile-selectable-box * .text-right input {
+    text-align: right;
+  }
+  .emerix-page .selectable-box:not(.special-mobile-selectable-box) * {
+    text-align: center;
+  }
+}
+
 .emerix-page .slider-container {
   width: 100%;
   overflow: hidden;
@@ -2071,34 +2132,34 @@ html.no-scroll body {
   color: #3C3C3B;
 }
 
-.emerix-page .box .table-container, .emerix-page .input-wrapper.select2.active .table-container, .emerix-page .overlay .dialog-container .table-container, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container {
+.emerix-page .box .table-container, .emerix-page .input-wrapper.select2.active ul .table-container, .emerix-page .overlay .dialog-container .table-container, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container {
   width: calc(100% + 3rem);
   margin-left: -1.5rem;
   margin-right: -1.5rem;
 }
 
-.emerix-page .box .table-container tr, .emerix-page .input-wrapper.select2.active .table-container tr, .emerix-page .overlay .dialog-container .table-container tr, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container tr {
+.emerix-page .box .table-container tr, .emerix-page .input-wrapper.select2.active ul .table-container tr, .emerix-page .overlay .dialog-container .table-container tr, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container tr {
   padding: 0 0.75rem;
 }
 
-.emerix-page .box .table-container:first-child, .emerix-page .input-wrapper.select2.active .table-container:first-child, .emerix-page .overlay .dialog-container .table-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container:first-child {
+.emerix-page .box .table-container:first-child, .emerix-page .input-wrapper.select2.active ul .table-container:first-child, .emerix-page .overlay .dialog-container .table-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container:first-child {
   margin-top: -1.5rem;
 }
 
-.emerix-page .box .table-container:last-child, .emerix-page .input-wrapper.select2.active .table-container:last-child, .emerix-page .overlay .dialog-container .table-container:last-child, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container:last-child {
+.emerix-page .box .table-container:last-child, .emerix-page .input-wrapper.select2.active ul .table-container:last-child, .emerix-page .overlay .dialog-container .table-container:last-child, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container:last-child {
   margin-bottom: -1.5rem;
 }
 
 @media all and (max-width: 1024px) {
-  .emerix-page .box .table-container, .emerix-page .input-wrapper.select2.active .table-container, .emerix-page .overlay .dialog-container .table-container, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container {
+  .emerix-page .box .table-container, .emerix-page .input-wrapper.select2.active ul .table-container, .emerix-page .overlay .dialog-container .table-container, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container {
     margin-left: -0.75rem;
     margin-right: -0.75rem;
     width: calc(100% + 1.5rem);
   }
-  .emerix-page .box .table-container:first-child, .emerix-page .input-wrapper.select2.active .table-container:first-child, .emerix-page .overlay .dialog-container .table-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container:first-child {
+  .emerix-page .box .table-container:first-child, .emerix-page .input-wrapper.select2.active ul .table-container:first-child, .emerix-page .overlay .dialog-container .table-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container:first-child {
     margin-top: -1rem;
   }
-  .emerix-page .box .table-container:last-child, .emerix-page .input-wrapper.select2.active .table-container:last-child, .emerix-page .overlay .dialog-container .table-container:last-child, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container:last-child {
+  .emerix-page .box .table-container:last-child, .emerix-page .input-wrapper.select2.active ul .table-container:last-child, .emerix-page .overlay .dialog-container .table-container:last-child, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container:last-child {
     margin-bottom: -1rem;
   }
 }
@@ -2108,7 +2169,7 @@ html.no-scroll body {
 }
 
 @media all and (min-width: 1025px) {
-  .emerix-page .table-container.box, .emerix-page .table-container.input-wrapper.select2.active, .emerix-page .overlay .table-container.dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul.table-container {
+  .emerix-page .table-container.box, .emerix-page .input-wrapper.select2.active ul.table-container, .emerix-page .overlay .table-container.dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul.table-container {
     background-color: #fff;
     border: 1px solid rgba(152, 152, 152, 0.15);
     margin: .5rem;
@@ -2203,6 +2264,7 @@ html.no-scroll body {
 
 .emerix-page .table-container .table .input-wrapper {
   margin-bottom: 0;
+  white-space: nowrap;
 }
 
 .emerix-page .table-container .table .input-wrapper.error input {
@@ -2337,12 +2399,12 @@ html.no-scroll body {
   margin-bottom: 1rem;
 }
 
-.emerix-page .selectable-box .box, .emerix-page .selectable-box .input-wrapper.select2.active, .emerix-page .selectable-box .overlay .dialog-container, .emerix-page .overlay .selectable-box .dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul {
+.emerix-page .selectable-box .box, .emerix-page .selectable-box .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .selectable-box ul, .emerix-page .selectable-box .overlay .dialog-container, .emerix-page .overlay .selectable-box .dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul {
   cursor: pointer;
   transition: border-color 0.15s ease;
 }
 
-.emerix-page .selectable-box .box.active, .emerix-page .selectable-box .active.input-wrapper.select2, .emerix-page .selectable-box .overlay .active.dialog-container, .emerix-page .overlay .selectable-box .active.dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul.active, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul.active {
+.emerix-page .selectable-box .box.active, .emerix-page .selectable-box .input-wrapper.select2.active ul.active, .emerix-page .input-wrapper.select2.active .selectable-box ul.active, .emerix-page .selectable-box .overlay .active.dialog-container, .emerix-page .overlay .selectable-box .active.dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul.active, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul.active {
   border-color: #8569b4;
 }
 
@@ -2355,7 +2417,7 @@ html.no-scroll body {
   }
 }
 
-.emerix-page .box, .emerix-page .input-wrapper.select2.active, .emerix-page .overlay .dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul {
+.emerix-page .box, .emerix-page .input-wrapper.select2.active ul, .emerix-page .overlay .dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul {
   background-color: #fff;
   border: 1px solid rgba(152, 152, 152, 0.15);
   padding: 1.5rem;
@@ -2363,42 +2425,42 @@ html.no-scroll body {
   box-shadow: 0.25rem 0.5rem 1rem rgba(60, 60, 59, 0.1);
 }
 
-.emerix-page .box:first-child, .emerix-page .input-wrapper.select2.active:first-child, .emerix-page .overlay .dialog-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:first-child {
+.emerix-page .box:first-child, .emerix-page .input-wrapper.select2.active ul:first-child, .emerix-page .overlay .dialog-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:first-child {
   margin-left: 0;
 }
 
-.emerix-page .box:last-child, .emerix-page .input-wrapper.select2.active:last-child, .emerix-page .overlay .dialog-container:last-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:last-child {
+.emerix-page .box:last-child, .emerix-page .input-wrapper.select2.active ul:last-child, .emerix-page .overlay .dialog-container:last-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:last-child {
   margin-right: 0;
 }
 
-.emerix-page .box hr, .emerix-page .input-wrapper.select2.active hr, .emerix-page .overlay .dialog-container hr, .emerix-page .topbar .notifications-menu .dropdown-target ul hr {
+.emerix-page .box hr, .emerix-page .input-wrapper.select2.active ul hr, .emerix-page .overlay .dialog-container hr, .emerix-page .topbar .notifications-menu .dropdown-target ul hr {
   margin-left: -1.5rem;
   margin-right: -1.5rem;
 }
 
 @media all and (max-width: 1024px) {
-  .emerix-page .box, .emerix-page .input-wrapper.select2.active, .emerix-page .overlay .dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul {
+  .emerix-page .box, .emerix-page .input-wrapper.select2.active ul, .emerix-page .overlay .dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target ul {
     margin: 1.5rem;
     margin-left: 0;
     margin-right: 0;
     padding: 1rem;
   }
-  .emerix-page .box:first-child, .emerix-page .input-wrapper.select2.active:first-child, .emerix-page .overlay .dialog-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:first-child,
+  .emerix-page .box:first-child, .emerix-page .input-wrapper.select2.active ul:first-child, .emerix-page .overlay .dialog-container:first-child, .emerix-page .topbar .notifications-menu .dropdown-target ul:first-child,
   .emerix-page .box + .box,
-  .emerix-page .input-wrapper.select2.active + .box,
+  .emerix-page .input-wrapper.select2.active ul + .box,
   .emerix-page .overlay .dialog-container + .box,
   .emerix-page .topbar .notifications-menu .dropdown-target ul + .box,
-  .emerix-page .box + .input-wrapper.select2.active,
-  .emerix-page .input-wrapper.select2.active + .input-wrapper.select2.active,
-  .emerix-page .overlay .dialog-container + .input-wrapper.select2.active,
-  .emerix-page .topbar .notifications-menu .dropdown-target ul + .input-wrapper.select2.active,
+  .emerix-page .input-wrapper.select2.active .box + ul,
+  .emerix-page .input-wrapper.select2.active ul + ul,
+  .emerix-page .overlay .input-wrapper.select2.active .dialog-container + ul,
+  .emerix-page .input-wrapper.select2.active .overlay .dialog-container + ul,
   .emerix-page .overlay .box + .dialog-container,
-  .emerix-page .overlay .input-wrapper.select2.active + .dialog-container,
+  .emerix-page .input-wrapper.select2.active .overlay ul + .dialog-container,
+  .emerix-page .overlay .input-wrapper.select2.active ul + .dialog-container,
   .emerix-page .overlay .dialog-container + .dialog-container,
   .emerix-page .topbar .notifications-menu .dropdown-target .overlay ul + .dialog-container,
   .emerix-page .overlay .topbar .notifications-menu .dropdown-target ul + .dialog-container,
   .emerix-page .topbar .notifications-menu .dropdown-target .box + ul,
-  .emerix-page .topbar .notifications-menu .dropdown-target .input-wrapper.select2.active + ul,
   .emerix-page .overlay .topbar .notifications-menu .dropdown-target .dialog-container + ul,
   .emerix-page .topbar .notifications-menu .dropdown-target .overlay .dialog-container + ul,
   .emerix-page .topbar .notifications-menu .dropdown-target ul + ul {
@@ -2854,7 +2916,7 @@ html.no-scroll body {
   .emerix-page .page-login {
     height: 100vh;
   }
-  .emerix-page .page-login .box, .emerix-page .page-login .input-wrapper.select2.active, .emerix-page .page-login .overlay .dialog-container, .emerix-page .overlay .page-login .dialog-container, .emerix-page .page-login .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .page-login ul {
+  .emerix-page .page-login .box, .emerix-page .page-login .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .page-login ul, .emerix-page .page-login .overlay .dialog-container, .emerix-page .overlay .page-login .dialog-container, .emerix-page .page-login .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .page-login ul {
     box-shadow: none;
     border-radius: 0;
     border: 0;
@@ -3171,12 +3233,6 @@ html.no-scroll body {
   height: 1.188rem;
 }
 
-@media all and (max-width: 1024px) {
-  .emerix-page .page-promises .selectable-box * {
-    text-align: center;
-  }
-}
-
 .emerix-page .page-promises .input-wrapper.huge.price {
   margin-bottom: 0;
 }
@@ -3187,24 +3243,34 @@ html.no-scroll body {
   }
 }
 
-.emerix-page .page-promises.promises .box.active p, .emerix-page .page-promises.promises .active.input-wrapper.select2 p, .emerix-page .page-promises.promises .overlay .active.dialog-container p, .emerix-page .overlay .page-promises.promises .active.dialog-container p, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul.active p, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul.active p {
+.emerix-page .page-promises.promises .box.active p, .emerix-page .page-promises.promises .input-wrapper.select2.active ul.active p, .emerix-page .input-wrapper.select2.active .page-promises.promises ul.active p, .emerix-page .page-promises.promises .overlay .active.dialog-container p, .emerix-page .overlay .page-promises.promises .active.dialog-container p, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul.active p, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul.active p {
   font-weight: bold;
 }
 
-.emerix-page .page-promises.promises .box.active img, .emerix-page .page-promises.promises .active.input-wrapper.select2 img, .emerix-page .page-promises.promises .overlay .active.dialog-container img, .emerix-page .overlay .page-promises.promises .active.dialog-container img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul.active img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul.active img {
+.emerix-page .page-promises.promises .box.active img, .emerix-page .page-promises.promises .input-wrapper.select2.active ul.active img, .emerix-page .input-wrapper.select2.active .page-promises.promises ul.active img, .emerix-page .page-promises.promises .overlay .active.dialog-container img, .emerix-page .overlay .page-promises.promises .active.dialog-container img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul.active img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul.active img {
   display: none;
 }
 
-.emerix-page .page-promises.promises .box.active img + img, .emerix-page .page-promises.promises .active.input-wrapper.select2 img + img, .emerix-page .page-promises.promises .overlay .active.dialog-container img + img, .emerix-page .overlay .page-promises.promises .active.dialog-container img + img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul.active img + img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul.active img + img {
+.emerix-page .page-promises.promises .box.active img + img, .emerix-page .page-promises.promises .input-wrapper.select2.active ul.active img + img, .emerix-page .input-wrapper.select2.active .page-promises.promises ul.active img + img, .emerix-page .page-promises.promises .overlay .active.dialog-container img + img, .emerix-page .overlay .page-promises.promises .active.dialog-container img + img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul.active img + img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul.active img + img {
   display: block;
 }
 
-.emerix-page .page-promises.promises .box:not(.active) img, .emerix-page .page-promises.promises .input-wrapper.select2.active:not(.active) img, .emerix-page .page-promises.promises .overlay .dialog-container:not(.active) img, .emerix-page .overlay .page-promises.promises .dialog-container:not(.active) img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul:not(.active) img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul:not(.active) img {
+.emerix-page .page-promises.promises .box:not(.active) img, .emerix-page .page-promises.promises .input-wrapper.select2.active ul:not(.active) img, .emerix-page .input-wrapper.select2.active .page-promises.promises ul:not(.active) img, .emerix-page .page-promises.promises .overlay .dialog-container:not(.active) img, .emerix-page .overlay .page-promises.promises .dialog-container:not(.active) img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul:not(.active) img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul:not(.active) img {
   display: block;
 }
 
-.emerix-page .page-promises.promises .box:not(.active) img + img, .emerix-page .page-promises.promises .input-wrapper.select2.active:not(.active) img + img, .emerix-page .page-promises.promises .overlay .dialog-container:not(.active) img + img, .emerix-page .overlay .page-promises.promises .dialog-container:not(.active) img + img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul:not(.active) img + img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul:not(.active) img + img {
+.emerix-page .page-promises.promises .box:not(.active) img + img, .emerix-page .page-promises.promises .input-wrapper.select2.active ul:not(.active) img + img, .emerix-page .input-wrapper.select2.active .page-promises.promises ul:not(.active) img + img, .emerix-page .page-promises.promises .overlay .dialog-container:not(.active) img + img, .emerix-page .overlay .page-promises.promises .dialog-container:not(.active) img + img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul:not(.active) img + img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul:not(.active) img + img {
   display: none;
+}
+
+.emerix-page .page-promises .dropdown-card {
+  position: relative;
+}
+
+.emerix-page .page-promises .dropdown-card .dropdown-title {
+  position: absolute;
+  top: -3rem;
+  right: 0;
 }
 
 @media all and (max-width: 1024px) {
@@ -3272,7 +3338,7 @@ html.no-scroll body {
   }
 }
 
-.emerix-page .page-payments .payment-selector .box, .emerix-page .page-payments .payment-selector .input-wrapper.select2.active, .emerix-page .page-payments .payment-selector .overlay .dialog-container, .emerix-page .overlay .page-payments .payment-selector .dialog-container, .emerix-page .page-payments .payment-selector .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .page-payments .payment-selector ul {
+.emerix-page .page-payments .payment-selector .box, .emerix-page .page-payments .payment-selector .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .page-payments .payment-selector ul, .emerix-page .page-payments .payment-selector .overlay .dialog-container, .emerix-page .overlay .page-payments .payment-selector .dialog-container, .emerix-page .page-payments .payment-selector .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .page-payments .payment-selector ul {
   display: flex;
   padding: 0;
   box-shadow: none;
@@ -3284,44 +3350,49 @@ html.no-scroll body {
   padding-bottom: 1rem;
 }
 
-.emerix-page .page-pay.pay_1 .selectable-box .box:not(.active), .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active:not(.active), .emerix-page .page-pay.pay_1 .selectable-box .overlay .dialog-container:not(.active), .emerix-page .overlay .page-pay.pay_1 .selectable-box .dialog-container:not(.active), .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul:not(.active), .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul:not(.active) {
+.emerix-page .page-pay.pay_1 .selectable-box .box:not(.active), .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active ul:not(.active), .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box ul:not(.active), .emerix-page .page-pay.pay_1 .selectable-box .overlay .dialog-container:not(.active), .emerix-page .overlay .page-pay.pay_1 .selectable-box .dialog-container:not(.active), .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul:not(.active), .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul:not(.active) {
   color: #989898;
 }
 
-.emerix-page .page-pay.pay_1 .selectable-box .box + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .dialog-container + .box .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .dialog-container + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + .box .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .box + .input-wrapper.select2.active .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active + .input-wrapper.select2.active .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .dialog-container + .input-wrapper.select2.active .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .dialog-container + .input-wrapper.select2.active .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + .input-wrapper.select2.active .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul + .input-wrapper.select2.active .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .box + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .box + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .input-wrapper.select2.active + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .input-wrapper.select2.active + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .dialog-container + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .dialog-container + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .overlay ul + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + .dialog-container .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .overlay ul + .dialog-container .price-container, .emerix-page .overlay .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .box + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .box + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .input-wrapper.select2.active + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .input-wrapper.select2.active + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .topbar .notifications-menu .dropdown-target .dialog-container + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .overlay .dialog-container + ul .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .dialog-container + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .overlay .page-pay.pay_1 .selectable-box .dialog-container + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul + ul .price-container {
+.emerix-page .page-pay.pay_1 .selectable-box .box + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active ul + .box .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box ul + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .dialog-container + .box .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .dialog-container + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + .box .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active .box + ul .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box .box + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active ul + ul .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box ul + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .input-wrapper.select2.active .dialog-container + ul .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box .overlay .dialog-container + ul .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .input-wrapper.select2.active .dialog-container + ul .price-container, .emerix-page .input-wrapper.select2.active .overlay .page-pay.pay_1 .selectable-box .dialog-container + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .box + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .box + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active .overlay ul + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .input-wrapper.select2.active ul + .dialog-container .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box .overlay ul + .dialog-container .price-container, .emerix-page .overlay .input-wrapper.select2.active .page-pay.pay_1 .selectable-box ul + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .dialog-container + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .dialog-container + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .overlay ul + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + .dialog-container .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .overlay ul + .dialog-container .price-container, .emerix-page .overlay .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .box + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .box + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .topbar .notifications-menu .dropdown-target .dialog-container + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .overlay .dialog-container + ul .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .dialog-container + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .overlay .page-pay.pay_1 .selectable-box .dialog-container + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box u
+l + ul .price-container {
   padding-bottom: .5rem;
   margin-bottom: -.5rem;
   border-bottom: 1px solid;
 }
 
-@media all and (max-width: 1024px) {
-  .emerix-page .page-pay .selectable-box * {
-    text-align: center;
-  }
-}
-
-.emerix-page .page-pay.pay .box.active p, .emerix-page .page-pay.pay .active.input-wrapper.select2 p, .emerix-page .page-pay.pay .overlay .active.dialog-container p, .emerix-page .overlay .page-pay.pay .active.dialog-container p, .emerix-page .page-pay.pay .topbar .notifications-menu .dropdown-target ul.active p, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay ul.active p {
+.emerix-page .page-pay.pay .box.active p, .emerix-page .page-pay.pay .input-wrapper.select2.active ul.active p, .emerix-page .input-wrapper.select2.active .page-pay.pay ul.active p, .emerix-page .page-pay.pay .overlay .active.dialog-container p, .emerix-page .overlay .page-pay.pay .active.dialog-container p, .emerix-page .page-pay.pay .topbar .notifications-menu .dropdown-target ul.active p, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay ul.active p {
   font-weight: bold;
 }
 
-.emerix-page .page-pay.pay .box.active img, .emerix-page .page-pay.pay .active.input-wrapper.select2 img, .emerix-page .page-pay.pay .overlay .active.dialog-container img, .emerix-page .overlay .page-pay.pay .active.dialog-container img, .emerix-page .page-pay.pay .topbar .notifications-menu .dropdown-target ul.active img, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay ul.active img {
+.emerix-page .page-pay.pay .box.active img, .emerix-page .page-pay.pay .input-wrapper.select2.active ul.active img, .emerix-page .input-wrapper.select2.active .page-pay.pay ul.active img, .emerix-page .page-pay.pay .overlay .active.dialog-container img, .emerix-page .overlay .page-pay.pay .active.dialog-container img, .emerix-page .page-pay.pay .topbar .notifications-menu .dropdown-target ul.active img, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay ul.active img {
   display: none;
 }
 
-.emerix-page .page-pay.pay .box.active img + img, .emerix-page .page-pay.pay .active.input-wrapper.select2 img + img, .emerix-page .page-pay.pay .overlay .active.dialog-container img + img, .emerix-page .overlay .page-pay.pay .active.dialog-container img + img, .emerix-page .page-pay.pay .topbar .notifications-menu .dropdown-target ul.active img + img, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay ul.active img + img {
+.emerix-page .page-pay.pay .box.active img + img, .emerix-page .page-pay.pay .input-wrapper.select2.active ul.active img + img, .emerix-page .input-wrapper.select2.active .page-pay.pay ul.active img + img, .emerix-page .page-pay.pay .overlay .active.dialog-container img + img, .emerix-page .overlay .page-pay.pay .active.dialog-container img + img, .emerix-page .page-pay.pay .topbar .notifications-menu .dropdown-target ul.active img + img, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay ul.active img + img {
   display: block;
 }
 
-.emerix-page .page-pay.pay .box:not(.active) img, .emerix-page .page-pay.pay .input-wrapper.select2.active:not(.active) img, .emerix-page .page-pay.pay .overlay .dialog-container:not(.active) img, .emerix-page .overlay .page-pay.pay .dialog-container:not(.active) img, .emerix-page .page-pay.pay .topbar .notifications-menu .dropdown-target ul:not(.active) img, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay ul:not(.active) img {
+.emerix-page .page-pay.pay .box:not(.active) img, .emerix-page .page-pay.pay .input-wrapper.select2.active ul:not(.active) img, .emerix-page .input-wrapper.select2.active .page-pay.pay ul:not(.active) img, .emerix-page .page-pay.pay .overlay .dialog-container:not(.active) img, .emerix-page .overlay .page-pay.pay .dialog-container:not(.active) img, .emerix-page .page-pay.pay .topbar .notifications-menu .dropdown-target ul:not(.active) img, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay ul:not(.active) img {
   display: block;
 }
 
-.emerix-page .page-pay.pay .box:not(.active) img + img, .emerix-page .page-pay.pay .input-wrapper.select2.active:not(.active) img + img, .emerix-page .page-pay.pay .overlay .dialog-container:not(.active) img + img, .emerix-page .overlay .page-pay.pay .dialog-container:not(.active) img + img, .emerix-page .page-pay.pay .topbar .notifications-menu .dropdown-target ul:not(.active) img + img, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay ul:not(.active) img + img {
+.emerix-page .page-pay.pay .box:not(.active) img + img, .emerix-page .page-pay.pay .input-wrapper.select2.active ul:not(.active) img + img, .emerix-page .input-wrapper.select2.active .page-pay.pay ul:not(.active) img + img, .emerix-page .page-pay.pay .overlay .dialog-container:not(.active) img + img, .emerix-page .overlay .page-pay.pay .dialog-container:not(.active) img + img, .emerix-page .page-pay.pay .topbar .notifications-menu .dropdown-target ul:not(.active) img + img, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay ul:not(.active) img + img {
   display: none;
 }
 
 .emerix-page .page-pay .input-wrapper.huge.price {
   margin-bottom: 0;
+}
+
+.emerix-page .page-pay .dropdown-card {
+  position: relative;
+}
+
+.emerix-page .page-pay .dropdown-card .dropdown-title {
+  position: absolute;
+  top: -3rem;
+  right: 0;
 }
 
 .emerix-page .page-pay .payment-selector {
@@ -3368,7 +3439,7 @@ html.no-scroll body {
   }
 }
 
-.emerix-page .page-pay.pay_5 .payment-selector .box, .emerix-page .page-pay.pay_5 .payment-selector .input-wrapper.select2.active, .emerix-page .page-pay.pay_5 .payment-selector .overlay .dialog-container, .emerix-page .overlay .page-pay.pay_5 .payment-selector .dialog-container, .emerix-page .page-pay.pay_5 .payment-selector .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_5 .payment-selector ul {
+.emerix-page .page-pay.pay_5 .payment-selector .box, .emerix-page .page-pay.pay_5 .payment-selector .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .page-pay.pay_5 .payment-selector ul, .emerix-page .page-pay.pay_5 .payment-selector .overlay .dialog-container, .emerix-page .overlay .page-pay.pay_5 .payment-selector .dialog-container, .emerix-page .page-pay.pay_5 .payment-selector .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_5 .payment-selector ul {
   display: flex;
   padding: 0;
   box-shadow: none;

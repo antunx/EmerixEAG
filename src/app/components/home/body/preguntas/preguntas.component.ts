@@ -39,7 +39,7 @@ export class PreguntasComponent implements OnInit, OnDestroy {
   }
 
   Desplegar(): void{
-    const accordion = document.querySelector('#accordion-7530753671');
+    const accordion = document.querySelector('#accordion-9995042622');
     const items = accordion.querySelectorAll('li');
 
     accordion.querySelectorAll('.accordion-title > a').forEach((trigger) => {
