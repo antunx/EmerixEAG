@@ -35,15 +35,16 @@ export class PagarComponent implements OnInit {
     this.getService
       .getProductosYPromesas(localStorage.getItem('version_core'))
       .subscribe((data: any) => {
-        // console.log(data);
+        console.log(data);
         this.button = false;
         this.mensajes = data.Mensajes[0];
         // data.DeudaTotal = 45064.78;
+        // console.log(this.promesas, this.productos);
         data.Productos.map((prod) => {
           if (prod.CodigoProducto === 'PRESTAMO') {
             // prod.Deuda = 82041.67;
             this.prestamos.push(prod);
-            this.guardarCuotas(prod); 
+            this.guardarCuotas(prod);
           }
         });
         this.deudaTotal = data.DeudaTotal;
@@ -52,6 +53,7 @@ export class PagarComponent implements OnInit {
         data.Promesas = [];*/
         this.productos = data.Productos;
         this.promesas = data.Promesas;
+
         this.allCheckedProd();
         this.allCheckedProm();
       });
@@ -99,7 +101,7 @@ export class PagarComponent implements OnInit {
       }
     });
     // console.log(this.cuotasId);
-    // console.log(this.cuotasId);
+    console.log(this.cuotasId);
   }
 
   cambiarCheckProductos(id: number, e): void {
@@ -450,27 +452,41 @@ export class PagarComponent implements OnInit {
       this.pagoGeneradoStep = this.pagoGeneradoStep + 2;
       // this.router.navigateByUrl('home/metodos-pago');
     }
-    // console.log(pago);
+    console.log(pago);
   }
 
   seleccionarPago(e): void {
     if (e.target.value === 'IMPORTE') {
-      this.productos.forEach((producto) => {
-        producto.Check = false;
+      if (document.getElementById('select-all-prod') !== null) {
         (document.getElementById(
           'select-all-prod'
         ) as HTMLInputElement).checked = false;
+      }
+      if (document.getElementById('select-all-prom') !== null) {
         (document.getElementById(
           'select-all-prom'
         ) as HTMLInputElement).checked = false;
+      }
+      this.productos.forEach((producto) => {
+        producto.Check = false;
         this.montoAPagar = 0;
       });
     } else if (this.tipoPago !== e.target.value) {
-      this.productos.forEach((producto) => {
-        producto.Check = true;
+      if (document.getElementById('select-all-prod') !== null) {
         (document.getElementById(
           'select-all-prod'
         ) as HTMLInputElement).checked = true;
+      }
+      if (document.getElementById('select-all-prom') !== null) {
+        (document.getElementById(
+          'select-all-prom'
+        ) as HTMLInputElement).checked = true;
+      }
+      this.productos.forEach((producto) => {
+        producto.Check = true;
+        // (document.getElementById(
+        //   'select-all-prod'
+        // ) as HTMLInputElement).checked = true;
         (document.getElementById(
           `monto-cancelar-${producto.IdCuenta}`
         ) as HTMLInputElement).value = (document.getElementById(
@@ -485,9 +501,9 @@ export class PagarComponent implements OnInit {
       });
       this.promesas.forEach((promesa) => {
         promesa.Check = true;
-        (document.getElementById(
-          'select-all-prom'
-        ) as HTMLInputElement).checked = true;
+        // (document.getElementById(
+        //   'select-all-prom'
+        // ) as HTMLInputElement).checked = true;
         (document.getElementById(
           `monto-cancelar-${promesa.IdPromesa}`
         ) as HTMLInputElement).value = (document.getElementById(
@@ -509,7 +525,7 @@ export class PagarComponent implements OnInit {
   }
 
   onContinuar(e): void {
-    // console.log(e);
+    console.log(e);
     this.pagoGeneradoStep = e;
   }
 

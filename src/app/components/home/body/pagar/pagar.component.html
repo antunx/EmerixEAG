@@ -27,12 +27,15 @@
       <!-- <div *ngIf="!pagoGenerado" class="flex-column"> -->
       <div [hidden]="pagoGeneradoStep != 0" class="flex-column">
         <!-- START DESKTOP -->
-        <h2 *ngIf="productos?.length === 0" class="text-center">
+        <h2
+          *ngIf="productos?.length === 0 || productos === undefined"
+          class="text-center"
+        >
           Felicitaciones, usted no tiene ningún producto con deuda
         </h2>
         <div
           class="table-container desktop-only"
-          *ngIf="productos?.length !== 0"
+          *ngIf="productos?.length !== 0 && productos !== undefined"
         >
           <!-- START DESKTOP TABLE PRODUCTOS-->
           <table class="table" width="100%" border="0">
@@ -230,7 +233,7 @@
         <!-- START DESKTOP TABLE PROMESAS -->
         <div
           class="table-container desktop-only"
-          *ngIf="promesas?.length !== 0"
+          *ngIf="promesas?.length !== 0 && promesas !== undefined"
         >
           <table class="table" width="100%" border="0">
             <tbody>
