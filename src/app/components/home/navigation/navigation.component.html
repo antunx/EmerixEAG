@@ -78,11 +78,21 @@ menuhijoSeleccionado: {{MenuHijoSel}}
   </div>
 </nav>
  -->
+ <div class="overlay" id="nav-overlay">
+  <div class="dialog-container" role="dialog">
+      <a class="close-btn">
+          <img src="assets/images/ui/close-btn.svg" alt="Close">
+      </a>
+      <div class="dialog-content -content">
 
+          <div></div>
+      </div>
+  </div>
+</div>
  <nav class="main-navigation">
   <input type="checkbox" class="visually-hidden mobile-menu-toggle" id="mobile-menu-toggle">
   <label class="mobile-menu-toggle-label" for="mobile-menu-toggle">
-  <img src="assets/images/ui/menu.svg" alt="">
+  <img src="assets/images/ui/menu.svg" alt="" (click)="clickMobile(false)">
   </label>
   <div class="navigation-container">
      <ul>
@@ -129,27 +139,3 @@ menuhijoSeleccionado: {{MenuHijoSel}}
      </ul>
   </div>
 </nav>
-<script>
-  const mobileMenuBtn = document.querySelector('#mobile-menu-toggle')
-  const navOverlay = document.querySelector('#nav-overlay')
-
-
-  mobileMenuBtn.checked = false
-
-  mobileMenuBtn.addEventListener('click', () => {
-    console.log(mobileMenuBtn.getAttribute('checked'))
-
-    if (mobileMenuBtn.getAttribute('checked')) {
-      navOverlay.classList.remove('active')
-    } else {
-      navOverlay.classList.add('active')
-    }
-  })
-
-  navOverlay.addEventListener('click', () => {
-    //mobileMenuBtn.click()
-    navOverlay.classList.remove('active')
-    mobileMenuBtn.checked = false
-  })
-
-</script>
