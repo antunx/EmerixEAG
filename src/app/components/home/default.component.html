@@ -23,31 +23,10 @@
 <!--</div>-->
 
 <!-- <div class="pages-container flex-grow"> --> <!-- LO HACE EN EL TS -->
-  <div class="overlay" id="home-sidebar">
-     <div class="dialog-container sidebar" role="dialog">
-        <a class="close-btn">
-        <img src="assets/images/ui/close-btn.svg" alt="Close">
-        </a>
-        <div class="dialog-content sidebar-content">
-           <div>
-              <div class="flex-column">
-                 <h2>Detalle de producto</h2>
-                 <h3>Tipo de producto</h3>
-                 <p>TC VISA XXXX XXXX XXXX 1234</p>
-                 <h3>Deuda</h3>
-                 <p>$1200</p>
-                 <h3>Última fecha de pago</h3>
-                 <p>03/12/96</p>
-                 <h3>Nº Comprobante</h3>
-                 <p>34324324443-9</p>
-                 <h3>Sucursal</h3>
-                 <p>504 - La Plata</p>
-                 <button class="btn secondary hover"><img src="assets/images/ui/buttons/download.svg" alt=""> Libre deuda</button>
-              </div>
-           </div>
-        </div>
+  <!-- <div class="overlay" id="home-sidebar">
+     SE CARGA EL COMPONENTE PRODUCTO-DETALLE (DENTRO DE PRODUCTO-LISTADO)
      </div>
-  </div>
+  </div> -->
   <section class="page-home">
      <div class="flex-column page-header">
         <p class="top-decoration">Inicio</p>
@@ -67,121 +46,31 @@
               <div class="mobile-only">
                  <ul class="flex-row mobile-btns">
                     <li class="col-1-3 text-center">
-                       <a href="/avisar.html">
+                       <a [routerLink]="" (click)="AvisarPago()">
                        <img src="assets/images/sections/home/01.svg" alt="">
-                       Avisar que pagué
+                       {{ 'Traduct.avisar_pago' | translate }}
                        </a>
                     </li>
                     <li class="col-1-3 text-center">
-                       <a href="/prometer.html">
+                       <a [routerLink]="" (click)="PrometeFecha()">
                        <img src="assets/images/sections/home/02.svg" alt="">
-                       Prometer una fecha
+                       {{ 'Traduct.prometer_fecha' | translate }}
                        </a>
                     </li>
                     <li class="col-1-3 text-center">
-                       <a href="/pagar.html">
+                       <a [routerLink]="" (click)="PagarCuotas()">
                        <img src="assets/images/sections/home/03.svg" alt="">
-                       Pagar en cuotas
+                       {{ 'Traduct.pagar_cuotas' | translate }}
                        </a>
                     </li>
                  </ul>
               </div>
               <div class="">
-                 <h2>Tus productos</h2>
-                 <div id="products-table" class="flex-row box">
-                    <div class="table-container">
-                       <table class="table selectable" width="100%" border="0">
-                        <tbody>
-                          <tr class="table-header">
-                             <td class="col-3-6">
-                                Producto
-                             </td>
-                             <td class="col-1-6 text-center desktop-only">
-                                Vencimiento
-                             </td>
-                             <td class="col-1-4 text-center desktop-only">
-                                Atraso
-                             </td>
-                             <td class="col-2-6 text-right">
-                                Monto adeudado
-                             </td>
-                          </tr>
-                          <tr (click) = "detalleProducto(null)">
-                             <td class="col-3-6" (click) = "detalleProducto(null)">
-                                <img style="float: left; vertical-align: middle" src="assets/images/ui/tables/prestamos.svg" alt="">&nbsp;PRÉSTAMO 36 cuotas
-                             </td>
-                             <td class="col-1-6 text-center desktop-only" (click) = "detalleProducto(null)">
-                                01/10/20
-                             </td>
-                             <td class="col-1-4 text-center desktop-only" (click) = "detalleProducto(null)">
-                                1 día
-                             </td>
-                             <td class="col-2-6 text-right" (click) = "detalleProducto(null)">
-                                $19450,87
-                             </td>
-                          </tr>
-                          <tr (click) = "detalleProducto(null)">
-                             <td class="col-3-6" (click) = "detalleProducto(null)">
-                                <img style="float: left; vertical-align: middle" src="assets/images/ui/tables/seguros.svg" alt="" (click) = "detalleProducto(null)">&nbsp;PRÉSTAMO 12 cuotas
-                             </td>
-                             <td class="col-1-6 text-center desktop-only" (click) = "detalleProducto(null)">
-                                12/10/20
-                             </td>
-                             <td class="col-1-4 text-center desktop-only" (click) = "detalleProducto(null)">
-                                0
-                             </td>
-                             <td class="col-2-6 text-right" (click) = "detalleProducto(null)">
-                                $19450,87
-                             </td>
-                          </tr>
-                          <tr (click) = "detalleProducto(null)">
-                             <td class="col-3-6">
-                                <img style="float: left; vertical-align: middle" src="assets/images/ui/tables/tc.svg" alt="" (click) = "detalleProducto(null)">&nbsp;TC VISA 5400
-                             </td>
-                             <td class="col-1-6 text-center desktop-only" (click) = "detalleProducto(null)">
-                                08/10/20
-                             </td>
-                             <td class="col-1-4 text-center desktop-only" (click) = "detalleProducto(null)">
-                                2 días
-                             </td>
-                             <td class="col-2-6 text-right" (click) = "detalleProducto(null)">
-                                $19450,87
-                             </td>
-                          </tr>
-                          <tr (click) = "detalleProducto(null)">
-                             <td class="col-3-6" (click) = "detalleProducto(null)">
-                                <img style="float: left; vertical-align: middle" src="assets/images/ui/tables/tc.svg" alt="">&nbsp;TC MASTER 2431
-                             </td>
-                             <td class="col-1-6 text-center desktop-only" (click) = "detalleProducto(null)">
-                                08/10/20
-                             </td>
-                             <td class="col-1-4 text-center desktop-only" (click) = "detalleProducto(null)">
-                                4 días
-                             </td>
-                             <td class="col-2-6 text-right"(click) = "detalleProducto(null)" >
-                                $19450,87
-                             </td>
-                          </tr>
-                          <tr (click) = "detalleProducto(null)">
-                             <td class="col-3-6" (click) = "detalleProducto(null)">
-                                <img style="float: left; vertical-align: middle" src="assets/images/ui/tables/refinanciacion.svg" alt="">&nbsp;TC MASTER 2431
-                             </td>
-                             <td class="col-1-6 text-center desktop-only" (click) = "detalleProducto(null)">
-                                08/10/206
-                             </td>
-                             <td class="col-1-4 text-center desktop-only" (click) = "detalleProducto(null)">
-                                20 días
-                             </td>
-                             <td class="col-2-6 text-right" (click) = "detalleProducto(null)">
-                                $19450,87
-                             </td>
-                          </tr>
-                        </tbody>
-                       </table>
-                    </div>
-                 </div>
+                <!--BOX COMPONENTE PRODUCTO-->
+                <app-producto-listado></app-producto-listado>
               </div>
            </div>
+
            <div class="flex-column col-1-3">
               <div class="box prom-text relative">
                  <p>Diseñamos un plan de pago especialmente para vos ;)</p>
@@ -292,20 +181,6 @@
         </div>
      </div>
   </section>
-  <script>
-     const overlay = document.querySelector('#home-sidebar')
-
-     document.querySelectorAll('#products-table tr').forEach((tr) => {
-       tr.addEventListener('click', () => {
-         overlay.classList.add('active')
-       })
-     })
-
-     overlay.querySelector('.close-btn').addEventListener('click', () => {
-       overlay.classList.remove('active')
-     })
-
-  </script>
 <!-- </div> -->
 <app-mensaje-mp
   *ngIf="estadoPago"

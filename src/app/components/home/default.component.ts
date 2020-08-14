@@ -77,23 +77,20 @@ export class DefaultComponent implements OnInit {
     this.estadoPago = e;
   }
 
-    // navegamos al detalle de producto
-    detalleProducto(producto: Product): void{
+  AvisarPago(): void{
+    // this.cambioTexto(this.translate.instant('Traduct.avisar_pago'));
+    this.router.navigateByUrl('/home/informar_comprobante');
+  }
 
-      // if (producto !== null){
-        // console.log('id: ' + id);
-        // this.producto  = producto;
-        const overlay = document.querySelector('#home-sidebar');
+  PrometeFecha(): void{
+    // this.cambioTexto(this.translate.instant('Traduct.prometer_fecha'));
+    // this.router.navigateByUrl('/home/prometer_fecha');
+    alert('PrometeFecha(): en desarrollo |_(-.-)_T ');
+  }
 
-        document.querySelectorAll('#products-table tr').forEach((tr) => {
-          tr.addEventListener('click', () => {
-            overlay.classList.add('active');
-          });
-        });
-
-        overlay.querySelector('.close-btn').addEventListener('click', () => {
-          overlay.classList.remove('active');
-        });
-      // }
-    }
+  PagarCuotas(): void{
+    // this.cambioTexto(this.translate.instant('Traduct.pagar_cuotas'));
+    // this.router.navigateByUrl('/home/pagar_cuotas');
+    alert('PagarCuotas(): en desarrollo |_(-.-)_T ');
+  }
 }

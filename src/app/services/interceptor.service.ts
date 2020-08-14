@@ -48,7 +48,8 @@ export class InterceptorService implements HttpInterceptor {
     // console.log(request);
     // VERIFICA QUE TOKEN NO HAYA EXPIRADO Y REDIRIJE A LOGIN EN CASO DE EXPIRACION
     if (token && this.helper.isTokenExpired(token)) {
-      // console.log('token expirado (InterceptorService)');
+      console.log('token expirado (InterceptorService)');
+      // window.location.reload (true);
       this.router.navigateByUrl('/login');
       return;
     }
@@ -67,6 +68,7 @@ export class InterceptorService implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
+          console.log('ERROR 401 (InterceptorService)');
           this.router.navigateByUrl('/login');
           return;
         }

@@ -24,7 +24,9 @@
   "Traduct.promesa": "Promise",
   "Traduct.tipo_producto": "Product Type",
   "Traduct.dias_deuda": "Days Debt",
+  "Traduct.atraso": "Backwardness",
   "Traduct.monto": "Amount",
+  "Traduct.monto_adeudado": "Amount owed",
   "Traduct.monto_pagado": "Amount paid",
   "Traduct.monto_deuda": "Amount Debt",
   "Traduct.detalle": "Detail",
@@ -126,6 +128,7 @@
   "Traduct.cuota": "Fees",
   "Traduct.capital": "Capital",
   "Traduct.fecha_vencimiento": "Due Date",
+  "Traduct.vencimiento": "Due",
   "Traduct.seleccionar_una_cuota": "You must select at least one fee",
 
   "Traduct.404_msg1": "404 Not Found!!!",
@@ -155,7 +158,7 @@
 
   "Traduct.pagar_cuotas": "Pay in installments",
   "Traduct.promesas_hechas": "Promises made",
-  "Traduct.planes_pedidos": "Plans ordered",  
+  "Traduct.planes_pedidos": "Plans ordered",
   "Traduct.prometer_fecha": "Promise a date",
   "Traduct.avisar_pago": "Notify that I paid",
 

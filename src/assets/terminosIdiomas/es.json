@@ -24,7 +24,9 @@
   "Traduct.promesa": "Promesa",
   "Traduct.tipo_producto": "Tipo Producto",
   "Traduct.dias_deuda": "Días Deuda",
+  "Traduct.atraso": "Atraso",
   "Traduct.monto": "Monto",
+  "Traduct.monto_adeudado": "Monto adeudado",
   "Traduct.monto_pagado": "Monto pagado",
   "Traduct.monto_deuda": "Monto Deuda",
   "Traduct.detalle": "Detalle",
@@ -127,6 +129,7 @@
   "Traduct.cuota": "Cuota",
   "Traduct.capital": "Capital",
   "Traduct.fecha_vencimiento": "Fecha de vencimiento",
+  "Traduct.vencimiento": "Vencimiento",
   "Traduct.seleccionar_una_cuota": "Debes seleccionar al menos una cuota",
   "Traduct.metodos_de_pago":"Metodos de Pago",
 
@@ -157,7 +160,7 @@
 
   "Traduct.pagar_cuotas": "Pagar en cuotas",
   "Traduct.promesas_hechas": "Promesas hechas",
-  "Traduct.planes_pedidos": "Planes pedidos",  
+  "Traduct.planes_pedidos": "Planes pedidos",
   "Traduct.prometer_fecha": "Prometer una fecha",
   "Traduct.avisar_pago": "Avisar que pagué",
 

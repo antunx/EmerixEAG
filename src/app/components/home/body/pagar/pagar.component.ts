@@ -90,9 +90,12 @@ export class PagarComponent implements OnInit {
     ) as HTMLInputElement).dataset.valor = e.monto;
     // console.log((document.getElementById(`monto-cancelar-${ id }`) as HTMLInputElement))
     // console.log(e.cuotas);
-    for (let cuota in e.cuotas) {
+    /*for (let cuota in e.cuotas) {
       cuotas.push(e.cuotas[cuota]);
-    }
+    }*/
+    e.cuotas.array.forEach(cuota => {
+      cuotas.push(e.cuotas[cuota]);
+    });
     this.cuotasId.forEach((prestamo) => {
       if (prestamo.id === id) {
         prestamo.cuotas = cuotas;
