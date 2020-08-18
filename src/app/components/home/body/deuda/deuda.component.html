@@ -1,24 +1,8 @@
-<!-- <div >
-  <div class="box" style="cursor: pointer" (click)="Redireccionar('CTA')" >
-
-    <p>{{ 'Traduct.tu_deuda_es' | translate }}:</p>
-    <p class="text-xxlarge text-nowrap">$ {{ removerComas(Monto | number:'1.2-2') }} </p>
-
-    <p>{{ 'Traduct.cant_dias_mora' | translate }}:</p>
-    <p class="text-xxlarge text-nowrap">{{CantDiasMora}}</p>
-
-    <p>{{ 'Traduct.productos_adeudados' | translate }}:</p>
-    <p class="text-large">{{CantProductos}}</p>
-
-    <button class="btn" (click)="Redireccionar('PAG')">{{ 'Traduct.pagar_ahora' | translate }}</button>
-  </div>
-</div> -->
-
 <div class="box flex-row relative">
   <div class="flex-grow debt-container">
      <p class="first-row">{{ 'Traduct.tu_deuda_es' | translate }}:</p>
      <p class="text-nowrap"><span class="text-xlarge">$</span> <span class="text-xxlarge">{{ Entero }}</span> <sup class="text-large">{{ Decimal }}</sup></p>
-     <button class="btn" (click)="Redireccionar('PAG')">{{ 'Traduct.pagar_ahora' | translate }}</button>
+     <a [routerLink]="" (click)="irPagar()"><button class="btn">{{ 'Traduct.pagar_ahora' | translate }}</button></a>
   </div>
   <div class="home-illus-container desktop-only">
      <img class="home-illus" alt="" src="assets/images/sections/home/ilustracion.svg">

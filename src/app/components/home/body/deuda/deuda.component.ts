@@ -33,12 +33,8 @@ export class DeudaComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  Redireccionar(destino: string): void {
-    if (destino === 'PAG'){
-      this.router.navigateByUrl('/home/pagar');
-    }else{
-      this.router.navigateByUrl('/home/producto');
-    }
+  irPagar(): void {
+    this.router.navigateByUrl('/home/pagar');
   }
 
   getEstadoDeuda(): void{
@@ -50,9 +46,9 @@ export class DeudaComponent implements OnInit, OnDestroy {
       this.Persona = res.FullName;
       this.Monto = res.TotalDebt;
       this.Entero = Math.trunc(this.Monto);
-      this.Decimal = Number((this.Monto-this.Entero).toFixed(2)).toString().replace('0.','');
+      this.Decimal = Number((this.Monto - this.Entero).toFixed(2)).toString().replace('0.', '');
       this.CantDiasMora = res.DaysDebt;
-      this.CantProductos = res.CountProductDebt;      
+      this.CantProductos = res.CountProductDebt;
       }
     }, (err) => {
         console.log(err);
