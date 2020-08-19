@@ -18,6 +18,7 @@ import { PreguntasComponent } from './body/preguntas/preguntas.component';
 import { PagarComponent } from './body/pagar/pagar.component';
 import { PagoMetodosComponent } from './body/pagar/pago-metodos/pago-metodos.component';
 import { TuPerfilComponent } from './body/persona/tu-perfil/tu-perfil.component';
+import { GrillaPromesaComponent } from './body/promesa/grilla-promesa/grilla-promesa.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent,
@@ -39,6 +40,7 @@ const routes: Routes = [
 
       {path: 'tu_perfil', component: TuPerfilComponent, canActivate: [ AuthGeneralGuard ]},
       {path: 'preguntas', component: PreguntasComponent, canActivate: [ AuthGeneralGuard ]},
+      {path: 'grilla', component: GrillaPromesaComponent, canActivate: [AuthGeneralGuard]}
 
     ]},
 ];

@@ -108,6 +108,28 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
     ));
   }
 
+  clickTiposDni(e): void{
+    const select = document.getElementById('CBOTipoDoc');
+    const placeholder = select.querySelector(
+      '.placeholder div'
+    ) as HTMLDivElement;
+    const target = e.target;
+    !select.classList.contains('date-selected') &&
+      select.classList.toggle('active');
+    if (target.classList.contains('selectable')) {
+      if (target.classList.contains('date-picker')) {
+        select.classList.add('date-selected');
+        // console.log(this.periodo);
+      } else {
+        placeholder.innerText = target.innerText;
+        this.loginForm.controls.tipoDoc.setValue(target.parentElement.getAttribute('value'));
+        // console.log(this.periodo);
+      };
+    } else if (target.classList.contains('alternate-select')) {
+      select.classList.remove('date-selected');
+    };
+  }
+
   TildarMedioEnvio(medio: string): void{
     this.loginForm.controls.medioEnvio.setValue(medio);
     this.SeleccionoMedioEnvio = true;

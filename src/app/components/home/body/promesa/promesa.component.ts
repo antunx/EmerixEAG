@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { GetService } from '@services/get.service';
 import { Promesa } from '@models/Promesa.model';
+import { PromGen } from '@models/promesaGenerada.model'
 import { Subscription } from 'rxjs';
 import { ComunicacionService } from '@app/services/comunicacion.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-promesa',
@@ -11,373 +13,99 @@ import { TranslateService } from '@ngx-translate/core';
   styles: [],
 })
 export class PromesaComponent implements OnInit, OnDestroy {
-  montoAPagar: number;
-  fechaPromesa: Date;
-  tipoPago: string;
-  RespPromesa: Promesa;
-  button: boolean;
-  promesaGenerada: boolean;
-  periodo: string;
-  private sub: Subscription;
-  promesa: any;
-  popupNro: number;
-  MensajeAlert = '';
-  checked: boolean;
-  pagoMinimo: number;
+  @HostBinding('class') class = 'pages-container flex-grow';
+  tipoSeleccionado: number = 0;
+  promesaStep: number = 0;
+  resp: Promesa;
+  promGen: PromGen;
+  volverHome: boolean = false;
+  // Boton chatbot -- metodo mostrar y ocultar
+  hideElement: boolean;
 
-  constructor(
-    private getService: GetService,
-    private servicioComunicacion: ComunicacionService,
-    private translate: TranslateService
-  ) {}
+  constructor(private router: Router, private getService: GetService) {}
 
-  ngOnInit(): void {
-    this.cambioTexto(this.translate.instant('Traduct.promesa_pago'));
-    this.promesaGenerada = false;
-    this.periodo = '1';
-    this.tipoPago = 'PRODUCTO';
-    this.sub = this.getService
+  ngOnInit() {
+    this.hideElement = false;
+    this.getService
       .getProductProm(localStorage.getItem('version_core'))
-      .subscribe((data: Promesa) => {
-        // console.log(data);
-        this.button = false;
+      .subscribe((data) => {
+        data.ActivoParcial = true;
         // data.ActivoMonto = true;
-        // data.ActivoParcial = true;
         // data.ActivoProducto = true;
-        this.pagoMinimo = data.PagoMinimo;
-        this.RespPromesa = data;
-        this.allChecked();
-        // console.log(this.checked);
-        this.montoAPagar = data.DeudaTotal;
-        if (!data.ActivoProducto && data.ActivoMonto) {
-          this.tipoPago = 'IMPORTE';
+        this.resp = data;
+        console.log(this.resp)
+        if(data.ActivoMonto && !data.ActivoProducto){
+          this.promesaStep = 1;
+          this.volverHome = true;
         }
+        if(!data.ActivoMonto && data.ActivoProducto){
+          this.promesaStep = 2
+          this.volverHome = true;
+        }
+
       });
   }
 
-  allChecked(): void {
-    this.checked = true;
-    this.RespPromesa.Cuentas.forEach((cuenta) => {
-      if (!cuenta.Check) {
-        this.checked = false;
-      }
-    });
-  }
+  ngOnDestroy() {}
 
-  cambioTexto(mensaje: string): void {
-    this.servicioComunicacion.enviarMensaje(mensaje);
-  }
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-  }
-
-  cerrarPopup(): void {
-    document.querySelector('.overlay').classList.remove('active');
-    this.MensajeAlert = '';
-    this.popupNro = 0;
-  }
-
-  cambiarCheck(id: number, e): void {
-    this.RespPromesa.Cuentas.forEach((producto) => {
-      if (producto.IdCuenta === id) {
-        // CARGO VALORES EN EL IMPORTE A PAGAR
-        document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
-        ).innerHTML = producto.Deuda.toString();
-        (document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
-        ) as HTMLInputElement).value = (document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
-        ) as HTMLInputElement).dataset.valor;
-
-        const montoACancelar = parseFloat(
-          (document.getElementById(
-            `monto-cancelar-${producto.IdCuenta}`
-          ) as HTMLInputElement).value
-        );
-        producto.Check = e.target.checked;
-        if (producto.Check === false) {
-          // CAMBIO A 0 AL DESCHECKEAR
-          document.getElementById(
-            `monto-cancelar-${producto.IdCuenta}`
-          ).innerHTML = '0';
-          (document.getElementById(
-            `monto-cancelar-${producto.IdCuenta}`
-          ) as HTMLInputElement).value = '0';
-
-          if (montoACancelar <= producto.Deuda) {
-            this.montoAPagar -= montoACancelar;
-          } else {
-            this.montoAPagar -= producto.Deuda;
-          }
-        } else {
-          if (montoACancelar <= producto.Deuda) {
-            this.montoAPagar += montoACancelar;
-          } else {
-            this.montoAPagar += producto.Deuda;
-          }
-        }
-      }
-    });
-    this.allChecked();
-  }
-
-  checkAll(e): void {
-    if (e.target.checked) {
-      this.RespPromesa.Cuentas.forEach((producto) => {
-        producto.Check = true;
-        document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
-        ).innerHTML = producto.Deuda.toString();
-        (document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
-        ) as HTMLInputElement).value = (document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
-        ) as HTMLInputElement).dataset.valor;
-        this.montoAPagar += parseFloat(
-          (document.getElementById(
-            `monto-cancelar-${producto.IdCuenta}`
-          ) as HTMLInputElement).value
-        );
-      });
+  seleccionarTipoPromesa(e: number): void {
+    this.tipoSeleccionado = e;
+    if (e === 1) {
+      (document.getElementById('porMonto') as HTMLInputElement).classList.add(
+        'active'
+      );
+      (document.getElementById(
+        'porProducto'
+      ) as HTMLInputElement).classList.remove('active');
     } else {
-      this.montoAPagar = 0;
-      this.RespPromesa.Cuentas.forEach((producto) => {
-        producto.Check = false;
-        document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
-        ).innerHTML = '0';
-        (document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
-        ) as HTMLInputElement).value = '0';
-      });
+      (document.getElementById(
+        'porMonto'
+      ) as HTMLInputElement).classList.remove('active');
+      (document.getElementById(
+        'porProducto'
+      ) as HTMLInputElement).classList.add('active');
     }
   }
 
-  cambiarMonto(e): void {
-    const max = parseFloat(e.target.max);
-    const valorAnterior = parseFloat(e.target.dataset.valor);
-    const monto = parseFloat(e.target.value);
-    if (
-      (e.target.value > max || e.target.value <= 0) &&
-      this.tipoPago === 'PRODUCTO'
-    ) {
-      e.target.value = max;
-      e.target.dataset.valor = max;
-      this.montoAPagar += max - valorAnterior;
-      this.button = false;
+  continuarStep(): void {
+    if (this.tipoSeleccionado === 0) {
       return;
     }
-    if (
-      max >= e.target.value &&
-      e.target.value > 0 &&
-      this.tipoPago === 'PRODUCTO' &&
-      valorAnterior !== monto
-    ) {
-      // console.log('entre');
-      // this.montoAPagar -= max - monto + valorAnterior - max;
-      this.montoAPagar -= valorAnterior - monto;
-      e.target.dataset.valor = monto;
+    this.tipoSeleccionado === 1
+      ? (this.promesaStep = 1)
+      : (this.promesaStep = 2);
+  }
+
+  onVolviendo(e: number): void {
+    // console.log(e)
+    this.promesaStep = e;
+  }
+
+  onSiguiente(e: number): void {
+    this.promesaStep = e;
+  }
+
+  onPromGen(e: PromGen): void{
+    this.promGen = e;
+  }
+
+  toggleElement(): void {
+    if (this.hideElement){
+        this.hideElement = false;
     }
-    if (
-      (e.target.value > max || e.target.value <= 0) &&
-      this.tipoPago === 'IMPORTE'
-    ) {
-      e.target.value = max;
-      this.button = false;
-      return;
+    else {
+        this.hideElement = true;
     }
-    this.button = false;
-  }
-
-  deshabilitarBoton(): void {
-    this.button = true;
-  }
-
-  formatfecha(e): void {
-    e = new Date(e.target.value);
-    let dt = e.getDate();
-    dt++;
-    let mn = e.getMonth();
-    mn++;
-    const yy = e.getFullYear();
-    const nfecha = ((document.getElementById(
-      'nfecha'
-    ) as HTMLInputElement).value = dt + '/' + mn + '/' + yy);
-    document.getElementById('nfecha').hidden = false;
-    document.getElementById('fecha').hidden = true;
-  }
-
-  cambiarInputFecha(): void {
-    document.getElementById('fecha').hidden = false;
-    document.getElementById('nfecha').hidden = true;
-    document.getElementById('fecha').focus();
-  }
-
-  setearFecha(e): void {
-    const aux = new Date();
-    if (this.RespPromesa.DiasMaximo === 0) {
-      aux.setDate(aux.getDate() + this.RespPromesa.DiasMaximoParam);
-    } else {
-      aux.setDate(aux.getDate() + this.RespPromesa.DiasMaximo);
-    }
-    if (
-      new Date(e.target.value) < new Date(Date.now()) ||
-      new Date(e.target.value) > aux
-    ) {
-      this.fechaPromesa = null;
-      this.button = true;
-      this.MensajeAlert = this.translate.instant('Traduct.error_fecha_promesa');
-      this.MensajeAlert = this.MensajeAlert.replace(
-        'ParamDate',
-        JSON.stringify(
-          this.RespPromesa?.DiasMaximo || this.RespPromesa?.DiasMaximoParam
-        )
-      );
-      this.popupNro = 1;
-      document.querySelector('.overlay').classList.add('active');
-    } else {
-      this.formatfecha(e);
-      const auxFecha = new Date(e.target.value);
-      auxFecha.setDate(auxFecha.getDate() + 1);
-      this.fechaPromesa = auxFecha;
-      this.button = false;
-    }
-  }
-
-  seleccionarPago(e): void {
-    this.tipoPago = e.target.value;
-    if (this.tipoPago === 'IMPORTE') {
-      this.RespPromesa.Cuentas.forEach((producto) => {
-        producto.Check = false;
-        (document.getElementById(
-          'select-all'
-        ) as HTMLInputElement).checked = false;
-        this.montoAPagar = 0;
-      });
-    } else {
-      this.RespPromesa.Cuentas.forEach((producto) => {
-        producto.Check = true;
-        (document.getElementById(
-          'select-all'
-        ) as HTMLInputElement).checked = true;
-        this.montoAPagar = this.RespPromesa.DeudaTotal;
-      });
-    }
-  }
-
-  cambiarPeriodo(e): void {
-    this.periodo = e.target.value;
-  }
-
-  generarPromesa(e): void {
-    e.preventDefault();
-    if (this.periodo !== 'fecha') {
-      const aux = new Date();
-      aux.setDate(aux.getDate() + parseInt(this.periodo, 10));
-      this.fechaPromesa = aux;
-    }
-    const pagoPorMonto =
-      parseFloat(
-        (document.getElementById('monto-monto') as HTMLInputElement).value
-      ) ||
-      parseFloat(
-        (document.getElementById('monto-monto') as HTMLInputElement).innerHTML
-      );
-    // ESTOS IF CREO QUE YA NO SIRVEN PORQUE EL BOTON SE BLOQUEA SI NO ESTAN LAS CONDICIONES DADAS PARA CREAR LA PROMESA
-    if (
-      (this.montoAPagar < this.pagoMinimo && this.tipoPago === 'PRODUCTO') ||
-      (this.montoAPagar <= 0 && this.tipoPago === 'PRODUCTO') ||
-      (pagoPorMonto < this.pagoMinimo && this.tipoPago === 'IMPORTE') ||
-      (pagoPorMonto <= 0 && this.tipoPago === 'IMPORTE') ||
-      (pagoPorMonto > this.RespPromesa.DeudaTotal &&
-        this.tipoPago === 'IMPORTE') ||
-      isNaN(pagoPorMonto)
-    ) {
-      this.MensajeAlert = this.translate.instant('Traduct.error_monto_promesa');
-      this.MensajeAlert = this.MensajeAlert.replace(
-        '<PAGO_MINIMO>',
-        JSON.stringify(this.RespPromesa.PagoMinimo)
-      );
-      this.MensajeAlert = this.MensajeAlert.replace(
-        '<PAGO_MAXIMO>',
-        JSON.stringify(this.RespPromesa.DeudaTotal)
-      );
-      this.popupNro = 1;
-      document.querySelector('.overlay').classList.add('active');
-    } else {
-      const promesa = {
-        totalPagar: this.montoAPagar,
-        deudaTotal: 0.0,
-        cuentas: [],
-        mensajes: { ...this.RespPromesa.Mensajes[0] },
-        formaPromesa: 'PT',
-        cliente: localStorage.getItem('version_core'),
-        formaPago: this.tipoPago,
-        fechaPromesa: new Date().toLocaleDateString(),
-        fechaPromesaVencimiento: new Date(),
-        idTipoPromesa: this.RespPromesa.IdTipoPromesa,
-      };
-
-      promesa.fechaPromesaVencimiento = this.fechaPromesa;
-
-      if (
-        (this.montoAPagar < this.RespPromesa.DeudaTotal &&
-          this.tipoPago === 'PRODUCTO') ||
-        (pagoPorMonto < this.RespPromesa.DeudaTotal &&
-          this.tipoPago === 'IMPORTE')
-      ) {
-        promesa.formaPromesa = 'PP';
-      }
-
-      if (promesa.formaPago === 'PRODUCTO') {
-        this.RespPromesa.Cuentas.forEach((producto) => {
-          if (producto.Check) {
-            const objeto = { ...producto, ImportePago: 0 };
-            if (this.RespPromesa.ActivoParcial) {
-              promesa.deudaTotal += parseFloat(
-                (document.getElementById(
-                  `monto-cancelar-${producto.IdCuenta}`
-                ) as HTMLInputElement).max
-              );
-              objeto.ImportePago = parseFloat(
-                (document.getElementById(
-                  `monto-cancelar-${producto.IdCuenta}`
-                ) as HTMLInputElement).value
-              );
-            } else {
-              promesa.deudaTotal += parseFloat(
-                (document.getElementById(
-                  `monto-cancelar-${producto.IdCuenta}`
-                ) as HTMLInputElement).innerText
-              );
-              objeto.ImportePago = parseFloat(
-                (document.getElementById(
-                  `monto-cancelar-${producto.IdCuenta}`
-                ) as HTMLInputElement).innerText
-              );
-            }
-            promesa.cuentas.push(objeto);
-          }
-        });
-      } else {
-        promesa.totalPagar = pagoPorMonto;
-      }
-
-      this.promesa = promesa;
-      this.promesaGenerada = true;
-    }
-  }
-
-  removerComas(numero: string): string {
-    if (numero === '' || numero === null) {
-      return numero;
-    }
-    return numero.replace(',', '');
-  }
-
-  onVolviendo(e): void {
-    this.promesaGenerada = e;
   }
 }
+
+// promesaStep
+// 0: Seleccionar tipo promesa
+// 1: Grilla Monto
+// 2: Grilla Productos
+// 3: Promesa mensaje
+// 4: promesa resultado
+
+
+
+

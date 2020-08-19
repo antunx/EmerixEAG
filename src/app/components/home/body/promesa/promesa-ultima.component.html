@@ -1,4 +1,4 @@
-<div class="box">
+<!-- <div class="box">
   <div class="list-view">
     <div class="list-view-title">
       <h2>{{ "Traduct.ultimas_promesas" | translate }}</h2>
@@ -32,5 +32,45 @@
         "Traduct.ver_todas_promesas" | translate
       }}</a>
     </p>
+  </div>
+</div> -->
+<div class="box promises-table">
+  <div class="table-container">
+    <table class="table selectable" width="100%" border="0">
+      <tbody>
+        <tr
+          class=""
+          *ngFor="let promesa of promesas"
+          [ngClass]="{ disabled: promesa.Estado === 'Quebrada' }"
+        >
+          <td class="">
+            <div class="flex-row flex-center">
+              <div class="date-box">
+                <span class="month">{{ promesa.mes }}</span
+                ><span class="number">{{ promesa.dia }}</span>
+              </div>
+              <div class="item-label">
+                {{
+                  promesa.PromesaMonto
+                    | currency: promesa.CodigoMoneda:"symbol-narrow"
+                }}
+              </div>
+            </div>
+          </td>
+          <td class="text-right">
+            <!-- <a href="#" *ngIf="promesa.Estado !== 'Quebrada'"
+              ><button class="btn">Pagar</button></a
+            > -->
+            <div class="status-label" *ngIf="promesa.Estado === 'Quebrada'">
+              <span class="bullet red"></span>VENCIDA
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr />
+  <div class="wide-link">
+    <a [routerLink]="" (click)="IrPromesa()">{{ 'Traduct.generar_un_plan' | translate }}</a>
   </div>
 </div>

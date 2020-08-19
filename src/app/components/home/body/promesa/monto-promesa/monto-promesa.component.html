@@ -1,0 +1,124 @@
+<div class="page-progress">
+	<div class="progress progress-30"></div>
+</div>
+
+<div class="flex-column page-header">
+    <a *ngIf="!volverHome" class="top-decoration" (click)="volver()" style="cursor: pointer;">{{"Traduct.volver_anterior" | translate }}</a>
+    <a *ngIf="volverHome" class="top-decoration" (click)="volveraHome()" style="cursor: pointer;">{{"Traduct.volver_home" | translate }}</a>
+</div>
+
+<div class="restrict-width">
+
+	<div class="title">
+		<h1 class="page-title text-large">{{"Traduct.por_monto" | translate}}</h1>
+		<p class="page-subtitle"><span></span>Comprometeté a abonar el <strong>monto total de la deuda</strong> o <strong>ingresá otro monto</strong>, elegí cuando vas a efectuar el pago (<strong>periodo</strong>) y luego hace clic en <strong>generar promesa</strong>.</p>
+    </div>
+
+    <div class="selectable-box flex-column" id="box-3915745509">
+        <div class="flex-row col-container">
+
+            <div class="box col-1-2 full-width-mobile active" id="total-deuda" (click)="seleccionarTipoMonto(1)">
+                <span>{{"Traduct.monto_deuda" | translate}}</span>
+	            <div class="price-container" data-value="19959057"><span class="denomination">$</span>{{DeudaTotalImprimir[0]}}<sup class="cents">{{DeudaTotalImprimir[1]}}</sup></div>
+            </div>
+
+            <div class="box col-1-2 full-width-mobile" id="parcial-deuda" (click)="seleccionarTipoMonto(2)">
+                <span>{{"Traduct.ingresar_monto" | translate }}</span>
+	            <div class="input-wrapper text huge price">
+		            <input id="" type="number" class="input-elem" placeholder="0,00" required (focusout)="montoParcial($event)">
+		            <div class="input-error-icon" role="alert"></div>
+                    <div class="input-error-popup" role="alert">Required</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="flex-row col-container">
+            <div class="box col-1-2 full-width-mobile">
+                <div
+                  class="input-wrapper select select2"
+                  (click)="cambiarPeriodo($event)"
+                  id="selectFechaMonto"
+                >
+                  <div class="select2-date input-wrapper date">
+                    <input type="date" id="fecha" (focusout)="setearFecha($event)" />
+                    <img
+                      class="alternate-select"
+                      src="/assets/images/ui/close-btn.svg"
+                      alt=""
+                    />
+                  </div>
+
+                  <ul id="promises-select" data-value="">
+                    <li class="placeholder active" value="">
+                      <div id="placeholder">{{"Traduct.periodo" | translate }}</div>
+                    </li>
+
+                    <li data-value="1">
+                      <div class="selectable">
+                        24hs
+                      </div>
+                    </li>
+
+                    <li data-value="2">
+                      <div class="selectable">
+                        48hs
+                      </div>
+                    </li>
+
+                    <li data-value="3">
+                      <div class="selectable">
+                        72hs
+                      </div>
+                    </li>
+
+                    <li data-value="">
+                      <div class="selectable last date-picker">
+                        {{"Traduct.elegir_fecha" | translate }}
+                      </div>
+                    </li>
+                  </ul>
+                  <!-- <div class="input-error-icon" role="alert"></div>
+                  <div class="input-error-popup" role="alert">
+                    Required
+                  </div> -->
+                </div>
+              </div>
+
+            <div class="col-1-2">&nbsp;</div>
+        </div>
+
+
+    </div>
+    <div>
+        <button class="btn" (click)="generarPromesa()" [disabled]="button" >{{"Traduct.generar_promesa" | translate }}</button>
+    </div>
+</div>
+
+
+<div (click)="cerrarPopup()" class="overlay" id="overlay-monto">
+    <div *ngIf="popupNro === 1" class="dialog-container sidebar" role="dialog">
+      <a class="close-btn" (click)="cerrarPopup()">
+        <img src="assets/images/ui/close-btn.svg" alt="Close" />
+      </a>
+      <div class="dialog-content login-dialog">
+        <div>
+          <div class="flex-column flex-center">
+            <div>
+              <img
+                width="70px"
+                height="70px"
+                src="assets/images/ui/exclamation-triangle-solid.svg"
+                alt=""
+              />
+            </div>
+            <div class="text-center">
+              <p>{{ MensajeAlert }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

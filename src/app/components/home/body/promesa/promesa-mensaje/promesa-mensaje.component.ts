@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Router, ChildActivationStart } from '@angular/router';
 import { GetService } from '@app/services/get.service';
 import { PostService } from '@app/services/post.service';
@@ -13,16 +13,18 @@ import { Promesa } from '@app/models/PostPromesa.model';
   templateUrl: './promesa-mensaje.component.html',
   styles: [],
 })
-export class PromesaMensajeComponent implements OnInit {
-  @Input() promesaGenerada: boolean;
-  @Input() promesa: any;
-  @Output() volviendo = new EventEmitter<boolean>();
-  respuesta: any;
+export class PromesaMensajeComponent implements OnInit, OnChanges {
+  @Input() promGen:any;
+  @Input() promesaStep: number;
+  @Output() siguiente = new EventEmitter<number>();
+  @Output() volviendo = new EventEmitter<number>();
   productos = [];
   tipoPromesa: string;
   promesaPago = 0;
+  importeAcordadoImprimir = [];
   promesaCreada = false;
   promesaError = false;
+  
 
   constructor(
     private router: Router,
@@ -30,34 +32,37 @@ export class PromesaMensajeComponent implements OnInit {
     private postService: PostService,
     private translate: TranslateService,
     private servicioComunicacion: ComunicacionService
-  ) {}
+  ) {};
 
-  ngOnInit(): void {
+  ngOnInit(): void{
+  };
+
+  ngOnChanges(changes:SimpleChanges): void {
     // (this.promesaGenerada);
     // this.respuesta = this.getService.getPromesa();
-    this.cambioTexto(this.translate.instant('Traduct.promesa_pago'));
-    this.respuesta = this.promesa;
-    // console.log(this.respuesta);
-    if (this.respuesta.formaPago === 'IMPORTE') {
-      const cliente = this.respuesta.cliente;
-      const importe = this.respuesta.totalPagar;
-      this.getService
-        .getProductPromImporte(cliente, importe)
-        .subscribe((res) => {
-          // console.log(res);
-          this.productos = res.Cuentas;
-        });
-    } else {
-      this.productos = this.respuesta.cuentas;
-    }
-    // console.log(this.respuesta.mensajes);
-    // this.respuesta.mensajes.mensaje = this.respuesta.mensajes.mensaje.replace('promesaPago', JSON.stringify(this.respuesta.totalPagar));
-    // this.respuesta.mensajes.mensaje = this.respuesta.mensajes.mensaje.replace('fechaPromesa', this.respuesta.fechaPromesaVencimiento);
-  }
+    if(changes?.promGen?.currentValue !== undefined){
+      this.cambioTexto(this.translate.instant('Traduct.promesa_pago'));
+      // console.log(this.promGen);
+      this.importeAcordadoImprimir = JSON.stringify(this.promGen.totalPagar).split('.');
+      // console.log(this.importeAcordadoImprimir)
+      if (this.promGen.formaPago === 'IMPORTE') {
+        const cliente = this.promGen.cliente;
+        const importe = this.promGen.totalPagar;
+        this.getService
+          .getProductPromImporte(cliente, importe)
+          .subscribe((res) => {
+            // console.log(res);
+            this.productos = res.Cuentas;
+          });
+      } else {
+        this.productos = this.promGen.cuentas;
+      };
+    };
+  };
 
   cambioTexto(mensaje: string): void {
     this.servicioComunicacion.enviarMensaje(mensaje);
-  }
+  };
 
   postPromesa(): void {
     const cuentas = [];
@@ -72,14 +77,14 @@ export class PromesaMensajeComponent implements OnInit {
     });
     // console.log(cuentas);
     const obj: Promesa = { // Sacamos el Any
-      IdPersona: this.respuesta.cliente,
-      IdTipoPromesa: this.respuesta.idTipoPromesa,
-      PromesaFecha: new Date(this.respuesta.fechaPromesaVencimiento),
-      PromesaMonto: this.respuesta.totalPagar,
-      DeudaTotal: this.respuesta.deudaTotal,
+      IdPersona: this.promGen.cliente,
+      IdTipoPromesa: this.promGen.idTipoPromesa,
+      PromesaFecha: new Date(this.promGen.fechaPromesaVencimiento),
+      PromesaMonto: this.promGen.totalPagar,
+      DeudaTotal: this.promGen.deudaTotal,
       Cuentas: cuentas,
-      FormaPromesa: this.respuesta.formaPromesa,
-      FormaPago: this.respuesta.formaPago,
+      FormaPromesa: this.promGen.formaPromesa,
+      FormaPago: this.promGen.formaPago,
     };
     // console.log(obj);
 
@@ -87,26 +92,34 @@ export class PromesaMensajeComponent implements OnInit {
       // console.log(res);
       if (res.ErrorCode === 0) {
         this.promesaCreada = true;
-        const element = document.getElementById('deals-sidebar');
-        element.classList.add('active');
+        this.promesaStep += 1;
+        this.volviendo.emit(this.promesaStep);
       } else {
         this.promesaError = true;
+        document.querySelector('#mensaje-error').classList.add('active');
         /*setTimeout(() => {
           this.router.navigateByUrl('promesa-pago');
         }, 3000);*/
-      }
+      };
     });
-  }
+  };
+
+  cerrarPopup(): void {
+    document.querySelector('#mensaje-error').classList.remove('active');
+  };
 
   volver(): void {
-    this.promesaGenerada = !this.promesaGenerada;
-    this.volviendo.emit(this.promesaGenerada);
-  }
+    if(this.promGen.formaPago === 'IMPORTE'){
+      this.volviendo.emit(1);
+    }else{
+      this.volviendo.emit(2);
+    };
+  };
 
   removerComas(numero: string): string {
     if (numero === '' || numero === null) {
       return numero;
-    }
+    };
     return numero.replace(',', '');
-  }
-}
+  };
+};

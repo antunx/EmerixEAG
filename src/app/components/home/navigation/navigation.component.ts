@@ -126,8 +126,7 @@ export class NavigationComponent implements OnInit {
     this.MenuSel = this.translate.instant('Traduct.prometer_fecha');
     this.MenuPrometerFecha  = this.translate.instant('Traduct.prometer_fecha');
     this.cambioTexto(this.translate.instant('Traduct.prometer_fecha'));
-    // this.router.navigateByUrl('/home/prometer_fecha');
-    alert('PrometeFecha(): en desarrollo |_(-.-)_T ');
+    this.router.navigateByUrl('/home/promesa');
     this.clickMobile(true);
   }
 

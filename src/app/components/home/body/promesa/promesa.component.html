@@ -1,444 +1,122 @@
-<!-- <p>promesa works!</p>
-<p><a [routerLink]="" (click)="IrPromesaMensaje()" class="wide-link">Ir Promesa Mensaje</a></p>
-<p><a [routerLink]="" (click)="IrPromesaDetalle()" class="wide-link">Ir Promesa Detalle</a></p> -->
-<div class="flex-column flex-grow">
-  <div class="pages-container">
-    <section class="page-deals">
-      <!-- START PAGE HEADER -->
-      <div *ngIf="!promesaGenerada" class="flex-row flex-center">
-        <h1 class="flex-grow">{{ "Traduct.generar_promesa" | translate }}</h1>
-        <div>
-          <div class="breadcrumb-container" id="">
-            <ul class="flex-row">
-              <li class="active breadcrumb">
-                item1
-              </li>
-
-              <li class="breadcrumb">
-                item2
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!-- END PAGE HEADER -->
-      <div *ngIf="!promesaGenerada" class="flex-row">
-        <!-- START DESKTOP TABLE -->
-        <div class="table-container desktop-only">
-          <table class="table" width="100%" border="0">
-            <tbody>
-              <tr class="table-header">
-                <td
-                  [ngStyle]="{
-                    width: tipoPago === 'PRODUCTO' ? '25%' : '33.3%'
-                  }"
-                >
-                  <div class="input-wrapper checkbox">
-                    <input
-                      id="select-all"
-                      type="checkbox"
-                      class="input-elem visually-hidden"
-                      required
-                      value="all"
-                      [checked]="checked"
-                      (change)="checkAll($event)"
-                      [disabled]="tipoPago == 'IMPORTE'"
-                    />
-
-                    <div
-                      class="input-fake-checkbox"
-                      *ngIf="tipoPago == 'PRODUCTO'"
-                    >
-                      <span class="input-caret"></span>
-                    </div>
-
-                    <label for="select-all">{{
-                      "Traduct.producto" | translate
-                    }}</label>
-
-                    <div class="input-error-icon" role="alert"></div>
-                    <div class="input-error-popup" role="alert">Required</div>
-                  </div>
-                </td>
-
-                <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '33.3%' }">
-                  {{ "Traduct.cant_dias_mora" | translate }}
-                </td>
-
-                <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '33.3%' }">
-                  {{ "Traduct.monto_deuda" | translate }}
-                </td>
-
-                <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '0%' }" [hidden]="tipoPago == 'IMPORTE'">
-                  {{ "Traduct.importe_a_pagar" | translate }}
-                </td>
-              </tr>
-              <div *ngFor="let cuenta of RespPromesa?.Cuentas">
-                <tr>
-                  <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '33.3%' }">
-                    <div class="input-wrapper checkbox">
-                      <input
-                        id="table-select-{{ cuenta.IdCuenta }}"
-                        type="checkbox"
-                        class="input-elem visually-hidden"
-                        required
-                        [disabled]="tipoPago == 'IMPORTE'"
-                        name="selectAll"
-                        [checked]="cuenta.Check"
-                        (change)="cambiarCheck(cuenta.IdCuenta, $event)"
-                      />
-
-                      <div
-                        class="input-fake-checkbox"
-                        *ngIf="tipoPago == 'PRODUCTO'"
-                      >
-                        <span class="input-caret"></span>
-                      </div>
-
-                      <label for="table-select-{{ cuenta.IdCuenta }}">{{
-                        cuenta.NombreProducto
-                      }}</label>
-                    </div>
-                  </td>
-
-                  <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '33.3%' }">
-                    {{ cuenta.DiasMora }}
-                  </td>
-
-                  <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '33.3%' }">
-                    {{
-                      cuenta.Deuda
-                        | currency: cuenta.CodigoMoneda:"symbol-narrow"
-                    }}
-                  </td>
-
-                  <td [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '25%' : '0%' }" [hidden]="tipoPago == 'IMPORTE'">
-                    <input
-                      type="number"
-                      id="monto-cancelar-{{ cuenta.IdCuenta }}"
-                      [value]="cuenta.Deuda"
-                      [disabled]="!cuenta.Check"
-                      [max]="cuenta.Deuda"
-                      min="0"
-                      (focusout)="cambiarMonto($event)"
-                      attr.data-valor="{{ cuenta.Deuda }}"
-                      style="width: 100px; text-align: center;"
-                      (focus)="deshabilitarBoton()"
-                      *ngIf="RespPromesa?.ActivoParcial"
-                      style="
-                        text-align: right;
-                        width: 30%;
-                        border: none;
-                        border-bottom: 1px solid #8569b4;
-                      "
-                    />
-                    <label
-                      id="monto-cancelar-{{ cuenta.IdCuenta }}"
-                      *ngIf="!RespPromesa?.ActivoParcial"
-                      >{{ cuenta.Deuda }}</label
-                    >
-                  </td>
-                </tr>
-              </div>
-            </tbody>
-          </table>
-        </div>
-        <!-- END DESKTOP TABLE -->
-
-        <!-- START MOBILE TABLE -->
-        <div class="mobile-only flex-column flex-grow table-container">
-          <table
-            class="box table flex-row"
-            *ngFor="let cuenta of RespPromesa?.Cuentas"
-          >
-            <tbody>
-              <tr class="table-header">
-                <td>
-                  <div class="input-wrapper checkbox">
-                    <input
-                      id="table-select-m{{ cuenta.IdCuenta }}"
-                      type="checkbox"
-                      class="input-elem visually-hidden"
-                      required
-                      [disabled]="tipoPago == 'IMPORTE'"
-                      name="selectAll"
-                      [checked]="cuenta.Check"
-                      (change)="cambiarCheck(cuenta.IdCuenta, $event)"
-                    />
-
-                    <div
-                      class="input-fake-checkbox"
-                      *ngIf="tipoPago == 'PRODUCTO'"
-                    >
-                      <span class="input-caret"></span>
-                    </div>
-
-                    <label for="table-select-m{{ cuenta.IdCuenta }}">{{
-                      cuenta.NombreProducto
-                    }}</label>
-
-                    <div class="input-error-icon" role="alert"></div>
-                    <div class="input-error-popup" role="alert">Required</div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p>
-                    <strong>{{ "Traduct.cant_dias_mora" | translate }}</strong>
-                  </p>
-
-                  <p>{{ cuenta.DiasMora }}</p>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p>
-                    <strong>{{ "Traduct.monto_deuda" | translate }}</strong>
-                  </p>
-
-                  <p>{{ cuenta.Deuda }}</p>
-                </td>
-              </tr>
-
-              <tr>
-                <td [hidden]="tipoPago == 'IMPORTE'">
-                  <p>
-                    <strong>{{ "Traduct.importe_a_pagar" | translate }}</strong>
-                  </p>
-
-                  <p>
-                    <input
-                      type="number"
-                      id="monto-cancelar-{{ cuenta.IdCuenta }}"
-                      [value]="cuenta.Deuda"
-                      [disabled]="!cuenta.Check"
-                      [max]="cuenta.Deuda"
-                      min="0"
-                      (focusout)="cambiarMonto($event)"
-                      attr.data-valor="{{ cuenta.Deuda }}"
-                      style="width: 100px; text-align: center;"
-                      (focus)="deshabilitarBoton()"
-                      *ngIf="RespPromesa?.ActivoParcial"
-                      style="
-                        text-align: right;
-                        width: 30%;
-                        border: none;
-                        border-bottom: 1px solid #8569b4;
-                      "
-                    />
-                    <label
-                      id="monto-cancelar-{{ cuenta.IdCuenta }}"
-                      *ngIf="!RespPromesa?.ActivoParcial"
-                      >{{ cuenta.Deuda }}</label
-                    >
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- END MOBILE TABLE -->
-      </div>
-      <!-- START CONTROLLERS -->
-      <div *ngIf="!promesaGenerada" class="flex-column deal-mini">
-        <div>
-          <div
-            class="input-wrapper radio"
-            [hidden]="!RespPromesa?.ActivoProducto && RespPromesa?.ActivoMonto"
-          >
-            <input
-              id="payment-total"
-              type="radio"
-              class="input-elem visually-hidden"
-              name="payment-type"
-              required
-              value="PRODUCTO"
-              [checked]="
-                RespPromesa?.ActivoProducto == true ||
-                (!RespPromesa?.ActivoProducto && !RespPromesa?.ActivoMonto)
-              "
-              (click)="seleccionarPago($event)"
-            />
-
-            <div class="input-fake-radio">
-              <span class="input-caret"></span>
-            </div>
-
-            <label for="payment-total">
-              <div class="box flex-row flex-center">
-                <div class="payment-title">
-                  {{ "Traduct.por_producto" | translate }}
-                </div>
-                <div class="text-right flex-grow">
-                  <!-- <strong>${{
-                    removerComas(
-                      montoAPagar | number: :"1.2-2"
-                    )
-                  }}</strong> -->
-                  <strong>{{
-                    removerComas(
-                      montoAPagar | currency: "ARS":"symbol-narrow":"1.2-2"
-                    )
-                  }}</strong>
-                </div>
-              </div>
-            </label>
-
-            <div class="input-error-icon" role="alert"></div>
-            <div class="input-error-popup" role="alert">Required</div>
-          </div>
-        </div>
-        <div>
-          <div class="input-wrapper radio" [hidden]="!RespPromesa?.ActivoMonto">
-            <input
-              id="payment-parcial"
-              type="radio"
-              class="input-elem visually-hidden"
-              name="payment-type"
-              required
-              value="IMPORTE"
-              (click)="seleccionarPago($event)"
-              [checked]="
-                RespPromesa?.ActivoMonto == true &&
-                RespPromesa?.ActivoProducto == false
-              "
-              [disabled]="RespPromesa?.ActivoMonto == false"
-            />
-
-            <div class="input-fake-radio">
-              <span class="input-caret"></span>
-            </div>
-
-            <label for="payment-parcial">
-              <div class="box flex-row flex-center">
-                <div class="payment-title">
-                  {{ "Traduct.por_monto" | translate }}
-                </div>
-                <div class="text-right flex-grow">
-                  <div class="input-wrapper text">
-                    <input
-                      type="number"
-                      class="input-elem"
-                      name="monto-monto"
-                      id="monto-monto"
-                      [value]="RespPromesa?.DeudaTotal"
-                      min="0"
-                      [max]="RespPromesa?.DeudaTotal"
-                      (focusout)="cambiarMonto($event)"
-                      (focus)="deshabilitarBoton()"
-                      [disabled]="tipoPago != 'IMPORTE'"
-                      step="0.1"
-                      style="font-weight: bold;"
-                    />
-
-                    <div class="input-error-icon" role="alert"></div>
-                    <div class="input-error-popup" role="alert">Required</div>
-                  </div>
-                </div>
-              </div>
-            </label>
-
-            <div class="input-error-icon" role="alert"></div>
-            <div class="input-error-popup" role="alert">Required</div>
-          </div>
-        </div>
-        <div>
-          <div class="box flex-row flex-center">
-            <div class="payment-title">{{ "Traduct.periodo" | translate }}</div>
-            <div class="text-right flex-grow">
-              <div class="input-wrapper date" id="date-input">
-                <select
-                  name="periodo"
-                  id="periodo"
-                  (change)="cambiarPeriodo($event)"
-                  class="input-elem"
-                >
-                  <option value="1">24 hs</option>
-                  <option value="2">48 hs</option>
-                  <option value="3">72 hs</option>
-                  <option value="fecha">{{
-                    "Traduct.elegir_fecha" | translate
-                  }}</option>
-                </select>
-                <input
-                  *ngIf="periodo == 'fecha'"
-                  class="input-elem"
-                  type="date"
-                  name="fecha"
-                  id="fecha"
-                  (change)="setearFecha($event)"
-                />
-                <input
-                  *ngIf="periodo == 'fecha'"
-                  class="input-elem"
-                  type="text"
-                  name="nfecha"
-                  id="nfecha"
-                  (click)="cambiarInputFecha()"
-                  hidden
-                />
-
-                <div class="input-error-icon" role="alert"></div>
-                <div class="input-error-popup" role="alert"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button
-          class="btn"
-          value="Generar Promesa"
-          id="generar-promesa"
-          (click)="generarPromesa($event)"
-          [disabled]="button"
-        >
-          {{ "Traduct.generar_promesa" | translate }}
-        </button>
-      </div>
-
-      <app-promesa-mensaje
-        *ngIf="promesaGenerada"
-        [promesaGenerada]="promesaGenerada"
-        (volviendo)="onVolviendo($event)"
-        [promesa]="promesa"
-      >
-      </app-promesa-mensaje>
-      <!-- END CONTROLLERS -->
-
-      <!-- START POPUP -->
-      <div (click)="cerrarPopup()" class="overlay">
-        <div
-          *ngIf="popupNro === 1"
-          class="dialog-container sidebar"
-          role="dialog"
-        >
-          <a class="close-btn" (click)="cerrarPopup()">
-            <img src="assets/images/ui/close-btn.svg" alt="Close" />
-          </a>
-          <div class="dialog-content login-dialog">
-            <div>
-              <div class="flex-column flex-center">
-                <div>
-                  <img
-                    width="70px"
-                    height="70px"
-                    src="assets/images/ui/exclamation-triangle-solid.svg"
-                    alt=""
-                  />
-                </div>
-                <div class="text-center">
-                  <p>{{ MensajeAlert }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- END POPUP -->
-    </section>
+<section class="page-promises promises" [hidden]="promesaStep != 0">
+  <div class="page-progress">
+    <div class="progress progress-5"></div>
   </div>
-</div>
 
-<!-- COMPONENTE PROMESA-MENSAJE -->
+  <div class="flex-column page-header">
+    <p class="top-decoration">{{"Traduct.prometer_fecha" | translate }}</p>
+  </div>
+
+  <div class="restrict-width">
+    <div class="title">
+      <h1 class="page-title text-large">{{"Traduct.generar_promesa" | translate }}</h1>
+      <p class="page-subtitle">
+        <span></span>{{"Traduct.promesa_subtituilo" | translate }}
+      </p>
+    </div>
+
+    <div class="selectable-box flex-row col-container" id="box-2994778034">
+      <div
+        class="box col-1-2"
+        id="porMonto"
+        (click)="seleccionarTipoPromesa(1)">
+        <div class="flex-row flex-center">
+          <img src="/assets/images/sections/promises/1.svg" alt="" />
+          <img src="/assets/images/sections/promises/1_active.svg" alt="" />
+        </div>
+        <p class="text-center">
+          {{"Traduct.monto_titulo" | translate }}
+        </p>
+      </div>
+      <div
+        class="box col-1-2"
+        id="porProducto"
+        (click)="seleccionarTipoPromesa(2)"
+      >
+        <div class="flex-row flex-center">
+          <img src="/assets/images/sections/promises/2.svg" alt="" />
+          <img src="/assets/images/sections/promises/2_active.svg" alt="" />
+        </div>
+        <p class="text-center">
+          {{"Traduct.producto_titulo" | translate }}
+        </p>
+      </div>
+    </div>
+    <div>
+      <button (click)="continuarStep()" class="btn" data-next>{{"Traduct.siguiente" | translate }}</button>
+    </div>
+  </div>
+</section>
+<section class="page-promises promises_1" [hidden]="promesaStep != 2">
+  <app-grilla-promesa
+    [resp]="resp"
+    [promesaStep]="promesaStep"
+    [volverHome]="volverHome"
+    (volviendo)="onVolviendo($event)"
+    (siguiente)="onSiguiente($event)"
+    (promGen)="onPromGen($event)"
+  ></app-grilla-promesa>
+</section>
+
+<section class="page-promises promises_1" [hidden]="promesaStep != 1">
+  <app-monto-promesa
+    [resp]="resp"
+    [promesaStep]="promesaStep"
+    [volverHome]="volverHome"
+    (volviendo)="onVolviendo($event)"
+    (siguiente)="onSiguiente($event)"
+    (promGen)="onPromGen($event)"
+  >
+  </app-monto-promesa>
+</section>
+
+<section class="page-promises promises_1" [hidden]="promesaStep != 3">
+  <app-promesa-mensaje
+    [promGen]="promGen"
+    [promesaStep]="promesaStep"
+    (volviendo)="onVolviendo($event)"
+    (siguiente)="onSiguiente($event)"
+    *ngIf="promesaStep === 3"
+  >
+  </app-promesa-mensaje>
+</section>
+
+<section class="page-pay pay-success" [hidden]="promesaStep != 4">
+  <app-promesa-exito></app-promesa-exito>
+</section>
+<section>
+  <div class="chat-bot col-5" style="position: relative;">
+    <button (click)="toggleElement()"
+          class="btn-chat col-3"
+          style="width: 40px;
+                height: 40px;
+                position: absolute;
+                left: 20px;
+                bottom: 0;
+                background-color: transparent;
+                cursor: pointer;
+                outline: transparent;">
+        <i class="far fa-comment-dots"
+            style="color: #8569B4;
+              position: absolute;
+              right: 5px;
+              top: 5px;
+              font-size: 30px;"></i>
+    </button>
+    <div [hidden]="!hideElement" class="contain-iframe" style="width: 400px; height: 600px; position: fixed;
+    right: 20px;
+    bottom: 10px;
+    border: 1px solid hsla(0,0%,59.6%,.15);
+    box-shadow: 0 2px 4px rgba(0,0,0,.5);
+    border-radius: 10px;">
+        <iframe src="https://ss.emerix.com.ar/twilio-net"
+        frameborder="0"
+        width="100%"
+        height="100%"
+        style="padding: 0;
+        margin: 0;
+        overflow: hidden;">
+          </iframe>
+    </div>
+  </div>
+</section>

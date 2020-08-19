@@ -143,7 +143,7 @@
                 </div>
               </div>
            </div>
-           <div class="flex-row col-container">
+            <div class="flex-row col-container flex-column-on-mobile">
               <div class="col-2-3">
                 <div class="form-group">
                   <div [ngClass] = "!(NumeroComprobante.invalid && (NumeroComprobante.dirty || NumeroComprobante.touched)) ? 'input-wrapper text flex-center flex-column' : 'input-wrapper text flex-center flex-column error'">
@@ -155,12 +155,10 @@
               </div>
               <div class="col-1-3">
                 <div class="form-group">
-                  <div [ngClass] = "!(FechaPago.invalid && (FechaPago.dirty || FechaPago.touched)) ? 'input-wrapper text flex-center flex-column' : 'input-wrapper text flex-center flex-column error'">
-                    <div class="input-wrapper date">
-                      <app-input-date formControlName="FechaPago"></app-input-date>
-                      <div class="input-error-icon" role="alert"></div>
-                      <div class="input-error-popup" role="alert">{{ 'Traduct.seleccione_fecha' | translate }}</div>
-                     </div>
+                  <div [ngClass] = "!(FechaPago.invalid && (FechaPago.dirty || FechaPago.touched)) ? 'input-wrapper date' : 'input-wrapper date error'">
+                    <app-input-date formControlName="FechaPago"></app-input-date>
+                    <div class="input-error-icon" role="alert"></div>
+                    <div class="input-error-popup" role="alert">{{ 'Traduct.seleccione_fecha' | translate }}</div>
                   </div>
                 </div>
               </div>

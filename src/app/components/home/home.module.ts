@@ -43,6 +43,9 @@ import { TuPerfilComponent } from './body/persona/tu-perfil/tu-perfil.component'
 import { HttpClient } from '@angular/common/http';
 import { MensajeMpComponent } from './body/pagar/mercado_pago/mensaje-mp.component';
 import { NotificacionMpComponent } from './body/pagar/mercado_pago/notificacion-mp/notificacion-mp.component';
+import { GrillaPromesaComponent } from './body/promesa/grilla-promesa/grilla-promesa.component';
+import { MontoPromesaComponent } from './body/promesa/monto-promesa/monto-promesa.component';
+import { PromesaExitoComponent } from './body/promesa/promesa-exito/promesa-exito.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
@@ -80,7 +83,10 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     NotificacionesComponent,
     TuPerfilComponent,
     MensajeMpComponent,
-    NotificacionMpComponent
+    NotificacionMpComponent,
+    GrillaPromesaComponent,
+    MontoPromesaComponent,
+    PromesaExitoComponent,
   ],
   imports: [
     TranslateModule.forRoot({

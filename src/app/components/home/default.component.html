@@ -79,9 +79,12 @@
                  </div>
               </div>
               <div>
-                 <h2>Promesas de pago</h2>
+                 <h2>{{ 'Traduct.promesa_pago' | translate }}</h2>
+                 <app-promesa-ultima></app-promesa-ultima>
+                <!--
                  <div class="box promises-table">
-                    <div class="table-container">
+
+                     <div class="table-container">
                        <table class="table selectable" width="100%" border="0">
                           <tbody>
                           <tr class="">
@@ -122,9 +125,9 @@
                     </div>
                     <hr>
                     <div class="wide-link">
-                       <a href="/prometer.html">Generar una promesa</a>
+                       <a [routerLink]="" (click)="GenerarPromesa()">{{ 'Traduct.generar_una_promesa' | translate }}</a>
                     </div>
-                 </div>
+                 </div>-->
               </div>
               <div class="">
                  <h2>Planes de pago</h2>
@@ -173,7 +176,7 @@
                     </div>
                     <hr>
                     <div class="wide-link">
-                       <a href="/pagar.html">Generar un plan</a>
+                       <a [routerLink]="" (click)="GenerarPlan()">{{ 'Traduct.generar_un_plan' | translate }}</a>
                     </div>
                  </div>
               </div>

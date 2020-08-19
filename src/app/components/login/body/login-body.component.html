@@ -12,6 +12,25 @@
                     <div class="login-content flex flex-column">
                       <div>
                           <div class="form-group flex-row">
+
+<!--                             <div class="login-dnitype-container">
+                              <div [ngClass] = "(tipoDoc.value === 0) ? 'input-wrapper select select2' : 'input-wrapper select select2 error'" (click)="clickTiposDni($event)" id="CBOTipoDoc">
+                                <ul id="promises-select" data-value="">
+                                  <li class="placeholder active" value="">
+                                    <div id="placeholder">{{"Traduct.documento" | translate }}</div>
+                                  </li>
+                                  <li *ngFor="let tipo_doc of tiposDocumento" value="{{tipo_doc.IdTypeDoc}}">
+                                      <div class="selectable">
+                                        {{tipo_doc.CodeTypeDoc}}
+                                      </div>
+                                    </li>
+                                </ul>
+                                <div class="input-error-icon" role="alert"></div>
+                                <div class="input-error-popup" role="alert">{{ 'Traduct.requerido' | translate }}</div>
+                              </div>
+                            </div>
+                            <input formControlName="tipoDoc" id="tipoDoc" name="tipoDoc" type="hidden" value="0"> -->
+
                             <div class="login-dnitype-container">
                                 <div [ngClass] = "!(tipoDoc.invalid && (tipoDoc.dirty || tipoDoc.touched)) ? 'input-wrapper select' : 'input-wrapper select error'" >
                                   <select formControlName="tipoDoc" id="login_dni_type" required>
@@ -187,11 +206,11 @@
           <div (click)="cerrarPopup()" class="overlay">
 
             <!-- consultas -->
-            <div *ngIf="popupNro===1" class="dialog-container" role="dialog">
+            <div *ngIf="popupNro===1" class="dialog-container login-dialog login-dialog-3" role="dialog">
                 <a class="close-btn" (click)="cerrarPopup()">
                     <img src="assets/images/ui/close-btn.svg" alt="Close">
                 </a>
-                <div class="dialog-content login-dialog">
+                <div class="dialog-content login-dialog login-dialog-3-content">
                   <app-consulta></app-consulta>
                 </div>
             </div>
@@ -253,3 +272,5 @@
         </section>
   <!--   </div> -->
   </div>
+
+

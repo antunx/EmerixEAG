@@ -33,6 +33,25 @@ export class PromesaUltimaComponent implements OnInit, OnDestroy {
       .getPromesaPago(this.persona, 'true')
       .subscribe((data) => {
         // console.log(data['Promesas']);
+        /*console.log(
+          new Date(data.Promesas[0].PromesaFecha)
+            .toLocaleString('default', {
+              month: 'short',
+            })
+            .toUpperCase()
+            .slice(0, 3)
+        );
+        console.log(new Date(data.Promesas[0].PromesaFecha).getDate());*/
+        // data.Promesas[0].Estado = 'Quebrada';
+        data.Promesas.forEach((promesa) => {
+          promesa.mes = new Date(promesa.PromesaFecha)
+            .toLocaleString('default', {
+              month: 'short',
+            })
+            .toUpperCase()
+            .slice(0, 3);
+          promesa.dia = new Date(promesa.PromesaFecha).getDate();
+        });
         this.promesas = data.Promesas;
       });
   }

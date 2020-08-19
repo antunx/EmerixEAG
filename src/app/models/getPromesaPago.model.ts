@@ -11,4 +11,6 @@ interface Promesa {
   CodigoMoneda: string;
   Estado: string;
   CantidadCuentas: number;
+  dia?: number;
+  mes?: string;
 }

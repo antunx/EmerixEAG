@@ -93,4 +93,12 @@ export class DefaultComponent implements OnInit {
     // this.router.navigateByUrl('/home/pagar_cuotas');
     alert('PagarCuotas(): en desarrollo |_(-.-)_T ');
   }
+
+  GenerarPromesa(): void{
+    this.router.navigateByUrl('/home/promesa');
+  }
+
+  GenerarPlan(): void{
+    alert('GenerarPlan(): en desarrollo |_(-.-)_T ');
+  }
 }

@@ -1,0 +1,357 @@
+<div class="page-progress">
+  <div class="progress progress-30"></div>
+</div>
+
+<div class="flex-column page-header">
+  <a *ngIf="!volverHome" class="top-decoration" (click)="volver()" style="cursor: pointer;">{{"Traduct.volver_anterior" | translate }}</a>
+  <a *ngIf="volverHome" class="top-decoration" (click)="volveraHome()" style="cursor: pointer;">{{"Traduct.volver_home" | translate }}</a>
+</div>
+
+<div class="restrict-width large">
+  <div class="col-2-3 full-width-mobile">
+    <div class="title">
+      <h1 class="page-title text-large">
+        {{"Traduct.por_producto" | translate }}
+      </h1>
+      <p class="page-subtitle">
+        <span></span><strong>Seleccioná los productos</strong>
+        que queres pagar, elegí cuando te comprometes a abonarlo
+        (<strong>periodo</strong>) y luego hace clic en
+        <strong>generar promesa</strong>.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="restrict-width large flex-row col-container">
+  <div class="box col-2-3 desktop-only">
+    <div class="table-container">
+      <table class="table selectable" width="100%" border="0">
+        <tbody>
+          <tr class="table-header">
+            <td class="col-3-6">
+              <div class="input-wrapper checkbox">
+                <input
+                  id="select-all"
+                  type="checkbox"
+                  class="input-elem visually-hidden"
+                  required
+                  value="all"
+                  [checked]="checked"
+                  (change)="checkAll($event)"
+                />
+
+                <div class="input-fake-checkbox">
+                  <span class="input-caret"></span>
+                </div>
+
+                <label for="select-all"
+                  >&nbsp;{{ "Traduct.producto" | translate }}</label
+                >
+              </div>
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              {{ "Traduct.cant_dias_mora" | translate }}
+            </td>
+
+            <td class="col-1-4 text-center desktop-only">
+              {{ "Traduct.monto_deuda" | translate }}
+            </td>
+
+            <td class="col-2-6 text-right">
+              {{ "Traduct.importe_a_pagar" | translate }}
+            </td>
+          </tr>
+
+          <tr *ngFor="let cuenta of cuentas?.Cuentas">
+            <td class="col-3-6">
+              <div class="input-wrapper checkbox">
+                <input
+                  id="table-select-{{ cuenta.IdCuenta }}"
+                  type="checkbox"
+                  class="input-elem visually-hidden"
+                  required
+                  name="selectAll"
+                  [checked]="cuenta.Check"
+                  (change)="cambiarCheck(cuenta.IdCuenta, $event)"
+                />
+
+                <div class="input-fake-checkbox">
+                  <span class="input-caret"></span>
+                </div>
+
+                <label for="table-select-{{ cuenta.IdCuenta }}"
+                  ><img
+                    src="/assets/images/ui/tables/prestamo.svg"
+                    alt=""
+                  />&nbsp;{{ cuenta.NombreProducto }}</label
+                >
+              </div>
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              {{ cuenta.DiasMora }}
+            </td>
+
+            <td class="col-1-4 text-center desktop-only">
+              {{ cuenta.Deuda | currency: cuenta.CodigoMoneda:"symbol-narrow" }}
+            </td>
+
+            <td class="col-2-6 text-right">
+              <input
+                type="number"
+                id="monto-cancelar-{{ cuenta.IdCuenta }}"
+                value="{{ cuenta?.Deuda.toFixed(2) }}"
+                [disabled]="!cuenta.Check"
+                [max]="cuenta.Deuda"
+                min="0"
+                (focusout)="cambiarMonto($event)"
+                attr.data-valor="{{ cuenta.Deuda }}"
+                style="width: 100px; text-align: center;"
+                (focus)="deshabilitarBoton()"
+                *ngIf="cuentas?.ActivoParcial"
+                style="
+                  text-align: right;
+                  width: 70%;
+                  border: none;
+                  border-bottom: 1px solid #8569b4;
+                "
+              />
+              <label
+                id="monto-cancelar-{{ cuenta.IdCuenta }}"
+                *ngIf="!cuentas?.ActivoParcial"
+                >{{ cuenta.Deuda }}</label
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="mobile-only">
+    <div
+      class="selectable-box flex-column special-mobile-selectable-box"
+      id="box-4261620203"
+    >
+      <div
+        class="box"
+        *ngFor="let cuenta of cuentas?.Cuentas; let i = index"
+        (click)="activarBox(cuenta.IdCuenta)"
+        id="box-{{ cuenta.IdCuenta }}"
+        [ngClass]="{ active: i === 0 }"
+      >
+        <div class="table-container">
+          <table class="table" width="100%" border="0">
+            <tbody>
+              <tr>
+                <td style="width: 100%;">
+                  <div class="input-wrapper checkbox">
+                    <input
+                      id="table-select-m{{ cuenta.IdCuenta }}"
+                      type="checkbox"
+                      class="input-elem visually-hidden"
+                      required
+                      name="selectAll"
+                      [checked]="cuenta.Check"
+                      (change)="cambiarCheck(cuenta.IdCuenta, $event)"
+                    />
+
+                    <div class="input-fake-checkbox">
+                      <span class="input-caret"></span>
+                    </div>
+
+                    <label for="table-select-m{{ cuenta.IdCuenta }}"
+                      ><img
+                        style="vertical-align: middle;"
+                        src="/assets/images/ui/tables/prestamo.svg"
+                        alt=""
+                      />&nbsp;<strong>{{
+                        cuenta.NombreProducto
+                      }}</strong></label
+                    >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <div class="dropdown-card">
+            <input
+              aria-hidden="true"
+              type="checkbox"
+              class="dropdown-trigger"
+              id="dropdown-trigger-dropdown-{{ cuenta.IdCuenta }}"
+            />
+
+            <label
+              class="dropdown-title"
+              for="dropdown-trigger-dropdown-{{ cuenta.IdCuenta }}"
+            >
+            </label>
+            <div class="dropdown-target">
+              <ul>
+                <li class="flex-row">
+                  <div class="col-1-2">
+                    {{ "Traduct.cant_dias_mora" | translate }}
+                  </div>
+                  <div class="col-1-2 text-right">
+                    {{ cuenta.DiasMora }}
+                  </div>
+                </li>
+                <li class="flex-row">
+                  <div class="col-1-2">
+                    {{ "Traduct.monto_deuda" | translate }}
+                  </div>
+                  <div class="col-1-2 text-right">
+                    {{ cuenta.Deuda }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <ul>
+            <li class="flex-row">
+              <div class="col-1-2">
+                <strong>{{ "Traduct.importe_a_pagar" | translate }}</strong>
+              </div>
+              <div class="col-1-2 text-right">
+                <div class="input-wrapper text">
+                  <input
+                    type="number"
+                    id="monto-cancelar-{{ cuenta.IdCuenta }}"
+                    value="{{ cuenta?.Deuda.toFixed(2) }}"
+                    [disabled]="!cuenta.Check"
+                    [max]="cuenta?.Deuda"
+                    min="0"
+                    (focusout)="cambiarMonto($event)"
+                    attr.data-valor="{{ cuenta.Deuda }}"
+                    style="width: 100px; text-align: center;"
+                    (focus)="deshabilitarBoton()"
+                    *ngIf="cuentas?.ActivoParcial"
+                    style="
+                      text-align: right;
+                      width: 30%;
+                      border: none;
+                      border-bottom: 1px solid #8569b4;
+                    "
+                  />
+                  <label
+                    id="monto-cancelar-{{ cuenta.IdCuenta }}"
+                    *ngIf="!cuentas?.ActivoParcial"
+                    >{{ cuenta.Deuda }}</label
+                  >
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex-column col-1-3 full-width-mobile">
+    <div class="flex-column row-container">
+      <div class="box">
+        <div
+          class="input-wrapper select select2"
+          (click)="cambiarPeriodo($event)"
+        >
+          <div class="select2-date input-wrapper date">
+            <input type="date" id="fecha" (focusout)="setearFecha($event)" />
+            <img
+              class="alternate-select"
+              src="/assets/images/ui/close-btn.svg"
+              alt=""
+            />
+          </div>
+
+          <ul id="promises-select" data-value="">
+            <li class="placeholder active" value="">
+              <div>{{"Traduct.periodo" | translate }}</div>
+            </li>
+
+            <li data-value="1">
+              <div class="selectable">
+                24hs
+              </div>
+            </li>
+
+            <li data-value="2">
+              <div class="selectable">
+                48hs
+              </div>
+            </li>
+
+            <li data-value="3">
+              <div class="selectable">
+                72hs
+              </div>
+            </li>
+
+            <li data-value="">
+              <div class="selectable last date-picker">
+                {{"Traduct.elegir_fecha" | translate }}
+              </div>
+            </li>
+          </ul>
+          <!-- <div class="input-error-icon" role="alert"></div>
+          <div class="input-error-popup" role="alert">
+            Required
+          </div> -->
+        </div>
+      </div>
+      <div class="box flex-row justify-between">
+        <span class="text-uppercase">{{"Traduct.monto" | translate }}</span>
+        <br />
+        <span
+          ><strong>{{
+            removerComas(montoAPagar | currency: "ARS":"symbol-narrow":"1.2-2")
+          }}</strong></span
+        >
+      </div>
+    </div>
+    <!-- <div class="error-box">
+      El monto a pagar no puede ser menor al pago mínimo.
+    </div> -->
+
+    <div>
+      <button
+        class="btn"
+        value="Generar Promesa"
+        id="generar-promesa"
+        (click)="generarPromesa($event)"
+        [disabled]="button"
+        data-next
+      >
+        {{ "Traduct.generar_promesa" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<!--hasta aca-->
+<div (click)="cerrarPopup()" class="overlay" id="overlay-error">
+  <div *ngIf="popupNro === 1" class="dialog-container sidebar" role="dialog">
+    <a class="close-btn" (click)="cerrarPopup()">
+      <img src="assets/images/ui/close-btn.svg" alt="Close" />
+    </a>
+    <div class="dialog-content login-dialog">
+      <div>
+        <div class="flex-column flex-center">
+          <div>
+            <img
+              width="70px"
+              height="70px"
+              src="assets/images/ui/exclamation-triangle-solid.svg"
+              alt=""
+            />
+          </div>
+          <div class="text-center">
+            <p>{{ MensajeAlert }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
