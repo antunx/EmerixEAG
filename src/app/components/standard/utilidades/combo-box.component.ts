@@ -29,10 +29,11 @@ export class ComboBoxComponent implements OnInit, ControlValueAccessor {
   @Input() Texto: string;
   @Input() ItemDefault: string;
   @Input() Lista = [];
+  @Input() Disabled: boolean;
 
   value: string;
   id: string;
-  isDisabled: boolean;
+
   onChange = (_: any) => { };
   onTouch = () => { };
 
@@ -66,7 +67,7 @@ export class ComboBoxComponent implements OnInit, ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this.isDisabled = isDisabled;
+    this.Disabled = isDisabled;
   }
 
   clickCombo(e): void{

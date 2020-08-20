@@ -14,6 +14,9 @@
       <li *ngFor="let not of Notificaciones">
         {{ not.Notificacion }}
       </li>
+      <div *ngIf="Cant === 0">
+        {{ 'Traduct.sin_notificaciones' | translate }}
+      </div>
     </ul>
 </div>
 

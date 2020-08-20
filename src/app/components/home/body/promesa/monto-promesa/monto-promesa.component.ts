@@ -33,12 +33,14 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
   button: boolean;
   MensajeAlert: string;
   popupNro: number;
+  pagoMinimo: number;
 
   constructor(private translate: TranslateService, private router: Router) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.resp?.currentValue !== undefined) {
-      // console.log(this.resp)
+      console.log(this.resp);
+      this.pagoMinimo = this.resp.PagoMinimo;
       this.DeudaTotalImprimir = JSON.stringify(this.resp.DeudaTotal).split('.');
       // console.log(this.DeudaTotalImprimir)
     }
@@ -149,7 +151,7 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
   // }
 
   setearFecha(e): void {
-    // console.log(e.target.value);
+    console.log(e.target.value);
     const aux = new Date();
     const fecha = new Date(e.target.value);
     fecha.setDate(fecha.getDate() + 1);
@@ -190,7 +192,8 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
     // console.log(this.fechaPromesa)
     if (
       this.montoSeleccionado === 2 &&
-      (this.pagoParcial <= 0 || this.pagoParcial > this.resp.DeudaTotal)
+      (this.pagoParcial < this.pagoMinimo ||
+        this.pagoParcial > this.resp.DeudaTotal)
     ) {
       this.MensajeAlert = this.translate.instant('Traduct.error_monto_promesa');
       this.MensajeAlert = this.MensajeAlert.replace(

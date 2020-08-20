@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { GetService } from '@services/get.service';
 import { Promesa } from '@models/Promesa.model';
-import { PromGen } from '@models/promesaGenerada.model'
+import { PromGen } from '@models/promesaGenerada.model';
 import { Subscription } from 'rxjs';
 import { ComunicacionService } from '@app/services/comunicacion.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,20 +29,19 @@ export class PromesaComponent implements OnInit, OnDestroy {
     this.getService
       .getProductProm(localStorage.getItem('version_core'))
       .subscribe((data) => {
-        data.ActivoParcial = true;
+        // data.ActivoParcial = true;
         // data.ActivoMonto = true;
         // data.ActivoProducto = true;
         this.resp = data;
-        // console.log(this.resp)
-        if(data.ActivoMonto && !data.ActivoProducto){
+        console.log(this.resp);
+        if (data.ActivoMonto && !data.ActivoProducto) {
           this.promesaStep = 1;
           this.volverHome = true;
         }
-        if(!data.ActivoMonto && data.ActivoProducto){
-          this.promesaStep = 2
+        if (!data.ActivoMonto && data.ActivoProducto) {
+          this.promesaStep = 2;
           this.volverHome = true;
         }
-
       });
   }
 
@@ -85,16 +84,15 @@ export class PromesaComponent implements OnInit, OnDestroy {
     this.promesaStep = e;
   }
 
-  onPromGen(e: PromGen): void{
+  onPromGen(e: PromGen): void {
     this.promGen = e;
   }
 
   toggleElement(): void {
-    if (this.hideElement){
-        this.hideElement = false;
-    }
-    else {
-        this.hideElement = true;
+    if (this.hideElement) {
+      this.hideElement = false;
+    } else {
+      this.hideElement = true;
     }
   }
 }
@@ -105,7 +103,3 @@ export class PromesaComponent implements OnInit, OnDestroy {
 // 2: Grilla Productos
 // 3: Promesa mensaje
 // 4: promesa resultado
-
-
-
-

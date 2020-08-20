@@ -90,9 +90,9 @@
           class="btn-chat col-3"
           style="width: 40px;
                 height: 40px;
-                position: absolute;
-                left: 20px;
-                bottom: 0;
+                position: fixed;
+                right: 10px;
+                bottom: 10px;
                 background-color: transparent;
                 cursor: pointer;
                 outline: transparent;">
@@ -103,11 +103,12 @@
               top: 5px;
               font-size: 30px;"></i>
     </button>
-    <div [hidden]="!hideElement" class="contain-iframe" style="width: 400px; height: 600px; position: fixed;
-    right: 20px;
+    <div [hidden]="!hideElement" class="contain-iframe" style="width: 400px; height: 550px; position: fixed;
+    right: 50px;
     bottom: 10px;
     border: 1px solid hsla(0,0%,59.6%,.15);
     box-shadow: 0 2px 4px rgba(0,0,0,.5);
+    z-index: 500;
     border-radius: 10px;">
         <iframe src="https://ss.emerix.com.ar/twilio-net"
         frameborder="0"
