@@ -61,7 +61,7 @@ export class DefaultComponent implements OnInit {
           MedioDePago: params.payment_type,
         };
         this.postService.postPago(pago).subscribe((data) => {
-          console.log(data);
+          // console.log(data);
           this.router.navigateByUrl('/home/default');
         });
       }

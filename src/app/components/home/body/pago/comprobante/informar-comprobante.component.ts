@@ -61,7 +61,8 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
 
   // Combos
   mediosPago: Item[];
-  monedas: Item[];
+  //monedas: Item[];
+  monedas = [];
   FechaActual = new Date();
   IdMedioPago: number;
 
@@ -108,7 +109,11 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
         if (res.ErrorCode > 0){
           console.log(res.ErrorMessage);
         } else{
-          this.monedas = res.Items;
+          // this.monedas = res.Items;
+          res.Items.forEach(
+            item =>
+            this.monedas.push({ Id: item.Id, Code: item.Codigo, Name: item.Codigo, Imagen: '' })
+          );
         }
       },
       (err) => {

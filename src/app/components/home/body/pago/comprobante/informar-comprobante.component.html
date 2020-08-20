@@ -132,14 +132,15 @@
               </div>
               <div class="col-1-3">
                 <div class="form-group">
-                  <div Class = "input-wrapper select">
+<!--                   <div Class = "input-wrapper select">
                     <select name="IdMoneda" id="IdMoneda" formControlName="IdMoneda">
                         <option selected="selected" class="placeholder" value="0">{{ 'Traduct.moneda' | translate }}</option>
                         <option [value]="mon.Id" *ngFor="let mon of monedas">{{mon.Nombre}}</option>
                     </select>
                     <div class="input-error-icon" role="alert"></div>
                     <div class="input-error-popup" role="alert">{{ 'Traduct.seleccione_moneda' | translate }}</div>
-                  </div>
+                  </div> -->
+                  <app-combo-box formControlName="IdMoneda" Texto="Name" ItemDefault="{{ 'Traduct.moneda' | translate }}" [Lista]="monedas"></app-combo-box>
                 </div>
               </div>
            </div>

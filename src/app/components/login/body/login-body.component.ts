@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
+import { FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -10,6 +10,7 @@ import { UsuarioAutenticarModel } from '@models/usuarioautenticar.model';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from '@app/services/auth.service';
+import { MetodosEstandarService } from '@app/services/metodos-estandar.service';
 
 @Component({
   selector: 'app-login-body',
@@ -21,10 +22,10 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
     private router: Router,
     private postservices: PostService,
     private getservices: GetService,
-    private formBuilder: FormBuilder,
     private translate: TranslateService,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private metodosEstandarService: MetodosEstandarService,
+  ) { this.metodosEstandarService.Entidad = ''; }
   private subscription: Subscription = new Subscription();
   get numero(): AbstractControl {
     return this.loginForm.get('numero');
@@ -46,7 +47,12 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
     return this.loginFormIngreso.get('codigo');
   }
 
+  get recaptcha(): AbstractControl {
+    return this.loginForm.get('recaptcha');
+  }
+
   tiposDocumento = [];
+
   loginForm: FormGroup;
   loginFormIngreso: FormGroup;
   usuario = new UsuarioAutenticarModel();
@@ -85,10 +91,15 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  configurarFormLogin(): void{
+  resolved(captchaResponse: string): void {
+    // console.log(`Resolved response token: ${captchaResponse}`);
+  }
+
+  configurarFormLogin(): void {
     this.loginForm = new FormGroup({
-      tipoDoc: new FormControl('', [Validators.required]), // 1
+      tipoDoc: new FormControl(''), // , [Validators.required]
       numero: new FormControl('', [Validators.required]), // 0803288836
+      recaptcha: new FormControl('ERR', [Validators.required]),
       // genero: new FormControl('', [Validators.required]),
       medioEnvio: new FormControl({value: false, disabled: false}),
     });
@@ -100,34 +111,16 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
 
   llenarTiposDni(): void{
     this.subscription.add(this.getservices.getDocumentType().subscribe( (res) => {
-      // console.log(res.TypeDoc);
-      this.tiposDocumento = res.TypeDoc;
-    }, (err) => {
-        // console.log(err);
+        // console.log(res.TypeDoc);
+        // this.tiposDocumento = res.TypeDoc;
+        res.TypeDoc.forEach(
+          item =>
+           this.tiposDocumento.push({ Id: item.IdTypeDoc, Code: item.CodeTypeDoc, Name: item.NameTypeDoc, Imagen: '' })
+        );
+      }, (err) => {
+        console.log(err);
       }
     ));
-  }
-
-  clickTiposDni(e): void{
-    const select = document.getElementById('CBOTipoDoc');
-    const placeholder = select.querySelector(
-      '.placeholder div'
-    ) as HTMLDivElement;
-    const target = e.target;
-    !select.classList.contains('date-selected') &&
-      select.classList.toggle('active');
-    if (target.classList.contains('selectable')) {
-      if (target.classList.contains('date-picker')) {
-        select.classList.add('date-selected');
-        // console.log(this.periodo);
-      } else {
-        placeholder.innerText = target.innerText;
-        this.loginForm.controls.tipoDoc.setValue(target.parentElement.getAttribute('value'));
-        // console.log(this.periodo);
-      };
-    } else if (target.classList.contains('alternate-select')) {
-      select.classList.remove('date-selected');
-    };
   }
 
   TildarMedioEnvio(medio: string): void{
@@ -138,6 +131,8 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
   Volver(valor: number): void{
     if (valor === 1){
       this.SeleccionoCanal = false;
+      this.loginForm.controls.tipoDoc.setValue('');
+      this.loginForm.controls.recaptcha.setValue('ERR');
     }
     if (valor === 2){
       this.SeleccionoCanal = false;
@@ -146,10 +141,25 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
   }
 
   Login(): void{
+    if (this.loginForm.controls.tipoDoc.value === ''){
+      this.MensajeTituloAlert = 'Error';
+      this.MensajeAlert = this.translate.instant('Traduct.seleccione') + ' ' + this.translate.instant('Traduct.document');
+      this.mostrarPopu(4);
+      return;
+    }
+
+    if (this.loginForm.controls.recaptcha.value === 'ERR'){
+      this.MensajeTituloAlert = 'Error';
+      this.MensajeAlert = this.translate.instant('Traduct.complete') + ' Captcha';
+      this.mostrarPopu(4);
+      return;
+    }
+
     this.MedioEnvioSeleccionado = this.loginForm.controls.medioEnvio.value;
     this.tieneInfo = false;
     this.usuario.dni = this.loginForm.controls.numero.value;
     this.usuario.tipoDoc = this.loginForm.controls.tipoDoc.value;
+
     this.telefonos = [];
     this.mails = [];
 

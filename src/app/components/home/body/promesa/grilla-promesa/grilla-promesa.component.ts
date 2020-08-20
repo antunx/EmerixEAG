@@ -215,7 +215,7 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
   }*/
 
   setearFecha(e): void {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const aux = new Date();
     const fecha = new Date(e.target.value);
     fecha.setDate(fecha.getDate() + 1);
@@ -272,7 +272,7 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
 
   generarPromesa(e): void {
     e.preventDefault();
-    console.log(this.fechaPromesa);
+    // console.log(this.fechaPromesa);
     /*console.log(this.periodo)
     console.log(this.fechaPromesa)*/
     if (this.periodo !== '' /*&& this.fechaPromesa !== null*/) {

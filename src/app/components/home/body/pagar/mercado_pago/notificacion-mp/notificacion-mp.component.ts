@@ -20,7 +20,7 @@ export class NotificacionMpComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.IdMercadoPago = params.id;
-      console.log(this.IdMercadoPago);
+      // console.log(this.IdMercadoPago);
       if (this.IdMercadoPago !== undefined) {
         fetch(
           `https://api.mercadopago.com/v1/payments/${
@@ -29,7 +29,7 @@ export class NotificacionMpComponent implements OnInit {
         )
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             const pago: IPago = {
               IdPagoMP: data.id,
               Id: parseInt(data.external_reference, 10),
@@ -38,9 +38,9 @@ export class NotificacionMpComponent implements OnInit {
               EstadoDetalle: data.status_detail,
               MedioDePago: data.payment_type_id,
             };
-            console.log(pago);
+            // (pago);
             this.postService.postPagoSinToken(pago).subscribe((respuesta) => {
-              console.log(respuesta);
+              // console.log(respuesta);
             });
           });
       }

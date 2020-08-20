@@ -16,6 +16,7 @@
   "Traduct.numero": "Número",
   "Traduct.solo_numeros": "Solo números",
   "Traduct.tipo_doc": "Tipo Doc.",
+  "Traduct.document": "Documento",
   "Traduct.reenviar_token": "Reenviar Código",
   "Traduct.detalle_productos": "Detalle de producto",
   "Traduct.detalle_promesa": "Detalle de promesa",
@@ -177,6 +178,8 @@
   "Traduct.prometer_fecha": "Prometer una fecha",
   "Traduct.avisar_pago": "Avisar que pagué",
 
-  "Traduct.default_t1":"¡Es un gusto verte por acá! Queremos ayudarte a alivianar tus deudas ;)"
+  "Traduct.default_t1":"¡Es un gusto verte por acá! Queremos ayudarte a alivianar tus deudas ;)",
+  "Traduct.seleccione": "Seleccione",
+  "Traduct.complete": "Complete"
 
 }

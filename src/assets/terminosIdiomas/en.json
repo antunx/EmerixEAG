@@ -16,6 +16,7 @@
   "Traduct.numero": "Number",
   "Traduct.solo_numeros": "Only numbers",
   "Traduct.tipo_doc": "Document type",
+  "Traduct.document": "Document",
   "Traduct.reenviar_token": "Resend Code",
   "Traduct.detalle_productos": "Products Details",
   "Traduct.detalle_promesa": "Promises Details",
@@ -174,5 +175,7 @@
   "Traduct.prometer_fecha": "Promise a date",
   "Traduct.avisar_pago": "Notify that I paid",
 
-  "Traduct.default_t1":"It's nice to see you here! We want to help you alleviate your debts;)"
+  "Traduct.default_t1":"It's nice to see you here! We want to help you alleviate your debts;)",
+  "Traduct.seleccione": "Select",
+  "Traduct.complete": "Complete"
 }

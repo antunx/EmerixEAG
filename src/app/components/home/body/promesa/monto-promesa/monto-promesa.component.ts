@@ -149,7 +149,7 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
   // }
 
   setearFecha(e): void {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const aux = new Date();
     const fecha = new Date(e.target.value);
     fecha.setDate(fecha.getDate() + 1);

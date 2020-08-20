@@ -104,7 +104,7 @@ export class PagarComponent implements OnInit {
       }
     });
     // console.log(this.cuotasId);
-    console.log(this.cuotasId);
+    // console.log(this.cuotasId);
   }
 
   cambiarCheckProductos(id: number, e): void {
@@ -455,7 +455,7 @@ export class PagarComponent implements OnInit {
       this.pagoGeneradoStep = this.pagoGeneradoStep + 2;
       // this.router.navigateByUrl('home/metodos-pago');
     }
-    console.log(pago);
+    // console.log(pago);
   }
 
   seleccionarPago(e): void {
@@ -528,7 +528,7 @@ export class PagarComponent implements OnInit {
   }
 
   onContinuar(e): void {
-    console.log(e);
+    // console.log(e);
     this.pagoGeneradoStep = e;
   }
 

@@ -2,10 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 
 /** TRANSLATION */
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+/* CUSTOM FORM CONTROL*/
+import { StandardModule } from '../standard/standard.module';
 
 /** COMPONENTES */
 import { LoginComponent } from './login.component';
@@ -43,7 +47,10 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    RouterModule
+    RouterModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
+    StandardModule
   ]
 })
 export class LoginModule { }

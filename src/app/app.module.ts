@@ -4,7 +4,11 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+import {
+  RecaptchaModule,
+  RecaptchaFormsModule,
+  RecaptchaLoaderService,
+} from 'ng-recaptcha';
 
 /** INTERCEPTOR */
 import { InterceptorService } from './services/interceptor.service';
@@ -42,14 +46,16 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     }),
     BrowserAnimationsModule,
     RecaptchaModule,
-    RecaptchaFormsModule,
+    RecaptchaFormsModule
   ],
+
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true,
-    }
+    },
+    RecaptchaLoaderService,
   ],
   bootstrap: [AppComponent]
 })

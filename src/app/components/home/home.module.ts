@@ -6,6 +6,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+/* CUSTOM FORM CONTROL*/
+import { StandardModule } from '../standard/standard.module';
+
 /* ROUTING */
 import { HomeRoutingModule } from './home-routing.module';
 
@@ -76,6 +79,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     PreguntasComponent,
     UltimosComprobantesComponent,
     InputDateComponent,
+
     PagarComponent,
     DetallePlanpagoComponent,
     ConfirmarPagoComponent,
@@ -86,7 +90,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     NotificacionMpComponent,
     GrillaPromesaComponent,
     MontoPromesaComponent,
-    PromesaExitoComponent,
+    PromesaExitoComponent
   ],
   imports: [
     TranslateModule.forRoot({
@@ -100,10 +104,11 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    StandardModule
   ],
   exports: [
-    InputDateComponent
+    // InputDateComponent
   ],
   providers: [
     {

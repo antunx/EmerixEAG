@@ -24,7 +24,7 @@ export class InputDateComponent implements OnInit, ControlValueAccessor   {
   // <app-input-date formControlName="NombreControl"></app-input-date>
   // tambien soporta invalid, dirty, touched, disabled.
 
-  // NOTA: NO TOQUES ESTE CONTROL A MENOS QUE TENGAS UNA BUENA EXCUSA...
+  // NOTA: TOCAR CON CUIDADO YA QUE SU USO ES GLOBAL...
   // ---------------------------------------------------------------------------------------
   value: string;
   isDisabled: boolean;
@@ -34,6 +34,7 @@ export class InputDateComponent implements OnInit, ControlValueAccessor   {
   constructor() { }
 
   ngOnInit(): void {
+    // console.log('cargando control InputDateComponent');
   }
 
   onInput(value: string): void {
