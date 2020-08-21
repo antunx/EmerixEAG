@@ -635,6 +635,9 @@ html.no-scroll body {
   .emerix-page .mobile-only {
     display: none !important;
   }
+  .emerix-page .page-title {
+    font-size: 1.5rem;
+  }
 }
 
 @media all and (max-width: 1024px) {
@@ -648,6 +651,12 @@ html.no-scroll body {
   .emerix-page .flex-row-on-mobile {
     display: flex;
     flex-direction: row;
+  }
+  .emerix-page .margin-bottom-on-mobile {
+    margin-bottom: 1rem;
+  }
+  .emerix-page .page-title {
+    font-size: 1.28rem;
   }
 }
 
@@ -2258,6 +2267,9 @@ html.no-scroll body {
 }
 
 @media all and (max-width: 1024px) {
+  .emerix-page .table-container .table td {
+    height: 42px;
+  }
   .emerix-page .table-container .table td p {
     margin-bottom: 0;
   }
@@ -2780,6 +2792,7 @@ html.no-scroll body {
 
 .emerix-page .page-login .emerix-logo {
   margin-bottom: 5.25rem;
+  margin-top: 5.25rem;
 }
 
 .emerix-page .page-login .form-container {
@@ -3030,6 +3043,7 @@ html.no-scroll body {
     right: .5rem;
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
+    width: 1rem;
   }
 }
 
@@ -3409,9 +3423,13 @@ html.no-scroll body {
 }
 
 @media all and (max-width: 1024px) {
+  .emerix-page .page-pay label img {
+    width: 1.5rem;
+  }
   .emerix-page .page-pay .selector-icon {
     width: 25%;
     min-width: 3.5rem;
+    margin-right: 1rem;
   }
 }
 
@@ -3423,8 +3441,7 @@ html.no-scroll body {
   color: #989898;
 }
 
-.emerix-page .page-pay.pay_1 .selectable-box .box + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active ul + .box .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box ul + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .dialog-container + .box .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .dialog-container + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + .box .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active .box + ul .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box .box + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active ul + ul .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box ul + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .input-wrapper.select2.active .dialog-container + ul .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box .overlay .dialog-container + ul .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .input-wrapper.select2.active .dialog-container + ul .price-container, .emerix-page .input-wrapper.select2.active .overlay .page-pay.pay_1 .selectable-box .dialog-container + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .box + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .box + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active .overlay ul + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .input-wrapper.select2.active ul + .dialog-container .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box .overlay ul + .dialog-container .price-container, .emerix-page .overlay .input-wrapper.select2.active .page-pay.pay_1 .selectable-box ul + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .dialog-container + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .dialog-container + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .overlay ul + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + .dialog-container .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .overlay ul + .dialog-container .price-container, .emerix-page .overlay .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .box + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .box + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .topbar .notifications-menu .dropdown-target .dialog-container + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .overlay .dialog-container + ul .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .dialog-container + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .overlay .page-pay.pay_1 .selectable-box .dialog-container + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box u
-l + ul .price-container {
+.emerix-page .page-pay.pay_1 .selectable-box .box + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active ul + .box .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box ul + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .dialog-container + .box .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .dialog-container + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + .box .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul + .box .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active .box + ul .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box .box + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active ul + ul .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box ul + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .input-wrapper.select2.active .dialog-container + ul .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box .overlay .dialog-container + ul .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .input-wrapper.select2.active .dialog-container + ul .price-container, .emerix-page .input-wrapper.select2.active .overlay .page-pay.pay_1 .selectable-box .dialog-container + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .box + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .box + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .input-wrapper.select2.active .overlay ul + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .input-wrapper.select2.active ul + .dialog-container .price-container, .emerix-page .input-wrapper.select2.active .page-pay.pay_1 .selectable-box .overlay ul + .dialog-container .price-container, .emerix-page .overlay .input-wrapper.select2.active .page-pay.pay_1 .selectable-box ul + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .dialog-container + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .dialog-container + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .overlay ul + .dialog-container .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + .dialog-container .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .overlay ul + .dialog-container .price-container, .emerix-page .overlay .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul + .dialog-container .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .box + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .box + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .overlay .topbar .notifications-menu .dropdown-target .dialog-container + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box .overlay .dialog-container + ul .price-container, .emerix-page .overlay .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target .dialog-container + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .overlay .page-pay.pay_1 .selectable-box .dialog-container + ul .price-container, .emerix-page .page-pay.pay_1 .selectable-box .topbar .notifications-menu .dropdown-target ul + ul .price-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_1 .selectable-box ul + ul .price-container {
   padding-bottom: .5rem;
   margin-bottom: -.5rem;
   border-bottom: 1px solid;
@@ -3474,6 +3491,13 @@ l + ul .price-container {
   margin-right: -15px;
 }
 
+@media all and (max-width: 1024px) {
+  .emerix-page .page-pay .payment-selector ul {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .emerix-page .page-pay .payment-selector li {
   width: 72px;
   height: 48px;
@@ -3486,6 +3510,7 @@ l + ul .price-container {
   .emerix-page .page-pay .payment-selector li {
     width: 44px;
     height: 28px;
+    margin: .5rem;
   }
 }
 
@@ -3496,6 +3521,12 @@ l + ul .price-container {
 
 .emerix-page .page-pay .payment-selector li.active {
   border-color: #8569b4;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-pay.pay_2 .margin-bottom-on-mobile {
+    margin-bottom: .25rem;
+  }
 }
 
 .emerix-page .page-pay.pay_5 .selectable-box {

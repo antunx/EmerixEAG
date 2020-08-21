@@ -29,7 +29,7 @@ export class ComboBoxComponent implements OnInit, ControlValueAccessor {
   @Input() Texto: string;
   @Input() ItemDefault: string;
   @Input() Lista = [];
-  @Input() Disabled: boolean;
+  @Input() Disabled = false;
 
   value: string;
   id: string;
@@ -67,6 +67,7 @@ export class ComboBoxComponent implements OnInit, ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
+    console.log('entre por setDisabledState');
     this.Disabled = isDisabled;
   }
 
