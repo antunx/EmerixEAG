@@ -33,7 +33,7 @@ export class PromesaComponent implements OnInit, OnDestroy {
         // data.ActivoMonto = true;
         // data.ActivoProducto = true;
         this.resp = data;
-        console.log(this.resp);
+        // console.log(this.resp);
         if (data.ActivoMonto && !data.ActivoProducto) {
           this.promesaStep = 1;
           this.volverHome = true;

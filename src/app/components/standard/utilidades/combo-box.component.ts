@@ -24,7 +24,7 @@ export class ComboBoxComponent implements OnInit, ControlValueAccessor {
   // <app-combo-box formControlName="nombre_control" Texto="Code ó Name" ItemDefault="valor_primer_item" [Lista]="lista"></app-combo-box>
   // FALTA IMPLEMENTAR: invalid, dirty, touched, disabled.
 
-  // NOTA: TOCAR CON CUIDADO YA QUE SU USO ES GLOBAL...
+  // NOTA: TOCAR CON CUIDADO YA QUE SE USA EN VARIOS LADOS
   // ---------------------------------------------------------------------------------------
   @Input() Texto: string;
   @Input() ItemDefault: string;
@@ -50,7 +50,7 @@ export class ComboBoxComponent implements OnInit, ControlValueAccessor {
     this.onChange(this.value);
   }
 
-  writeValue(value: any): void {
+  writeValue(value: string): void {
     if (value) {
       this.value = value || '';
     } else {
@@ -67,26 +67,18 @@ export class ComboBoxComponent implements OnInit, ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    console.log('entre por setDisabledState');
     this.Disabled = isDisabled;
   }
 
-  clickCombo(e): void{
+  clickCombo(event): void{
     const select = document.getElementById('CBO_');
     const placeholder = select.querySelector('.placeholder div') as HTMLDivElement;
-    const target = e.target;
+    const target = event.target;
     // tslint:disable-next-line: no-unused-expression
     !select.classList.contains('date-selected') && select.classList.toggle('active');
     if (target.classList.contains('selectable')) {
-      if (target.classList.contains('date-picker')) {
-        select.classList.add('date-selected');
-      } else {
         placeholder.innerText = target.innerText;
-        this.onInput(target.parentElement.getAttribute('value')); // data-value
-        // console.log(this.value);
-      }
-    } else if (target.classList.contains('alternate-select')) {
-      select.classList.remove('date-selected');
+        this.onInput(target.parentElement.getAttribute('value'));
     }
   }
 }

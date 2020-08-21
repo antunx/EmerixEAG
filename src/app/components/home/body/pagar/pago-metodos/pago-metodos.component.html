@@ -1,88 +1,49 @@
-<div class="flex-column flex-grow">
-  <div class="pages-container">
-    <section class="page-deals">
-      <!-- START PAGE HEADER -->
-      <div class="flex-row flex-center">
-        <h1 class="flex-grow">{{ "Traduct.metodos_de_pago" | translate }}</h1>
-        <div>
-          <div class="breadcrumb-container" id="">
-            <ul class="flex-row">
-              <li class="active breadcrumb">
-                item1
-              </li>
+<div>
 
-              <li class="active breadcrumb">
-                item2
-              </li>
+	<div class="page-progress">
+		<div class="progress progress-70"></div>
+	</div>
 
-              <li class="active breadcrumb">
-                item3
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <form name="metodo" #forma="ngForm" (ngSubmit)="GenerarPrepago(forma)">
-        <div>
-          <input
-            [ngModel]="metodo.valor"
-            required
-            type="radio"
-            name="metodo"
-            id="MP"
-            value="MercadoPago"
-          />
-          MercadoPago
-          <input
-            [ngModel]="metodo.valor"
-            required
-            type="radio"
-            name="metodo"
-            id="BC"
-            value="Banco"
-          />
-          Banco
-        </div>
-        <div class="deal-mini flex-row">
-          <button class="btn secondary" (click)="volver()">
-            {{ "Traduct.volver" | translate }}
-          </button>
-          <button class="btn" type="submit">siguiente</button>
-        </div>
-      </form>
-    </section>
-  </div>
+	<div class="flex-column page-header">
+
+			<a class="top-decoration" (click)="volver()">{{"Traduct.volver_anterior" | translate }}</a>
+
+	</div>
+
+
+	<div class="restrict-width">
+
+	<div class="title">
+		<h1 class="page-title text-large">{{"Traduct.pago_online" | translate }}</h1>
+		<p class="page-subtitle"><span></span>{{"Traduct.pago_subtitulo" | translate}}</p>
+	</div>
+
+
+		<div class="box">
+			<div class="payment-selector">
+				<ul class="flex-row">
+
+
+<div class="selectable-box flex-row" id="box-0268528941">
+
+						<li class="active box"><img src="assets/images/logos/mercadopago.svg" alt=""></li>
+						<!-- <li class="box"><img src="/assets/images/sections/payments/visa.svg" alt=""></li>
+						<li class="box"><img src="/assets/images/sections/payments/mastercard.svg" alt=""></li>
+						<li class="box"><img src="/assets/images/sections/payments/amex.svg" alt=""></li>
+						<li class="box"><img src="/assets/images/sections/payments/generic.svg" alt=""></li>
+						<li class="box"><img src="/assets/images/sections/payments/generic.svg" alt=""></li>
+						<li class="box"><img src="/assets/images/sections/payments/generic.svg" alt=""></li> -->
+
+</div>
+				</ul>
+			</div>
+		</div>
+		<p>
+			<button class="btn" (click)="GenerarPrepago()">{{"Traduct.continuar"|translate}}</button>
+		</p>
+	</div>
 </div>
 
-<div (click)="cerrarPopup()" class="overlay" id="overlay-metodos">
-  <div class="dialog-container sidebar" role="dialog">
-    <a class="close-btn" (click)="cerrarPopup()">
-      <img src="assets/images/ui/close-btn.svg" alt="Close" />
-    </a>
-    <div class="dialog-content login-dialog">
-      <div>
-        <div class="flex-column flex-center">
-          <div>
-            <img
-              width="70px"
-              height="70px"
-              src="assets/images/ui/exclamation-triangle-solid.svg"
-              alt=""
-            />
-          </div>
-          <div class="text-center">
-            <h3>
-              Debe seleccionar un método de pago.
-            </h3>
-            <button class="btn btn-primary" (click)="cerrarPopup()">
-              {{ "Traduct.continuar" | translate }}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="overlay" id="overlay-load-metodos">
   <div class="dialog-container sidebar" role="dialog">

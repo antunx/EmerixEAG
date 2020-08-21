@@ -1,0 +1,635 @@
+<div class="page-progress">
+  <div class="progress progress-30"></div>
+</div>
+
+<div class="flex-column page-header">
+  <a class="top-decoration" (click)="volver()" style="cursor: pointer;">{{
+    "Traduct.volver_anterior" | translate
+  }}</a>
+</div>
+
+<div class="restrict-width large">
+  <div class="col-2-3 full-width-mobile">
+    <div class="title">
+      <h1 class="page-title text-large">
+        {{ "Traduct_pago_producto" | translate }}
+      </h1>
+      <p class="page-subtitle">
+        <span></span><strong>Seleccioná los productos</strong> que queres pagar,
+        si el monto a pagar está habilitado para editar podés mantener el
+        adeudado o ingresar uno nuevo.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="restrict-width large flex-row col-container">
+  <div
+    class="col-3-4"
+    *ngIf="productos?.length === 0 || productos === undefined"
+  >
+  <br>
+  <h2 class="page-title text-large"> No hay productos con deuda. </h2>
+
+</div>
+  <div
+    class="col-3-4 box desktop-only"
+    *ngIf="productos?.length !== 0 && productos !== undefined"
+  >
+    <div class="table-container">
+      <table class="table selectable" width="100%" border="0">
+        <tbody>
+          <tr class="table-header">
+            <td class="col-2-5">
+              <div class="input-wrapper checkbox">
+                <input
+                  id="select-all-prod"
+                  type="checkbox"
+                  class="input-elem visually-hidden"
+                  required
+                  value="all"
+                  [checked]="checkedProd"
+                  (change)="checkAllProductos($event)"
+                />
+
+                <div class="input-fake-checkbox">
+                  <span class="input-caret"></span>
+                </div>
+
+                <label for="select-all-prod"
+                  >&nbsp;{{ "Traduct.producto" | translate }}</label
+                >
+              </div>
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              {{ "Traduct.cant_dias_mora" | translate }}
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              {{ "Traduct.monto_deuda" | translate }}
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              {{ "Traduct.importe_a_pagar" | translate }}
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              {{ "Traduct.detalle" | translate }}
+            </td>
+          </tr>
+
+          <tr *ngFor="let producto of productos">
+            <td class="col-2-5">
+              <div class="input-wrapper checkbox">
+                <input
+                  id="table-select-{{ producto?.IdCuenta }}"
+                  type="checkbox"
+                  class="input-elem visually-hidden"
+                  required
+                  name="selectAll"
+                  [checked]="producto?.Check"
+                  (change)="cambiarCheckProductos(producto?.IdCuenta, $event)"
+                />
+
+                <div class="input-fake-checkbox">
+                  <span class="input-caret"></span>
+                </div>
+
+                <label for="table-select-{{ producto?.IdCuenta }}"
+                  ><img
+                    src="assets/images/ui/tables/prestamo.svg"
+                    alt=""
+                  />&nbsp;{{ producto?.NombreProducto }}</label
+                >
+              </div>
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              {{ producto?.DiasMora }}
+            </td>
+
+            <td class="col-1-6 text-center desktop-only input-wrapper" #input>
+              {{
+                removerComas(
+                  producto?.Deuda
+                    | currency: producto?.CodigoMoneda:"symbol-narrow"
+                )
+              }}
+              <div class="status-label">
+                <span
+                  *ngIf="producto?.CodigoMoneda != 'ARS'"
+                  class="bullet green"
+                  style="margin-left: 10px;"
+                  (mouseover)="input.classList.add('error')"
+                  (mouseout)="input.classList.remove('error')"
+                ></span>
+              </div>
+
+              <div *ngIf="producto?.CodigoMoneda != 'ARS'">
+                <div class="input-error-icon" role="alert"></div>
+                <div class="input-error-popup" role="alert">
+                  {{ producto?.InfoCotizacion }}
+                </div>
+              </div>
+            </td>
+
+            <td class="col-1-6 text-center">
+              <input
+                type="number"
+                step="0.01"
+                id="monto-cancelar-{{ producto?.IdCuenta }}"
+                value="{{ producto?.Deuda.toFixed(2) }}"
+                [disabled]="
+                  !producto?.Check || producto?.CodigoProducto == 'PRESTAMO'
+                "
+                [max]="producto?.ImporteMaximo"
+                min="0"
+                (focusout)="cambiarMontoProd($event)"
+                attr.data-valor="{{ producto?.Deuda }}"
+                (focus)="deshabilitarBoton()"
+                style="
+                  text-align: right;
+                  width: 80%;
+                  border: none;
+                  border-bottom: 1px solid #8569b4;
+                "
+              />
+            </td>
+
+            <td class="col-1-6 text-center">
+              <p
+                class="wide-link"
+                style="cursor: pointer;"
+                *ngIf="producto?.CodigoProducto === 'PRESTAMO'"
+                (click)="abrirPopup(producto?.IdCuenta)"
+              >
+                {{ "Traduct.detalle" | translate }}
+              </p>
+              <p *ngIf="producto?.CodigoProducto !== 'PRESTAMO'">
+                Sin Detalle
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div
+    class="mobile-only"
+    *ngIf="productos?.length !== 0 && productos !== undefined"
+  >
+    <div
+      class="selectable-box flex-column special-mobile-selectable-box"
+      id="box-9269257937"
+    >
+      <div
+        class="box"
+        *ngFor="let producto of productos; let i = index"
+        (click)="activarBox(producto?.IdCuenta)"
+        id="box-{{ producto?.IdCuenta }}"
+        [ngClass]="{ active: i === 0 }"
+      >
+        <div class="table-container">
+          <table class="table" width="100%" border="0">
+            <tbody>
+              <tr>
+                <td style="width: 100%;">
+                  <div class="input-wrapper checkbox">
+                    <input
+                      id="table-select-{{ producto?.IdCuenta }}"
+                      type="checkbox"
+                      class="input-elem visually-hidden"
+                      required
+                      name="selectAll"
+                      [checked]="producto?.Check"
+                      (change)="
+                        cambiarCheckProductos(producto?.IdCuenta, $event)
+                      "
+                    />
+
+                    <div class="input-fake-checkbox">
+                      <span class="input-caret"></span>
+                    </div>
+
+                    <label for="table-select-{{ producto.IdCuenta }}"
+                      ><img
+                        style="vertical-align: middle;"
+                        src="assets/images/ui/tables/prestamo.svg"
+                        alt=""
+                      />&nbsp;<strong>{{
+                        producto.NombreProducto
+                      }}</strong></label
+                    >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <div class="dropdown-card">
+            <input
+              aria-hidden="true"
+              type="checkbox"
+              class="dropdown-trigger"
+              id="dropdown-trigger-dropdown-{{ producto?.IdCuenta }}"
+            />
+
+            <label
+              class="dropdown-title"
+              for="dropdown-trigger-dropdown-{{ producto?.IdCuenta }}"
+            >
+            </label>
+            <div class="dropdown-target">
+              <ul>
+                <li class="flex-row">
+                  <div class="col-1-2">
+                    {{ "Traduct.cant_dias_mora" | translate }}
+                  </div>
+                  <div class="col-1-2 text-right">
+                    {{ producto?.DiasMora }}
+                  </div>
+                </li>
+                <li class="flex-row" #input>
+                  <div class="col-1-2">
+                    {{ "Traduct.monto_deuda" | translate }}
+                  </div>
+                  <div class="col-1-2 text-right">
+                    {{
+                      removerComas(
+                        producto?.Deuda
+                          | currency: producto?.CodigoMoneda:"symbol-narrow"
+                      )
+                    }}
+                  </div>
+                </li>
+                <li class="flex-row">
+                  <div class="col-1-2">
+                    {{ "Traduct.detalle" | translate }}
+                  </div>
+                  <div class="col-1-2 text-right">
+                    <p
+                      class="wide-link"
+                      style="cursor: pointer; margin: 0;"
+                      *ngIf="producto?.CodigoProducto === 'PRESTAMO'"
+                      (click)="abrirPopup(producto?.IdCuenta)"
+                    >
+                      {{ "Traduct.detalle" | translate }}
+                    </p>
+                    <p
+                      *ngIf="producto?.CodigoProducto !== 'PRESTAMO'"
+                      style="margin: 0;"
+                    >
+                      Sin Detalle
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <ul>
+            <li class="flex-row">
+              <div class="col-1-2">
+                <strong>{{ "Traduct.importe_a_pagar" | translate }}</strong>
+              </div>
+              <div class="col-1-2 text-right">
+                <div class="input-wrapper text">
+                  <input
+                    type="number"
+                    step="0.01"
+                    id="monto-cancelar-{{ producto?.IdCuenta }}"
+                    value="{{ producto?.Deuda.toFixed(2) }}"
+                    [disabled]="
+                      !producto?.Check || producto?.CodigoProducto == 'PRESTAMO'
+                    "
+                    [max]="producto?.ImporteMaximo"
+                    min="0"
+                    (focusout)="cambiarMontoProd($event)"
+                    attr.data-valor="{{ producto?.Deuda }}"
+                    (focus)="deshabilitarBoton()"
+                    style="
+                      text-align: right;
+                      width: 80%;
+                      border: none;
+                      border-bottom: 1px solid #8569b4;
+                    "
+                  />
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="box"
+        *ngFor="let promesa of promesas; let i = index"
+        (click)="activarBox(promesa?.IdPromesa)"
+        id="box-{{ promesa?.IdPromesa }}"
+        [ngClass]="{ active: i === 0 }"
+      >
+        <div class="table-container">
+          <table class="table" width="100%" border="0">
+            <tbody>
+              <tr>
+                <td style="width: 100%;">
+                  <div class="input-wrapper checkbox">
+                    <input
+                      id="table-select-{{ promesa?.IdPromesa }}"
+                      type="checkbox"
+                      class="input-elem visually-hidden"
+                      required
+                      name="selectAll"
+                      [checked]="promesa.Check"
+                      (change)="
+                        cambiarCheckPromesas(promesa?.IdPromesa, $event)
+                      "
+                    />
+
+                    <div class="input-fake-checkbox">
+                      <span class="input-caret"></span>
+                    </div>
+
+                    <label for="table-select-{{ promesa?.IdPromesa }}"
+                      ><img
+                        style="vertical-align: middle;"
+                        src="assets/images/ui/tables/prestamo.svg"
+                        alt=""
+                      />&nbsp;<strong>Promesa {{ i + 1 }}</strong></label
+                    >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <div class="dropdown-card">
+            <input
+              aria-hidden="true"
+              type="checkbox"
+              class="dropdown-trigger"
+              id="dropdown-trigger-dropdown-{{ promesa?.IdPromesa }}"
+            />
+
+            <label
+              class="dropdown-title"
+              for="dropdown-trigger-dropdown-{{ promesa?.IdPromesa }}"
+            >
+            </label>
+            <div class="dropdown-target">
+              <ul>
+                <li class="flex-row">
+                  <div class="col-1-2">
+                    {{ "Traduct.fecha_promesa" | translate }}
+                  </div>
+                  <div class="col-1-2 text-right">
+                    {{ promesa?.FechaGenerada | date: "dd/MM/yyyy" }}
+                  </div>
+                </li>
+                <li class="flex-row">
+                  <div class="col-1-2">
+                    {{ "Traduct.fecha_comprometida" | translate }}
+                  </div>
+                  <div class="col-1-2 text-right">
+                    {{ promesa?.FechaComprometida | date: "dd/MM/yyyy" }}
+                  </div>
+                </li>
+                <li class="flex-row">
+                  <div class="col-1-2">
+                    {{ "Traduct.importe_comprometido" | translate }}
+                  </div>
+                  <div class="col-1-2 text-right">
+                    {{
+                      promesa?.ImporteComprometido
+                        | currency: promesa?.CodigoMoneda:"symbol-narrow"
+                    }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <ul>
+            <li class="flex-row">
+              <div class="col-1-2">
+                <strong>{{ "Traduct.importe_a_pagar" | translate }}</strong>
+              </div>
+              <div class="col-1-2 text-right">
+                <div class="input-wrapper text">
+                  <input
+                    type="number"
+                    id="monto-cancelar-{{ promesa?.IdPromesa }}"
+                    value="{{ promesa?.ImporteComprometido.toFixed(2) }}"
+                    [disabled]="!promesa?.Check"
+                    [max]="promesa?.ImporteComprometido"
+                    [min]="promesa?.ImporteMinimo"
+                    (focusout)="cambiarMontoProm($event)"
+                    attr.data-valor="{{ promesa?.ImporteComprometido }}"
+                    style="width: 100px; text-align: center;"
+                    (focus)="deshabilitarBoton()"
+                    style="
+                      text-align: right;
+                      width: 50%;
+                      border: none;
+                      border-bottom: 1px solid #8569b4;
+                    "
+                  />
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-column col-1-4 full-width-mobile">
+    <div class="flex-column row-container">
+      <div class="box flex-row justify-between">
+        <span class="text-uppercase">{{ "Traduct.monto" | translate }}</span>
+        <br />
+        <span
+          ><strong>{{
+            removerComas(montoAPagar | currency: "ARS":"symbol-narrow":"1.2-2")
+          }}</strong></span
+        >
+      </div>
+    </div>
+    <div>
+      <button
+        class="btn"
+        value="Generar Promesa"
+        id="generar-promesa"
+        (click)="generarPago($event)"
+        [disabled]="button"
+      >
+        {{ "Traduct.quiero_pagar" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="restrict-width large flex-row col-container">
+  <div class="col-3-4 box desktop-only" *ngIf="promesas?.length !== 0">
+    <div class="table-container">
+      <table class="table selectable" width="100%" border="0">
+        <tbody>
+          <tr class="table-header">
+            <td class="col-1-5">
+              <div class="input-wrapper checkbox">
+                <input
+                  id="select-all-prom"
+                  type="checkbox"
+                  class="input-elem visually-hidden"
+                  required
+                  value="all"
+                  [checked]="checkedProm"
+                  (change)="checkAllPromesas($event)"
+                />
+
+                <div class="input-fake-checkbox">
+                  <span class="input-caret"></span>
+                </div>
+
+                <label for="select-all-prom"
+                  >&nbsp;{{ "Traduct.promesa" | translate }}</label
+                >
+              </div>
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              {{ "Traduct.fecha_promesa" | translate }}
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              {{ "Traduct.fecha_comprometida" | translate }}
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              {{ "Traduct.importe_comprometido" | translate }}
+            </td>
+
+            <td class="col-1-6 text-right">
+              {{ "Traduct.importe_a_pagar" | translate }}
+            </td>
+          </tr>
+
+          <tr *ngFor="let promesa of promesas; let i = index">
+            <td class="col-1-5">
+              <div class="input-wrapper checkbox">
+                <input
+                  id="table-select-{{ promesa?.IdPromesa }}"
+                  type="checkbox"
+                  class="input-elem visually-hidden"
+                  required
+                  name="selectAll"
+                  [checked]="promesa?.Check"
+                  (change)="cambiarCheckPromesas(promesa?.IdPromesa, $event)"
+                />
+
+                <div class="input-fake-checkbox">
+                  <span class="input-caret"></span>
+                </div>
+
+                <label for="table-select-{{ promesa?.IdPromesa }}"
+                  ><img
+                    src="assets/images/ui/tables/prestamo.svg"
+                    alt=""
+                  />&nbsp;Promesa {{ i + 1 }}</label
+                >
+              </div>
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              {{ promesa?.FechaGenerada | date: "dd/MM/yyyy" }}
+            </td>
+
+            <td class="col-1-6 text-center desktop-only input-wrapper">
+              {{ promesa?.FechaComprometida | date: "dd/MM/yyyy" }}
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              {{
+                removerComas(
+                  promesa?.ImporteComprometido
+                    | currency: promesa?.CodigoMoneda:"symbol-narrow"
+                )
+              }}
+            </td>
+
+            <td class="col-1-6 text-center desktop-only">
+              <input
+                type="number"
+                id="monto-cancelar-{{ promesa?.IdPromesa }}"
+                value="{{ promesa?.ImporteComprometido.toFixed(2) }}"
+                [disabled]="!promesa?.Check"
+                [max]="promesa?.ImporteComprometido"
+                [min]="promesa?.ImporteMinimo"
+                (focusout)="cambiarMontoProm($event)"
+                attr.data-valor="{{ promesa?.ImporteComprometido }}"
+                (focus)="deshabilitarBoton()"
+                style="
+                  text-align: right;
+                  width: 80%;
+                  border: none;
+                  border-bottom: 1px solid #8569b4;
+                "
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="flex-column col-1-4"></div>
+</div>
+
+<div (click)="cerrarPopup()" class="overlay" id="overlay-error">
+  <div *ngIf="popupNro === 1" class="dialog-container sidebar" role="dialog">
+    <a class="close-btn" (click)="cerrarPopup()">
+      <img src="assets/images/ui/close-btn.svg" alt="Close" />
+    </a>
+    <div class="dialog-content login-dialog">
+      <div>
+        <div class="flex-column flex-center">
+          <div>
+            <img
+              width="70px"
+              height="70px"
+              src="assets/images/ui/exclamation-triangle-solid.svg"
+              alt=""
+            />
+          </div>
+          <div class="text-center">
+            <p>{{ "Traduct.monto_mayor_cero" | translate }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngFor="let item of prestamos">
+  <div class="overlay" id="overlay-{{ item?.IdCuenta }}">
+    <div
+      class="dialog-container login-dialog login-tyc"
+      role="dialog"
+      style="margin-top: 30px;"
+    >
+      <!-- <a class="close-btn" (click)="cerrarCuotas(item?.IdCuenta)">
+        <img src="assets/images/ui/close-btn.svg" alt="Close" />
+      </a> -->
+      <div>
+        <div class="dialog-content login-dialog login-tyc-content">
+          <app-detalle-planpago
+            [idCuenta]="item?.IdCuenta"
+            (TotalPago)="cambiarMontoPrestamo($event, item?.IdCuenta)"
+          ></app-detalle-planpago>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

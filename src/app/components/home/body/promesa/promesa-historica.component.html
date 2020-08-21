@@ -1,4 +1,4 @@
-<div class="flex-column flex-grow">
+<!-- <div class="flex-column flex-grow">
     <div class="pages-container">
 
         <section class="page-invoice">
@@ -81,4 +81,73 @@
             </div>
         </section>
     </div>
+  </div> -->
+<section class="page-logs">
+  <div class="flex-column page-header">
+    <p class="top-decoration">{{ "Traduct.historial_promesa" | translate }}</p>
   </div>
+
+  <div class="restrict-width">
+    <div class="title">
+      <h1 class="page-title">Consultá las promesas de pago que realizaste</h1>
+      <p class="page-subtitle">
+        <span></span>Podés ver el detalle si no recordás lo prometido y pagar si
+        aún están vigente.
+      </p>
+    </div>
+
+    <div class="box box-table-container">
+      <div
+        class="table-container"
+        *ngIf="promesas?.length != 0 && promesas != undefined"
+      >
+        <table class="table selectable logs-table" width="100%" border="0">
+          <tbody>
+            <tr class="table-header">
+              <td class="col-1-5 text-center">
+                {{ "Traduct.plazo_de_pago" | translate }}
+              </td>
+
+              <td class="col-1-5 text-center">
+                {{ "Traduct.estado" | translate }}
+              </td>
+
+              <td class="col-1-5 text-center">
+                {{ "Traduct.monto" | translate }}
+              </td>
+
+              <td class="col-2-5 text-center desktop-only">
+                {{ "Traduct.cant_productos" | translate }}
+              </td>
+            </tr>
+
+            <tr *ngFor="let item of promesas; let i = index">
+              <td class="col-1-5 text-center">
+                {{ item.PromesaFecha | date: "dd/MM/yyyy" }}
+              </td>
+              <td class="col-1-5 text-center">
+                {{ item.Estado }}
+              </td>
+              <td class="col-1-5 text-center">
+                {{
+                  item.CodigoMoneda +
+                    removerComas(item.PromesaMonto | number: "1.2-2")
+                }}
+              </td>
+              <td class="col-2-5 text-center desktop-only">
+                {{ item.CantidadCuentas }}&nbsp;
+                <p *ngIf="item.CantidadCuentas < 2">Producto</p>
+                <p *ngIf="item.CantidadCuentas >= 2">Productos</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="promesas?.length === 0 || promesas === undefined">
+        <p class="page-subtitle text-center">
+          No ha realizado ninguna promesa de pago.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

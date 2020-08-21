@@ -1,130 +1,54 @@
-<!-- menuSeleccionado: {{MenuSel}}
+<!--
+  menuSeleccionado: {{MenuSel}}
 <br>
-menuhijoSeleccionado: {{MenuHijoSel}}
-
-<nav class="main-navigation" style="height: 100%;">
-  <input type="checkbox" class="visually-hidden mobile-menu-toggle" id="mobile-menu-toggle">
-  <label class="mobile-menu-toggle-label" for="mobile-menu-toggle">
-  <img src="assets/images/ui/menu.svg" alt="">
-  </label>
-  <div class="navigation-container">
-     <div class="text-center">
-        <img class="logo" src="assets/images/logos/emerix.png" alt="">
-     </div>
-     <ul>
-        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuInicio,' active' : MenuSel === MenuInicio}" style="--icon: url('assets/images/ui/navigation/icono-home.svg');">
-           <a class="item" [routerLink]="" (click)="Inicio()">{{ 'Traduct.inicio' | translate }}</a>
-        </li>
-        <li class="navigation-item" style="--icon: url('');">
-           <hr>
-        </li>
-        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuCuentas,' active' : MenuSel === MenuCuentas}" style="--icon: url('assets/images/ui/navigation/icono-info.svg');">
-           <a class="item" [routerLink]="" (click)="MisCuentas()">{{ 'Traduct.mis_cuentas' | translate }}</a>
-        </li>
-
-        <li class="navigation-item" (click)="Pagos()" [ngClass]="{'' : MenuSel != MenuPagos,' active' : MenuSel === MenuPagos}" style="--icon: url('assets/images/ui/navigation/icono-pagar.svg');">
-           <input aria-hidden="true" type="checkbox" class="dropdown-trigger" id="dropdown-trigger-pagos">
-           <label class="dropdown-title item"  for="dropdown-trigger-pagos">
-            {{ 'Traduct.pagos' | translate }}
-           </label>
-           <div class="dropdown-target">
-              <ul>
-                 <li class="item" [ngClass]="{'' : MenuHijoSel != MenuPagosSubMenuPagar,' active' : MenuHijoSel === MenuPagosSubMenuPagar}">
-                    <a [routerLink]="" (click)="Pagar()">{{ 'Traduct.pagar' | translate }}</a>
-                 </li>
-                 <li class="item" [ngClass]="{'' : MenuHijoSel != MenuPagosSubRegistraPagos,' active' : MenuHijoSel === MenuPagosSubRegistraPagos}">
-                    <a [routerLink]="" (click)="RegistrarPago()">{{ 'Traduct.registrar_pago' | translate }}</a>
-                 </li>
-                 <li class="item" [ngClass]="{'' : MenuHijoSel != MenuPagosSubComprobantes,' active' : MenuHijoSel === MenuPagosSubComprobantes}">
-                    <a [routerLink]="" (click)="Comprobantes()">{{ 'Traduct.comprobantes' | translate }}</a>
-                 </li>
-              </ul>
-           </div>
-        </li>
-
-        <li class="navigation-item" (click)="Acuerdos()" [ngClass]="{'' : MenuSel != MenuAcuerdos,' active' : MenuSel === MenuAcuerdos}" style="--icon: url('assets/images/ui/navigation/icono-acuerdo.svg');">
-           <input aria-hidden="true" type="checkbox" class="dropdown-trigger" id="dropdown-trigger-acuerdos">
-           <label class="dropdown-title item"  for="dropdown-trigger-acuerdos">
-            {{ 'Traduct.acuerdos' | translate }}
-           </label>
-           <div class="dropdown-target">
-              <ul>
-                 <li class="item" [ngClass]="{'' : MenuHijoSel != MenuAcuerdosSubPromesaPago,' active' : MenuHijoSel === MenuAcuerdosSubPromesaPago}">
-                    <a [routerLink]="" (click)="PromesasPago()">{{ 'Traduct.promesa_pago' | translate }}</a>
-                 </li>
-                 <li class="item" [ngClass]="{'' : MenuHijoSel != MenuAcuerdosSubPlanPago,' active' : MenuHijoSel === MenuAcuerdosSubPlanPago}">
-                    <a [routerLink]="" (click)="PlanPago()">{{ 'Traduct.plan_pago' | translate }}</a>
-                 </li>
-                 <li class="item" [ngClass]="{'' : MenuHijoSel != MenuAcuerdosSubEstadoSolicitudes,' active' : MenuHijoSel === MenuAcuerdosSubEstadoSolicitudes}">
-                    <a [routerLink]="" (click)="EstadoSolicitudes()">{{ 'Traduct.estado_solicitudes' | translate }}</a>
-                 </li>
-              </ul>
-           </div>
-        </li>
-
-        <li class="navigation-item" style="--icon: url('');">
-           <hr>
-        </li>
-        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuTuPerfil,' active' : MenuSel === MenuTuPerfil}" style="--icon: url('assets/images/ui/navigation/icono-perfil.svg');">
-           <a class="item" [routerLink]="" (click)="TuPerfil()">{{ 'Traduct.tu_perfil' | translate }}</a>
-        </li>
-        <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPreguntas,' active' : MenuSel === MenuPreguntas}" style="--icon: url('assets/images/ui/navigation/icono-faq.svg');">
-           <a class="item" [routerLink]="" (click)="PreguntasFrecuentes()">{{ 'Traduct.preguntas_frecuentes' | translate }}</a>
-        </li>
-        <li class="navigation-item" style="--icon: url('assets/images/ui/navigation/icono-salir.svg');">
-           <a class="item" [routerLink]="" (click)="Salir()">{{ 'Traduct.salir' | translate }}</a>
-        </li>
-     </ul>
-  </div>
-</nav>
+  menuhijoSeleccionado: {{MenuHijoSel}}
  -->
- <div class="overlay" id="nav-overlay">
+<div class="overlay" id="nav-overlay">
   <div class="dialog-container" role="dialog">
       <a class="close-btn">
           <img src="assets/images/ui/close-btn.svg" alt="Close">
       </a>
       <div class="dialog-content -content">
-
           <div></div>
       </div>
   </div>
 </div>
- <nav class="main-navigation">
+<nav class="main-navigation">
   <input type="checkbox" class="visually-hidden mobile-menu-toggle" id="mobile-menu-toggle">
   <label class="mobile-menu-toggle-label" for="mobile-menu-toggle">
   <img src="assets/images/ui/menu.svg" alt="" (click)="clickMobile(false)">
   </label>
   <div class="navigation-container">
-     <ul>
+      <ul>
         <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuInicio,' active' : MenuSel === MenuInicio}" style="--icon: url('assets/images/ui/navigation/icono-home.svg');">
-           <a class="item" [routerLink]="" (click)="Inicio()">{{ 'Traduct.inicio' | translate }}</a>
+            <a class="item" [routerLink]="" (click)="Inicio()">{{ 'Traduct.inicio' | translate }}</a>
         </li>
         <li class="navigation-item collapsed-item" style="--icon: url('');">
-           <hr>
+            <hr>
         </li>
         <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPagar,' active' : MenuSel === MenuPagar}" style="--icon: url('assets/images/ui/navigation/icono-info.svg');">
-           <a class="item" [routerLink]="" (click)="Pagar()">{{ 'Traduct.pagar' | translate }}</a>
+            <a class="item" [routerLink]="" (click)="Pagar()">{{ 'Traduct.pagar' | translate }}</a>
         </li>
         <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuAvisarPago,' active' : MenuSel === MenuAvisarPago}" style="--icon: url('assets/images/ui/navigation/icono-avisar.svg');">
-           <a class="item" [routerLink]="" (click)="AvisarPago()">{{ 'Traduct.avisar_pago' | translate }}</a>
+            <a class="item" [routerLink]="" (click)="AvisarPago()">{{ 'Traduct.avisar_pago' | translate }}</a>
         </li>
         <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPrometerFecha,' active' : MenuSel === MenuPrometerFecha}" style="--icon: url('assets/images/ui/navigation/icono-prometer.svg');">
-           <a class="item" [routerLink]="" (click)="PrometeFecha()">{{ 'Traduct.prometer_fecha' | translate }}</a>
+            <a class="item" [routerLink]="" (click)="PrometeFecha()">{{ 'Traduct.prometer_fecha' | translate }}</a>
         </li>
         <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPagarCuotas,' active' : MenuSel === MenuPagarCuotas}" style="--icon: url('assets/images/ui/navigation/icono-cuotas.svg');">
-           <a class="item" [routerLink]="" (click)="PagarCuotas()">{{ 'Traduct.pagar_cuotas' | translate }}</a>
+            <a class="item" [routerLink]="" (click)="PagarCuotas()">{{ 'Traduct.pagar_cuotas' | translate }}</a>
         </li>
         <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPromesasHechas,' active' : MenuSel === MenuPromesasHechas}" style="--icon: url('assets/images/ui/navigation/icono-hechas.svg');">
-	 		  <a class="item" [routerLink]="" (click)="PromesasHechas()">{{ 'Traduct.promesas_hechas' | translate }}</a>
-		  </li>
-		  <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPlanesPedidos,' active' : MenuSel === MenuPlanesPedidos}" style="--icon: url('assets/images/ui/navigation/icono-planes.svg');">
-				<a class="item" [routerLink]="" (click)="PlanesPedidos()">{{ 'Traduct.planes_pedidos' | translate }}</a>
-		  </li>
+        <a class="item" [routerLink]="" (click)="PromesasHechas()">{{ 'Traduct.promesas_hechas' | translate }}</a>
+      </li>
+      <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuPlanesPedidos,' active' : MenuSel === MenuPlanesPedidos}" style="--icon: url('assets/images/ui/navigation/icono-planes.svg');">
+        <a class="item" [routerLink]="" (click)="PlanesPedidos()">{{ 'Traduct.planes_pedidos' | translate }}</a>
+      </li>
         <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuComprobantes,' active' : MenuSel === MenuComprobantes}" style="--icon: url('assets/images/ui/navigation/icono-actividad.svg');">
-           <a class="item" [routerLink]="" (click)="Comprobantes()">{{ 'Traduct.tus_comprobantes' | translate }}</a>
+            <a class="item" [routerLink]="" (click)="Comprobantes()">{{ 'Traduct.tus_comprobantes' | translate }}</a>
         </li>
         <li class="navigation-item collapsed-item" style="--icon: url('');">
-           <hr>
+            <hr>
         </li>
         <li class="navigation-item" [ngClass]="{'' : MenuSel != MenuTuPerfil,' active' : MenuSel === MenuTuPerfil}" style="--icon: url('assets/images/ui/navigation/icono-perfil.svg');">
           <a class="item" [routerLink]="" (click)="TuPerfil()">{{ 'Traduct.tu_perfil' | translate }}</a>
@@ -134,8 +58,8 @@ menuhijoSeleccionado: {{MenuHijoSel}}
         </li>
 
         <li class="navigation-item" style="--icon: url('assets/images/ui/navigation/icono-salir.svg');">
-           <a class="item" [routerLink]="" (click)="Salir()">{{ 'Traduct.salir' | translate }}</a>
+            <a class="item" [routerLink]="" (click)="Salir()">{{ 'Traduct.salir' | translate }}</a>
         </li>
-     </ul>
+      </ul>
   </div>
 </nav>

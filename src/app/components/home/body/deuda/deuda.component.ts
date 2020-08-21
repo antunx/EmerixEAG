@@ -42,13 +42,16 @@ export class DeudaComponent implements OnInit, OnDestroy {
       if (res.ErrorCode > 0){
         console.log(res.ErrorMessage);
       } else{
-      // console.log(res);
-      this.Persona = res.FullName;
-      this.Monto = res.TotalDebt;
-      this.Entero = Math.trunc(this.Monto);
-      this.Decimal = Number((this.Monto - this.Entero).toFixed(2)).toString().replace('0.', '');
-      this.CantDiasMora = res.DaysDebt;
-      this.CantProductos = res.CountProductDebt;
+        // console.log(res);
+        this.Persona = res.FullName;
+        this.Monto = res.TotalDebt;
+        this.Entero = Math.trunc(this.Monto);
+        this.Decimal = Number((this.Monto - this.Entero).toFixed(2)).toString().replace('0.', '');
+        if (this.Decimal === '0'){
+          this.Decimal =  '00';
+        }
+        this.CantDiasMora = res.DaysDebt;
+        this.CantProductos = res.CountProductDebt;
       }
     }, (err) => {
         console.log(err);

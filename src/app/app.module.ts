@@ -4,11 +4,7 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  RecaptchaModule,
-  RecaptchaFormsModule,
-  RecaptchaLoaderService,
-} from 'ng-recaptcha';
+import { RecaptchaModule, RecaptchaFormsModule, RecaptchaLoaderService, } from 'ng-recaptcha';
 
 /** INTERCEPTOR */
 import { InterceptorService } from './services/interceptor.service';
@@ -19,7 +15,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 /** COMPONENTES */
 import { AppComponent } from './app.component';
-import { NotFoundComponent } from './components/standard/not-found/not-found.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
@@ -27,8 +22,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NotFoundComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +42,8 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     RecaptchaModule,
     RecaptchaFormsModule
   ],
-
+  exports: [
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

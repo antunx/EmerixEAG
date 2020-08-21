@@ -39,7 +39,7 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.resp?.currentValue !== undefined) {
-      console.log(this.resp);
+      // console.log(this.resp);
       this.pagoMinimo = this.resp.PagoMinimo;
       this.DeudaTotalImprimir = JSON.stringify(this.resp.DeudaTotal).split('.');
       // console.log(this.DeudaTotalImprimir)
@@ -151,7 +151,7 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
   // }
 
   setearFecha(e): void {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const aux = new Date();
     const fecha = new Date(e.target.value);
     fecha.setDate(fecha.getDate() + 1);

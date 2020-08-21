@@ -1,9 +1,17 @@
 <div class="flex-column page-header">
-    <a class="top-decoration" (click)="volverHome()">{{"Traduct.volver_home" | translate}}</a>
+  <a class="top-decoration" (click)="volverHome()" style="cursor: pointer;">{{
+    "Traduct.volver_home" | translate
+  }}</a>
 </div>
 
 <div class="success flex-column flex-center text-center restrict-width">
-    <h2 class="title">{{"Traduct.promesa_exito" | translate}}</h2>
-    <img src="assets/images/ui/common/success.svg" alt="Success image">
-    <p class="subtitle">{{"Traduct.promesa_exito_mensaje1" | translate }}<a (click)="irPagar()">{{"Traduct.pagar" | translate }}</a> {{"Traduct.promesa_exito_mensaje2" | translate }}</p>
+  <h2 class="title">{{ "Traduct.promesa_exito" | translate }}</h2>
+  <img src="assets/images/ui/common/success.svg" alt="Success image" />
+  <p class="subtitle">
+    {{ "Traduct.promesa_exito_mensaje1" | translate
+    }}<a (click)="irPagar()" style="cursor: pointer;">{{
+      "Traduct.pagar" | translate
+    }}</a>
+    {{ "Traduct.promesa_exito_mensaje2" | translate }}
+  </p>
 </div>

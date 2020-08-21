@@ -24,7 +24,7 @@ export class InputDateComponent implements OnInit, ControlValueAccessor   {
   // <app-input-date formControlName="NombreControl"></app-input-date>
   // tambien soporta invalid, dirty, touched, disabled.
 
-  // NOTA: TOCAR CON CUIDADO YA QUE SU USO ES GLOBAL...
+  // NOTA: TOCAR CON CUIDADO YA QUE SE USA EN VARIOS LADOS
   // ---------------------------------------------------------------------------------------
   value: string;
   isDisabled: boolean;
@@ -47,7 +47,7 @@ export class InputDateComponent implements OnInit, ControlValueAccessor   {
     this.onChange(this.value);
   }
 
-  writeValue(value: any): void {
+  writeValue(value: string): void {
     if (value) {
       this.value = value || '';
     } else {

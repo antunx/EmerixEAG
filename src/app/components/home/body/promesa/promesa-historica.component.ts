@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { GetService } from '@app/services/get.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -13,6 +13,7 @@ import { PromesaDetalle } from '@app/models/promesdetalle.model';
   styles: [],
 })
 export class PromesaHistoricaComponent implements OnInit, OnDestroy {
+  @HostBinding('class') class = 'pages-container flex-grow';
   promesas = [];
   p = 1;
   private sub: Subscription;

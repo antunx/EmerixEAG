@@ -4,10 +4,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 
-/** TRANSLATION */
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 /* CUSTOM FORM CONTROL*/
 import { StandardModule } from '../standard/standard.module';
 
@@ -19,11 +15,6 @@ import { LoginBodyComponent } from './body/login-body.component';
 import { LoginFooterComponent } from './footer/login-footer.component';
 import { LoginHeaderComponent } from './header/login-header.component';
 import { LoginChatbotComponent } from './login-chatbot/login-chatbot.component';
-import { HttpClient } from '@angular/common/http';
-
-export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
-}
 
 @NgModule({
   declarations: [
@@ -36,14 +27,6 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     LoginChatbotComponent
   ],
   imports: [
-    TranslateModule.forRoot({
-      defaultLanguage: 'es',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
     ReactiveFormsModule,
     FormsModule,
     CommonModule,

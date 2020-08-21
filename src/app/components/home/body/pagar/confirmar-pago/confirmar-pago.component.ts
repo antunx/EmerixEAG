@@ -16,31 +16,44 @@ import { Router } from '@angular/router';*/
   styles: [],
 })
 export class ConfirmarPagoComponent implements OnInit, OnChanges {
-  @Input() pago;
-  @Input() pagoGeneradoStep: number;
+  @Input() pago: any;
+  @Input() pagoStep: number;
   @Output() volviendo = new EventEmitter<number>();
-  @Output() continuar = new EventEmitter<number>();
-  @Output() pagando = new EventEmitter<any>();
+  @Output() siguiente = new EventEmitter<number>();
+  @Output() pagoGen = new EventEmitter<any>();
   productos = [];
   promesas = [];
-  importeDeuda: number;
-  importeApagar: number;
+  importeDeuda = [];
+  importeApagar = [];
+  porProducto: boolean;
 
   constructor(/*private propService: PropService, private router: Router*/) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.importeApagar = 0;
-    this.importeDeuda = 0;
+    // this.ok = false;
     this.promesas = [];
     this.productos = [];
-
-    this.importeApagar = this.pago?.TotalPagar;
-    this.importeDeuda = this.pago?.DeudaTotal;
-    this.pago?.Items.map((item) => {
-      item.Tipo === 'PROMESA'
-        ? this.promesas.push(item)
-        : this.productos.push(item);
-    });
+    if (changes?.pago?.currentValue !== undefined) {
+      this.importeApagar = parseFloat(JSON.stringify(this.pago?.TotalPagar))
+        .toFixed(2)
+        .split('.');
+      this.importeDeuda = parseFloat(JSON.stringify(this.pago?.DeudaTotal))
+        .toFixed(2)
+        .split('.');
+      if (this.pago.TipoPago === 'PRODUCTOS') {
+        this.porProducto = true;
+        // console.log('PRO');
+        this.pago?.Items.map((item) => {
+          item.Tipo === 'PROMESA'
+            ? this.promesas.push(item)
+            : this.productos.push(item);
+        });
+      } else {
+        this.porProducto = false;
+        // console.log('MONT');
+      }
+      // console.log(this.pago);
+    }
   }
 
   ngOnInit(): void {
@@ -82,14 +95,18 @@ export class ConfirmarPagoComponent implements OnInit, OnChanges {
     };
 
     // this.propService.setPago(obj);
-    this.pagoGeneradoStep = this.pagoGeneradoStep + 1;
-    this.continuar.emit(this.pagoGeneradoStep);
-    this.pagando.emit(obj);
+    this.pagoStep = this.pagoStep + 1;
+    this.siguiente.emit(this.pagoStep);
+    this.pagoGen.emit(obj);
     // this.router.navigateByUrl('home/metodos-pago');
   }
 
   volver(): void {
-    this.pagoGeneradoStep = this.pagoGeneradoStep - 1;
-    this.volviendo.emit(this.pagoGeneradoStep);
+    if (this.porProducto) {
+      this.pagoStep = this.pagoStep - 1;
+    } else {
+      this.pagoStep = this.pagoStep - 2;
+    }
+    this.volviendo.emit(this.pagoStep);
   }
 }

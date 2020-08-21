@@ -13,15 +13,6 @@ import { AuthService } from '@app/services/auth.service';
 export class NavigationComponent implements OnInit {
   MenuSel: string;
 
-  MenuCuentas: string;
-  MenuPagos: string;
-  MenuPagosSubMenuPagar: string;
-  MenuPagosSubRegistraPagos: string;
-  MenuAcuerdos: string;
-  MenuAcuerdosSubPromesaPago: string;
-  MenuAcuerdosSubPlanPago: string;
-  MenuAcuerdosSubEstadoSolicitudes: string;
-
   MenuInicio: string;
   MenuPagar: string;
   MenuAvisarPago: string;
@@ -47,56 +38,6 @@ export class NavigationComponent implements OnInit {
        this.router.navigateByUrl('/home/default');
       });
   }
-
-  MisCuentas(): void{
-    this.MenuSel = this.translate.instant('Traduct.mis_cuentas');
-    this.MenuCuentas = this.translate.instant('Traduct.mis_cuentas');
-
-    this.cambioTexto(this.translate.instant('Traduct.mis_cuentas'));
-    this.router.navigateByUrl('/home/producto');
-  }
-
-  Pagos(): void{
-    this.MenuPagos = this.translate.instant('Traduct.pagos');
-    this.MenuSel = this.MenuPagos;
-  }
-
-  /* RegistrarPago(): void{
-    this.MenuPagos = this.translate.instant('Traduct.pagos');
-    this.MenuPagosSubRegistraPagos = this.translate.instant('Traduct.registrar_pago');
-    this.cambioTexto(this.translate.instant('Traduct.registrar_pago'));
-    this.router.navigateByUrl('/home/informar_comprobante');
-  } */
-
-  Acuerdos(): void{
-    this.MenuAcuerdos = this.translate.instant('Traduct.acuerdos');
-    this.MenuSel = this.MenuAcuerdos;
-  }
-
-  PromesasPago(): void{
-    this.MenuAcuerdos = this.translate.instant('Traduct.acuerdos');
-    this.MenuAcuerdosSubPromesaPago = this.translate.instant('Traduct.promesa_pago');
-    this.cambioTexto(this.translate.instant('Traduct.promesa_pago'));
-    this.router.navigateByUrl('/home/promesa');
-  }
-
-  PlanPago(): void{
-    this.MenuAcuerdos = this.translate.instant('Traduct.acuerdos');
-    this.MenuAcuerdosSubPlanPago = this.translate.instant('Traduct.plan_pago');
-    this.cambioTexto(this.translate.instant('Traduct.plan_pago'));
-    alert('PlanPago(): en desarrollo |_(-.-)_T ');
-  }
-
-  EstadoSolicitudes(): void{
-    this.MenuAcuerdos = this.translate.instant('Traduct.acuerdos');
-    this.MenuAcuerdosSubEstadoSolicitudes = this.translate.instant('Traduct.estado_solicitudes');
-    this.cambioTexto(this.translate.instant('Traduct.estado_solicitudes'));
-    alert('EstadoSolicitudes(): en desarrollo |_(-.-)_T ');
-  }
-
-
-
-
 
   Inicio(): void{
     this.MenuSel = this.translate.instant('Traduct.inicio');
@@ -159,7 +100,6 @@ export class NavigationComponent implements OnInit {
 
   Comprobantes(): void{
     this.MenuSel = this.translate.instant('Traduct.tus_comprobantes');
-    this.MenuPagos = this.translate.instant('Traduct.pagos');
     this.MenuComprobantes = this.translate.instant('Traduct.tus_comprobantes');
     this.cambioTexto(this.translate.instant('Traduct.tus_comprobantes'));
     this.router.navigateByUrl('/home/comprobante');

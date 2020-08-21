@@ -1,78 +1,92 @@
 <div>
-    <div class="page-progress">
-        <div class="progress progress-70"></div>
+  <div class="page-progress">
+    <div class="progress progress-70"></div>
+  </div>
+  <div class="flex-column page-header">
+    <a class="top-decoration" (click)="volver()" style="cursor: pointer;">{{
+      "Traduct.volver_promesa_producto" | translate
+    }}</a>
+  </div>
+  <div class="restrict-width">
+    <div class="title">
+      <h1 class="page-title text-large">
+        {{ "Traduct.confirmar_promesa" | translate }}
+      </h1>
     </div>
-    <div class="flex-column page-header">
-        <a class="top-decoration" (click)="volver()">{{ "Traduct.volver_promesa_producto" | translate }}</a>
+    <div class="flex-row col-container">
+      <div class="box text-center col-1-2 full-width-mobile">
+        <span class="text-violet"
+          ><strong>{{ "Traduct.importe" | translate }}</strong></span
+        >
+        <br />
+        <span class="text-xlarge">
+          <div class="price-container">
+            <span class="denomination">$</span
+            >{{ this.importeAcordadoImprimir[0]
+            }}<sup class="cents">{{ this.importeAcordadoImprimir[1] }}</sup>
+          </div>
+        </span>
+      </div>
+      <div class="box text-center col-1-2 full-width-mobile">
+        <span class="text-violet"
+          ><strong>{{ "Traduct.plazo_de_pago" | translate }}</strong></span
+        >
+        <br />
+        <span class="text-xlarge">{{
+          this.promGen.fechaPromesaVencimiento | date: "dd/MM/yyyy"
+        }}</span>
+      </div>
     </div>
-    <div class="restrict-width">
-        <div class="title">
-        <h1 class="page-title text-large">{{ "Traduct.confirmar_promesa" | translate }}</h1>
-        </div>
-        <div class="flex-row col-container">
-            <div class="box text-center col-1-2 full-width-mobile">
-                <span class="text-violet"><strong>{{ "Traduct.importe" | translate }}</strong></span>
-                <br>
-                <span class="text-xlarge">
-                    <div class="price-container"><span class="denomination">$</span>{{this.importeAcordadoImprimir[0]}}<sup class="cents">{{this.importeAcordadoImprimir[1]}}</sup></div>
-                </span>
-            </div>
-            <div class="box text-center col-1-2 full-width-mobile">
-                <span class="text-violet"><strong>{{ "Traduct.plazo_de_pago" | translate }}</strong></span>
-                <br>
-                <span class="text-xlarge">{{ this.promGen.fechaPromesaVencimiento | date: "dd/MM/yyyy" }}</span>
-            </div>
-        </div>
-        <div class="box">
-            <div class="table-container">
-                <table class="table disabled" width="100%" border="0">
-                    <tbody>
-                        <tr class="table-header">
-                            <td class="col-1-2">
-                            {{ "Traduct.producto" | translate }}
-                            </td>
-                            <td class="col-1-2 text-right">
-                            {{ "Traduct.importe_a_pagar" | translate }}
-                            </td>
-                        </tr>
-                        <tr *ngFor="let item of productos">
-                            <td class="col-1-2">
-                            {{ item.NombreProducto }}
-                            </td>
-                            <td class="col-1-2 text-right">
-                            ${{ item.ImportePago }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <p class="disclaimer">{{ this.promGen.mensajes.Termino }}</p>
-        <button class="btn" (click)="postPromesa()">{{ "Traduct.confirmar" | translate }}</button>
+    <div class="box">
+      <div class="table-container">
+        <table class="table disabled" width="100%" border="0">
+          <tbody>
+            <tr class="table-header">
+              <td class="col-1-2">
+                {{ "Traduct.producto" | translate }}
+              </td>
+              <td class="col-1-2 text-right">
+                {{ "Traduct.importe_a_pagar" | translate }}
+              </td>
+            </tr>
+            <tr *ngFor="let item of productos">
+              <td class="col-1-2">
+                {{ item.NombreProducto }}
+              </td>
+              <td class="col-1-2 text-right">${{ item.ImportePago }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+    <p class="disclaimer">{{ this.promGen.mensajes.Termino }}</p>
+    <button class="btn" (click)="postPromesa()">
+      {{ "Traduct.confirmar" | translate }}
+    </button>
+  </div>
 </div>
 
 <div (click)="cerrarPopup()" class="overlay" id="mensaje-error">
-    <div class="dialog-container sidebar" role="dialog">
-      <a class="close-btn" (click)="cerrarPopup()">
-        <img src="assets/images/ui/close-btn.svg" alt="Close" />
-      </a>
-      <div class="dialog-content login-dialog">
-        <div>
-          <div class="flex-column flex-center">
-            <div>
-              <img
-                width="70px"
-                height="70px"
-                src="assets/images/ui/exclamation-triangle-solid.svg"
-                alt=""
-              />
-            </div>
-            <div class="text-center">
-              <p>La promesa no pudo generarse, por favor intente más tarde.</p>
-            </div>
+  <div class="dialog-container sidebar" role="dialog">
+    <a class="close-btn" (click)="cerrarPopup()">
+      <img src="assets/images/ui/close-btn.svg" alt="Close" />
+    </a>
+    <div class="dialog-content login-dialog">
+      <div>
+        <div class="flex-column flex-center">
+          <div>
+            <img
+              width="70px"
+              height="70px"
+              src="assets/images/ui/exclamation-triangle-solid.svg"
+              alt=""
+            />
+          </div>
+          <div class="text-center">
+            <p>La promesa no pudo generarse, por favor intente más tarde.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

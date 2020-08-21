@@ -62,7 +62,7 @@ export class DefaultComponent implements OnInit {
         };
         this.postService.postPago(pago).subscribe((data) => {
           // console.log(data);
-          this.router.navigateByUrl('/home/default');
+          // this.router.navigateByUrl('/home/default');
         });
       }
     });

@@ -38,7 +38,7 @@ export class NotificacionMpComponent implements OnInit {
               EstadoDetalle: data.status_detail,
               MedioDePago: data.payment_type_id,
             };
-            // (pago);
+            // console.log(pago);
             this.postService.postPagoSinToken(pago).subscribe((respuesta) => {
               // console.log(respuesta);
             });

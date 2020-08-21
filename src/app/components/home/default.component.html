@@ -137,8 +137,8 @@
      </div>
   </section>
 <!-- </div> -->
-<app-mensaje-mp
-  *ngIf="estadoPago"
-  [estadoPago]="estadoPago"
-  (volviendo)="onVolviendo($event)"
-></app-mensaje-mp>
+
+<app-estado-pago
+  [hidden]="estadoPago === ''"
+  (volver)="onVolviendo($event)"
+></app-estado-pago>

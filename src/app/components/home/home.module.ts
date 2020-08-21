@@ -2,10 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-/** TRANSLATION */
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 /* CUSTOM FORM CONTROL*/
 import { StandardModule } from '../standard/standard.module';
 
@@ -43,16 +39,14 @@ import { ConfirmarPagoComponent } from './body/pagar/confirmar-pago/confirmar-pa
 import { PagoMetodosComponent } from './body/pagar/pago-metodos/pago-metodos.component';
 import { NotificacionesComponent } from './body/notificaciones/notificaciones/notificaciones.component';
 import { TuPerfilComponent } from './body/persona/tu-perfil/tu-perfil.component';
-import { HttpClient } from '@angular/common/http';
 import { MensajeMpComponent } from './body/pagar/mercado_pago/mensaje-mp.component';
 import { NotificacionMpComponent } from './body/pagar/mercado_pago/notificacion-mp/notificacion-mp.component';
 import { GrillaPromesaComponent } from './body/promesa/grilla-promesa/grilla-promesa.component';
 import { MontoPromesaComponent } from './body/promesa/monto-promesa/monto-promesa.component';
 import { PromesaExitoComponent } from './body/promesa/promesa-exito/promesa-exito.component';
-
-export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
-}
+import { GrillaPagoComponent } from './body/pagar/grilla-pago/grilla-pago.component';
+import { MontoPagoComponent } from './body/pagar/monto-pago/monto-pago.component';
+import { EstadoPagoComponent } from './body/pagar/estado-pago/estado-pago.component';
 
 @NgModule({
   declarations: [
@@ -90,17 +84,12 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     NotificacionMpComponent,
     GrillaPromesaComponent,
     MontoPromesaComponent,
-    PromesaExitoComponent
+    PromesaExitoComponent,
+    GrillaPagoComponent,
+    MontoPagoComponent,
+    EstadoPagoComponent,
   ],
   imports: [
-    TranslateModule.forRoot({
-      defaultLanguage: 'es',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient],
-      },
-    }),
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
@@ -108,7 +97,6 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     StandardModule
   ],
   exports: [
-    // InputDateComponent
   ],
   providers: [
     {

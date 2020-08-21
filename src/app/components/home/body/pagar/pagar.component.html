@@ -1,797 +1,89 @@
-<div class="flex-column flex-grow">
-  <div class="pages-container">
-    <section class="page-deals">
-      <!-- START PAGE HEADER -->
-      <!-- <div *ngIf="!pagoGenerado" class="flex-row flex-center"> -->
-      <div [hidden]="pagoGeneradoStep != 0" class="flex-row flex-center">
-        <h1 class="flex-grow">{{ "Traduct.quiero_pagar" | translate }}</h1>
-        <div>
-          <div class="breadcrumb-container" id="">
-            <ul class="flex-row">
-              <li class="active breadcrumb">
-                item1
-              </li>
-
-              <li class="breadcrumb">
-                item2
-              </li>
-
-              <li class="breadcrumb">
-                item3
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!-- END PAGE HEADER -->
-      <!-- <div *ngIf="!pagoGenerado" class="flex-column"> -->
-      <div [hidden]="pagoGeneradoStep != 0" class="flex-column">
-        <!-- START DESKTOP -->
-        <h2
-          *ngIf="productos?.length === 0 || productos === undefined"
-          class="text-center"
-        >
-          Felicitaciones, usted no tiene ningún producto con deuda
-        </h2>
-        <div
-          class="table-container desktop-only"
-          *ngIf="productos?.length !== 0 && productos !== undefined"
-        >
-          <!-- START DESKTOP TABLE PRODUCTOS-->
-          <table class="table" width="100%" border="0">
-            <tbody>
-              <tr class="table-header">
-                <td
-                  [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '20%' : '25%' }"
-                >
-                  <div class="input-wrapper checkbox">
-                    <input
-                      id="select-all-prod"
-                      type="checkbox"
-                      class="input-elem visually-hidden"
-                      required
-                      value="all"
-                      [checked]="checkedProd"
-                      (change)="checkAllProductos($event)"
-                      [disabled]="tipoPago == 'IMPORTE'"
-                    />
-
-                    <div
-                      class="input-fake-checkbox"
-                      *ngIf="tipoPago == 'PRODUCTO'"
-                    >
-                      <span class="input-caret"></span>
-                    </div>
-
-                    <label for="select-all-prod">{{
-                      "Traduct.producto" | translate
-                    }}</label>
-
-                    <div class="input-error-icon" role="alert"></div>
-                    <div class="input-error-popup" role="alert">Required</div>
-                  </div>
-                </td>
-
-                <td
-                  style="text-align: center;"
-                  [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '20%' : '25%' }"
-                >
-                  {{ "Traduct.cant_dias_mora" | translate }}
-                </td>
-
-                <td
-                  style="text-align: center;"
-                  [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '20%' : '25%' }"
-                >
-                  {{ "Traduct.monto_deuda" | translate }}
-                </td>
-
-                <td
-                  style="text-align: center;"
-                  [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '20%' : '0%' }"
-                  [hidden]="tipoPago == 'IMPORTE'"
-                >
-                  {{ "Traduct.importe_a_pagar" | translate }}
-                </td>
-
-                <td
-                  style="text-align: center;"
-                  [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '20%' : '25%' }"
-                >
-                  {{ "Traduct.detalle" | translate }}
-                </td>
-              </tr>
-              <div *ngFor="let producto of productos">
-                <tr>
-                  <td
-                    [ngStyle]="{
-                      width: tipoPago === 'PRODUCTO' ? '20%' : '25%'
-                    }"
-                  >
-                    <div class="input-wrapper checkbox">
-                      <input
-                        id="table-select-{{ producto?.IdCuenta }}"
-                        type="checkbox"
-                        class="input-elem visually-hidden"
-                        required
-                        [disabled]="tipoPago == 'IMPORTE'"
-                        name="selectAll"
-                        [checked]="producto?.Check"
-                        (change)="
-                          cambiarCheckProductos(producto?.IdCuenta, $event)
-                        "
-                      />
-
-                      <div
-                        class="input-fake-checkbox"
-                        *ngIf="tipoPago == 'PRODUCTO'"
-                      >
-                        <span class="input-caret"></span>
-                      </div>
-
-                      <label for="table-select-{{ producto?.IdCuenta }}">{{
-                        producto?.NombreProducto
-                      }}</label>
-                    </div>
-                  </td>
-
-                  <td
-                    style="text-align: center;"
-                    [ngStyle]="{
-                      width: tipoPago === 'PRODUCTO' ? '20%' : '25%'
-                    }"
-                  >
-                    {{ producto?.DiasMora }}
-                  </td>
-
-                  <td
-                    style="text-align: center;"
-                    [ngStyle]="{
-                      width: tipoPago === 'PRODUCTO' ? '20%' : '25%'
-                    }"
-                    class="input-wrapper"
-                    #input
-                  >
-                    {{
-                      removerComas(
-                        producto?.Deuda
-                          | currency: producto?.CodigoMoneda:"symbol-narrow"
-                      )
-                    }}
-                    <span
-                      *ngIf="producto?.CodigoMoneda != 'ARS'"
-                      class="bullet green"
-                      (mouseover)="input.classList.add('error')"
-                      (mouseout)="input.classList.remove('error')"
-                    ></span>
-                    <div *ngIf="producto?.CodigoMoneda != 'ARS'">
-                      <div class="input-error-icon" role="alert"></div>
-                      <div class="input-error-popup" role="alert">
-                        {{ producto?.InfoCotizacion }}
-                      </div>
-                    </div>
-                  </td>
-
-                  <td
-                    style="text-align: center;"
-                    [ngStyle]="{
-                      width: tipoPago === 'PRODUCTO' ? '20%' : '0%'
-                    }"
-                    [hidden]="tipoPago == 'IMPORTE'"
-                  >
-                    <input
-                      type="number"
-                      step="0.01"
-                      id="monto-cancelar-{{ producto?.IdCuenta }}"
-                      value="{{ producto?.Deuda.toFixed(2) }}"
-                      [disabled]="
-                        !producto?.Check ||
-                        producto?.CodigoProducto == 'PRESTAMO'
-                      "
-                      [max]="producto?.ImporteMaximo"
-                      min="0"
-                      (focusout)="cambiarMontoProd($event)"
-                      attr.data-valor="{{ producto?.Deuda }}"
-                      (focus)="deshabilitarBoton()"
-                      style="
-                        text-align: right;
-                        width: 50%;
-                        border: none;
-                        border-bottom: 1px solid #8569b4;
-                      "
-                    />
-                  </td>
-                  <td
-                    style="text-align: center;"
-                    [ngStyle]="{
-                      width: tipoPago === 'PRODUCTO' ? '20%' : '25%'
-                    }"
-                  >
-                    <p
-                      class="wide-link"
-                      style="cursor: pointer; margin-top: 0;"
-                      *ngIf="producto?.CodigoProducto === 'PRESTAMO'"
-                    >
-                      <a
-                        style="margin-top: 0;"
-                        class="wide-link"
-                        (click)="abrirPopup(producto?.IdCuenta)"
-                      >
-                        {{ "Traduct.detalle" | translate }}
-                      </a>
-                    </p>
-                    <p *ngIf="producto?.CodigoProducto !== 'PRESTAMO'">
-                      Sin Detalle
-                    </p>
-                  </td>
-                </tr>
-              </div>
-            </tbody>
-          </table>
-        </div>
-        <!-- END DESKTOP TABLE PRODUCTOS -->
-        <!-- START DESKTOP TABLE PROMESAS -->
-        <div
-          class="table-container desktop-only"
-          *ngIf="promesas?.length !== 0 && promesas !== undefined"
-        >
-          <table class="table" width="100%" border="0">
-            <tbody>
-              <tr class="table-header">
-                <td
-                  [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '20%' : '25%' }"
-                >
-                  <div class="input-wrapper checkbox">
-                    <input
-                      id="select-all-prom"
-                      type="checkbox"
-                      class="input-elem visually-hidden"
-                      required
-                      value="all"
-                      [checked]="checkedProm"
-                      (change)="checkAllPromesas($event)"
-                      [disabled]="tipoPago == 'IMPORTE'"
-                    />
-
-                    <div
-                      class="input-fake-checkbox"
-                      *ngIf="tipoPago == 'PRODUCTO'"
-                    >
-                      <span class="input-caret"></span>
-                    </div>
-
-                    <label for="select-all-prom">{{
-                      "Traduct.promesa" | translate
-                    }}</label>
-
-                    <div class="input-error-icon" role="alert"></div>
-                    <div class="input-error-popup" role="alert">Required</div>
-                  </div>
-                </td>
-
-                <td
-                  style="text-align: center;"
-                  [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '20%' : '25%' }"
-                >
-                  {{ "Traduct.fecha_promesa" | translate }}
-                </td>
-
-                <td
-                  style="text-align: center;"
-                  [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '20%' : '25%' }"
-                >
-                  {{ "Traduct.fecha_comprometida" | translate }}
-                </td>
-
-                <td
-                  style="text-align: center;"
-                  [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '20%' : '25%' }"
-                >
-                  {{ "Traduct.importe_comprometido" | translate }}
-                </td>
-
-                <td
-                  style="text-align: center;"
-                  [ngStyle]="{ width: tipoPago === 'PRODUCTO' ? '20%' : '0%' }"
-                  [hidden]="tipoPago == 'IMPORTE'"
-                >
-                  {{ "Traduct.importe_a_pagar" | translate }}
-                </td>
-              </tr>
-              <div *ngFor="let promesa of promesas; let i = index">
-                <tr>
-                  <td
-                    [ngStyle]="{
-                      width: tipoPago === 'PRODUCTO' ? '20%' : '25%'
-                    }"
-                  >
-                    <div class="input-wrapper checkbox">
-                      <input
-                        id="table-select-{{ promesa?.IdPromesa }}"
-                        type="checkbox"
-                        class="input-elem visually-hidden"
-                        required
-                        [disabled]="tipoPago == 'IMPORTE'"
-                        name="selectAll"
-                        [checked]="promesa?.Check"
-                        (change)="
-                          cambiarCheckPromesas(promesa?.IdPromesa, $event)
-                        "
-                      />
-
-                      <div
-                        class="input-fake-checkbox"
-                        *ngIf="tipoPago == 'PRODUCTO'"
-                      >
-                        <span class="input-caret"></span>
-                      </div>
-
-                      <label for="table-select-{{ promesa?.IdPromesa }}"
-                        >Promesa {{ i + 1 }}</label
-                      >
-                    </div>
-                  </td>
-
-                  <td
-                    style="text-align: center;"
-                    [ngStyle]="{
-                      width: tipoPago === 'PRODUCTO' ? '20%' : '25%'
-                    }"
-                  >
-                    {{ promesa?.FechaGenerada | date: "dd/MM/yyyy" }}
-                  </td>
-
-                  <td
-                    style="text-align: center;"
-                    [ngStyle]="{
-                      width: tipoPago === 'PRODUCTO' ? '20%' : '25%'
-                    }"
-                  >
-                    {{ promesa?.FechaComprometida | date: "dd/MM/yyyy" }}
-                  </td>
-
-                  <td
-                    style="text-align: center;"
-                    [ngStyle]="{
-                      width: tipoPago === 'PRODUCTO' ? '20%' : '25%'
-                    }"
-                  >
-                    {{
-                      removerComas(
-                        promesa?.ImporteComprometido
-                          | currency: promesa?.CodigoMoneda:"symbol-narrow"
-                      )
-                    }}
-                  </td>
-
-                  <td
-                    style="text-align: center;"
-                    [ngStyle]="{
-                      width: tipoPago === 'PRODUCTO' ? '20%' : '0%'
-                    }"
-                    [hidden]="tipoPago == 'IMPORTE'"
-                  >
-                    <input
-                      type="number"
-                      id="monto-cancelar-{{ promesa?.IdPromesa }}"
-                      value="{{ promesa?.ImporteComprometido.toFixed(2) }}"
-                      [disabled]="!promesa?.Check"
-                      [max]="promesa?.ImporteComprometido"
-                      [min]="promesa?.ImporteMinimo"
-                      (focusout)="cambiarMontoProm($event)"
-                      attr.data-valor="{{ promesa?.ImporteComprometido }}"
-                      (focus)="deshabilitarBoton()"
-                      style="
-                        text-align: right;
-                        width: 50%;
-                        border: none;
-                        border-bottom: 1px solid #8569b4;
-                      "
-                    />
-                  </td>
-                </tr>
-              </div>
-            </tbody>
-          </table>
-          <!-- END DESKTOP TABLE PROMESAS -->
-        </div>
-        <!-- END DESKTOP -->
-
-        <!-- START MOBILE -->
-        <div class="mobile-only flex-column flex-grow table-container">
-          <!-- START MOBILE TABLE PRODUCTOS-->
-          <table class="box table flex-row" *ngFor="let producto of productos">
-            <tbody>
-              <tr class="table-header">
-                <td
-                  [ngStyle]="{
-                    width: tipoPago === 'PRODUCTO' ? '20%' : '25%'
-                  }"
-                >
-                  <div class="input-wrapper checkbox">
-                    <input
-                      id="table-select-{{ producto?.IdCuenta }}"
-                      type="checkbox"
-                      class="input-elem visually-hidden"
-                      required
-                      [disabled]="tipoPago == 'IMPORTE'"
-                      name="selectAll"
-                      [checked]="producto?.Check"
-                      (change)="
-                        cambiarCheckProductos(producto?.IdCuenta, $event)
-                      "
-                    />
-
-                    <div
-                      class="input-fake-checkbox"
-                      *ngIf="tipoPago == 'PRODUCTO'"
-                    >
-                      <span class="input-caret"></span>
-                    </div>
-
-                    <label for="table-select-{{ producto?.IdCuenta }}">{{
-                      producto?.NombreProducto
-                    }}</label>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p>
-                    <strong>{{ "Traduct.cant_dias_mora" | translate }}</strong>
-                  </p>
-
-                  <p>{{ producto.DiasMora }}</p>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p>
-                    <strong>{{ "Traduct.monto_deuda" | translate }}</strong>
-                  </p>
-
-                  <p>{{ producto.Deuda }}</p>
-                </td>
-              </tr>
-
-              <tr>
-                <td [hidden]="tipoPago == 'IMPORTE'">
-                  <p>
-                    <strong>{{ "Traduct.importe_a_pagar" | translate }}</strong>
-                  </p>
-
-                  <p>
-                    <input
-                      type="number"
-                      id="monto-cancelar-{{ producto.IdCuenta }}"
-                      value="{{ producto?.Deuda.toFixed(2) }}"
-                      [disabled]="!producto.Check"
-                      [max]="producto.ImporteMaximo"
-                      min="0"
-                      (focusout)="cambiarMontoProd($event)"
-                      attr.data-valor="{{ producto.Deuda }}"
-                      style="width: 100px; text-align: center;"
-                      (focus)="deshabilitarBoton()"
-                      style="
-                        text-align: right;
-                        width: 30%;
-                        border: none;
-                        border-bottom: 1px solid #8569b4;
-                      "
-                    />
-                  </p>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p>
-                    <strong>{{ "Traduct.detalle" | translate }}</strong>
-                  </p>
-                  <p>{{ "Traduct.detalle" | translate }}</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- END MOBILE TABLE PRODUCTOS -->
-        <!-- START MOBILE TABLE PROMESAS -->
-        <div class="mobile-only flex-column flex-grow table-container">
-          <table
-            class="box table flex-row"
-            *ngFor="let promesa of promesas; let i = index"
-          >
-            <tbody>
-              <tr class="table-header">
-                <td
-                  [ngStyle]="{
-                    width: tipoPago === 'PRODUCTO' ? '20%' : '25%'
-                  }"
-                >
-                  <div class="input-wrapper checkbox">
-                    <input
-                      id="table-select-{{ promesa?.IdPromesa }}"
-                      type="checkbox"
-                      class="input-elem visually-hidden"
-                      required
-                      [disabled]="tipoPago == 'IMPORTE'"
-                      name="selectAll"
-                      [checked]="promesa?.Check"
-                      (change)="
-                        cambiarCheckPromesas(promesa?.IdPromesa, $event)
-                      "
-                    />
-
-                    <div
-                      class="input-fake-checkbox"
-                      *ngIf="tipoPago == 'PRODUCTO'"
-                    >
-                      <span class="input-caret"></span>
-                    </div>
-
-                    <label for="table-select-{{ promesa?.IdPromesa }}"
-                      >Promesa {{ i + 1 }}</label
-                    >
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p>
-                    <strong>{{ "Traduct.fecha_promesa" | translate }}</strong>
-                  </p>
-
-                  <p>{{ promesa?.FechaGenerada | date: "dd/MM/yyyy" }}</p>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p>
-                    <strong>{{
-                      "Traduct.fecha_comprometida" | translate
-                    }}</strong>
-                  </p>
-
-                  <p>{{ promesa?.FechaComprometida | date: "dd/MM/yyyy" }}</p>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  <p>
-                    <strong>{{
-                      "Traduct.importe_comprometido" | translate
-                    }}</strong>
-                  </p>
-
-                  <p>
-                    {{
-                      promesa?.ImporteComprometido
-                        | currency: promesa?.CodigoMoneda:"symbol-narrow"
-                    }}
-                  </p>
-                </td>
-              </tr>
-
-              <tr>
-                <td [hidden]="tipoPago == 'IMPORTE'">
-                  <p>
-                    <strong>{{ "Traduct.importe_a_pagar" | translate }}</strong>
-                  </p>
-
-                  <p>
-                    <input
-                      type="number"
-                      id="monto-cancelar-{{ promesa?.IdPromesa }}"
-                      value="{{ promesa?.ImporteComprometido.toFixed(2) }}"
-                      [disabled]="!promesa?.Check"
-                      [max]="promesa?.ImporteComprometido"
-                      [min]="promesa?.ImporteMinimo"
-                      (focusout)="cambiarMontoProm($event)"
-                      attr.data-valor="{{ promesa?.ImporteComprometido }}"
-                      style="width: 100px; text-align: center;"
-                      (focus)="deshabilitarBoton()"
-                      style="
-                        text-align: right;
-                        width: 30%;
-                        border: none;
-                        border-bottom: 1px solid #8569b4;
-                      "
-                    />
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- END MOBILE TABLE PROMESAS -->
-        </div>
-        <!-- END MOBILE -->
-      </div>
-
-      <!-- START CONTROLLERS -->
-      <!-- <div *ngIf="!pagoGenerado" class="flex-column deal-mini"> -->
-      <div [hidden]="pagoGeneradoStep != 0" class="flex-column deal-mini">
-        <div>
-          <div class="input-wrapper radio">
-            <input
-              id="payment-total"
-              type="radio"
-              class="input-elem visually-hidden"
-              name="payment-type"
-              required
-              value="PRODUCTO"
-              (click)="seleccionarPago($event)"
-              [checked]="tipoPago == 'PRODUCTO'"
-            />
-
-            <div class="input-fake-radio">
-              <span class="input-caret"></span>
-            </div>
-
-            <label for="payment-total">
-              <div class="box flex-row flex-center">
-                <div class="payment-title">
-                  {{ "Traduct.por_producto" | translate }}
-                </div>
-                <div class="text-right flex-grow">
-                  <strong>{{
-                    removerComas(
-                      montoAPagar | currency: "ARS":"symbol-narrow":"1.2-2"
-                    )
-                  }}</strong>
-                </div>
-              </div>
-            </label>
-
-            <div class="input-error-icon" role="alert"></div>
-            <div class="input-error-popup" role="alert">Required</div>
-          </div>
-        </div>
-        <div>
-          <div class="input-wrapper radio">
-            <input
-              id="payment-parcial"
-              type="radio"
-              class="input-elem visually-hidden"
-              name="payment-type"
-              required
-              value="IMPORTE"
-              (click)="seleccionarPago($event)"
-            />
-
-            <div class="input-fake-radio">
-              <span class="input-caret"></span>
-            </div>
-
-            <label for="payment-parcial">
-              <div class="box flex-row flex-center">
-                <div class="payment-title">
-                  {{ "Traduct.por_monto" | translate }}
-                </div>
-                <div class="text-right flex-grow">
-                  <div class="input-wrapper text">
-                    <input
-                      type="number"
-                      class="input-elem"
-                      name="monto-monto"
-                      id="monto-monto"
-                      [value]="deudaTotal"
-                      min="0"
-                      [max]="deudaTotal"
-                      (focusout)="cambiarMontoProd($event)"
-                      (focus)="deshabilitarBoton()"
-                      [disabled]="tipoPago != 'IMPORTE'"
-                      step="0.1"
-                      style="font-weight: bold;"
-                    />
-
-                    <div class="input-error-icon" role="alert"></div>
-                    <div class="input-error-popup" role="alert">Required</div>
-                  </div>
-                </div>
-              </div>
-            </label>
-
-            <div class="input-error-icon" role="alert"></div>
-            <div class="input-error-popup" role="alert">Required</div>
-          </div>
-        </div>
-        <button
-          class="btn"
-          value="Generar Promesa"
-          id="generar-promesa"
-          (click)="generarPago($event)"
-          [disabled]="button"
-        >
-          {{ "Traduct.quiero_pagar" | translate }}
-        </button>
-      </div>
-      <!-- END CONTROLLERS -->
-      <!-- INICIO POPUP -->
-
-      <div (click)="cerrarPopup()" class="overlay" id="overlay-error">
-        <div
-          *ngIf="popupNro === 1"
-          class="dialog-container sidebar"
-          role="dialog"
-        >
-          <a class="close-btn" (click)="cerrarPopup()">
-            <img src="assets/images/ui/close-btn.svg" alt="Close" />
-          </a>
-          <div class="dialog-content login-dialog">
-            <div>
-              <div class="flex-column flex-center">
-                <div>
-                  <img
-                    width="70px"
-                    height="70px"
-                    src="assets/images/ui/exclamation-triangle-solid.svg"
-                    alt=""
-                  />
-                </div>
-                <div class="text-center">
-                  <p>{{ "Traduct.monto_mayor_cero" | translate }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- FIN POPUP -->
-    </section>
-
-    <!-- COMPONENTE CONFIRMAR-PAGO -->
-    <!-- <app-confirmar-pago
-      *ngIf="pagoGenerado"
-      [pago]="pago"
-      [pagoGenerado]="pagoGenerado"
-      (volviendo)="onVolviendo($event)"
-    ></app-confirmar-pago> -->
-    <app-confirmar-pago
-      [hidden]="pagoGeneradoStep != 1"
-      [pago]="pago"
-      [pagoGeneradoStep]="pagoGeneradoStep"
-      (volviendo)="onVolviendo($event)"
-      (continuar)="onContinuar($event)"
-    ></app-confirmar-pago>
-
-    <!-- COMPONENTE MEDIOS DE PAGO -->
-    <app-pago-metodos
-      [hidden]="pagoGeneradoStep != 2"
-      [pago]="pago"
-      [pagoGeneradoStep]="pagoGeneradoStep"
-      (volviendo)="onVolviendo($event)"
-      (pagando)="onPagando($event)"
-    >
-    </app-pago-metodos>
-    <!-- </div> -->
+<section class="page-pay pay" [hidden]="pagoStep != 0">
+  <div class="page-progress">
+    <div class="progress progress-5"></div>
   </div>
 
-  <!-- COMPONENTE DETALLE PRESTAMO -->
-  <div *ngFor="let item of prestamos">
-    <div class="overlay" id="overlay-{{ item?.IdCuenta }}">
-      <div
-        class="dialog-container login-dialog login-tyc"
-        role="dialog"
-        style="margin-top: 30px;"
-      >
-        <!-- <a class="close-btn" (click)="cerrarCuotas(item?.IdCuenta)">
-          <img src="assets/images/ui/close-btn.svg" alt="Close" />
-        </a> -->
-        <div>
-          <div class="dialog-content login-dialog login-tyc-content">
-            <app-detalle-planpago
-              [idCuenta]="item?.IdCuenta"
-              (TotalPago)="cambiarMontoPrestamo($event, item?.IdCuenta)"
-            ></app-detalle-planpago>
-          </div>
+  <div class="flex-column page-header">
+    <p class="top-decoration">{{ "Traduct.pagar" | translate }}</p>
+  </div>
+
+  <div class="restrict-width">
+    <div class="title">
+      <h1 class="page-title text-large">
+        {{ "Traduct.pagar_deuda" | translate }}
+      </h1>
+      <p class="page-subtitle">
+        <span></span>{{ "Traduct.pago_subtitulo" | translate }}
+      </p>
+    </div>
+
+    <div class="selectable-box flex-row col-container" id="box-6427117929">
+      <div class="box col-1-2" (click)="seleccionarTipoPago(1)" id="porMonto">
+        <div class="flex-row flex-center">
+          <img src="assets/images/sections/promises/1.svg" alt="" />
+          <img src="assets/images/sections/promises/1_active.svg" alt="" />
         </div>
+        <p class="text-center">
+          {{ "Traduct.monto_titulo" | translate }}
+        </p>
+      </div>
+      <div
+        class="box col-1-2"
+        (click)="seleccionarTipoPago(2)"
+        id="porProducto"
+      >
+        <div class="flex-row flex-center">
+          <img src="assets/images/sections/promises/2.svg" alt="" />
+          <img src="assets/images/sections/promises/2_active.svg" alt="" />
+        </div>
+        <p class="text-center">
+          {{ "Traduct.producto_titulo" | translate }}
+        </p>
       </div>
     </div>
+    <div>
+      <button (click)="continuarStep()" class="btn" data-next="">
+        {{ "Traduct.siguiente" | translate }}
+      </button>
+    </div>
   </div>
-</div>
+</section>
+
+<section class="page-promises pay_1" [hidden]="pagoStep != 2">
+  <app-grilla-pago
+    [resp]="resp"
+    [pagoStep]="pagoStep"
+    (volviendo)="onVolviendo($event)"
+    (siguiente)="onSiguiente($event)"
+    (prePagoGen)="onPrePagoGen($event)"
+  ></app-grilla-pago>
+</section>
+
+<section class="page-promises pay_1" [hidden]="pagoStep != 1">
+  <app-monto-pago
+    [resp]="resp"
+    [pagoStep]="pagoStep"
+    (volviendo)="onVolviendo($event)"
+    (siguiente)="onSiguiente($event)"
+    (prePagoGen)="onPrePagoGen($event)"
+  ></app-monto-pago>
+</section>
+
+<section class="page-pay" [hidden]="pagoStep != 3">
+  <app-confirmar-pago
+    [pago]="prePagoGen"
+    [pagoStep]="pagoStep"
+    (volviendo)="onVolviendo($event)"
+    (siguiente)="onSiguiente($event)"
+    (pagoGen)="onPagoGen($event)"
+  ></app-confirmar-pago>
+</section>
+
+<section class="page-pay pay_5" [hidden]="pagoStep != 4">
+  <app-pago-metodos
+    [pago]="pagoGen"
+    [pagoStep]="pagoStep"
+    (volviendo)="onVolviendo($event)"
+  >
+  </app-pago-metodos>
+</section>

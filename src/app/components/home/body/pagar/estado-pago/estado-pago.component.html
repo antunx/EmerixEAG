@@ -1,0 +1,39 @@
+<section class="page-pay pay-success">
+  <div class="flex-column page-header">
+    <a class="top-decoration" (click)="volverHome()" style="cursor: pointer;">{{
+      "Traduct.volver_home" | translate
+    }}</a>
+  </div>
+
+  <div
+    class="success flex-column flex-center text-center restrict-width"
+    *ngIf="estadoPago === 'Aprobado'"
+  >
+    <h2 class="title">{{ "Traduct.pago_exito" | translate }}</h2>
+    <img src="assets/images/ui/common/success.svg" alt="Success image" />
+  </div>
+
+  <div
+    class="success flex-column flex-center text-center restrict-width"
+    *ngIf="estadoPago === 'Pendiente'"
+  >
+    <h2 class="title">El pago esta pendiente</h2>
+    <img src="assets/images/ui/common/success.svg" alt="Success image" />
+  </div>
+
+  <div
+    class="success flex-column flex-center text-center restrict-width"
+    *ngIf="estadoPago === 'Rechazado'"
+  >
+    <h2 class="title">El pago fue rechazado</h2>
+    <img src="assets/images/ui/common/success.svg" alt="Success image" />
+  </div>
+
+  <div
+    class="success flex-column flex-center text-center restrict-width"
+    *ngIf="estadoPago === 'Pago no completado'"
+  >
+    <h2 class="title">El pago no se ha podido completar</h2>
+    <img src="assets/images/ui/common/success.svg" alt="Success image" />
+  </div>
+</section>

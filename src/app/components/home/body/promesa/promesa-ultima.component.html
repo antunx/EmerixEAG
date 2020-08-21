@@ -34,9 +34,11 @@
     </p>
   </div>
 </div> -->
-<h2>{{ 'Traduct.promesa_pago' | translate }}</h2>
-<div class="box promises-table">
-  <div class="table-container">
+<div class="box">
+  <div *ngIf="promesas?.length === 0 || promesas === undefined"> 
+    No ha realizado ninguna promesa de pago.
+  </div>
+  <div class="table-container" *ngIf="promesas?.length != 0 && promesas != undefined">
     <table class="table selectable" width="100%" border="0">
       <tbody>
         <tr
@@ -44,7 +46,7 @@
           *ngFor="let promesa of promesas"
           [ngClass]="{ disabled: promesa.Estado === 'Quebrada' }"
         >
-          <td class="">
+          <td class="col-3-5">
             <div class="flex-row flex-center">
               <div class="date-box">
                 <span class="month">{{ promesa.mes }}</span
@@ -58,12 +60,21 @@
               </div>
             </div>
           </td>
-          <td class="text-right">
+          <td class="text-right col-2-5">
             <!-- <a href="#" *ngIf="promesa.Estado !== 'Quebrada'"
               ><button class="btn">Pagar</button></a
             > -->
             <div class="status-label" *ngIf="promesa.Estado === 'Quebrada'">
               <span class="bullet red"></span>VENCIDA
+            </div>
+            <div class="status-label" *ngIf="promesa.Estado === 'Pendiente'">
+              <span class="bullet yellow"></span>PENDIENTE
+            </div>
+            <div class="status-label" *ngIf="promesa.Estado === 'Atrasada'">
+              <span class="bullet yellow"></span>ATRASADA
+            </div>
+            <div class="status-label" *ngIf="promesa.Estado === 'Cumplida'">
+              <span class="bullet green"></span>CUMPLIDA
             </div>
           </td>
         </tr>
@@ -72,6 +83,8 @@
   </div>
   <hr />
   <div class="wide-link">
-    <a [routerLink]="" (click)="IrPromesa()">{{ 'Traduct.generar_una_promesa' | translate }}</a>
+    <a [routerLink]="" (click)="IrPromesa()">{{
+      "Traduct.generar_un_plan" | translate
+    }}</a>
   </div>
 </div>

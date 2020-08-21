@@ -1,22 +1,12 @@
 <!-- <div class="flex-column"> --> <!-- LO HACE EN EL TS -->
-  <app-topbar></app-topbar>
+<app-topbar></app-topbar>
 
-  <div class="flex-row flex-grow">
-    <div>
-      <div class="overlay" id="nav-overlay">
-        <div class="dialog-container" role="dialog">
-           <a class="close-btn">
-           <img src="assets/images/ui/close-btn.svg" alt="Close">
-           </a>
-           <div class="dialog-content -content">
-              <div></div>
-           </div>
-        </div>
-     </div>
-      <app-navigation></app-navigation>
-    </div>
-    <!--BODY -->
-    <router-outlet></router-outlet>
-    <!--BODY -->
+<div class="flex-row flex-grow">
+  <div>
+    <app-navigation></app-navigation>
   </div>
+  <!--BODY -->
+  <router-outlet></router-outlet>
+  <!--BODY -->
+</div>
 <!-- </div> -->
