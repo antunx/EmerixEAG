@@ -9,14 +9,19 @@ import { HttpClient } from '@angular/common/http';
 
 /** COMPONENTES */
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ComboBoxComponent } from './utilidades/combo-box.component';
+import { ComboBoxComponent } from './CustomFormControl/combo-box.component';
+import { InputDateComponent } from './CustomFormControl/input-date.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
 }
 
 @NgModule({
-  declarations: [NotFoundComponent, ComboBoxComponent],
+  declarations: [
+    NotFoundComponent,
+    InputDateComponent,
+    ComboBoxComponent
+  ],
   imports: [
     RouterModule,
     CommonModule,
@@ -32,7 +37,8 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   exports: [
     TranslateModule,
     NotFoundComponent,
+    InputDateComponent,
     ComboBoxComponent
   ],
 })
-export class StandardModule { }
+export class UtilidadesModule { }

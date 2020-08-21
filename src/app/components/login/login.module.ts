@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 
 /* CUSTOM FORM CONTROL*/
-import { StandardModule } from '../standard/standard.module';
+import { UtilidadesModule } from '../utilidades/utilidades.module';
 
 /** COMPONENTES */
 import { LoginComponent } from './login.component';
@@ -33,7 +33,7 @@ import { LoginChatbotComponent } from './login-chatbot/login-chatbot.component';
     RouterModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    StandardModule
+    UtilidadesModule
   ]
 })
 export class LoginModule { }

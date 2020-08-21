@@ -3,7 +3,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 /* CUSTOM FORM CONTROL*/
-import { StandardModule } from '../standard/standard.module';
+import { UtilidadesModule } from '../utilidades/utilidades.module';
 
 /* ROUTING */
 import { HomeRoutingModule } from './home-routing.module';
@@ -31,7 +31,7 @@ import { PromesaMensajeComponent } from './body/promesa/promesa-mensaje/promesa-
 import { PromesaDetalleComponent } from './body/promesa/promesa-detalle/promesa-detalle.component';
 import { PreguntasComponent } from './body/preguntas/preguntas.component';
 import { UltimosComprobantesComponent } from './body/pago/comprobante/ultimos-comprobantes.component';
-import { InputDateComponent } from './utilidades/input-date.component';
+// import { InputDateComponent } from './utilidades/input-date.component';
 
 import { PagarComponent } from './body/pagar/pagar.component';
 import { DetallePlanpagoComponent } from './body/pagar/detalle-planpago/detalle-planpago.component';
@@ -72,7 +72,7 @@ import { EstadoPagoComponent } from './body/pagar/estado-pago/estado-pago.compon
     PromesaDetalleComponent,
     PreguntasComponent,
     UltimosComprobantesComponent,
-    InputDateComponent,
+    // InputDateComponent,
 
     PagarComponent,
     DetallePlanpagoComponent,
@@ -94,7 +94,7 @@ import { EstadoPagoComponent } from './body/pagar/estado-pago/estado-pago.compon
     FormsModule,
     CommonModule,
     HomeRoutingModule,
-    StandardModule
+    UtilidadesModule
   ],
   exports: [
   ],

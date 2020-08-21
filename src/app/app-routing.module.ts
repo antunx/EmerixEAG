@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { NotFoundComponent } from './components/standard/not-found/not-found.component';
+import { NotFoundComponent } from './components/utilidades/not-found/not-found.component';
 import { LoginChatbotComponent } from './components/login/login-chatbot/login-chatbot.component';
 
 const routes: Routes = [
