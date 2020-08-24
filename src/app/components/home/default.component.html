@@ -58,55 +58,7 @@
                   <app-promesa-ultima></app-promesa-ultima>
               </div>
               <div class="">
-                 <h2>Planes de pago</h2>
-                 <div class="box">
-                    <div class="table-container">
-                       <table class="table selectable" width="100%" border="0">
-                        <tbody>
-                          <tr class="">
-                             <td class="col-3-5">
-                                <img style="float: left; vertical-align: middle" src="assets/images/ui/tables/refinanciacion.svg" alt="">&nbsp;
-                                <div class="flex-column text-small text-uppercase">
-                                   <div class="text-semi">TC VISA 5400</div>
-                                   <div>Refinanciación 12</div>
-                                </div>
-                             </td>
-                             <td class="col-2-5 text-right">
-                                <div class="status-label"><span class="bullet yellow"></span>EN ESPERA</div>
-                             </td>
-                          </tr>
-                          <tr class="">
-                             <td class="col-3-5">
-                                <img style="float: left; vertical-align: middle" src="assets/images/ui/tables/refinanciacion.svg" alt="">&nbsp;
-                                <div class="flex-column text-small text-uppercase">
-                                   <div class="text-semi">Préstamo personal</div>
-                                   <div>Acuerdo verbal</div>
-                                </div>
-                             </td>
-                             <td class="col-2-5 text-right">
-                                <div class="status-label"><span class="bullet yellow"></span>EN ESPERA</div>
-                             </td>
-                          </tr>
-                          <tr class="disabled">
-                             <td class="col-3-5">
-                                <img style="float: left; vertical-align: middle" src="assets/images/ui/tables/refinanciacion.svg" alt="">&nbsp;
-                                <div class="flex-column text-small text-uppercase">
-                                   <div class="text-semi">TC MASTER 2431</div>
-                                   <div>Plan 12 cuotas</div>
-                                </div>
-                             </td>
-                             <td class="col-2-5 text-right">
-                                <div class="status-label"><span class="bullet green"></span>APROBADO</div>
-                             </td>
-                          </tr>
-                        </tbody>
-                       </table>
-                    </div>
-                    <hr>
-                    <div class="wide-link">
-                       <a [routerLink]="" (click)="GenerarPlan()">{{ 'Traduct.generar_un_plan' | translate }}</a>
-                    </div>
-                 </div>
+                <app-ultimos-acuerdos></app-ultimos-acuerdos>
               </div>
            </div>
         </div>

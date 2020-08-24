@@ -101,7 +101,7 @@
   "Traduct.pago_ingresado": "¡El pago se registró con éxito!",
   "Traduct.acuerdos": "Acuerdos",
   "Traduct.promesa_pago": "Promesas de pago",
-  "Traduct.plan_pago": "Plan de pago",
+  "Traduct.planes_de_pago": "Planes de pago",
   "Traduct.generar_un_plan": "Generar un plan",
   "Traduct.estado_solicitudes": "Estado de solicitudes",
   "Traduct.tu_perfil": "Tu Perfil",
@@ -188,6 +188,9 @@
 
   "Traduct.default_t1":"¡Es un gusto verte por acá! Queremos ayudarte a alivianar tus deudas ;)",
   "Traduct.seleccione": "Seleccione",
-  "Traduct.complete": "Complete"
+  "Traduct.complete": "Complete",
+  "Traduct.en_espera": "EN ESPERA",
+  "Traduct.aprobado": "APROBADO",
+  "Traduct.rechazado": "RECHAZADO"
 
 }

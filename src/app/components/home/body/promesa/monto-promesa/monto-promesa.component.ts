@@ -191,9 +191,10 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
 
     // console.log(this.fechaPromesa)
     if (
-      this.montoSeleccionado === 2 &&
-      (this.pagoParcial < this.pagoMinimo ||
-        this.pagoParcial > this.resp.DeudaTotal)
+      (this.montoSeleccionado === 2 &&
+        (this.pagoParcial < this.pagoMinimo ||
+          this.pagoParcial > this.resp.DeudaTotal)) ||
+      (this.montoSeleccionado === 1 && this.resp.DeudaTotal <= 0)
     ) {
       this.MensajeAlert = this.translate.instant('Traduct.error_monto_promesa');
       this.MensajeAlert = this.MensajeAlert.replace(

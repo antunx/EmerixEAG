@@ -97,8 +97,4 @@ export class DefaultComponent implements OnInit {
   GenerarPromesa(): void{
     this.router.navigateByUrl('/home/promesa');
   }
-
-  GenerarPlan(): void{
-    alert('GenerarPlan(): en desarrollo |_(-.-)_T ');
-  }
 }

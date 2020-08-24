@@ -34,8 +34,10 @@
     </p>
   </div>
 </div> -->
+
+<h2>{{ "Traduct.ultimas_promesas" | translate }}</h2>
 <div class="box">
-  <div *ngIf="promesas?.length === 0 || promesas === undefined"> 
+  <div *ngIf="promesas?.length === 0 || promesas === undefined">
     No ha realizado ninguna promesa de pago.
   </div>
   <div class="table-container" *ngIf="promesas?.length != 0 && promesas != undefined">
@@ -84,7 +86,7 @@
   <hr />
   <div class="wide-link">
     <a [routerLink]="" (click)="IrPromesa()">{{
-      "Traduct.generar_un_plan" | translate
+      "Traduct.generar_una_promesa" | translate
     }}</a>
   </div>
 </div>

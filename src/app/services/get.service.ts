@@ -12,7 +12,7 @@ import { RtagetDebtFreeModel } from '@models/rtagetdebtfree.model';
 import { Promesa } from '@app/models/Promesa.model';
 import { getPromesaPago } from '@models/getPromesaPago.model';
 import { DetallePrestamo } from '@models/detallePrestamo.model';
-import { porductosPromesas } from '@models/productosypromesas.model'
+import { porductosPromesas } from '@models/productosypromesas.model';
 
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
@@ -20,6 +20,7 @@ import { ComprobantesLst } from '@app/models/comprobante.models';
 import { RtapostValidateTokenModel } from '@app/models/rtapostvalidatetoken.model';
 import { RtagetNotificacionesModel } from '@app/models/rtagetnotificaciones.model';
 import { RtagetTuPerfilModel } from '@app/models/rtagettuperfil.model';
+import { AcuerdosLst } from '@app/models/acuerdo.models';
 
 
 @Injectable({
@@ -67,6 +68,13 @@ export class GetService {
     params = params.append('Id', IdPersona);
     params = params.append('ultimas', ultimas);
     return this.http.get<ComprobantesLst>(this.API_URL + 'emerixautog/getcomprobante', { params });
+  }
+
+  getUltimosAcuerdos(IdPersona: string, ultimas: string): Observable<AcuerdosLst>{
+    let params = new HttpParams();
+    params = params.append('Id', IdPersona);
+    params = params.append('ultimas', ultimas);
+    return this.http.get<AcuerdosLst>(this.API_URL + 'emerixautog/getcomprobante', { params });
   }
 
   getDebtFree(id: string): Observable<RtagetDebtFreeModel>{

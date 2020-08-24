@@ -47,6 +47,7 @@ import { PromesaExitoComponent } from './body/promesa/promesa-exito/promesa-exit
 import { GrillaPagoComponent } from './body/pagar/grilla-pago/grilla-pago.component';
 import { MontoPagoComponent } from './body/pagar/monto-pago/monto-pago.component';
 import { EstadoPagoComponent } from './body/pagar/estado-pago/estado-pago.component';
+import { UltimosAcuerdosComponent } from './body/pago/acuerdos/ultimos-acuerdos.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { EstadoPagoComponent } from './body/pagar/estado-pago/estado-pago.compon
     GrillaPagoComponent,
     MontoPagoComponent,
     EstadoPagoComponent,
+    UltimosAcuerdosComponent,
   ],
   imports: [
     ReactiveFormsModule,

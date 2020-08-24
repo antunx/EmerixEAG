@@ -84,8 +84,7 @@ export class NavigationComponent implements OnInit {
     this.MenuSel = this.translate.instant('Traduct.promesas_hechas');
     this.MenuPromesasHechas = this.translate.instant('Traduct.promesas_hechas');
     this.cambioTexto(this.translate.instant('Traduct.promesas_hechas'));
-    // this.router.navigateByUrl('/home/promesas_hechas');
-    alert('PromesasHechas(): en desarrollo |_(-.-)_T ');
+    this.router.navigateByUrl('/home/promesa-historica');
     this.clickMobile(true);
   }
 

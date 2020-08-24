@@ -100,7 +100,7 @@
   "Traduct.pago_ingresado": "Payment was posted successfully!",
   "Traduct.acuerdos": "Agreements",
   "Traduct.promesa_pago": "Payment promises",
-  "Traduct.plan_pago": "Payment plan",
+  "Traduct.planes_de_pago": "Payment plans",
   "Traduct.generar_un_plan": "Generate a plan",
   "Traduct.estado_solicitudes": "Request status",
   "Traduct.tu_perfil": "Your profile",
@@ -185,5 +185,8 @@
 
   "Traduct.default_t1":"It's nice to see you here! We want to help you alleviate your debts;)",
   "Traduct.seleccione": "Select",
-  "Traduct.complete": "Complete"
+  "Traduct.complete": "Complete",
+  "Traduct.en_espera": "ON HOLD",
+  "Traduct.aprobado": "APPROVED",
+  "Traduct.rechazado": "REJECTED"
 }
