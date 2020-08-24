@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { GetService } from '@app/services/get.service';
 import { Subscription } from 'rxjs';
 import { ThrowStmt } from '@angular/compiler';
@@ -10,6 +10,7 @@ import { ThrowStmt } from '@angular/compiler';
   ]
 })
 export class PreguntasComponent implements OnInit, OnDestroy {
+  @HostBinding('class') class = 'pages-container flex-grow';
   private subscription: Subscription = new Subscription();
   PageTitle = '';
   PageParagraph = '';

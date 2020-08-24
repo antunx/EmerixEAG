@@ -974,6 +974,8 @@ html.no-scroll body {
 .emerix-page .input-wrapper {
   position: relative;
   margin-bottom: 1rem;
+  /* clears the 'X' from Internet Explorer */
+  /* clears the 'X' from Chrome */
 }
 
 .emerix-page .input-wrapper.select {
@@ -1149,6 +1151,7 @@ html.no-scroll body {
 .emerix-page .input-wrapper input[type=date],
 .emerix-page .input-wrapper input[type=url],
 .emerix-page .input-wrapper input[type=mail],
+.emerix-page .input-wrapper input[type=search],
 .emerix-page .input-wrapper input[type=textarea],
 .emerix-page .input-wrapper input[type=number],
 .emerix-page .input-wrapper select {
@@ -1172,6 +1175,9 @@ html.no-scroll body {
 .emerix-page .input-wrapper input[type=mail],
 .emerix-page .input-wrapper input[type=mail]:active,
 .emerix-page .input-wrapper input[type=mail]:active,
+.emerix-page .input-wrapper input[type=search],
+.emerix-page .input-wrapper input[type=search]:active,
+.emerix-page .input-wrapper input[type=search]:active,
 .emerix-page .input-wrapper input[type=textarea],
 .emerix-page .input-wrapper input[type=textarea]:active,
 .emerix-page .input-wrapper input[type=textarea]:active,
@@ -1211,6 +1217,25 @@ html.no-scroll body {
   -moz-appearance: none;
   appearance: none;
   margin: 0;
+}
+
+.emerix-page .input-wrapper input[type=search]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.emerix-page .input-wrapper input[type=search]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.emerix-page .input-wrapper input[type=search]::-webkit-search-decoration,
+.emerix-page .input-wrapper input[type=search]::-webkit-search-cancel-button,
+.emerix-page .input-wrapper input[type=search]::-webkit-search-results-button,
+.emerix-page .input-wrapper input[type=search]::-webkit-search-results-decoration {
+  display: none;
 }
 
 .emerix-page .input-wrapper select {
@@ -2236,23 +2261,23 @@ html.no-scroll body {
   position: relative;
 }
 
-.emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled):hover {
-  background-color: #fbfbfb;
-  font-weight: 500;
-}
-
-.emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled):hover .item-label {
-  font-weight: 500;
-}
-
-.emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled):hover:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background-color: #A388D1;
+@media all and (min-width: 1025px) {
+  .emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled):hover {
+    background-color: #fbfbfb;
+    font-weight: 500;
+  }
+  .emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled):hover .item-label {
+    font-weight: 500;
+  }
+  .emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled):hover:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #A388D1;
+  }
 }
 
 .emerix-page .table-container .table.disabled * {
@@ -2943,9 +2968,14 @@ html.no-scroll body {
 }
 
 .emerix-page .overlay .login-tyc-content {
-  max-height: calc(100vh - 6rem);
   overflow: hidden;
   overflow-y: auto;
+  max-height: calc(100vh - 7rem);
+  margin-top: 1rem;
+}
+
+.emerix-page .overlay .login-tyc-content h2:first-child {
+  margin-top: -1rem;
 }
 
 @media all and (min-width: 1025px) {
@@ -3245,6 +3275,10 @@ html.no-scroll body {
   .emerix-page .page-home .mobile-btns li:last-child {
     margin-right: 0;
   }
+  .emerix-page .page-home .box .table-container, .emerix-page .page-home .input-wrapper.select2.active ul .table-container, .emerix-page .input-wrapper.select2.active .page-home ul .table-container, .emerix-page .page-home .overlay .dialog-container .table-container, .emerix-page .overlay .page-home .dialog-container .table-container, .emerix-page .page-home .topbar .notifications-menu .dropdown-target ul .table-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-home ul .table-container {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }
 
 .emerix-page #home-sidebar.active .sidebar {
@@ -3332,7 +3366,7 @@ html.no-scroll body {
 
 .emerix-page .page-promises .dropdown-card .dropdown-title {
   position: absolute;
-  top: -3rem;
+  top: -2rem;
   right: 0;
 }
 
