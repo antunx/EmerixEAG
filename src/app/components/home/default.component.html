@@ -1,33 +1,9 @@
-<!--<div class="flex-row flex-column-on-mobile justify-center">-->
-    <!--<div class="flex-column flex-grow home-area">-->
-
-      <!--BOX COMPONENTE DEUDA-->
-      <!--<app-deuda></app-deuda>-->
-
-      <!--BOX ULTIMOS 3 COMPROBANTES -->
-      <!--<app-ultimos-comprobantes></app-ultimos-comprobantes>-->
-    <!--</div>-->
-
-    <!--<div class="flex-column flex-grow home-area">-->
-
-      <!--LIMPIAR -->
-      <!--<div class="box">-->
-         <!--<p class="text-center"><img src="https://placekitten.com/g/450/150" alt=""></p>-->
-          <!--<hr>-->
-          <!--<p class="wide-link"><a>¡Accedé a este beneficio ahora!</a></p>-->
-      <!--</div>-->
-
-      <!--BOX PROMESAS DE PAGO -->
-      <!--<app-promesa-ultima></app-promesa-ultima>-->
-    <!--</div>-->
-<!--</div>-->
-
 <!-- <div class="pages-container flex-grow"> --> <!-- LO HACE EN EL TS -->
   <!-- <div class="overlay" id="home-sidebar">
      SE CARGA EL COMPONENTE PRODUCTO-DETALLE (DENTRO DE PRODUCTO-LISTADO)
      </div>
   </div> -->
-  <section class="page-home">
+  <section class="page-home" [hidden]="estadoPago !== ' '">
      <div class="flex-column page-header">
         <p class="top-decoration">Inicio</p>
      </div>
