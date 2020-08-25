@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { porductosPromesas } from '@app/models/productosypromesas.model';
+import { productosPromesas } from '@app/models/productosypromesas.model';
 import { prePago, Mensajes } from '@models/objetoprepago.model';
 
 @Component({
@@ -18,7 +18,7 @@ import { prePago, Mensajes } from '@models/objetoprepago.model';
   styleUrls: [],
 })
 export class MontoPagoComponent implements OnInit, OnChanges {
-  @Input() resp: porductosPromesas;
+  @Input() resp: productosPromesas;
   @Input() pagoStep: number;
   @Input() volverHome: boolean;
   @Output() volviendo = new EventEmitter<number>();

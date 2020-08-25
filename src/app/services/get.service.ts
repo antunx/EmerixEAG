@@ -12,7 +12,7 @@ import { RtagetDebtFreeModel } from '@models/rtagetdebtfree.model';
 import { Promesa } from '@app/models/Promesa.model';
 import { getPromesaPago } from '@models/getPromesaPago.model';
 import { DetallePrestamo } from '@models/detallePrestamo.model';
-import { porductosPromesas } from '@models/productosypromesas.model';
+import { productosPromesas } from '@models/productosypromesas.model';
 
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
@@ -113,8 +113,8 @@ export class GetService {
     return this.http.get<DetallePrestamo>(this.API_URL + 'emerixautog/getprestamodetalle/' + id);
   }
 
-  getProductosYPromesas(id: string): Observable<porductosPromesas> {
-    return this.http.get<porductosPromesas>(this.API_URL + 'emerixautog/getproductospagar/' + id);
+  getProductosYPromesas(id: string): Observable<productosPromesas> {
+    return this.http.get<productosPromesas>(this.API_URL + 'emerixautog/getproductospagar/' + id);
   }
 
   getNotificaciones(id: string): Observable<RtagetNotificacionesModel> {

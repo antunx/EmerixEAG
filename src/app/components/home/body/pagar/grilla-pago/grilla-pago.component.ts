@@ -10,7 +10,7 @@ import {
 
 import { Mensajes, prePago, Item } from '@models/objetoprepago.model';
 import {
-  porductosPromesas,
+  productosPromesas,
   Promesa,
   Producto,
 } from '@app/models/productosypromesas.model';
@@ -21,7 +21,7 @@ import {
   styleUrls: [],
 })
 export class GrillaPagoComponent implements OnInit, OnChanges {
-  @Input() resp: porductosPromesas;
+  @Input() resp: productosPromesas;
   @Input() pagoStep: number;
   @Output() volviendo = new EventEmitter<number>();
   @Output() siguiente = new EventEmitter<number>();

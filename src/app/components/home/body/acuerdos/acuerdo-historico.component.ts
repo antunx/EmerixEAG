@@ -83,4 +83,14 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
         overlay.classList.remove('active');
       });
   }
+
+  OtroEstado(acuerdo: Acuerdo): boolean{
+    if (acuerdo.EstadoCodigo === 'PENDIANT' || acuerdo.EstadoCodigo === 'VIGENTE'
+     || acuerdo.EstadoCodigo === 'CUMPLIDO' || acuerdo.EstadoCodigo === 'CAIDO'
+     || acuerdo.EstadoCodigo === 'ANTVENCI'){
+      return false;
+    }else {
+      return true;
+    }
+  }
 }

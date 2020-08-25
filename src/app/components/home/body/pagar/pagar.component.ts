@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { GetService } from '../../../../services/get.service';
 import { Router } from '@angular/router';
-import { porductosPromesas } from '@app/models/productosypromesas.model';
+import { productosPromesas } from '@app/models/productosypromesas.model';
 
 @Component({
   selector: 'app-pagar',
@@ -12,7 +12,7 @@ export class PagarComponent implements OnInit {
   @HostBinding('class') class = 'pages-container flex-grow';
   tipoSeleccionado: number;
   pagoStep: number;
-  resp: porductosPromesas;
+  resp: productosPromesas;
   prePagoGen: any;
   pagoGen: any;
 

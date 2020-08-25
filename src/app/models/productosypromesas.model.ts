@@ -1,4 +1,4 @@
-export interface porductosPromesas {
+export interface productosPromesas {
     ErrorCode: number;
     ErrorMessage: string;
     Productos: Producto[];
@@ -7,14 +7,14 @@ export interface porductosPromesas {
     DeudaTotal: number;
     ImporteMaximoTotal: number;
   }
-  
+
   interface Mensaje {
     Mensaje: string;
     Termino: string;
     OpeOk: string;
     OpeNoOk: string;
   }
-  
+
   export interface Promesa {
     Check: boolean;
     IdPromesa: number;
@@ -24,7 +24,7 @@ export interface porductosPromesas {
     ImporteComprometido: number;
     ImporteMinimo: number;
   }
-  
+
   export interface Producto {
     Check: boolean;
     IdCuenta: number;
@@ -40,7 +40,7 @@ export interface porductosPromesas {
     EsPrestamo: boolean;
     CuotasPrestamo: CuotasPrestamo[];
   }
-  
+
   interface CuotasPrestamo {
     id_prestamo_cuota: number;
   }

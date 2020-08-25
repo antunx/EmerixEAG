@@ -42,4 +42,14 @@ export class UltimosAcuerdosComponent implements OnInit, OnDestroy {
     // this.router.navigateByUrl('/home/acuerdos');
     alert('GenerarPlan(): en desarrollo |_(-.-)_T ');
   }
+
+  OtroEstado(acuerdo: Acuerdo): boolean{
+    if (acuerdo.EstadoCodigo === 'PENDIANT' || acuerdo.EstadoCodigo === 'VIGENTE'
+     || acuerdo.EstadoCodigo === 'CUMPLIDO' || acuerdo.EstadoCodigo === 'CAIDO'
+     || acuerdo.EstadoCodigo === 'ANTVENCI'){
+      return false;
+    }else {
+      return true;
+    }
+  }
 }
