@@ -14,15 +14,15 @@
       <h4>{{ 'Traduct.productos' | translate }}</h4>
       <table class="table selectable" width="100%" border="0">
         <tbody>
-           <tr class="" *ngFor="let cta of Acuerdo.Cuentas">
+           <tr class="" *ngFor="let Cuenta of Acuerdo.Cuentas">
             <td class="col-1-5">
               <img src="assets/images/ui/tables/prestamo.svg" alt="">
             </td>
             <td class="col-1-5">
-              <p>{{ 'Traduct.producto' | translate }} {{cta.NombreProducto}}</p>
+              <p>{{ 'Traduct.producto' | translate }} {{Cuenta.NombreProducto}}</p>
             </td>
             <td class="col-3-5 text-right">
-              <p>{{ 'Traduct.refinanciado' | translate }} {{cta.Deuda | number:'1.2-2'}}</p>
+              <p>{{ 'Traduct.refinanciado' | translate }} {{Cuenta.Deuda | number:'1.2-2'}}</p>
             </td>
          </tr>
         </tbody>
