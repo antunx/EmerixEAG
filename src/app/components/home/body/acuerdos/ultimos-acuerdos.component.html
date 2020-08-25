@@ -1,0 +1,31 @@
+<h2>{{ 'Traduct.planes_de_pago' | translate }}</h2>
+<div class="box">
+   <div class="table-container">
+      <table class="table selectable" width="100%" border="0">
+       <tbody>
+          <tr class="" *ngFor="let acu of Acuerdos">
+            <td class="col-3-5">
+              <img style="float: left; vertical-align: middle" src="assets/images/ui/tables/refinanciacion.svg" alt="">&nbsp;
+              <div class="flex-column text-small text-uppercase">
+                  <div class="text-semi">{{ acu.NombreAcuerdo }}</div>
+                  <div>{{ acu.FechaGenerada | date : "dd/MM/yyyy" }}</div>
+              </div>
+            </td>
+            <td class="col-2-5 text-right">
+              <div *ngIf="acu.EstadoCodigo ==='PENDIANT'" class="status-label"><span class="bullet yellow"></span>{{ 'Traduct.pendiente' | translate }}</div>
+              <div *ngIf="acu.EstadoCodigo ==='VIGENTE'" class="status-label"><span class="bullet yellow"></span>{{ 'Traduct.vigente' | translate }}</div>
+
+              <div *ngIf="acu.EstadoCodigo ==='CUMPLIDO'" class="status-label"><span class="bullet green"></span>{{ 'Traduct.cumplido' | translate }}</div>
+
+              <div *ngIf="acu.EstadoCodigo ==='CAIDO'" class="status-label"><span class="bullet red"></span>{{ 'Traduct.caido' | translate }}</div>
+              <div *ngIf="acu.EstadoCodigo ==='ANTVENCI'" class="status-label"><span class="bullet red"></span>{{ 'Traduct.vencido' | translate }}</div>
+            </td>
+        </tr>
+       </tbody>
+      </table>
+   </div>
+   <hr>
+   <div class="wide-link">
+      <a [routerLink]="" (click)="GenerarPlan()">{{ 'Traduct.generar_un_plan' | translate }}</a>
+   </div>
+</div>

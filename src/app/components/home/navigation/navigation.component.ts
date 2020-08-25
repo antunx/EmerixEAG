@@ -92,8 +92,7 @@ export class NavigationComponent implements OnInit {
     this.MenuSel = this.translate.instant('Traduct.planes_pedidos');
     this.MenuPlanesPedidos = this.translate.instant('Traduct.planes_pedidos');
     this.cambioTexto(this.translate.instant('Traduct.planes_pedidos'));
-    // this.router.navigateByUrl('/home/planes_pedidos');
-    alert('PlanesPedidos(): en desarrollo |_(-.-)_T ');
+    this.router.navigateByUrl('/home/acuerdo-historico');
     this.clickMobile(true);
   }
 

@@ -47,7 +47,9 @@ import { PromesaExitoComponent } from './body/promesa/promesa-exito/promesa-exit
 import { GrillaPagoComponent } from './body/pagar/grilla-pago/grilla-pago.component';
 import { MontoPagoComponent } from './body/pagar/monto-pago/monto-pago.component';
 import { EstadoPagoComponent } from './body/pagar/estado-pago/estado-pago.component';
-import { UltimosAcuerdosComponent } from './body/pago/acuerdos/ultimos-acuerdos.component';
+import { UltimosAcuerdosComponent } from './body/acuerdos/ultimos-acuerdos.component';
+import { AcuerdoHistoricoComponent } from './body/acuerdos/acuerdo-historico.component';
+import { AcuerdoDetalleComponent } from './body/acuerdos/acuerdo-detalle.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +92,8 @@ import { UltimosAcuerdosComponent } from './body/pago/acuerdos/ultimos-acuerdos.
     MontoPagoComponent,
     EstadoPagoComponent,
     UltimosAcuerdosComponent,
+    AcuerdoHistoricoComponent,
+    AcuerdoDetalleComponent,
   ],
   imports: [
     ReactiveFormsModule,

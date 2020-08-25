@@ -1,0 +1,88 @@
+ <!-- <div class="pages-container flex-grow"> --> <!-- LO HACE EN EL TS -->
+  <section class="page-logs">
+
+    <div class="overlay" id="home-sidebar">
+      <div *ngIf="MostrarPopup===true" class="dialog-container sidebar" role="dialog">
+         <a class="close-btn">
+            <img src="assets/images/ui/close-btn.svg" alt="Close" (click) ="CerrarPopup()">
+         </a>
+         <app-acuerdo-detalle [Acuerdo]="Acuerdo"></app-acuerdo-detalle>
+      </div>
+    </div>
+
+    <div class="flex-column page-header">
+       <p class="top-decoration">{{ 'Traduct.planes_pedidos' | translate }}</p>
+    </div>
+    <div class="restrict-width">
+       <div class="title">
+          <h1 class="page-title">{{ 'Traduct.tus_planes_t1' | translate }}</h1>
+<!--      <p class="page-subtitle"><span></span>{{ 'Traduct.tus_planes_t2' | translate }}</p> -->
+       </div>
+       <div id="agreement-table" class="box">
+          <div class="table-container">
+             <table class="table selectable" width="100%" border="0">
+               <tbody>
+                <tr class="table-header">
+                   <td class="col-1-4">
+                     {{ 'Traduct.acuerdo' | translate }}
+                   </td>
+                   <td class="col-1-4 desktop-only">
+                     {{ 'Traduct.vencimiento_anticipo' | translate }}
+                   </td>
+                   <td class="col-1-4">
+                     {{ 'Traduct.estado' | translate }}
+                   </td>
+                   <td class="col-1-4 text-right">
+                     {{ 'Traduct.anticipo' | translate }}
+                   </td>
+                   <td class="col-1-4 text-right">
+                    {{ 'Traduct.productos' | translate }}
+                  </td>
+                  <td class="col-1-4 text-right">
+                    {{ 'Traduct.cuotas' | translate }}
+                  </td>
+                  <td class="col-1-4 text-right">
+                    {{ 'Traduct.pagar_anticipo' | translate }}
+                  </td>
+                </tr>
+                <tr *ngFor="let acu of Acuerdos">
+                   <td class="col-1-4" (click) = "clickDetalle('D',acu)">
+                      <div class="flex-row justify-between" style="width: 80%">
+                         <div>{{ acu.NombreAcuerdo }}</div>
+                      </div>
+                   </td>
+                   <td class="col-1-4 desktop-only" (click) = "clickDetalle('D',acu)">
+                     {{ acu.FechaGenerada | date: 'dd/MM/yyyy'}}
+                   </td>
+                   <td class="col-1-4" (click) = "clickDetalle('D',acu)">
+                     <!-- {{ acu.EstadoNombre }} -->
+                     <div *ngIf="acu.EstadoCodigo ==='PENDIANT'" class="status-label"><span class="bullet yellow"></span>{{ 'Traduct.pendiente' | translate }}</div>
+                     <div *ngIf="acu.EstadoCodigo ==='VIGENTE'" class="status-label"><span class="bullet yellow"></span>{{ 'Traduct.vigente' | translate }}</div>
+
+                     <div *ngIf="acu.EstadoCodigo ==='CUMPLIDO'" class="status-label"><span class="bullet green"></span>{{ 'Traduct.cumplido' | translate }}</div>
+
+                     <div *ngIf="acu.EstadoCodigo ==='CAIDO'" class="status-label"><span class="bullet red"></span>{{ 'Traduct.caido' | translate }}</div>
+                     <div *ngIf="acu.EstadoCodigo ==='ANTVENCI'" class="status-label"><span class="bullet red"></span>{{ 'Traduct.vencido' | translate }}</div>
+                   </td>
+                   <td class="col-1-4 text-right" (click) = "clickDetalle('D',acu)">
+                     {{ acu.ImporteAnticipo | number:'1.2-2'}}
+                   </td>
+                   <td class="col-1-4 text-right" (click) = "clickDetalle('D',acu)">
+                    {{ acu.CantidadProductos }}
+                   </td>
+                   <td class="col-1-4 text-right" (click) = "clickDetalle('D',acu)">
+                    {{ acu.CantidadCuotas }}
+                   </td>
+                   <td class="col-1-4 text-right">
+                      <div class="wide-link">
+                        <a *ngIf="acu.VerBotonAnticipo === true" [routerLink]="" (click)="clickDetalle('P',acu)">{{ 'Traduct.pagar' | translate }}</a>
+                    </div>
+                   </td>
+                </tr>
+               </tbody>
+             </table>
+          </div>
+       </div>
+    </div>
+ </section>
+<!-- </div> -->

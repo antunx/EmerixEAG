@@ -70,11 +70,17 @@ export class GetService {
     return this.http.get<ComprobantesLst>(this.API_URL + 'emerixautog/getcomprobante', { params });
   }
 
-  getUltimosAcuerdos(IdPersona: string, ultimas: string): Observable<AcuerdosLst>{
+  getAcuerdos(IdPersona: string, ultimas: string): Observable<AcuerdosLst>{
     let params = new HttpParams();
     params = params.append('Id', IdPersona);
     params = params.append('ultimas', ultimas);
-    return this.http.get<AcuerdosLst>(this.API_URL + 'emerixautog/getcomprobante', { params });
+    return this.http.get<AcuerdosLst>(this.API_URL + 'emerixautog/getacuerdoslista', { params });
+  }
+
+  getAcuerdosDetalle(IdAcuerdo: string): Observable<AcuerdosLst>{
+    let params = new HttpParams();
+    params = params.append('Id', IdAcuerdo);
+    return this.http.get<AcuerdosLst>(this.API_URL + 'emerixautog/getacuerdoslista', { params });
   }
 
   getDebtFree(id: string): Observable<RtagetDebtFreeModel>{

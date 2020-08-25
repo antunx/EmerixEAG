@@ -5,19 +5,22 @@ export interface AcuerdosLst {
 }
 
 export interface Acuerdo {
-  IdPersona: string;
-  IdCuenta: string;
-  NumeroAcuerdo: string;
-  Tipo: string;
-  Descripcion: string;
-  Estado: string;
-  IdMoneda: number;
-  Importe: number;
-  Fecha: Date;
-  IdMedioPago: number;
-  Comentario: string;
   IdAcuerdo: number;
-  MedioPago: string;
-  Moneda: string;
+  NombreAcuerdo: string;
+  FechaGenerada: Date;
+  EstadoNombre: string;
+  EstadoCodigo: string;
+  ImporteAnticipo: number;
+  CantidadProductos: number;
+  CantidadCuotas: number;
+  DeudaTotal: number;
+  ImporteQuita: number;
+  ImporteRefinanciar: number;
+  VerBotonAnticipo: boolean;
+  Cuentas: Cuenta[];
 }
 
+export interface Cuenta {
+  NombreProducto: string;
+  Deuda: number;
+}

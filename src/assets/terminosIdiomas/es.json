@@ -38,7 +38,7 @@
   "Traduct.descargar": "Descargar",
   "Traduct.tu_deuda_es": "Tu deuda actual es",
   "Traduct.productos_adeudados": "Productos adeudados",
-  "Traduct.cant_productos": "Cant. productos adeudados",
+  "Traduct.cant_productos_adeu": "Cant. productos adeudados",
   "Traduct.informar_pago": "Informe su Pago",
   "Traduct.pagar": "Pagar",
   "Traduct.pagar_deuda": "Pagar mi deuda",
@@ -189,8 +189,27 @@
   "Traduct.default_t1":"¡Es un gusto verte por acá! Queremos ayudarte a alivianar tus deudas ;)",
   "Traduct.seleccione": "Seleccione",
   "Traduct.complete": "Complete",
-  "Traduct.en_espera": "EN ESPERA",
-  "Traduct.aprobado": "APROBADO",
-  "Traduct.rechazado": "RECHAZADO"
+
+  "Traduct.tus_planes_t1":  "Historial de acuerdos",
+  "Traduct.tus_planes_t2":  "",
+  "Traduct.pendiente": "PENDIENTE",
+  "Traduct.vigente": "VIGENTE",
+  "Traduct.cumplido": "CUMPLIDO",
+  "Traduct.caido": "CAIDO",
+  "Traduct.vencido": "VENCIDO",
+
+  "Traduct.acuerdo": "Acuerdo",
+  "Traduct.vencimiento_anticipo": "Venc. Anticipo",
+  "Traduct.anticipo": "Anticipo",
+  "Traduct.productos": "Productos",
+  "Traduct.cuotas": "Cuotas",
+  "Traduct.firmar": "Firmar",
+  "Traduct.pagar_anticipo": "Pagar Anticipo",
+  "Traduct.detalle_acuerdo": "Detalle de acuerdo",
+  "Traduct.deuda_total": "Deuda Total",
+  "Traduct.quita": "Quita",
+  "Traduct.deuda_refinanciar": "Deuda Refinanciar",
+  "Traduct.refinanciado": "Refinanciado"
+
 
 }

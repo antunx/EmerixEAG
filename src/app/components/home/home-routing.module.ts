@@ -19,6 +19,7 @@ import { PagarComponent } from './body/pagar/pagar.component';
 import { PagoMetodosComponent } from './body/pagar/pago-metodos/pago-metodos.component';
 import { TuPerfilComponent } from './body/persona/tu-perfil/tu-perfil.component';
 import { GrillaPromesaComponent } from './body/promesa/grilla-promesa/grilla-promesa.component';
+import { AcuerdoHistoricoComponent } from './body/acuerdos/acuerdo-historico.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent,
@@ -37,6 +38,8 @@ const routes: Routes = [
 
       {path: 'comprobante', component: ListaComprobanteComponent, canActivate: [ AuthGeneralGuard ]  },
       {path: 'informar_comprobante', component: InformarComprobanteComponent, canActivate: [ AuthGeneralGuard ]},
+
+      {path: 'acuerdo-historico', component: AcuerdoHistoricoComponent, canActivate: [ AuthGeneralGuard ]},
 
       {path: 'tu_perfil', component: TuPerfilComponent, canActivate: [ AuthGeneralGuard ]},
       {path: 'preguntas', component: PreguntasComponent, canActivate: [ AuthGeneralGuard ]},
