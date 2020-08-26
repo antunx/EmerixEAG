@@ -20,7 +20,7 @@
               <div *ngIf="Acuerdo.EstadoCodigo ==='CAIDO'" class="status-label"><span class="bullet red"></span>{{ 'Traduct.caido' | translate }}</div>
               <div *ngIf="Acuerdo.EstadoCodigo ==='ANTVENCI'" class="status-label"><span class="bullet red"></span>{{ 'Traduct.vencido' | translate }}</div>
 
-              <div *ngIf="OtroEstado(Acuerdo)" class="status-label"><span class="bullet gray"></span>{{ Acuerdo.EstadoNombre | translate }}</div>
+              <div *ngIf="OtroEstado(Acuerdo)" class="status-label"><span class="bullet gray"></span>{{ Acuerdo.EstadoNombre }}</div>
             </td>
         </tr>
        </tbody>
@@ -28,6 +28,6 @@
    </div>
    <hr>
    <div class="wide-link">
-      <a [routerLink]="" (click)="GenerarPlan()">{{ 'Traduct.generar_un_plan' | translate }}</a>
+      <a [routerLink]="" (click)="VerAcuerdos()">{{ 'Traduct.ver_todos_acuerdos' | translate }}</a>
    </div>
 </div>

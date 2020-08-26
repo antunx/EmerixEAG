@@ -33,9 +33,9 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit(): void {
       this.translate.get('Traduct.inicio').subscribe((translated: string) => {
-       this.MenuSel = translated;
-       this.MenuInicio = translated;
-       this.router.navigateByUrl('/home/default');
+        this.MenuSel = translated;
+        this.MenuInicio = translated;
+        this.router.navigateByUrl('/home/default');
       });
   }
 

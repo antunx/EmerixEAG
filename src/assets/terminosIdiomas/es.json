@@ -41,11 +41,12 @@
   "Traduct.cant_productos_adeu": "Cant. productos adeudados",
   "Traduct.informar_pago": "Informe su Pago",
   "Traduct.pagar": "Pagar",
-  "Traduct.pagar_deuda": "Pagar mi deuda",
+  
   "Traduct.pagar_ahora": "¡Pagar ahora!",
   "Traduct.pago_subtitulo": "Elegí cómo querés pagar, tenes 2 opciones:",
   "Traduct.pago_online": "Pago Online",
   "Traduct_pago_producto": "Pagar por seleccion de productos",
+  "Traduct.pagar_deuda": "Pagar mi deuda",
   "Traduct.medio_pago": "Medio de Pago",
   "Traduct.total_abonado": "Total abonado",
   "Traduct.fecha": "Fecha",
@@ -68,8 +69,9 @@
   "Traduct.cant_dias_mora": "Días de Mora",
   "Traduct.importe": "Importe Acordado",
   "Traduct.plazo_de_pago": "Plazo de Pago",
-  "Traduct.importe_comprometido": "Importe Comprometido",
   "Traduct.importe_a_pagar": "Importe a pagar",
+  "Traduct.importe_comprometido": "Importe Comprometido",
+  
 
   "Traduct.seleccione_medio_pago": "Seleccione un Medio de pago",
   "Traduct.seleccione_moneda": "Seleccione una Moneda",
@@ -209,7 +211,8 @@
   "Traduct.deuda_total": "Deuda Total",
   "Traduct.quita": "Quita",
   "Traduct.deuda_refinanciar": "Deuda Refinanciar",
-  "Traduct.refinanciado": "Refinanciado"
+  "Traduct.refinanciado": "Refinanciado",
+  "Traduct.ver_todos_acuerdos": "Ver todos los acuerdos"
 
 
 }

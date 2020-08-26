@@ -41,9 +41,9 @@
                   <td class="col-1-4 text-right">
                     {{ 'Traduct.cuotas' | translate }}
                   </td>
-                  <td class="col-1-4 text-right">
+<!--                   <td class="col-1-4 text-right">
                     {{ 'Traduct.pagar_anticipo' | translate }}
-                  </td>
+                  </td> -->
                 </tr>
                 <tr *ngFor="let Acuerdo of Acuerdos">
                    <td class="col-1-4" (click) = "clickDetalle('D',Acuerdo)">
@@ -63,7 +63,7 @@
                      <div *ngIf="Acuerdo.EstadoCodigo ==='CAIDO'" class="status-label"><span class="bullet red"></span>{{ 'Traduct.caido' | translate }}</div>
                      <div *ngIf="Acuerdo.EstadoCodigo ==='ANTVENCI'" class="status-label"><span class="bullet red"></span>{{ 'Traduct.vencido' | translate }}</div>
 
-                     <div *ngIf="OtroEstado(Acuerdo)" class="status-label"><span class="bullet gray"></span>{{ Acuerdo.EstadoNombre | translate }}</div>
+                     <div *ngIf="OtroEstado(Acuerdo)" class="status-label"><span class="bullet gray"></span>{{ Acuerdo.EstadoNombre }}</div>
                    </td>
                    <td class="col-1-4 text-right" (click) = "clickDetalle('D',Acuerdo)">
                      {{ Acuerdo.ImporteAnticipo | number:'1.2-2'}}
@@ -74,11 +74,11 @@
                    <td class="col-1-4 text-right" (click) = "clickDetalle('D',Acuerdo)">
                     {{ Acuerdo.CantidadCuotas }}
                    </td>
-                   <td class="col-1-4 text-right">
+<!--                    <td class="col-1-4 text-right">
                       <div class="wide-link">
                         <a *ngIf="Acuerdo.VerBotonAnticipo === true" [routerLink]="" (click)="clickDetalle('P',Acuerdo)">{{ 'Traduct.pagar' | translate }}</a>
                     </div>
-                   </td>
+                   </td> -->
                 </tr>
                </tbody>
              </table>

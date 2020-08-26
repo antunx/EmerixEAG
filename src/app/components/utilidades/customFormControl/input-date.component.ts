@@ -18,13 +18,20 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class InputDateComponent implements OnInit, ControlValueAccessor   {
   // ---------------------------------------------------------------------------------------
   // Desarrollado por Tony: Uso del Custom Form Control
+  // injectar dependencia: import { DatePipe } from '@angular/common';
+  // constructor: private datePipe: DatePipe
+
   // NgModel:
+  // FechaHoy = new Date();
+  // valorFecha: string;
+  // this.valorFecha = this.datePipe.transform(this.FechaHoy, 'yyyy-MM-dd'); // ngOnInit()
   // <app-input-date [(ngModel)]="valorFecha"></app-input-date>
+
   // Reactive Forms
   // <app-input-date formControlName="NombreControl"></app-input-date>
   // tambien soporta invalid, dirty, touched, disabled.
 
-  // NOTA: TOCAR CON CUIDADO YA QUE SE USA EN VARIOS LADOS
+  // NOTA: POR CUALQUIER MODIFICACION, TOCAR CON CUIDADO YA QUE SE USA EN VARIOS LADOS
   // ---------------------------------------------------------------------------------------
   value: string;
   isDisabled: boolean;

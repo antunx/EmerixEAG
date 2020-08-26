@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GetService } from '@app/services/get.service';
 import { Acuerdo } from '@app/models/acuerdo.models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ultimos-acuerdos',
@@ -12,7 +13,8 @@ import { Acuerdo } from '@app/models/acuerdo.models';
 export class UltimosAcuerdosComponent implements OnInit, OnDestroy {
 
   constructor(
-    private getservices: GetService
+    private getservices: GetService,
+    private router: Router,
   ) { }
 
   private subscription: Subscription = new Subscription();
@@ -38,9 +40,8 @@ export class UltimosAcuerdosComponent implements OnInit, OnDestroy {
     }));
   }
 
-  GenerarPlan(): void{
-    // this.router.navigateByUrl('/home/acuerdos');
-    alert('GenerarPlan(): en desarrollo |_(-.-)_T ');
+  VerAcuerdos(): void{
+    this.router.navigateByUrl('/home/acuerdo-historico');
   }
 
   OtroEstado(acuerdo: Acuerdo): boolean{

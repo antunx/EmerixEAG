@@ -22,6 +22,7 @@ export class TopbarComponent implements OnInit {
   ngOnInit(): void {
     this.servicioComunicacion.enviarMensajeObservable.subscribe(mensaje => {
       this.Menu = mensaje;
+      // console.log('Navegando a: ' + mensaje);
     });
     this.Cliente = localStorage.getItem('Cliente');
   }

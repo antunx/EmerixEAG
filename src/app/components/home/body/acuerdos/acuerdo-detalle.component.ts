@@ -8,7 +8,6 @@ import { Acuerdo } from '@app/models/acuerdo.models';
   ]
 })
 export class AcuerdoDetalleComponent implements OnInit {
-
   constructor() { }
   @Input() Acuerdo: Acuerdo;
 

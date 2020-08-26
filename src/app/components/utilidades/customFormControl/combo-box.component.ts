@@ -18,13 +18,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class ComboBoxComponent implements OnInit, ControlValueAccessor {
   // ---------------------------------------------------------------------------------------
   // Desarrollado por Tony: Uso del Custom Form Control
+  // lista = [{ Id: 1, Code: 'COD1', Name: 'Nombre1', Imagen: '' }, { Id: 2, Code: 'COD2', Name: 'Nombre2', Imagen: '' }];
   // NgModel:
-  // <app-combo-box Texto="Code ó Name" ItemDefault="valor_primer_item" [(ngModel)]="Lista"></app-combo-box>
+  // ValorSeleccionado: string;
+  // <app-combo-box Texto="Code ó Name" ItemDefault="valor_primer_item" [(ngModel)]="ValorSeleccionado" [Lista]="lista"></app-combo-box>
   // Reactive Forms
   // <app-combo-box formControlName="nombre_control" Texto="Code ó Name" ItemDefault="valor_primer_item" [Lista]="lista"></app-combo-box>
   // FALTA IMPLEMENTAR: invalid, dirty, touched, disabled.
 
-  // NOTA: TOCAR CON CUIDADO YA QUE SE USA EN VARIOS LADOS
+  // NOTA: POR CUALQUIER MODIFICACION, TOCAR CON CUIDADO YA QUE SE USA EN VARIOS LADOS
   // ---------------------------------------------------------------------------------------
   @Input() Texto: string;
   @Input() ItemDefault: string;
@@ -41,6 +43,7 @@ export class ComboBoxComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
     // console.log('cargando control ComboBoxComponent');
+    console.log(this.Lista);
   }
 
   onInput(value: string): void {
