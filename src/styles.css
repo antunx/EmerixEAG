@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -898,6 +899,21 @@ html.no-scroll body {
   margin-bottom: 1rem;
 }
 
+.emerix-page .warning-box {
+  border-radius: 8px;
+  border: 1px solid #FFE600;
+  background-color: #FFED91;
+  padding: .5rem 1.5rem;
+  color: #8C855E;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.emerix-page .warning-box img {
+  vertical-align: middle;
+  margin-right: .5rem;
+}
+
 .emerix-page .selectable-box .box, .emerix-page .selectable-box .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .selectable-box ul, .emerix-page .selectable-box .overlay .dialog-container, .emerix-page .overlay .selectable-box .dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul {
   cursor: pointer;
   transition: border-color 0.15s ease;
@@ -1502,7 +1518,7 @@ html.no-scroll body {
   color: #8569b4;
 }
 
-.emerix-page .btn.secondary:hover, .emerix-page .btn.secondary.hover, .emerix-page .btn.secondary:active {
+.emerix-page .btn.secondary:hover, .emerix-page .btn.secondary.hover, .emerix-page .btn.secondary:active, .emerix-page .btn.secondary.active {
   border: 1px solid #A388D1;
   color: #A388D1;
 }
@@ -1567,6 +1583,21 @@ html.no-scroll body {
   padding: .5rem 1.5rem;
   color: #fff;
   margin-bottom: 1rem;
+}
+
+.emerix-page .warning-box {
+  border-radius: 8px;
+  border: 1px solid #FFE600;
+  background-color: #FFED91;
+  padding: .5rem 1.5rem;
+  color: #8C855E;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.emerix-page .warning-box img {
+  vertical-align: middle;
+  margin-right: .5rem;
 }
 
 .emerix-page .selectable-box .box, .emerix-page .selectable-box .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .selectable-box ul, .emerix-page .selectable-box .overlay .dialog-container, .emerix-page .overlay .selectable-box .dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul {
@@ -1660,8 +1691,8 @@ html.no-scroll body {
   position: absolute;
   padding: 1rem;
   cursor: pointer;
-  bottom: 100%;
-  right: 1rem;
+  top: 0;
+  right: 0;
   z-index: 10;
 }
 
@@ -2041,7 +2072,7 @@ html.no-scroll body {
   }
 }
 
-.emerix-page .price-container {
+.emerix-page .price-container:not(.text-normal) {
   font-size: 2rem;
   font-weight: bold;
 }
@@ -2456,6 +2487,21 @@ html.no-scroll body {
   margin-bottom: 1rem;
 }
 
+.emerix-page .warning-box {
+  border-radius: 8px;
+  border: 1px solid #FFE600;
+  background-color: #FFED91;
+  padding: .5rem 1.5rem;
+  color: #8C855E;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.emerix-page .warning-box img {
+  vertical-align: middle;
+  margin-right: .5rem;
+}
+
 .emerix-page .selectable-box .box, .emerix-page .selectable-box .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .selectable-box ul, .emerix-page .selectable-box .overlay .dialog-container, .emerix-page .overlay .selectable-box .dialog-container, .emerix-page .selectable-box .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .selectable-box ul {
   cursor: pointer;
   transition: border-color 0.15s ease;
@@ -2791,6 +2837,194 @@ html.no-scroll body {
 
 .emerix-page .page-account .icns {
   margin-right: 1rem;
+}
+
+.emerix-page .page-billings h4 {
+  margin-top: 0;
+}
+
+.emerix-page .page-billings h4 img {
+  vertical-align: middle;
+  float: left;
+  margin-right: .5rem;
+}
+
+.emerix-page .page-billings .card-dropdown-container {
+  margin-left: -.5rem;
+  margin-right: -.5rem;
+}
+
+.emerix-page .page-billings .card-dropdown {
+  background-color: #F7F7F7;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-weight: bold;
+}
+
+.emerix-page .page-billings .dropdown-title::after {
+  top: .4rem;
+  right: .4rem;
+}
+
+.emerix-page .page-billings .card-dropdown-target {
+  background-color: #F7F7F7;
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding-bottom: .5rem;
+}
+
+.emerix-page .page-billings .card-dropdown-target li:before {
+  content: '•';
+  display: inline-block;
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
+
+.emerix-page .page-billings .data-field {
+  margin-bottom: 1rem;
+}
+
+.emerix-page .page-billings .data-field > div {
+  margin: .5rem 0;
+}
+
+.emerix-page .page-billings .btn {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.emerix-page .page-billings .price-container.text-normal .denomination {
+  font-size: .75em;
+}
+
+.emerix-page .page-billings .price-container.text-normal sup {
+  top: 0;
+}
+
+.emerix-page .page-billings .price-container.text-normal sup:before {
+  content: ',';
+}
+
+.emerix-page .page-billings a[data-popup] {
+  font-size: 12px;
+  color: #8569b4;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-billings .btn + .btn {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  .emerix-page .page-billings h4 {
+    color: #3C3C3B;
+    font-size: 1rem;
+  }
+  .emerix-page .page-billings h4 img {
+    width: 2rem;
+    float: none;
+  }
+  .emerix-page .page-billings .data-field {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0;
+  }
+  .emerix-page .page-billings .data-field div {
+    width: 50%;
+  }
+  .emerix-page .page-billings .data-field div + div {
+    position: relative;
+  }
+  .emerix-page .page-billings .data-field div + div > div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+  }
+  .emerix-page .page-billings .card-dropdown {
+    pointer-events: none;
+  }
+  .emerix-page .page-billings .card-dropdown:after {
+    display: none;
+  }
+  .emerix-page .page-billings .card-dropdown-container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .emerix-page .page-billings .dropdown-target {
+    max-height: none;
+  }
+  .emerix-page .page-billings .card-global-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3.5rem;
+  }
+  .emerix-page .page-billings .card-global-wrapper:after {
+    top: 1rem;
+    right: 1rem;
+  }
+  .emerix-page .page-billings input:not(:checked) + .card-global-wrapper + .dropdown-target {
+    max-height: 2rem;
+  }
+}
+
+.emerix-page .dialog-container.billing-dialog {
+  padding: 0;
+}
+
+.emerix-page .billing-dialog {
+  max-width: 44.5rem;
+  width: 44.5rem;
+  padding: 0;
+}
+
+.emerix-page .billing-dialog h3 {
+  font-size: 1.125rem;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .billing-dialog h3 {
+    margin-top: 0;
+  }
+}
+
+.emerix-page .billing-dialog h3 img {
+  vertical-align: middle;
+  margin-right: .5rem;
+}
+
+.emerix-page .billing-dialog .btn {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+}
+
+.emerix-page .billing-dialog .table-container .table {
+  padding: 0 1.5rem;
+}
+
+.emerix-page .billing-dialog .table-container .table td {
+  height: 2.5rem;
+}
+
+.emerix-page .billing-dialog .table-container .table td:first-child {
+  width: 10%;
+}
+
+.emerix-page .billing-dialog .table-container .table tr {
+  padding: 0;
+}
+
+.emerix-page .billing-dialog .table-container .table tr:not(:last-child) {
+  border-bottom: 1px solid #c1c1c1;
+}
+
+.emerix-page .billing-dialog .table-container .table .table-header {
+  display: flex;
 }
 
 .emerix-page .page-faqs .input-wrapper {
@@ -3133,12 +3367,16 @@ html.no-scroll body {
   background-image: url("assets/images/sections/home/prom.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
   height: 190px;
 }
 
 @media all and (max-width: 1024px) {
   .emerix-page .page-home .prom-text {
     height: 150px;
+  }
+  .emerix-page .page-home .prom-text p {
+    text-align: center;
   }
 }
 

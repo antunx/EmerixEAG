@@ -95,6 +95,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
           console.log(res.ErrorMessage);
         } else{
           this.mediosPago = res.Items;
+          // console.log(res.Items);
         }
       },
       (err) => {
