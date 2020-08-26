@@ -131,7 +131,7 @@
   "Traduct.por_monto": "Generate promise by amount",
   "Traduct.periodo": "TIME LAPSE",
   "Traduct.elegir_fecha": "Choose Date",
-  "Traduct.ultimas_promesas": "Lastest Payment Promises",
+  "Traduct.ultimas_promesas": "Payment Promises",
   "Traduct.ver_todas_promesas": "See all the Promises",
   "Traduct.error_fecha_promesa": "Invalid date. It cannot be less than the current date or exceed the current date in ParamDate days",
   "Traduct.error_monto_promesa": "Invalid paying amount. It has to be more than <PAGO_MINIMO> and less than the total debt (<PAGO_MAXIMO>)",

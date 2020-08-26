@@ -41,7 +41,7 @@
   "Traduct.cant_productos_adeu": "Cant. productos adeudados",
   "Traduct.informar_pago": "Informe su Pago",
   "Traduct.pagar": "Pagar",
-  
+
   "Traduct.pagar_ahora": "¡Pagar ahora!",
   "Traduct.pago_subtitulo": "Elegí cómo querés pagar, tenes 2 opciones:",
   "Traduct.pago_online": "Pago Online",
@@ -71,7 +71,7 @@
   "Traduct.plazo_de_pago": "Plazo de Pago",
   "Traduct.importe_a_pagar": "Importe a pagar",
   "Traduct.importe_comprometido": "Importe Comprometido",
-  
+
 
   "Traduct.seleccione_medio_pago": "Seleccione un Medio de pago",
   "Traduct.seleccione_moneda": "Seleccione una Moneda",
@@ -134,7 +134,7 @@
   "Traduct.por_monto": "Generar promesa por monto",
   "Traduct.periodo": "PERIODO",
   "Traduct.elegir_fecha": "Elegir Fecha",
-  "Traduct.ultimas_promesas": "Ultimas Promesas de Pago",
+  "Traduct.ultimas_promesas": "Promesas de Pago",
   "Traduct.ver_todas_promesas": "Ver todas las Promesas",
   "Traduct.error_fecha_promesa": "Fecha Invalida. No puede ser menor a la fecha actual ni exceder en ParamDate dias la fecha actual",
   "Traduct.error_monto_promesa": "No se puede generar una promesa ya que el monto debe ser mayor a <PAGO_MINIMO> y menor a la deuda total (<PAGO_MAXIMO>)",
