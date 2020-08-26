@@ -43,7 +43,7 @@ export class ComboBoxComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
     // console.log('cargando control ComboBoxComponent');
-    console.log(this.Lista);
+    // console.log(this.Lista);
   }
 
   onInput(value: string): void {
