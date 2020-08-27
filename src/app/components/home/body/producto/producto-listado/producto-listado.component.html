@@ -115,13 +115,13 @@
               <td class="col-3-6" (click) = "detalleProducto(producto)">
                 <img style="float: left; vertical-align: middle" src="{{ this.CargarImagen(producto.NameTypeProd) }}" onerror="this.src='assets/images/ui/tables/ERROR.svg';"  alt="">&nbsp;{{ producto.NameProd }}
               </td>
-              <td class="col-1-6 text-center desktop-only" (click) = "detalleProducto(producto)">
+              <td class="col-2-6 text-center desktop-only" (click) = "detalleProducto(producto)">
                 {{ producto.NameTypeProd }}
               </td>
               <td class="col-1-4 text-center desktop-only" (click) = "detalleProducto(producto)">
                 {{ producto.DaysDebt }}
               </td>
-              <td class="col-3-6 text-right" (click) = "detalleProducto(producto)">
+              <td class="col-2-6 text-right" (click) = "detalleProducto(producto)">
                 {{ producto.Moneda }} - {{ removerComas(producto.AmountDebt | number:'1.2-2') }}
               </td>
           </tr>

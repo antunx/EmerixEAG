@@ -198,8 +198,8 @@
   "Traduct.acuerdo": "Agreement",
   "Traduct.vencimiento_anticipo": "Advance due date",
   "Traduct.anticipo": "Advance",
-  "Traduct.productos": "Quantity Products",
-  "Traduct.cuotas": "Quantity Products",
+  "Traduct.cant_productos": "Quantity Products",
+  "Traduct.cuotas": "Dues",
   "Traduct.firmar": "Sign",
   "Traduct.pagar_anticipo": "Pay Advance",
   "Traduct.detalle_acuerdo": "Agreement Detail",
@@ -207,5 +207,6 @@
   "Traduct.quita": "Remove",
   "Traduct.deuda_refinanciar": "Debt Refinance",
   "Traduct.refinanciado": "Refinanced",
-  "Traduct.ver_todos_acuerdos": "See all Agreement"
+  "Traduct.ver_todos_acuerdos": "See all Agreement",
+  "Traduct.ver_cuotas": "See Dues"
 }

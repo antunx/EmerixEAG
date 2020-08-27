@@ -68,11 +68,18 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
       if (tipo === 'P'){
         this.PagarAnticipo(acuerdo.IdAcuerdo);
       }
+      if (tipo === 'C'){
+        this.VerCuotas(acuerdo.IdAcuerdo);
+      }
     }
   }
 
   PagarAnticipo(IdAcuerdo: number): void{
     alert('PagarAnticipo(): en desarrollo |_(-.-)_T ');
+  }
+
+  VerCuotas(IdAcuerdo: number): void{
+    alert('VerCuotas(): en desarrollo |_(-.-)_T ');
   }
 
   // Cerramos el popup detalle del acuerdo
@@ -84,10 +91,19 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
       });
   }
 
-  OtroEstado(acuerdo: Acuerdo): boolean{
-    if (acuerdo.EstadoCodigo === 'PENDIANT' || acuerdo.EstadoCodigo === 'VIGENTE'
-     || acuerdo.EstadoCodigo === 'CUMPLIDO' || acuerdo.EstadoCodigo === 'CAIDO'
-     || acuerdo.EstadoCodigo === 'ANTVENCI'){
+  OtroEstado(EstadoCodigo: string): boolean{
+    if (EstadoCodigo === 'PENDIANT' || EstadoCodigo === 'VIGENTE'
+     || EstadoCodigo === 'CUMPLIDO' || EstadoCodigo === 'CAIDO'
+     || EstadoCodigo === 'ANTVENCI'){
+      return false;
+    }else {
+      return true;
+    }
+  }
+
+  EstadoNoVencidoRechazado(EstadoCodigo: string): boolean{
+    if (EstadoCodigo === 'CAIDO'
+     || EstadoCodigo === 'ANTVENCI'){
       return false;
     }else {
       return true;

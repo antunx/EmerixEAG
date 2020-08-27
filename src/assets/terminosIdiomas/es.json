@@ -203,7 +203,7 @@
   "Traduct.acuerdo": "Acuerdo",
   "Traduct.vencimiento_anticipo": "Venc. Anticipo",
   "Traduct.anticipo": "Anticipo",
-  "Traduct.productos": "Productos",
+  "Traduct.cant_productos": "Cant. Productos",
   "Traduct.cuotas": "Cuotas",
   "Traduct.firmar": "Firmar",
   "Traduct.pagar_anticipo": "Pagar Anticipo",
@@ -212,7 +212,8 @@
   "Traduct.quita": "Quita",
   "Traduct.deuda_refinanciar": "Deuda Refinanciar",
   "Traduct.refinanciado": "Refinanciado",
-  "Traduct.ver_todos_acuerdos": "Ver todos los acuerdos"
+  "Traduct.ver_todos_acuerdos": "Ver todos los acuerdos",
+  "Traduct.ver_cuotas": "Ver Cuotas"
 
 
 }
