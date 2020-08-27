@@ -13,6 +13,8 @@ import { Preference } from '@models/rtaPreference.model';
 import { CfgPreference } from '@models/postConfPreference.model';
 import { ActualizarPreference } from '@models/postActualizarPreference.model';
 import { rtaActualizarPreference } from '@models/rtaActualizarPreference.model';
+import { Acuerdos } from '@models/rtapostacuerdos.model';
+import { CuotasAcuerdo } from '@models/cuotasAcuerdo.model';
 
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
@@ -81,6 +83,28 @@ export class PostService {
     return this.http.post(
       this.API_URL + 'emerixautog/ingresarnotificacion',
       pago
+    );
+  }
+
+  postObtenerAcuerdos(ctas: {
+    DeudaTotal: Number;
+    DiasMora: number;
+    Cuentas: any[];
+  }): Observable<Acuerdos> {
+    return this.http.post<Acuerdos>(
+      this.API_URL + 'emerixautog/getacuerdos',
+      ctas
+    );
+  }
+
+  PostObtenerCuotasAcuerdo(acuerdo: {
+    IdAcuerdo: string;
+    IdTipoAcuerdo: string;
+    Importe: string;
+  }): Observable<CuotasAcuerdo> {
+    return this.http.post<CuotasAcuerdo>(
+      `${this.API_URL}emerixautog/getacuerdoscuotas`,
+      acuerdo
     );
   }
 }

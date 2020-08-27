@@ -21,6 +21,7 @@ import { RtapostValidateTokenModel } from '@app/models/rtapostvalidatetoken.mode
 import { RtagetNotificacionesModel } from '@app/models/rtagetnotificaciones.model';
 import { RtagetTuPerfilModel } from '@app/models/rtagettuperfil.model';
 import { AcuerdosLst } from '@app/models/acuerdo.models';
+import { Acuerdo } from '@app/models/getAcuerdo.model';
 
 
 @Injectable({
@@ -124,4 +125,12 @@ export class GetService {
   getTuPerfil(id: string): Observable<RtagetTuPerfilModel> {
     return this.http.get<RtagetTuPerfilModel>(this.API_URL + 'emerixautog/getperfil/' + id);
   }
+
+
+  getProductosAcuerdos(id: string): Observable<Acuerdo> {
+    return this.http.get<Acuerdo>(
+      this.API_URL + 'emerixautog/getacuerdosproductos/' + id
+    );
+  }
+
 }

@@ -3,7 +3,7 @@
 </div>
 
 <div class="flex-column page-header">
-  <a class="top-decoration" (click)="volver()" style="cursor: pointer;">{{
+  <a class="top-decoration" (click)="volver()" style="cursor: pointer">{{
     "Traduct.volver_anterior" | translate
   }}</a>
 </div>
@@ -28,10 +28,9 @@
     class="col-3-4"
     *ngIf="productos?.length === 0 || productos === undefined"
   >
-  <br>
-  <h2 class="page-title text-large"> No hay productos con deuda. </h2>
-
-</div>
+    <br />
+    <h2 class="page-title text-large">No hay productos con deuda.</h2>
+  </div>
   <div
     class="col-3-4 box desktop-only"
     *ngIf="productos?.length !== 0 && productos !== undefined"
@@ -120,7 +119,7 @@
                 <span
                   *ngIf="producto?.CodigoMoneda != 'ARS'"
                   class="bullet green"
-                  style="margin-left: 10px;"
+                  style="margin-left: 10px"
                   (mouseover)="input.classList.add('error')"
                   (mouseout)="input.classList.remove('error')"
                 ></span>
@@ -160,15 +159,13 @@
             <td class="col-1-6 text-center">
               <p
                 class="wide-link"
-                style="cursor: pointer;"
+                style="cursor: pointer"
                 *ngIf="producto?.CodigoProducto === 'PRESTAMO'"
                 (click)="abrirPopup(producto?.IdCuenta)"
               >
                 {{ "Traduct.detalle" | translate }}
               </p>
-              <p *ngIf="producto?.CodigoProducto !== 'PRESTAMO'">
-                Sin Detalle
-              </p>
+              <p *ngIf="producto?.CodigoProducto !== 'PRESTAMO'">Sin Detalle</p>
             </td>
           </tr>
         </tbody>
@@ -195,7 +192,7 @@
           <table class="table" width="100%" border="0">
             <tbody>
               <tr>
-                <td style="width: 100%;">
+                <td style="width: 100%">
                   <div class="input-wrapper checkbox">
                     <input
                       id="table-select-{{ producto?.IdCuenta }}"
@@ -215,7 +212,7 @@
 
                     <label for="table-select-{{ producto.IdCuenta }}"
                       ><img
-                        style="vertical-align: middle;"
+                        style="vertical-align: middle"
                         src="assets/images/ui/tables/prestamo.svg"
                         alt=""
                       />&nbsp;<strong>{{
@@ -273,7 +270,7 @@
                   <div class="col-1-2 text-right">
                     <p
                       class="wide-link"
-                      style="cursor: pointer; margin: 0;"
+                      style="cursor: pointer; margin: 0"
                       *ngIf="producto?.CodigoProducto === 'PRESTAMO'"
                       (click)="abrirPopup(producto?.IdCuenta)"
                     >
@@ -281,7 +278,7 @@
                     </p>
                     <p
                       *ngIf="producto?.CodigoProducto !== 'PRESTAMO'"
-                      style="margin: 0;"
+                      style="margin: 0"
                     >
                       Sin Detalle
                     </p>
@@ -334,7 +331,7 @@
           <table class="table" width="100%" border="0">
             <tbody>
               <tr>
-                <td style="width: 100%;">
+                <td style="width: 100%">
                   <div class="input-wrapper checkbox">
                     <input
                       id="table-select-{{ promesa?.IdPromesa }}"
@@ -354,7 +351,7 @@
 
                     <label for="table-select-{{ promesa?.IdPromesa }}"
                       ><img
-                        style="vertical-align: middle;"
+                        style="vertical-align: middle"
                         src="assets/images/ui/tables/prestamo.svg"
                         alt=""
                       />&nbsp;<strong>Promesa {{ i + 1 }}</strong></label
@@ -428,7 +425,7 @@
                     [min]="promesa?.ImporteMinimo"
                     (focusout)="cambiarMontoProm($event)"
                     attr.data-valor="{{ promesa?.ImporteComprometido }}"
-                    style="width: 100px; text-align: center;"
+                    style="width: 100px; text-align: center"
                     (focus)="deshabilitarBoton()"
                     style="
                       text-align: right;
@@ -615,15 +612,15 @@
 <div *ngFor="let item of prestamos">
   <div class="overlay" id="overlay-{{ item?.IdCuenta }}">
     <div
-      class="dialog-container login-dialog login-tyc"
+      class="dialog-container billing-dialog"
       role="dialog"
-      style="margin-top: 30px;"
+      style="margin-top: 30px"
     >
       <!-- <a class="close-btn" (click)="cerrarCuotas(item?.IdCuenta)">
         <img src="assets/images/ui/close-btn.svg" alt="Close" />
       </a> -->
       <div>
-        <div class="dialog-content login-dialog login-tyc-content">
+        <div class="dialog-content billing-dialog-content">
           <app-detalle-planpago
             [idCuenta]="item?.IdCuenta"
             (TotalPago)="cambiarMontoPrestamo($event, item?.IdCuenta)"

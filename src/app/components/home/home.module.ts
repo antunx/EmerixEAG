@@ -50,6 +50,12 @@ import { EstadoPagoComponent } from './body/pagar/estado-pago/estado-pago.compon
 import { UltimosAcuerdosComponent } from './body/acuerdos/ultimos-acuerdos.component';
 import { AcuerdoHistoricoComponent } from './body/acuerdos/acuerdo-historico.component';
 import { AcuerdoDetalleComponent } from './body/acuerdos/acuerdo-detalle.component';
+import { AcuerdosComponent } from './body/acuerdos/acuerdos.component';
+import { AcuerdosConfirmarComponent } from './body/acuerdos/acuerdos-confirmar/acuerdos-confirmar.component';
+import { AcuerdosExitoComponent } from './body/acuerdos/acuerdos-exito/acuerdos-exito.component';
+import { AcuerdosTiposComponent } from './body/acuerdos/acuerdos-tipos/acuerdos-tipos.component';
+import { VerCuotasComponent } from './body/acuerdos/ver-cuotas/ver-cuotas.component';
+
 
 @NgModule({
   declarations: [
@@ -94,6 +100,11 @@ import { AcuerdoDetalleComponent } from './body/acuerdos/acuerdo-detalle.compone
     UltimosAcuerdosComponent,
     AcuerdoHistoricoComponent,
     AcuerdoDetalleComponent,
+    AcuerdosComponent,
+    AcuerdosConfirmarComponent,
+    AcuerdosExitoComponent,
+    AcuerdosTiposComponent,
+    VerCuotasComponent
   ],
   imports: [
     ReactiveFormsModule,

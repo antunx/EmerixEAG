@@ -208,5 +208,19 @@
   "Traduct.deuda_refinanciar": "Debt Refinance",
   "Traduct.refinanciado": "Refinanced",
   "Traduct.ver_todos_acuerdos": "See all Agreement",
-  "Traduct.ver_cuotas": "See Dues"
+  "Traduct.ver_cuotas": "See Dues",
+  "Traduct.generar_un_acuerdo": "Generate an Agreement",
+  "Traduct.seleccion_productos": "Select the products you want to include in your new plan",
+  "Traduct.sin_productos": "You have no products to generate a payment plan",
+  "Traduct.seleccion_plan": "Select a plan",
+  "Traduct.plan_subtitulo": "Select the plan that best suits your debt restructuring.",
+  "Traduct.productos_incluidos": "Products included",
+  "Traduct.a_financiar": "Amount to finance",
+  "Traduct.ver_detalle": "See details of the plan and fees",
+  "Traduct.total": "Total",
+  "Traduct.confirmar_plan": "Confirm the plan: ",
+  "Traduct.mensaje": "The distribution of the amount will be made based on the selected products.",
+  "Traduct.plan_exito": "The payment plan was generated successfully!",
+  "Traduct.pagar_por_monto": "Pay for ammount",
+  "Traduct.seleccionar": "Select"
 }

@@ -1,0 +1,15 @@
+<div class="flex-column page-header">
+    <a class="top-decoration" (click)="volverHome()" style="cursor: pointer;">volver a Inicio</a>
+</div>
+
+<div class="success flex-column flex-center text-center restrict-width">
+    <h2 class="title">¡El plan de pago se generó con éxito!</h2>
+    <img src="assets/images/ui/common/success.svg" alt="Success image">
+    <p class="subtitle">
+        {{ "Traduct.promesa_exito_mensaje1" | translate
+        }}<a (click)="irPagar()" style="cursor: pointer;">{{
+          "Traduct.pagar" | translate
+        }}</a>
+        {{ "Traduct.promesa_exito_mensaje2" | translate }}
+      </p>
+</div>

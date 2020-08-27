@@ -89,6 +89,7 @@
 
   "Traduct.inicio": "Inicio",
   "Traduct.mis_cuentas": "Mis Cuentas",
+  "Traduct.generar_pago": "Pagar por monto",
   "Traduct.pagos": "Pagos",
   "Traduct.registrar_pago": "Registrar pago",
   "Traduct.registrar_pago_t1":"A continuación podés ingresar los datos del pago realizado",
@@ -128,6 +129,7 @@
   "Traduct.confirmar_promesa": "Confirmar Promesa de Pago",
   "Traduct.quiero_pagar": "Quiero Pagar",
   "Traduct.historial_promesa": "Historial de Promesas de Pago",
+  "Traduct.generar_acuerdo": "Generar Acuerdo",
   "Traduct.generar_promesa": "Generar Promesa de Pago",
   "Traduct.estado": "Estado",
   "Traduct.por_producto": "Generar promesa por producto",
@@ -213,7 +215,19 @@
   "Traduct.deuda_refinanciar": "Deuda Refinanciar",
   "Traduct.refinanciado": "Refinanciado",
   "Traduct.ver_todos_acuerdos": "Ver todos los acuerdos",
-  "Traduct.ver_cuotas": "Ver Cuotas"
-
-
+  "Traduct.ver_cuotas": "Ver Cuotas",
+  "Traduct.generar_un_acuerdo": "Generar un Acuerdo",
+  "Traduct.seleccion_productos": "Selecciona los productos que queres incluir en tu nuevo plan",
+  "Traduct.sin_productos": "No tiene productos para generar un plan de pago",
+  "Traduct.seleccion_plan": "Seleccionar plan",
+  "Traduct.plan_subtitulo": "Seleccioná el plan que se ajuste mejor a la reestructuración de tu deuda.",
+  "Traduct.productos_incluidos": "Productos inlcuidos",
+  "Traduct.a_financiar": "Monto a financiar",
+  "Traduct.ver_detalle": "Ver detalle del plan y cuotas",
+  "Traduct.total": "Total",
+  "Traduct.confirmar_plan": "Confirmá el plan: ",
+  "Traduct.mensaje": "La distribución del monto se hará en base a los productos seleccionados.",
+  "Traduct.plan_exito": "¡El plan de pago se generó con éxito!",
+  "Traduct.pagar_por_monto": "Pagar por monto",
+  "Traduct.seleccionar": "Seleccionar"
 }

@@ -40,8 +40,8 @@ export class UltimosAcuerdosComponent implements OnInit, OnDestroy {
     }));
   }
 
-  VerAcuerdos(): void{
-    this.router.navigateByUrl('/home/acuerdo-historico');
+  NuevoAcuerdo(): void{
+    this.router.navigateByUrl('/home/acuerdos');
   }
 
   OtroEstado(acuerdo: Acuerdo): boolean{
