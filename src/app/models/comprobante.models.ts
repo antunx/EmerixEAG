@@ -16,5 +16,6 @@ export interface Comprobante {
   IdComprobante: number;
   MedioPago: string;
   Moneda: string;
+  Estado: string;
 }
 

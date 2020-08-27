@@ -61,10 +61,12 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
 
   // Combos
   mediosPago: Item[];
-  //monedas: Item[];
+  // monedas: Item[];
   monedas = [];
   FechaActual = new Date();
   IdMedioPago: number;
+  MostrarAlert: boolean;
+  MensajeAlert: string;
 
   pagoForm = this.formBuilder.group({
     IdMoneda: ['0', Validators.required],
@@ -184,17 +186,10 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
           this.subscription.add(this.postservices.postComprobante(entidad).subscribe(
             (res) => {
               if (res.ErrorCode > 0){
-                // console.log(res.ErrorMessage);
-                this.swalWithBootstrapButtons.fire({
-                  icon: 'error',
-                  title: this.translate.instant('Traduct.validacion'),
-                  text: res.ErrorMessage
-                });
+                this.MensajeAlert = res.ErrorMessage;
+                this.mostrarAlert();
               } else{
                 this.ResetForm();
-                // this.MensajePago = res.Mensaje;
-                // document.querySelector('#pay-sidebar').classList.add('active');
-                // document.querySelector('html').classList.add('no-scroll');
               }
             },
             (err) => {
@@ -212,11 +207,8 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
             }
           });
     }else{
-      this.swalWithBootstrapButtons.fire({
-        icon: 'error',
-        title: this.translate.instant('Traduct.validacion'),
-        text: Mensaje
-      });
+      this.MensajeAlert = Mensaje;
+      this.mostrarAlert();
     }
   }
 
@@ -238,8 +230,15 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     return ret;
   }
 
-  CerrarPopup(): void{
-    document.querySelector('.overlay').classList.remove('active');
-    document.querySelector('html').classList.remove('no-scroll');
+  mostrarAlert(): void{
+    this.MostrarAlert = true;
+    document.querySelector('#dialog_alert').classList.add('active');
   }
+
+  cerrarAlert(): void{
+    document.querySelector('#dialog_alert').classList.remove('active');
+    this.MostrarAlert = false;
+    this.MensajeAlert = '';
+  }
+
 }
