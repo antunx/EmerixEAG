@@ -14,7 +14,7 @@ import { Promesa } from '@app/models/PostPromesa.model';
   styles: [],
 })
 export class PromesaMensajeComponent implements OnInit, OnChanges {
-  @Input() promGen:any;
+  @Input() promGen: any;
   @Input() promesaStep: number;
   @Output() siguiente = new EventEmitter<number>();
   @Output() volviendo = new EventEmitter<number>();
@@ -24,7 +24,6 @@ export class PromesaMensajeComponent implements OnInit, OnChanges {
   importeAcordadoImprimir = [];
   promesaCreada = false;
   promesaError = false;
-  
 
   constructor(
     private router: Router,
@@ -32,15 +31,15 @@ export class PromesaMensajeComponent implements OnInit, OnChanges {
     private postService: PostService,
     private translate: TranslateService,
     private servicioComunicacion: ComunicacionService
-  ) {};
+  ) {}
 
   ngOnInit(): void{
-  };
+  }
 
-  ngOnChanges(changes:SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
     // (this.promesaGenerada);
     // this.respuesta = this.getService.getPromesa();
-    if(changes?.promGen?.currentValue !== undefined){
+    if (changes?.promGen?.currentValue !== undefined){
       this.cambioTexto(this.translate.instant('Traduct.promesa_pago'));
       // console.log(this.promGen);
       this.importeAcordadoImprimir = JSON.stringify(this.promGen.totalPagar).split('.');
@@ -56,13 +55,13 @@ export class PromesaMensajeComponent implements OnInit, OnChanges {
           });
       } else {
         this.productos = this.promGen.cuentas;
-      };
-    };
-  };
+      }
+    }
+  }
 
   cambioTexto(mensaje: string): void {
     this.servicioComunicacion.enviarMensaje(mensaje);
-  };
+  }
 
   postPromesa(): void {
     const cuentas = [];
@@ -100,26 +99,26 @@ export class PromesaMensajeComponent implements OnInit, OnChanges {
         /*setTimeout(() => {
           this.router.navigateByUrl('promesa-pago');
         }, 3000);*/
-      };
+      }
     });
-  };
+  }
 
   cerrarPopup(): void {
     document.querySelector('#mensaje-error').classList.remove('active');
-  };
+  }
 
   volver(): void {
-    if(this.promGen.formaPago === 'IMPORTE'){
+    if (this.promGen.formaPago === 'IMPORTE'){
       this.volviendo.emit(1);
     }else{
       this.volviendo.emit(2);
-    };
-  };
+    }
+  }
 
   removerComas(numero: string): string {
     if (numero === '' || numero === null) {
       return numero;
-    };
+    }
     return numero.replace(',', '');
-  };
-};
+  }
+}

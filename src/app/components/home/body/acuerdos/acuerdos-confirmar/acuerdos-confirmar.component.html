@@ -109,7 +109,14 @@
     <p class="disclaimer">
       {{"Traduct.mensaje" | translate }}
     </p>
-    <a class="btn text-center" (click)="confirmarPlan()">{{"Traduct.confirmar" | translate }}</a>
-    <!-- <a class="btn" href="/planes_exito.html">Pagar anticipo</a> -->
+    <a
+    class="btn text-center"
+    (click)="confirmarPlan()"
+    [hidden]="acuerdoSeleccionado?.DiaVencAnticipo == 0"
+    >{{ "Traduct.confirmar" | translate }}</a
+  >
+  <a class="btn" href="#" [hidden]="acuerdoSeleccionado?.DiaVencAnticipo > 0"
+    >Pagar anticipo</a
+  >
   </div>
   

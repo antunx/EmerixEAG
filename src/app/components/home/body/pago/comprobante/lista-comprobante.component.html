@@ -3,7 +3,7 @@
      <div class="flex-column page-header">
         <p class="top-decoration">{{ 'Traduct.tus_comprobantes' | translate }}</p>
      </div>
-     <div class="restrict-width">
+     <div class="restrict-width large">
         <div class="title">
            <h1 class="page-title">{{ 'Traduct.tus_comprobantes_t1' | translate }}</h1>
            <p class="page-subtitle"><span></span>{{ 'Traduct.tus_comprobantes_t2' | translate }}</p>
@@ -13,40 +13,40 @@
               <table class="table selectable" width="100%" border="0">
                 <tbody>
                  <tr class="table-header">
-                    <td class="col-1-4">
+                    <td class="col-1-6">
                       {{ 'Traduct.fecha_pago' | translate }}
                     </td>
-                    <td class="col-1-4 desktop-only">
+                    <td class="col-2-6 desktop-only" style = "white-space: nowrap;">
                       N° {{ 'Traduct.comprobante' | translate }}
                     </td>
-                    <td class="col-1-4">
+                    <td class="col-1-6">
                       {{ 'Traduct.medio_pago' | translate }}
                     </td>
-                    <td class="col-1-4 desktop-only">
+                    <td class="col-1-6 desktop-only">
                       {{ 'Traduct.estado' | translate }}
                     </td>
-                    <td class="col-1-4 text-right">
+                    <td class="col-1-6 text-right">
                       {{ 'Traduct.monto_pagado' | translate }}
                     </td>
                  </tr>
                  <tr *ngFor="let comprobante of Comprobantes">
-                    <td class="col-1-4">
+                    <td class="col-1-6">
                        <div class="flex-row justify-between" style="width: 80%">
                           <div>{{ comprobante.Fecha | date: 'dd/MM/yyyy'}}</div>
                           <!-- <a href="#" class="download-icn"><img src="assets/images/ui/tables/download.svg" alt=""></a> -->
                        </div>
                     </td>
-                    <td class="col-1-4 desktop-only">
+                    <td class="col-2-6 desktop-only">
                       {{ comprobante.NumeroComprobante }}
                     </td>
-                    <td class="col-1-4">
+                    <td class="col-1-6">
                       {{ comprobante.MedioPago }}
                     </td>
-                    <td class="col-1-4 desktop-only">
+                    <td class="col-1-6 desktop-only">
                       {{ comprobante.Estado }}
                     </td>
-                    <td class="col-1-4 text-right">
-                      {{ comprobante.Moneda }} {{' '}} {{ comprobante.Importe | number:'1.2-2'}}
+                    <td class="col-1-6 text-right">
+                      {{ comprobante.Moneda }} {{ comprobante.Importe | number:'1.2-2'}}
                     </td>
                  </tr>
                 </tbody>

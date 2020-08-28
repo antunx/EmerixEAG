@@ -31,7 +31,7 @@ export class AcuerdosTiposComponent implements OnInit, OnChanges {
     this.prodEstan = [];
     this.acuerdos = [];
     if (changes?.stepAcuerdo?.currentValue === 1) {
-      console.log(JSON.stringify(this.cuentas));
+      // console.log(JSON.stringify(this.cuentas));
       this.postService
         .postObtenerAcuerdos(this.cuentas)
         .subscribe((data) => {

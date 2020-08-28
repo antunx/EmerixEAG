@@ -20,22 +20,22 @@
                 <td class="col-1-6 text-center">{{"Traduct.monto" | translate }}</td>
               </tr>
               <tr *ngFor="let cuota of cuotas">
-                <td class="col-1-6 text-center">{{ cuota.Cuota }}</td>
+                <td class="col-1-6 text-center">{{ cuota.Numero }}</td>
                 <td class="col-1-6 text-center"></td>
                 <td class="col-1-6 text-center">
                   {{ cuota.FechaVencimiento | date: "dd/MM/yyyy" }}
                 </td>
                 <td class="col-1-6 text-center"></td>
                 <td class="col-1-6 text-center">
-                  {{ cuota.TotalCuota | currency: "ARS":"symbol-narrow":"1.2-2" }}
+                  {{ cuota.MontoTotal | currency: "ARS":"symbol-narrow":"1.2-2" }}
                 </td>
               </tr>
               <tr>
                 <td class="col-1-6 text-center"></td>
                 <td class="col-1-6 text-center"></td>
                 <td class="col-1-6 text-center"></td>
-                <td class="col-1-6 text-center"><strong>{{"Traduct.total"| translate}}</strong></td>
-                <td class="col-1-6 text-center">
+                <td *ngIf="!historico" class="col-1-6 text-center"><strong>{{"Traduct.total"| translate}}</strong></td>
+                <td *ngIf="!historico" class="col-1-6 text-center">
                   <strong>{{
                     acuerdo?.MontoFinanciar
                       | currency: "ARS":"symbol-narrow":"1.2-2"
@@ -45,7 +45,7 @@
             </tbody>
           </table>
         </div>
-        <a class="btn secondary active" (click)="seleccionar()"
+        <a *ngIf="!historico" class="btn secondary active" (click)="seleccionar()"
           >{{"Traduct.seleccion_plan" | translate }}</a
         >
       </div>

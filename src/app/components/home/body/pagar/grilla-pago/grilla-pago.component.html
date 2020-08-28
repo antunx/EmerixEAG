@@ -28,8 +28,13 @@
     class="col-3-4"
     *ngIf="productos?.length === 0 || productos === undefined"
   >
-    <br />
-    <h2 class="page-title text-large">No hay productos con deuda.</h2>
+    <div class="warning-box text-center">
+      <img
+        src="../../../../../../assets/images/ui/icono_info.svg"
+        alt=""
+      /><strong>No tiene productos </strong>con deuda para realizar un
+      <strong>pago</strong>.
+    </div>
   </div>
   <div
     class="col-3-4 box desktop-only"
@@ -443,7 +448,13 @@
     </div>
   </div>
 
-  <div class="flex-column col-1-4 full-width-mobile">
+  <div
+    class="flex-column col-1-4 full-width-mobile"
+    *ngIf="
+      (productos?.length !== 0 && productos !== undefined) ||
+      (promesas?.length !== 0 && promesas !== undefined)
+    "
+  >
     <div class="flex-column row-container">
       <div class="box flex-row justify-between">
         <span class="text-uppercase">{{ "Traduct.monto" | translate }}</span>
@@ -470,7 +481,10 @@
 </div>
 
 <div class="restrict-width large flex-row col-container">
-  <div class="col-3-4 box desktop-only" *ngIf="promesas?.length !== 0">
+  <div
+    class="col-3-4 box desktop-only"
+    *ngIf="promesas?.length !== 0 || promesas === undefined"
+  >
     <div class="table-container">
       <table class="table selectable" width="100%" border="0">
         <tbody>

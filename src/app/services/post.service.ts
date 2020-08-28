@@ -107,4 +107,12 @@ export class PostService {
       acuerdo
     );
   }
+
+  PostConfirmarAcuerdo(acuerdo): any {
+    return this.http.post(
+      `${this.API_URL}emerixautog/ingresaracuerdo`,
+      acuerdo
+    );
+  }
+
 }

@@ -94,6 +94,13 @@
   "Traduct.registrar_pago": "Registrar pago",
   "Traduct.registrar_pago_t1":"A continuación podés ingresar los datos del pago realizado",
   "Traduct.registrar_pago_t2":"Medio pago por el cuál abonaste",
+  "Traduct.registrar_pago_t3":"Corrobore los datos ingresados, si todo esta correcto haga click en Confirmar para finalizar.",
+  "Traduct.registrar_pago_t4":"¡El registro del pago se generó con éxito!",
+  "Traduct.registrar_pago_t5":"Ingresando a la opción ",
+  "Traduct.registrar_pago_t6":"Tus Comprobantes",
+  "Traduct.registrar_pago_t7":" podés consultar ",
+  "Traduct.registrar_pago_t8":"el comprobante generado",
+
   "Traduct.fecha_error": "La fecha debe ser anterior o igual a la fecha actual.",
   "Traduct.registrar_el_pago": "¿Registra el pago?",
   "Traduct.confirme_accion": "Confirme la acción.",

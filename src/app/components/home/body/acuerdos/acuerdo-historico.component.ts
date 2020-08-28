@@ -24,6 +24,7 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
   MostrarPopup: boolean;
   Acuerdo: Acuerdo;
   Acuerdos: Acuerdo[];
+  acuerdoSeleccionado: Acuerdo;
 
   ngOnInit(): void{
     this.MostrarPopup = false;
@@ -69,7 +70,7 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
         this.PagarAnticipo(acuerdo.IdAcuerdo);
       }
       if (tipo === 'C'){
-        this.VerCuotas(acuerdo.IdAcuerdo);
+        this.VerCuotas(acuerdo);
       }
     }
   }
@@ -78,8 +79,15 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
     alert('PagarAnticipo(): en desarrollo |_(-.-)_T ');
   }
 
-  VerCuotas(IdAcuerdo: number): void{
-    alert('VerCuotas(): en desarrollo |_(-.-)_T ');
+  VerCuotas(acuerdo:Acuerdo): void{
+    this.acuerdoSeleccionado = acuerdo;
+    const overlay = document.querySelector('#billing-dialog');
+    overlay.classList.add('active')
+  }
+
+  cerrarPopupCuotas(){
+    const overlay = document.querySelector('#billing-dialog');
+    overlay.classList.remove('active')
   }
 
   // Cerramos el popup detalle del acuerdo

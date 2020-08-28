@@ -116,6 +116,14 @@
             </div>
           </div>
         </div>
+<div class="data-field">
+        <div><strong>Plazo de anticipo</strong></div>
+        <div>
+          <div class="price-container text-normal">
+            {{ item?.PlazoAnticipo | date: "dd/MM/yyyy" }}
+          </div>
+        </div>
+      </div>
 
         <a class="btn secondary active" (click)="onSiguiente(item)"
           >{{"Traduct.seleccionar" | translate }}</a
@@ -130,6 +138,7 @@
   <div class="overlay" id="billing-dialog" (click)="cerrarPopup()">
     <app-ver-cuotas
       [acuerdo]="verCuotasAcuerdo"
+      [historico]="false"
       (acuerdoSeleccionado)="onSiguiente($event)"
     ></app-ver-cuotas>
   </div>

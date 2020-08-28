@@ -72,12 +72,18 @@ export class PagoMetodosComponent implements OnInit {
         productoAux.TipoObjeto = 'PROMESA';
       } else if (producto.tipo === 'MONTO') {
         productoAux.TipoObjeto = 'MONTO';
+      } else if (producto.tipo === 'ANTICIPO') {
+        productoAux.TipoObjeto = 'ANTICIPO';
       } else {
         productoAux.TipoObjeto = 'CUENTA';
       }
       obj.Items.push(productoAux);
-      // console.log(producto);
-      if (producto.tipo !== 'PROMESA' && producto.tipo !== 'MONTO') {
+      //console.log(producto);
+      if (
+        producto.tipo !== 'PROMESA' &&
+        producto.tipo !== 'MONTO' &&
+        producto.tipo !== 'ANTICIPO'
+      ) {
         if (producto.cuotas !== undefined && producto.cuotas.length > 0) {
           // console.log(producto);
           const importeCuota = producto.importe / producto.cuotas.length;

@@ -31,8 +31,10 @@ export class ConfirmarPagoComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     // this.ok = false;
-    this.promesas = [];
-    this.productos = [];
+    if (changes?.pagoStep?.previousValue === 2) {
+      this.promesas = [];
+      this.productos = [];
+    }
     if (changes?.pago?.currentValue !== undefined) {
       this.importeApagar = parseFloat(JSON.stringify(this.pago?.TotalPagar))
         .toFixed(2)

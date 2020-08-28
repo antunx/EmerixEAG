@@ -1,6 +1,9 @@
 <!-- {{ pagoForm.value | json}} -->
 <!-- <div class="pages-container flex-grow"> --> <!-- LO HACE EL TS -->
-  <section class="page-payments">
+  <section class="page-payments" [hidden]="stepPago !== 1">
+     <div class="page-progress">
+       <div class="progress progress-5"></div>
+     </div>
      <div class="flex-column page-header">
         <p class="top-decoration">{{ 'Traduct.avisar_pago' | translate }}</p>
      </div>
@@ -60,7 +63,7 @@
                 <div class="payment-selector">
                   <ul class="flex-row">
                     <div class="selectable-box flex-row" id="box-5426221049">
-                      <li *ngFor="let medio of mediosPago" id="{{medio.Id}}" class="flex-column flex-center" (click)="MedioPago(medio.Id)">
+                      <li *ngFor="let medio of mediosPago" id="{{medio.Id}}" class="flex-column flex-center" (click)="MedioPago(medio)">
                         <img src="assets/images/sections/payments/{{medio.Imagen}}" alt="">
                       </li>
                     </div>
@@ -77,7 +80,7 @@
           </div>
           </div>
           <div>
-            <button type="submit" class="btn next" data-next [disabled]="pagoForm.invalid" (click)="IngresarPago()">{{ 'Traduct.registrar_pago' | translate }}</button>
+            <button type="submit" class="btn next" data-next [disabled]="pagoForm.invalid" (click)="CorroborarPago()">{{ 'Traduct.siguiente' | translate }}</button>
           </div>
         </form>
       </div>
@@ -100,5 +103,107 @@
           </div>
         </div>
       </div>
+  </section>
+
+  <section class="page-pay" [hidden]="stepPago !== 2">
+      <div class="page-progress">
+        <div class="progress progress-70"></div>
+      </div>
+
+      <div class="flex-column page-header">
+        <a class="top-decoration" (click)="stepPago=1;" style="cursor: pointer;">{{
+          "Traduct.volver_anterior" | translate
+        }}</a>
+      </div>
+
+      <div class="restrict-width large">
+        <div class="title">
+          <h1 class="page-title text-large">
+            {{ "Traduct.confirmar_monto" | translate }}
+          </h1>
+        </div>
+
+        <div class="box flex-row flex-column-on-mobile">
+          <div class="col-1-2 text-center full-width-mobile">
+            <span class="text-violet"
+              ><strong>{{ "Traduct.importe_a_pagar" | translate }}</strong></span
+            >
+            <br />
+            <span class="text-xlarge">
+              <div class="price-container">
+                <span class="denomination"></span>{{ GetImporteSplit(true)
+                }}<sup class="cents">{{ GetImporteSplit(false) }}</sup>
+              </div>
+            </span>
+          </div>
+
+<!--      <div class="col-1-2 text-center full-width-mobile">
+            <span class="text-violet"
+              ><strong>{{ "Traduct.moneda" | translate }}</strong></span
+            >
+            <br />
+            <span class="text-xlarge">
+              <div class="price-container">
+                <span class="denomination"></span>{{ GetNombreMoneda(pagoForm.value.IdMoneda) }}
+              </div>
+            </span>
+          </div> -->
+
+          <div class="col-1-2 text-center full-width-mobile">
+            <span class="text-violet"
+              ><strong>{{ "Traduct.nro_boleta" | translate }}</strong></span
+            >
+            <br />
+            <span class="text-xlarge">
+              <div class="price-container">
+                <span class="denomination"></span>{{ pagoForm.value.NumeroComprobante  }}
+              </div>
+            </span>
+          </div>
+
+          <div class="col-1-2 text-center full-width-mobile">
+            <span class="text-violet"
+              ><strong>{{ "Traduct.fecha" | translate }}</strong></span
+            >
+            <br />
+            <span class="text-xlarge">{{
+              pagoForm.value.FechaPago | date: "dd/MM/yyyy"
+            }}</span>
+          </div>
+
+
+         <div class="col-1-2 text-center full-width-mobile">
+            <span class="text-violet"
+              ><strong>{{ "Traduct.medio_pago" | translate }}</strong></span
+            >
+            <br />
+            <span class="text-xlarge">
+              <div class="price-container">
+                <img width="70px" height="70px" src="assets/images/sections/payments/{{MedioSeleccionado}}" alt="">
+              </div>
+            </span>
+          </div>
+        </div>
+        <p class="disclaimer">
+          {{ "Traduct.registrar_pago_t3" | translate }}
+        </p>
+
+        <button class="btn" (click)="IngresarPago()">
+          {{ "Traduct.confirmar" | translate }}
+        </button>
+      </div>
+  </section>
+
+  <section class="page-pay pay-success" [hidden]="stepPago !== 3">
+    <div class="flex-column page-header">
+        <a class="top-decoration" [routerLink]="" (click)="stepPago=1">{{ "Traduct.volver_home" | translate }}</a>
+    </div>
+
+    <div class="success flex-column flex-center text-center restrict-width">
+        <h2 class="title">{{ "Traduct.registrar_pago_t4" | translate }}</h2>
+        <img src="assets/images/ui/common/success.svg" alt="Success image">
+        <p class="subtitle">{{ "Traduct.registrar_pago_t5" | translate }}<strong>{{ "Traduct.registrar_pago_t6" | translate }}</strong>{{ "Traduct.registrar_pago_t7" | translate }}<strong>{{ "Traduct.registrar_pago_t8" | translate }}</strong>.</p>
+    </div>
+
   </section>
 <!-- </div> -->

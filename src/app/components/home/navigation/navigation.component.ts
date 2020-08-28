@@ -75,8 +75,7 @@ export class NavigationComponent implements OnInit {
     this.MenuSel = this.translate.instant('Traduct.pagar_cuotas');
     this.MenuPagarCuotas = this.translate.instant('Traduct.pagar_cuotas');
     this.cambioTexto(this.translate.instant('Traduct.pagar_cuotas'));
-    // this.router.navigateByUrl('/home/pagar_cuotas');
-    alert('PagarCuotas(): en desarrollo |_(-.-)_T ');
+    this.router.navigateByUrl('/home/acuerdos');
     this.clickMobile(true);
   }
 

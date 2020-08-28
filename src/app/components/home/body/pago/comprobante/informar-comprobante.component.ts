@@ -59,14 +59,17 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     return this.pagoForm.get('Comentario');
   }
 
+
   // Combos
   mediosPago: Item[];
-  // monedas: Item[];
+  monedasTMP: Item[];
   monedas = [];
   FechaActual = new Date();
   IdMedioPago: number;
   MostrarAlert: boolean;
   MensajeAlert: string;
+  stepPago: number;
+  MedioSeleccionado: string;
 
   pagoForm = this.formBuilder.group({
     IdMoneda: ['0', Validators.required],
@@ -78,6 +81,8 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void{
     this.IdMedioPago = 0;
+    this.MedioSeleccionado = 'visa.svg';
+    this.stepPago = 1;
     this.cambioTexto(this.translate.instant('Traduct.registrar_pago'));
     this.LlenarMediosPago();
     this.LlenarMonedas();
@@ -112,7 +117,8 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
         if (res.ErrorCode > 0){
           console.log(res.ErrorMessage);
         } else{
-          // this.monedas = res.Items;
+          this.monedasTMP = res.Items;
+          // console.log( res.Items);
           res.Items.forEach(
             item =>
             this.monedas.push({ Id: item.Id, Code: item.Codigo, Name: item.Codigo, Imagen: '' })
@@ -125,12 +131,13 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     ));
   }
 
-  MedioPago(id: number): void{
+  MedioPago(medio: Item): void{
     this.mediosPago.forEach(element =>
             (document.getElementById(`${element.Id}`) as HTMLInputElement).classList.remove('active')
     );
-    (document.getElementById(`${id}`) as HTMLInputElement).classList.add('active');
-    this.IdMedioPago = id;
+    (document.getElementById(`${medio.Id}`) as HTMLInputElement).classList.add('active');
+    this.IdMedioPago = medio.Id;
+    this.MedioSeleccionado =  medio.Imagen;
   }
 
   MedioPagoDefault(): void{
@@ -158,66 +165,50 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     return '';
   }
 
-  IngresarPago(): void{
+  CorroborarPago(): void{
     let Mensaje = '';
     Mensaje = this.Validate();
 
     if (Mensaje === ''){
-      // console.log(this.pagoForm.value);
-      this.swalWithBootstrapButtons.fire({
-        title: this.translate.instant('Traduct.registrar_el_pago'),
-        text: this.translate.instant('Traduct.confirme_accion'),
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: this.translate.instant('Traduct.si'),
-        cancelButtonText: this.translate.instant('Traduct.no'),
-        reverseButtons: true
-      }).then((result) => {
-        if (result.value) {
-          const entidad: Comprobante = this.pagoForm.value;
-          const FechaPago = new Date(this.pagoForm.controls.FechaPago.value + 'T00:00:00');
-          entidad.Fecha = FechaPago;
-          entidad.IdCuenta = '0';
-          entidad.IdPersona = localStorage.getItem('version_core');
-          entidad.IdMedioPago = this.IdMedioPago;
-
-          // console.log(entidad);
-          // return;
-          this.subscription.add(this.postservices.postComprobante(entidad).subscribe(
-            (res) => {
-              if (res.ErrorCode > 0){
-                this.MensajeAlert = res.ErrorMessage;
-                this.mostrarAlert();
-              } else{
-                this.ResetForm();
-              }
-            },
-            (err) => {
-              console.log(err);
-            }
-          ));
-            } else if (
-              result.dismiss === Swal.DismissReason.cancel
-            ) {
-              /*this.swalWithBootstrapButtons.fire(
-                'Acción Cancelada',
-                'Su pago no fue registrado.',
-                'error'
-              );*/
-            }
-          });
-    }else{
+      this.stepPago = 2;
+    } else {
       this.MensajeAlert = Mensaje;
       this.mostrarAlert();
     }
   }
 
+  IngresarPago(): void{
+    const entidad: Comprobante = this.pagoForm.value;
+    const FechaPago = new Date(this.pagoForm.controls.FechaPago.value + 'T00:00:00');
+    entidad.Fecha = FechaPago;
+    entidad.IdCuenta = '0';
+    entidad.IdPersona = localStorage.getItem('version_core');
+    entidad.IdMedioPago = this.IdMedioPago;
+/*
+    console.log(entidad);
+    return; */
+    this.subscription.add(this.postservices.postComprobante(entidad).subscribe(
+      (res) => {
+        if (res.ErrorCode > 0){
+          this.MensajeAlert = res.ErrorMessage;
+          this.mostrarAlert();
+        } else{
+          this.ResetForm();
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    ));
+  }
+
   ResetForm(): void{
+    this.stepPago = 3;
     this.pagoForm = this.formBuilder.group({
-      IdMoneda: ['0'],
-      Importe: [''],
-      FechaPago: [this.datePipe.transform(this.FechaActual, 'dd-MM-yyyy')],
-      NumeroComprobante: [''],
+      IdMoneda: ['0', Validators.required],
+      Importe: ['', [Validators.required, Validators.min(0.01), Validators.max(999999999)]],
+      FechaPago: [this.datePipe.transform(this.FechaActual, 'yyyy-MM-dd'), Validators.required],
+      NumeroComprobante: ['', Validators.required],
       Comentario: ['']
     });
     this.MedioPagoDefault();
@@ -241,4 +232,26 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     this.MensajeAlert = '';
   }
 
+  GetImporteSplit(Entero: boolean): string{
+    const entidad: Comprobante = this.pagoForm.value;
+    let monto = [];
+    monto = parseFloat(JSON.stringify(entidad.Importe)).toFixed(2).split('.');
+    if (Entero){
+      return monto[0];
+    } else {
+      return monto[1];
+    }
+  }
+
+/*   GetNombreMoneda(Id: number): string{
+    if (this.monedasTMP){
+      let moneda: Item[];
+      moneda = this.monedasTMP.filter(mon => mon.Id = Id);
+      // console.log(moneda);
+      return moneda[0].Nombre;
+    }
+    else{
+      return '';
+    }
+  } */
 }

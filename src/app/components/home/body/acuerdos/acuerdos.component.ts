@@ -17,6 +17,7 @@ export class AcuerdosComponent implements OnInit {
   cuentasSeleccionadas: any;
   montoAPagar: number;
   TodosProductos: Array<any>;
+  preAcuerdo: any;
   constructor(private getService: GetService) {}
 
   ngOnInit(): void {
@@ -27,11 +28,13 @@ export class AcuerdosComponent implements OnInit {
     this.getService
       .getProductosAcuerdos(localStorage.getItem('version_core'))
       .subscribe((data: Acuerdo) => {
-        this.acuerdo = data;
-        data.Cuentas.forEach((cuenta) => {
-          this.montoAPagar += cuenta.Deuda;
-        });
-        this.allChecked();
+        if (data.ErrorCode === 0) {
+          this.acuerdo = data;
+          data.Cuentas.forEach((cuenta) => {
+            this.montoAPagar += cuenta.Deuda;
+          });
+          this.allChecked();
+        }
       });
   }
 
@@ -135,5 +138,9 @@ export class AcuerdosComponent implements OnInit {
       return numero;
     }
     return numero.replace(',', '');
+  }
+
+  onpreAcuerdo(e: any) {
+    this.preAcuerdo = e;
   }
 }

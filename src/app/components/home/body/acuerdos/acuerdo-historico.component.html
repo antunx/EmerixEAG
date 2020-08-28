@@ -59,7 +59,7 @@
 
                      <div *ngIf="OtroEstado(Acuerdo.EstadoCodigo)" class="status-label"><span class="bullet gray"></span>{{ Acuerdo.EstadoNombre }}</div>
                    </td>
-                   <td class="col-2-4" (click) = "clickDetalle('D',Acuerdo)">
+                   <td class="col-2-4">
                      {{ Acuerdo.CantidadCuotas }} &nbsp;
                      <div class="wide-link">
                         <a *ngIf="EstadoNoVencidoRechazado(Acuerdo.EstadoCodigo)" [routerLink]="" (click)="clickDetalle('C',Acuerdo)">{{ 'Traduct.ver_cuotas' | translate }}</a>
@@ -78,3 +78,10 @@
     </div>
  </section>
 <!-- </div> -->
+
+<div class="overlay" id="billing-dialog" (click)="cerrarPopupCuotas()">
+   <app-ver-cuotas
+     [acuerdo]="acuerdoSeleccionado"
+     [historico]="true"
+   ></app-ver-cuotas>
+ </div>

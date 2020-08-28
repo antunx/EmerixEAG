@@ -274,9 +274,9 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
     ) as HTMLInputElement).dataset.valor = e.monto;
     // console.log((document.getElementById(`monto-cancelar-${ id }`) as HTMLInputElement))
     // console.log(e.cuotas);
-    e.cuotas.array.forEach(element => {
-      cuotas.push(e.cuotas[element]);
-    });
+    for (let cuota in e.cuotas) {
+      cuotas.push(e.cuotas[cuota]);
+    }
 
     this.cuotasId.forEach((prestamo) => {
       if (prestamo.id === id) {
@@ -406,7 +406,7 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
 
   allCheckedProm(): void {
     this.checkedProm = true;
-    this.promesas.forEach((promesa) => {
+    this.promesas?.forEach((promesa) => {
       if (!promesa.Check) {
         this.checkedProm = false;
       }
