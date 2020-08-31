@@ -9,8 +9,6 @@ import { UtilidadesModule } from '../utilidades/utilidades.module';
 
 /** COMPONENTES */
 import { LoginComponent } from './login.component';
-import { ConsultaComponent } from './body/consulta/consulta.component';
-import { TerminoComponent } from './body/termino/termino.component';
 import { LoginBodyComponent } from './body/login-body.component';
 import { LoginFooterComponent } from './footer/login-footer.component';
 import { LoginHeaderComponent } from './header/login-header.component';
@@ -18,8 +16,6 @@ import { LoginChatbotComponent } from './login-chatbot/login-chatbot.component';
 
 @NgModule({
   declarations: [
-    ConsultaComponent,
-    TerminoComponent,
     LoginComponent,
     LoginBodyComponent,
     LoginFooterComponent,

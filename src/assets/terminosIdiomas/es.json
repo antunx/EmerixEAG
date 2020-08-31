@@ -94,7 +94,7 @@
   "Traduct.registrar_pago": "Registrar pago",
   "Traduct.registrar_pago_t1":"A continuación podés ingresar los datos del pago realizado",
   "Traduct.registrar_pago_t2":"Medio pago por el cuál abonaste",
-  "Traduct.registrar_pago_t3":"Corrobore los datos ingresados, si todo esta correcto haga click en Confirmar para finalizar.",
+  "Traduct.registrar_pago_t3":"Corrobore los datos ingresados, si todo esta correcto haga click en confirmar para finalizar.",
   "Traduct.registrar_pago_t4":"¡El registro del pago se generó con éxito!",
   "Traduct.registrar_pago_t5":"Ingresando a la opción ",
   "Traduct.registrar_pago_t6":"Tus Comprobantes",
@@ -236,5 +236,6 @@
   "Traduct.mensaje": "La distribución del monto se hará en base a los productos seleccionados.",
   "Traduct.plan_exito": "¡El plan de pago se generó con éxito!",
   "Traduct.pagar_por_monto": "Pagar por monto",
-  "Traduct.seleccionar": "Seleccionar"
+  "Traduct.seleccionar": "Seleccionar",
+  "Traduct.productos": "Productos"
 }

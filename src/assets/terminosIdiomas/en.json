@@ -228,5 +228,6 @@
   "Traduct.mensaje": "The distribution of the amount will be made based on the selected products.",
   "Traduct.plan_exito": "The payment plan was generated successfully!",
   "Traduct.pagar_por_monto": "Pay for ammount",
-  "Traduct.seleccionar": "Select"
+  "Traduct.seleccionar": "Select",
+  "Traduct.productos": "Products"
 }

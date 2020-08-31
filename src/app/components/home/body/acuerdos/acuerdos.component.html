@@ -157,12 +157,12 @@
                 aria-hidden="true"
                 type="checkbox"
                 class="dropdown-trigger"
-                id="dropdown-trigger-dropdown-{{ cuenta.IdCuenta }}"
+                id="dropdown-trigger-dropdown-{{ cuenta?.IdCuenta }}"
               />
 
               <label
                 class="dropdown-title"
-                for="dropdown-trigger-dropdown-{{ cuenta.IdCuenta }}"
+                for="dropdown-trigger-dropdown-{{ cuenta?.IdCuenta }}"
               >
               </label>
               <div class="dropdown-target">
@@ -174,10 +174,6 @@
                     <div class="col-1-2 text-right">
                       {{ cuenta.DiasMora }}
                     </div>
-                  </li>
-                  <li class="flex-row">
-                    <div class="col-1-2"></div>
-                    <div class="col-1-2 text-right"></div>
                   </li>
                 </ul>
               </div>

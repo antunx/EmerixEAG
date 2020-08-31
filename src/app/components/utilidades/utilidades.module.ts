@@ -11,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ComboBoxComponent } from './CustomFormControl/combo-box.component';
 import { InputDateComponent } from './CustomFormControl/input-date.component';
+import { TerminoComponent } from './termino/termino.component';
+import { ConsultaComponent } from './consulta/consulta.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
@@ -20,7 +22,9 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   declarations: [
     NotFoundComponent,
     InputDateComponent,
-    ComboBoxComponent
+    ComboBoxComponent,
+    TerminoComponent,
+    ConsultaComponent,
   ],
   imports: [
     RouterModule,
@@ -38,7 +42,9 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     TranslateModule,
     NotFoundComponent,
     InputDateComponent,
-    ComboBoxComponent
+    ComboBoxComponent,
+    TerminoComponent,
+    ConsultaComponent,
   ],
 })
-export class UtilidadesModule { }
+export class UtilidadesModule {}

@@ -5,7 +5,6 @@ import {
   Output,
   EventEmitter,
   OnChanges,
-  SimpleChange,
   SimpleChanges,
 } from '@angular/core';
 import { PostService } from '@app/services/post.service';
@@ -21,10 +20,14 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
   @Output() siguiente = new EventEmitter<number>();
   @Output() volver = new EventEmitter<number>();
   @Output() preAcuerdo = new EventEmitter<any>();
+  AceptaTerminos = false;
+  MensajeAlert: string;
 
   constructor(private postService: PostService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.MensajeAlert = '';
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.acuerdoSeleccionado?.currentValue !== undefined) {
@@ -48,8 +51,7 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
     }
   }
 
-
-  confirmarPlan() {
+  confirmarPlan(): void {
     const objeto = {
       IdPersona: localStorage.getItem('version_core'),
       IdTipoAcuerdo: this.acuerdoSeleccionado.Id,
@@ -77,22 +79,35 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
     });
   }
 
-  pagarAnticipo(){
-    console.log(this.acuerdoSeleccionado)
+  pagarAnticipo(): void {
+    console.log(this.acuerdoSeleccionado);
     const obj = {
       Items: [],
       TotalPagar: this.acuerdoSeleccionado.MontoAnticipo,
       Cliente: localStorage.getItem('version_core'),
-    }
+    };
     const cta = {
       id: this.acuerdoSeleccionado.Id,
       importe: this.acuerdoSeleccionado.MontoAnticipo,
       tipo: 'ANTICIPO',
-      cuotas: []
+      cuotas: [],
     };
 
     obj.Items.push(cta);
     this.preAcuerdo.emit(obj);
     this.siguiente.emit(this.stepAcuerdo + 1);
+  }
+
+  AceptoTerminos(): void {
+    this.AceptaTerminos = !this.AceptaTerminos;
+  }
+
+  TerminosCondiciones(): void {
+    document.querySelector('#overlay-termino').classList.add('active');
+  }
+
+  cerrarPopup(): void {
+    document.querySelector('#overlay-termino').classList.remove('active');
+    this.MensajeAlert = '';
   }
 }

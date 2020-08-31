@@ -243,15 +243,22 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     }
   }
 
-/*   GetNombreMoneda(Id: number): string{
+ GetNombreMoneda(Id: string): string{
     if (this.monedasTMP){
-      let moneda: Item[];
-      moneda = this.monedasTMP.filter(mon => mon.Id = Id);
-      // console.log(moneda);
-      return moneda[0].Nombre;
+      let item: Item[];
+      let ret: string;
+      item = this.monedasTMP.filter(mon => mon.Id.toString() === Id);
+      if (item){
+        item.forEach((i) => {
+          ret = i.Codigo;
+        });
+        return ret;
+      }else{
+        return '-';
+      }
     }
     else{
-      return '';
+      return '-';
     }
-  } */
+  }
 }

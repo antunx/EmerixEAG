@@ -4,10 +4,10 @@
     "reportVersion": 1,
     "event": "Allocation failed - JavaScript heap out of memory",
     "trigger": "FatalError",
-    "filename": "report.20200828.201440.36136.0.001.json",
-    "dumpEventTime": "2020-08-28T20:14:40Z",
-    "dumpEventTimeStamp": "1598656480810",
-    "processId": 36136,
+    "filename": "report.20200831.152512.25032.0.001.json",
+    "dumpEventTime": "2020-08-31T15:25:12Z",
+    "dumpEventTimeStamp": "1598898312843",
+    "processId": 25032,
     "cwd": "C:\\EmerixEAG",
     "commandLine": [
       "C:\\Program Files\\nodejs\\node.exe",
@@ -51,110 +51,110 @@
       {
         "model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
         "speed": 3192,
-        "user": 130084218,
+        "user": 135250687,
         "nice": 0,
-        "sys": 81031671,
-        "idle": 3753765828,
-        "irq": 2375265
+        "sys": 85375515,
+        "idle": 3986088031,
+        "irq": 2481593
       },
       {
         "model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
         "speed": 3192,
-        "user": 26634312,
+        "user": 27737687,
         "nice": 0,
-        "sys": 25350703,
-        "idle": 3912896703,
-        "irq": 1139250
+        "sys": 26453984,
+        "idle": 4152522562,
+        "irq": 1210062
       },
       {
         "model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
         "speed": 3192,
-        "user": 91973578,
+        "user": 95874453,
         "nice": 0,
-        "sys": 53061609,
-        "idle": 3819846531,
-        "irq": 1577718
+        "sys": 55917546,
+        "idle": 4054922234,
+        "irq": 1674031
       },
       {
         "model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
         "speed": 3192,
-        "user": 29008921,
+        "user": 30255343,
         "nice": 0,
-        "sys": 16454312,
-        "idle": 3919418484,
-        "irq": 1110234
+        "sys": 17427109,
+        "idle": 4159031781,
+        "irq": 1177953
       },
       {
         "model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
         "speed": 3192,
-        "user": 55915015,
+        "user": 58142593,
         "nice": 0,
-        "sys": 34055375,
-        "idle": 3874911187,
-        "irq": 1432406
+        "sys": 35950953,
+        "idle": 4112620546,
+        "irq": 1518187
       },
       {
         "model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
         "speed": 3192,
-        "user": 28207546,
+        "user": 30153296,
         "nice": 0,
-        "sys": 17684453,
-        "idle": 3918989578,
-        "irq": 1146937
+        "sys": 18716562,
+        "idle": 4157844234,
+        "irq": 1218046
       },
       {
         "model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
         "speed": 3192,
-        "user": 59142187,
+        "user": 62282828,
         "nice": 0,
-        "sys": 30686828,
-        "idle": 3875052562,
-        "irq": 1631828
+        "sys": 32595750,
+        "idle": 4111835515,
+        "irq": 1724437
       },
       {
         "model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
         "speed": 3192,
-        "user": 27877781,
+        "user": 29263937,
         "nice": 0,
-        "sys": 17799281,
-        "idle": 3919204515,
-        "irq": 991000
+        "sys": 18733656,
+        "idle": 4158716500,
+        "irq": 1046046
       },
       {
         "model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
         "speed": 3192,
-        "user": 28571906,
+        "user": 30282296,
         "nice": 0,
-        "sys": 15462687,
-        "idle": 3920846984,
-        "irq": 271718
+        "sys": 16291375,
+        "idle": 4160140421,
+        "irq": 285828
       },
       {
         "model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
         "speed": 3192,
-        "user": 15381687,
+        "user": 16097156,
         "nice": 0,
-        "sys": 8963906,
-        "idle": 3940535984,
-        "irq": 108843
+        "sys": 9516109,
+        "idle": 4181100828,
+        "irq": 115390
       },
       {
         "model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
         "speed": 3192,
-        "user": 22931015,
+        "user": 24003484,
         "nice": 0,
-        "sys": 17404156,
-        "idle": 3924546406,
-        "irq": 330609
+        "sys": 18374890,
+        "idle": 4164335718,
+        "irq": 347015
       },
       {
         "model": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
         "speed": 3192,
-        "user": 24577484,
+        "user": 26298765,
         "nice": 0,
-        "sys": 12683921,
-        "idle": 3927620171,
-        "irq": 200375
+        "sys": 13801718,
+        "idle": 4166613609,
+        "irq": 212125
       }
     ],
     "networkInterfaces": [
@@ -266,19 +266,15 @@
       "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+567949"
     },
     {
-      "pc": "0x00007ff7c51d5dc1",
-      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+47889"
-    },
-    {
-      "pc": "0x00000087e40b0201",
+      "pc": "0x0000027f031d1925",
       "symbol": ""
     }
   ],
   "javascriptHeap": {
-    "totalMemory": 2184167424,
-    "totalCommittedMemory": 2184167424,
-    "usedMemory": 2107723256,
-    "availableMemory": 45648904,
+    "totalMemory": 2169806848,
+    "totalCommittedMemory": 2169806848,
+    "usedMemory": 2096624584,
+    "availableMemory": 61684048,
     "memoryLimit": 2197815296,
     "heapSpaces": {
       "read_only_space": {
@@ -292,35 +288,35 @@
         "memorySize": 33554432,
         "committedMemory": 33554432,
         "capacity": 16759808,
-        "used": 2287600,
-        "available": 14472208
+        "used": 335904,
+        "available": 16423904
       },
       "old_space": {
-        "memorySize": 1941549056,
-        "committedMemory": 1941549056,
-        "capacity": 1910041064,
-        "used": 1910007128,
-        "available": 33936
+        "memorySize": 1896460288,
+        "committedMemory": 1896460288,
+        "capacity": 1874244512,
+        "used": 1873982200,
+        "available": 262312
       },
       "code_space": {
-        "memorySize": 6455296,
-        "committedMemory": 6455296,
-        "capacity": 6148096,
-        "used": 5642592,
-        "available": 505504
+        "memorySize": 10387456,
+        "committedMemory": 10387456,
+        "capacity": 8793568,
+        "used": 8793568,
+        "available": 0
       },
       "map_space": {
-        "memorySize": 12587008,
-        "committedMemory": 12587008,
-        "capacity": 1057520,
-        "used": 1057520,
+        "memorySize": 15994880,
+        "committedMemory": 15994880,
+        "capacity": 1142320,
+        "used": 1142320,
         "available": 0
       },
       "large_object_space": {
-        "memorySize": 189710336,
-        "committedMemory": 189710336,
-        "capacity": 188692568,
-        "used": 188692568,
+        "memorySize": 213098496,
+        "committedMemory": 213098496,
+        "capacity": 212334744,
+        "used": 212334744,
         "available": 0
       },
       "code_large_object_space": {
@@ -340,17 +336,17 @@
     }
   },
   "resourceUsage": {
-    "userCpuSeconds": 322.906,
-    "kernelCpuSeconds": 19.171,
-    "cpuConsumptionPercent": 5.57492,
-    "maxRss": 2493255680,
+    "userCpuSeconds": 299.812,
+    "kernelCpuSeconds": 16.687,
+    "cpuConsumptionPercent": 9.6523,
+    "maxRss": 2262401024,
     "pageFaults": {
-      "IORequired": 2132515,
+      "IORequired": 1759154,
       "IONotRequired": 0
     },
     "fsActivity": {
-      "reads": 32730,
-      "writes": 6
+      "reads": 31088,
+      "writes": 8
     }
   },
   "libuv": [
@@ -437,11 +433,11 @@
     "C:\\WINDOWS\\System32\\CRYPT32.dll",
     "C:\\WINDOWS\\System32\\MSASN1.dll",
     "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
-    "C:\\WINDOWS\\System32\\bcrypt.dll",
     "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
     "C:\\WINDOWS\\System32\\profapi.dll",
     "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
-    "C:\\WINDOWS\\SYSTEM32\\winmmbase.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMMBASE.dll",
     "C:\\WINDOWS\\System32\\cfgmgr32.dll",
     "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
     "C:\\WINDOWS\\System32\\IMM32.DLL",
