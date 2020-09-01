@@ -99,7 +99,7 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
         // this.tiposDocumento = res.TypeDoc;
         res.TypeDoc.forEach(
           item =>
-           this.tiposDocumento.push({ Id: item.IdTypeDoc, Code: item.CodeTypeDoc, Name: item.NameTypeDoc, Imagen: '' })
+           this.tiposDocumento.push({ Id: item.IdTypeDoc, Code: item.CodeTypeDoc, Name: item.NameTypeDoc })
         );
       }, (err) => {
         console.log(err);

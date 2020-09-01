@@ -111,7 +111,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
           // console.log( res.Items);
           res.Items.forEach(
             item =>
-            this.monedas.push({ Id: item.Id, Code: item.Codigo, Name: item.Codigo, Imagen: '' })
+            this.monedas.push({ Id: item.Id, Code: item.Codigo, Name: item.Codigo })
           );
         }
       },
