@@ -1,11 +1,24 @@
 <div Class = "input-wrapper select select2" (click)="clickCombo($event)" id="CBO_">
   <ul id="promises-select" data-value="">
-    <li *ngIf="ItemDefault !== ''" class="placeholder active" value="0">
+    <li *ngIf="ItemDefault !== ''" class="placeholder active">
       <div id="placeholder">{{ ItemDefault }}</div>
     </li>
-    <li *ngIf="ItemDefault === ''" class="placeholder active" value="0">
+    <li *ngIf="ItemDefault === ''" class="placeholder active">
       <div id="placeholder">{{ 'Traduct.seleccione' | translate }}</div>
     </li>
+
+    <li *ngIf="ItemDefault !== ''" value="0">
+      <div class="selectable">
+        {{ ItemDefault }}
+      </div>
+    </li>
+
+    <li *ngIf="ItemDefault === ''" value="0">
+      <div class="selectable">
+        {{ 'Traduct.seleccione' | translate }}
+      </div>
+    </li>
+
     <li *ngFor="let item of Lista" value="{{item?.Id}}">
       <div class="selectable">
         {{ Texto === 'Code' ? item?.Code: item?.Name}}

@@ -21,13 +21,13 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
   @HostBinding('class') class = 'pages-container flex-grow';
 
   private subscription: Subscription = new Subscription();
-  MostrarPopup: boolean;
+  MostrarDetalle: boolean;
   Acuerdo: Acuerdo;
   Acuerdos: Acuerdo[];
   acuerdoSeleccionado: Acuerdo;
 
   ngOnInit(): void{
-    this.MostrarPopup = false;
+    this.MostrarDetalle = false;
     this.cambioTexto(this.translate.instant('Traduct.planes_pedidos'));
     this.getAcuerdos();
   }
@@ -53,52 +53,6 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
     }));
   }
 
-  // Navegamos al detalle del acuerdo
-  clickDetalle(tipo: string, acuerdo: Acuerdo): void{
-    if (acuerdo !== null){
-      if (tipo === 'D'){
-        this.Acuerdo  = acuerdo;
-        const overlay = document.querySelector('#home-sidebar');
-        document.querySelectorAll('#agreement-table tr').forEach((tr) => {
-          tr.addEventListener('click', () => {
-            this.MostrarPopup = true;
-            overlay.classList.add('active');
-          });
-        });
-      }
-      if (tipo === 'P'){
-        this.PagarAnticipo(acuerdo.IdAcuerdo);
-      }
-      if (tipo === 'C'){
-        this.VerCuotas(acuerdo);
-      }
-    }
-  }
-
-  PagarAnticipo(IdAcuerdo: number): void{
-    alert('PagarAnticipo(): en desarrollo |_(-.-)_T ');
-  }
-
-  VerCuotas(acuerdo:Acuerdo): void{
-    this.acuerdoSeleccionado = acuerdo;
-    const overlay = document.querySelector('#billing-dialog');
-    overlay.classList.add('active')
-  }
-
-  cerrarPopupCuotas(){
-    const overlay = document.querySelector('#billing-dialog');
-    overlay.classList.remove('active')
-  }
-
-  // Cerramos el popup detalle del acuerdo
-  CerrarPopup(): void{
-    this.MostrarPopup = false;
-    const overlay = document.querySelector('#home-sidebar');
-    overlay.querySelector('.close-btn').addEventListener('click', () => {
-        overlay.classList.remove('active');
-      });
-  }
-
   OtroEstado(EstadoCodigo: string): boolean{
     if (EstadoCodigo === 'PENDIANT' || EstadoCodigo === 'VIGENTE'
      || EstadoCodigo === 'CUMPLIDO' || EstadoCodigo === 'CAIDO'
@@ -116,5 +70,51 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
     }else {
       return true;
     }
+  }
+
+  filaClick(tipo: string, acuerdo: Acuerdo): void{
+    if (acuerdo !== null){
+      if (tipo === 'D'){
+        this.VerDetalle(acuerdo);
+      }
+      if (tipo === 'P'){
+        this.PagarAnticipo(acuerdo);
+      }
+      if (tipo === 'C'){
+        this.VerCuotas(acuerdo);
+      }
+    }
+  }
+
+  VerCuotas(acuerdo: Acuerdo): void{
+    this.MostrarDetalle = false;
+    this.acuerdoSeleccionado = acuerdo;
+    const overlay = document.querySelector('#billing-dialog');
+    overlay.classList.add('active');
+  }
+
+  cerrarPopupCuotas(): void{
+    const overlay = document.querySelector('#billing-dialog');
+    overlay.classList.remove('active');
+  }
+
+  VerDetalle(acuerdo: Acuerdo): void{
+    this.Acuerdo  = acuerdo;
+    const overlay = document.querySelector('#home-sidebar');
+    this.MostrarDetalle = true;
+    overlay.classList.add('active');
+
+  }
+
+  CerrarPopupDetalle(): void{
+    this.MostrarDetalle = false;
+    const overlay = document.querySelector('#home-sidebar');
+    overlay.querySelector('.close-btn').addEventListener('click', () => {
+        overlay.classList.remove('active');
+      });
+  }
+
+  PagarAnticipo(acuerdo: Acuerdo): void{
+    alert('PagarAnticipo(): en desarrollo |_(-.-)_T ');
   }
 }

@@ -12,7 +12,7 @@
            <h1 class="page-title">{{ 'Traduct.registrar_pago' | translate }}</h1>
            <p class="page-subtitle"><span></span>{{ 'Traduct.registrar_pago_t1' | translate }}</p>
         </div>
-        <form class="" [formGroup]="pagoForm">
+        <form class="" [formGroup]="pagoForm" id="pagoForm">
           <div class="box flex-column row-container">
             <div class="flex-row col-container">
                 <div class="col-2-3">
@@ -192,7 +192,7 @@
 
   <section class="page-pay pay-success" [hidden]="stepPago !== 3">
     <div class="flex-column page-header">
-        <a class="top-decoration" [routerLink]="" (click)="stepPago=1">{{ "Traduct.volver_home" | translate }}</a>
+        <a class="top-decoration" routerLink="/home/default">{{ "Traduct.volver_home" | translate }}</a>
     </div>
 
     <div class="success flex-column flex-center text-center restrict-width">

@@ -31,8 +31,13 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
   get numero(): AbstractControl {
     return this.loginForm.get('numero');
   }
+
   get tipoDoc(): AbstractControl {
     return this.loginForm.get('tipoDoc');
+  }
+
+  get codigo(): AbstractControl {
+    return this.loginFormIngreso.get('codigo');
   }
 
   tiposDocumento: Array<ItemDefault> = [];
@@ -53,7 +58,7 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
   IdCanalSeleccionado = '';
   tipoEnvio = '';
   AceptaTerminos = false;
-  loadingGenerar = false;
+  loadingTrabajando = false;
   codigoEnviado = false;
 
   popupNro: number;
@@ -138,7 +143,7 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
       this.mostrarPopu(4);
       return;
     }
-
+    this.loadingTrabajando = true;
     this.MedioEnvioSeleccionado = this.loginForm.controls.medioEnvio.value;
     this.tieneInfo = false;
     this.usuario.dni = this.loginForm.controls.numero.value;
@@ -188,13 +193,16 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
             return;
           }
           this.loginAction = 2;
+          this.loadingTrabajando = false;
       }else{
           this.loginValido = false;
+          this.loadingTrabajando = false;
           localStorage.setItem('version_core', '' );
           this.MensajeAlert = res.ErrorMessage;
           this.mostrarPopu(3);
       }
       }, (err) => {
+        this.loadingTrabajando = false;
         // console.log(err);
       }
     ));
@@ -206,9 +214,15 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
   EnviarCodigo(): void{
     // this.loginForm.patchValue({aceptaTerminos: false});
     // this.loginForm.controls.aceptaTerminos.disable();
+    if (this.IdCanalSeleccionado === ''){
+      this.MensajeTituloAlert = 'Error';
+      this.MensajeAlert = this.translate.instant('Traduct.seleccione_clave_destino');
+      this.mostrarPopu(4);
+      return;
+    }
 
     this.codigoEnviado = false;
-    this.loadingGenerar = true;
+    this.loadingTrabajando = true;
     this.usuario.persona = localStorage.getItem('version_core');
     this.subscription.add(this.postservices.postGenerateToken
       (
@@ -223,30 +237,44 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
          // return false;
 
          if (!res.IsSent){
-              this.loadingGenerar = false;
+              this.loadingTrabajando = false;
               this.MensajeAlert = res.ErrorMessage;
               this.mostrarPopu(3);
           }else {
             this.codigoEnviado = true;
             // this.loginForm.controls.aceptaTerminos.enable();
-            this.loadingGenerar = false;
+            this.loadingTrabajando = false;
             this.loginAction = 3;
           }
       }, (err) => {
-        this.loadingGenerar = false;
+        this.loadingTrabajando = false;
         this.MensajeAlert = err.error.Message;
         this.mostrarPopu(3);
       }));
   }
 
   IngresarPortal(): void{
+    if (this.loginFormIngreso.controls.codigo.value === ''){
+      this.MensajeTituloAlert = 'Error';
+      this.MensajeAlert = this.translate.instant('Traduct.ingrese_token');
+      this.mostrarPopu(4);
+      return;
+    }
+
+    if (!this.AceptaTerminos){
+      this.MensajeTituloAlert = 'Error';
+      this.MensajeAlert = this.translate.instant('Traduct.acepte_terminos_condiciones');
+      this.mostrarPopu(4);
+      return;
+    }
+
     if (this.loginFormIngreso.invalid) {
       console.log('Form loginFormIngreso invalid!!!');
       return;
     }
 
     const codigoValor = this.loginFormIngreso.controls.codigo.value;
-
+    this.loadingTrabajando = true;
     this.subscription.add(this.postservices.postValidateToken
       (
         this.usuario.dni,
@@ -261,13 +289,16 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
 
         if (!res.IsValid){
           this.MensajeAlert = res.ErrorMessage;
+          this.loadingTrabajando = false;
           this.mostrarPopu(3);
         }else {
           this.authService.login(res.Jwt);
           localStorage.setItem('Cliente', res.Name);
+          this.loadingTrabajando = false;
           this.router.navigateByUrl('/home/default');
         }
       }, (err) => {
+        this.loadingTrabajando = false;
         this.MensajeAlert = err.error.Message;
         this.mostrarPopu(3);
       }));

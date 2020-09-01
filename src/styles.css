@@ -2322,12 +2322,12 @@ html.no-scroll body {
   flex-grow: 1;
   display: flex;
   align-items: center;
-  height: 64px;
+  min-height: 64px;
 }
 
 @media all and (max-width: 1024px) {
   .emerix-page .table-container .table td {
-    height: 42px;
+    min-height: 42px;
   }
   .emerix-page .table-container .table td p {
     margin-bottom: 0;
@@ -3420,6 +3420,49 @@ html.no-scroll body {
 @media all and (min-width: 1025px) {
   .emerix-page .page-home .promises-table .btn {
     display: none;
+  }
+}
+
+.emerix-page .page-home .promises-table .table.selectable .align-start .flex-center {
+  align-items: flex-start;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.emerix-page .page-home .promises-table .table.selectable .align-start .align-self-start {
+  align-self: flex-start;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-home .promises-table .table.selectable .align-start .align-self-start {
+    margin-top: 12px;
+  }
+}
+
+.emerix-page .page-home .promises-table .table.selectable label {
+  margin-top: 12px;
+}
+
+.emerix-page .page-home .promises-table .table.selectable .dropdown-target {
+  font-size: 12px;
+  font-weight: normal;
+  padding-top: 2rem;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-home .promises-table .table.selectable .dropdown-target {
+    padding-top: 1rem;
+  }
+}
+
+.emerix-page .page-home .promises-table .table.selectable .dropdown-target li {
+  padding: .5rem 0;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-home .promises-table .table.selectable .dropdown-target li {
+    padding: .25rem 0;
+    margin-bottom: 0;
   }
 }
 

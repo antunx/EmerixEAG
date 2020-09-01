@@ -147,4 +147,12 @@ export class NavigationComponent implements OnInit {
       (document.getElementById(`mobile-menu-toggle`) as HTMLInputElement).checked = false;
     }
   }
+
+  CerrarNavigate(): void{
+    if ((document.getElementById(`mobile-menu-toggle`) as HTMLInputElement).checked === true){
+      const navOverlay = document.querySelector('#nav-overlay');
+      navOverlay.classList.remove('active');
+      (document.getElementById(`mobile-menu-toggle`) as HTMLInputElement).checked = false;
+    }
+  }
 }

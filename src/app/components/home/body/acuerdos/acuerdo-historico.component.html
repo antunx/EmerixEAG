@@ -2,9 +2,9 @@
   <section class="page-logs">
 
     <div class="overlay" id="home-sidebar">
-      <div *ngIf="MostrarPopup===true" class="dialog-container sidebar" role="dialog">
+      <div *ngIf="MostrarDetalle===true" class="dialog-container sidebar" role="dialog">
          <a class="close-btn">
-            <img src="assets/images/ui/close-btn.svg" alt="Close" (click) ="CerrarPopup()">
+            <img src="assets/images/ui/close-btn.svg" alt="Close" (click) ="CerrarPopupDetalle()">
          </a>
          <app-acuerdo-detalle [Acuerdo]="Acuerdo"></app-acuerdo-detalle>
       </div>
@@ -40,15 +40,15 @@
                   </td> -->
                 </tr>
                 <tr *ngFor="let Acuerdo of Acuerdos">
-                   <td class="col-3-4" (click) = "clickDetalle('D',Acuerdo)">
+                   <td class="col-3-4" (click) = "filaClick('D',Acuerdo)">
                       <div class="flex-row justify-between" style="width: 80%">
                          <div>{{ Acuerdo.NombreAcuerdo }}</div>
                       </div>
                    </td>
-                   <td class="col-2-4 desktop-only" (click) = "clickDetalle('D',Acuerdo)">
+                   <td class="col-2-4 desktop-only" (click) = "filaClick('D',Acuerdo)">
                      {{ Acuerdo.FechaGenerada | date: 'dd/MM/yyyy'}}
                    </td>
-                   <td class="col-2-4" (click) = "clickDetalle('D',Acuerdo)">
+                   <td class="col-2-4" (click) = "filaClick('D',Acuerdo)">
                      <div *ngIf="Acuerdo.EstadoCodigo ==='PENDIANT'" class="status-label"><span class="bullet yellow"></span>{{ 'Traduct.pendiente' | translate }}</div>
                      <div *ngIf="Acuerdo.EstadoCodigo ==='VIGENTE'" class="status-label"><span class="bullet yellow"></span>{{ 'Traduct.vigente' | translate }}</div>
 
@@ -62,7 +62,7 @@
                    <td class="col-2-4">
                      {{ Acuerdo.CantidadCuotas }} &nbsp;
                      <div class="wide-link">
-                        <a *ngIf="EstadoNoVencidoRechazado(Acuerdo.EstadoCodigo)" [routerLink]="" (click)="clickDetalle('C',Acuerdo)">{{ 'Traduct.ver_cuotas' | translate }}</a>
+                        <a *ngIf="EstadoNoVencidoRechazado(Acuerdo.EstadoCodigo)" [routerLink]="" (click)="filaClick('C',Acuerdo)">{{ 'Traduct.ver_cuotas' | translate }}</a>
                      </div>
                    </td>
 <!--                    <td class="col-1-4 text-right">
@@ -79,7 +79,7 @@
  </section>
 <!-- </div> -->
 
-<div class="overlay" id="billing-dialog" (click)="cerrarPopupCuotas()">
+<div *ngIf="MostrarDetalle===false" class="overlay" id="billing-dialog" (click)="cerrarPopupCuotas()">
    <app-ver-cuotas
      [acuerdo]="acuerdoSeleccionado"
      [historico]="true"

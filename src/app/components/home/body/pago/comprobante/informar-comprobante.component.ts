@@ -4,7 +4,6 @@ import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { PostService } from '@app/services/post.service';
 import { MetodosEstandarService } from '@app/services/metodos-estandar.service';
 import { Item, ItemDefault } from '@app/models/rtagetobjetocombo.model';
-import Swal from 'sweetalert2';
 import { Comprobante } from '@app/models/comprobante.models';
 import { Subscription } from 'rxjs';
 import { ComunicacionService } from '@app/services/comunicacion.service';
@@ -31,13 +30,6 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   @HostBinding('class') class = 'pages-container flex-grow';
   private subscription: Subscription = new Subscription();
   MensajePago: string;
-  swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-      confirmButton: 'btn btn-success',
-      cancelButton: 'btn btn-danger'
-    },
-    buttonsStyling: false
-  });
 
   get Importe(): AbstractControl {
     return this.pagoForm.get('Importe');
@@ -174,9 +166,11 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     entidad.IdCuenta = '0';
     entidad.IdPersona = localStorage.getItem('version_core');
     entidad.IdMedioPago = this.IdMedioPago;
-/*
+
+    /*
     console.log(entidad);
-    return; */
+    return;
+    */
     this.subscription.add(this.postservices.postComprobante(entidad).subscribe(
       (res) => {
         if (res.ErrorCode > 0){
@@ -251,4 +245,13 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
       return '-';
     }
   }
+
+  // Inicio(): void{
+    /* const myForm = document.getElementById(`pagoForm`) as HTMLFormElement;
+    myForm.submit(); */
+  // this.monedas = [];
+    // this.monedas = [{ Id: 0, Code: 'Moneda', Name: 'Moneda' }];
+
+  //  this.stepPago = 1;
+  // }
 }
