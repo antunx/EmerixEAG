@@ -10,3 +10,10 @@ export interface Item {
   Nombre: string;
   Imagen: string;
 }
+
+export interface ItemDefault {
+  Id: number;
+  Code: string;
+  Name: string;
+  Imagen: string;
+}

@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { PostService } from '@app/services/post.service';
 import { MetodosEstandarService } from '@app/services/metodos-estandar.service';
-import { Item } from '@app/models/rtagetobjetocombo.model';
+import { Item, ItemDefault } from '@app/models/rtagetobjetocombo.model';
 import Swal from 'sweetalert2';
 import { Comprobante } from '@app/models/comprobante.models';
 import { Subscription } from 'rxjs';
@@ -39,10 +39,6 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     buttonsStyling: false
   });
 
-  get IdMoneda(): AbstractControl {
-    return this.pagoForm.get('IdMoneda');
-  }
-
   get Importe(): AbstractControl {
     return this.pagoForm.get('Importe');
   }
@@ -55,15 +51,9 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     return this.pagoForm.get('NumeroComprobante');
   }
 
-  get Comentario(): AbstractControl {
-    return this.pagoForm.get('Comentario');
-  }
-
-
   // Combos
   mediosPago: Item[];
-  monedasTMP: Item[];
-  monedas = [];
+  monedas: Array<ItemDefault> = [];
   FechaActual = new Date();
   IdMedioPago: number;
   MostrarAlert: boolean;
@@ -95,7 +85,8 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   cambioTexto(mensaje: string): void {
     this.servicioComunicacion.enviarMensaje(mensaje);
   }
-   LlenarMediosPago(): void{
+
+  LlenarMediosPago(): void{
     this.subscription.add(this.metodosEstandarService.getObjectCombo('getmediospago').subscribe(
       (res) => {
         if (res.ErrorCode > 0){
@@ -117,7 +108,6 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
         if (res.ErrorCode > 0){
           console.log(res.ErrorMessage);
         } else{
-          this.monedasTMP = res.Items;
           // console.log( res.Items);
           res.Items.forEach(
             item =>
@@ -243,14 +233,14 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
     }
   }
 
- GetNombreMoneda(Id: string): string{
-    if (this.monedasTMP){
-      let item: Item[];
+  GetNombreMoneda(Id: string): string{
+    if (this.monedas){
+      let item: ItemDefault[];
       let ret: string;
-      item = this.monedasTMP.filter(mon => mon.Id.toString() === Id);
+      item = this.monedas.filter(mon => mon.Id.toString() === Id);
       if (item){
         item.forEach((i) => {
-          ret = i.Codigo;
+          ret = i.Code;
         });
         return ret;
       }else{

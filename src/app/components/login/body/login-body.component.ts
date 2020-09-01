@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { TranslateService } from '@ngx-translate/core';
-
 import { GetService } from '@services/get.service';
 import { PostService } from '@services/post.service';
 import { UsuarioAutenticarModel } from '@models/usuarioautenticar.model';
@@ -11,6 +9,8 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from '@app/services/auth.service';
 import { MetodosEstandarService } from '@app/services/metodos-estandar.service';
+import { ItemDefault } from '@app/models/rtagetobjetocombo.model';
+import { Phone, Mail } from '@app/models/rtagetvalidateuser.model';
 
 @Component({
   selector: 'app-login-body',
@@ -26,6 +26,7 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private metodosEstandarService: MetodosEstandarService,
   ) { this.metodosEstandarService.Entidad = ''; }
+
   private subscription: Subscription = new Subscription();
   get numero(): AbstractControl {
     return this.loginForm.get('numero');
@@ -33,31 +34,14 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
   get tipoDoc(): AbstractControl {
     return this.loginForm.get('tipoDoc');
   }
-  /*get genero(): AbstractControl {
-    return this.loginForm.get('genero');
-  }*/
-  get sms(): AbstractControl {
-    return this.loginForm.get('sms');
-  }
-  get mail(): AbstractControl {
-    return this.loginForm.get('mail');
-  }
 
-  get codigo(): AbstractControl {
-    return this.loginFormIngreso.get('codigo');
-  }
-
-  get recaptcha(): AbstractControl {
-    return this.loginForm.get('recaptcha');
-  }
-
-  tiposDocumento = [];
+  tiposDocumento: Array<ItemDefault> = [];
 
   loginForm: FormGroup;
   loginFormIngreso: FormGroup;
   usuario = new UsuarioAutenticarModel();
-  telefonos = [];
-  mails = [];
+  telefonos: Array<Phone> = [];
+  mails: Array<Mail> = [];
 
   MedioEnvioSeleccionado: string;
   loginValido = false;
