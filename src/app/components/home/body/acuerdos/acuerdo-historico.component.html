@@ -18,7 +18,16 @@
           <h1 class="page-title">{{ 'Traduct.tus_planes_t1' | translate }}</h1>
 <!--      <p class="page-subtitle"><span></span>{{ 'Traduct.tus_planes_t2' | translate }}</p> -->
        </div>
-       <div id="agreement-table" class="box">
+       <!-- SIN REGISTROS... -->
+       <div *ngIf="Acuerdos?.length === 0" class="restrict-width large">
+        <div class="warning-box text-center">
+          <img src="assets/images/ui/icono_info.svg" alt="" />{{
+            "Traduct.sin_registros" | translate
+          }}
+        </div>
+      </div>
+      <!-- HAY REGISTROS... -->
+       <div *ngIf="Acuerdos?.length > 0" id="agreement-table" class="box">
           <div class="table-container">
              <table class="table selectable" width="100%" border="0">
                <tbody>

@@ -231,5 +231,6 @@
   "Traduct.plan_exito": "The payment plan was generated successfully!",
   "Traduct.pagar_por_monto": "Pay for ammount",
   "Traduct.seleccionar": "Select",
-  "Traduct.productos": "Products"
+  "Traduct.productos": "Products",
+  "Traduct.sin_registros": "No records found ..."
 }

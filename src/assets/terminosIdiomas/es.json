@@ -239,5 +239,6 @@
   "Traduct.plan_exito": "¡El plan de pago se generó con éxito!",
   "Traduct.pagar_por_monto": "Pagar por monto",
   "Traduct.seleccionar": "Seleccionar",
-  "Traduct.productos": "Productos"
+  "Traduct.productos": "Productos",
+  "Traduct.sin_registros": "No se encontraron registros..."
 }
