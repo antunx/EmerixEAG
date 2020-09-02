@@ -51,7 +51,7 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
     }
   }
 
-  confirmarPlan(): void {
+  confirmarPlan(tipo: string): void {
     const objeto = {
       IdPersona: localStorage.getItem('version_core'),
       IdTipoAcuerdo: this.acuerdoSeleccionado.Id,
@@ -60,7 +60,7 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
       FechaVencAnticipo: this.acuerdoSeleccionado.PlazoAnticipo,
       MontoTotal: this.acuerdoSeleccionado.MontoFinanciar,
       CantCuotas: this.acuerdoSeleccionado.CantidadCuotas,
-      TipoConfirmar: 'C',
+      TipoConfirmar: tipo,
       Cuentas: this.acuerdoSeleccionado.Productos,
       Cuotas: [],
     };
@@ -73,30 +73,32 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
       objeto.Cuotas = data.Cuotas;
       this.postService.PostConfirmarAcuerdo(objeto).subscribe((data) => {
         if (data.ErrorCode === 0) {
-          this.siguiente.emit(4);
+          if(tipo === 'C'){
+            this.siguiente.emit(4);
+          } else{
+            console.log(data)
+            const obj = {
+              Items: [],
+              TotalPagar: data.ImportePromesa,
+              Cliente: localStorage.getItem('version_core'),
+            };
+            const cta = {
+              id: data.IdPromesa,
+              importe: data.ImportePromesa,
+              tipo: 'ANTICIPO',
+              cuotas: [],
+            };
+        
+            obj.Items.push(cta);
+            this.preAcuerdo.emit(obj);
+            this.siguiente.emit(this.stepAcuerdo + 1);
+          }
         }
       });
     });
   }
 
-  pagarAnticipo(): void {
-    console.log(this.acuerdoSeleccionado);
-    const obj = {
-      Items: [],
-      TotalPagar: this.acuerdoSeleccionado.MontoAnticipo,
-      Cliente: localStorage.getItem('version_core'),
-    };
-    const cta = {
-      id: this.acuerdoSeleccionado.Id,
-      importe: this.acuerdoSeleccionado.MontoAnticipo,
-      tipo: 'ANTICIPO',
-      cuotas: [],
-    };
 
-    obj.Items.push(cta);
-    this.preAcuerdo.emit(obj);
-    this.siguiente.emit(this.stepAcuerdo + 1);
-  }
 
   AceptoTerminos(): void {
     this.AceptaTerminos = !this.AceptaTerminos;
