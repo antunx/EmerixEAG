@@ -150,12 +150,11 @@
                     <div>
                         <div class="form-group">
                           <p><strong>{{ 'Traduct.ingrese_token' | translate }}</strong></p>
-                            <div [ngClass] = "!(codigo.invalid && (codigo.dirty || codigo.touched)) ? 'input-wrapper text' : 'input-wrapper text error'">
-                            <input id="codigo" type="text" class="input-elem" formControlName="codigo">
-                            <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)">
+                          <div class="input-wrapper text">
+                              <input id="login_key" type="text" class="input-elem" formControlName="codigo">
+
                               <div class="input-error-icon" role="alert"></div>
                               <div class="input-error-popup" role="alert">{{ 'Traduct.requerido' | translate }}</div>
-                            </div>
                           </div>
                         </div>
 
