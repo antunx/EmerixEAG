@@ -129,20 +129,83 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
     this.loginAction = valor;
   }
 
+  Validar(paso: number): boolean{
+    let ret: boolean;
+    ret = true;
+
+    switch (paso) {
+      case 1:
+        if (this.loginForm.controls.tipoDoc.value === ''){
+          this.MensajeTituloAlert = 'Error';
+          this.MensajeAlert = this.translate.instant('Traduct.seleccione') + ' ' + this.translate.instant('Traduct.document');
+          this.mostrarPopu(4);
+          ret = false;
+          break;
+        }
+
+        if (this.loginForm.controls.numero.value === ''){
+          this.MensajeTituloAlert = 'Error';
+          this.MensajeAlert = this.translate.instant('Traduct.complete') + ' ' + this.translate.instant('Traduct.numero');
+          this.mostrarPopu(4);
+          ret = false;
+          break;
+        }
+
+        if (this.SeleccionoMedioEnvio === false){
+          this.MensajeTituloAlert = 'Error';
+          this.MensajeAlert = this.translate.instant('Traduct.seleccione') + ' ' + this.translate.instant('Traduct.canal_sms_mail');
+          this.mostrarPopu(4);
+          ret = false;
+          break;
+        }
+
+        if (this.loginForm.controls.recaptcha.value === 'ERR'){
+          this.MensajeTituloAlert = 'Error';
+          this.MensajeAlert = this.translate.instant('Traduct.complete') + ' Captcha';
+          this.mostrarPopu(4);
+          ret = false;
+          break;
+        }
+        break;
+      case 2:
+        if (this.IdCanalSeleccionado === ''){
+          this.MensajeTituloAlert = 'Error';
+          this.MensajeAlert = this.translate.instant('Traduct.seleccione_clave_destino');
+          this.mostrarPopu(4);
+          ret = false;
+          break;
+        }
+        break;
+      case 3:
+        if (this.loginFormIngreso.controls.codigo.value === ''){
+          this.MensajeTituloAlert = 'Error';
+          this.MensajeAlert = this.translate.instant('Traduct.ingrese_token');
+          this.mostrarPopu(4);
+          ret = false;
+          break;
+        }
+
+        if (!this.AceptaTerminos){
+          this.MensajeTituloAlert = 'Error';
+          this.MensajeAlert = this.translate.instant('Traduct.acepte_terminos_condiciones');
+          this.mostrarPopu(4);
+          ret = false;
+          break;
+        }
+        break;
+      default:
+        ret = false;
+        break;
+    }
+
+    return ret;
+  }
+
   Login(): void{
-    if (this.loginForm.controls.tipoDoc.value === ''){
-      this.MensajeTituloAlert = 'Error';
-      this.MensajeAlert = this.translate.instant('Traduct.seleccione') + ' ' + this.translate.instant('Traduct.document');
-      this.mostrarPopu(4);
+    if (!this.Validar(1)){
       return;
     }
 
-    if (this.loginForm.controls.recaptcha.value === 'ERR'){
-      this.MensajeTituloAlert = 'Error';
-      this.MensajeAlert = this.translate.instant('Traduct.complete') + ' Captcha';
-      this.mostrarPopu(4);
-      return;
-    }
     this.loadingTrabajando = true;
     this.MedioEnvioSeleccionado = this.loginForm.controls.medioEnvio.value;
     this.tieneInfo = false;
@@ -212,14 +275,11 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
   }
 
   EnviarCodigo(): void{
-    // this.loginForm.patchValue({aceptaTerminos: false});
-    // this.loginForm.controls.aceptaTerminos.disable();
-    if (this.IdCanalSeleccionado === ''){
-      this.MensajeTituloAlert = 'Error';
-      this.MensajeAlert = this.translate.instant('Traduct.seleccione_clave_destino');
-      this.mostrarPopu(4);
+    if (!this.Validar(2)){
       return;
     }
+    // this.loginForm.patchValue({aceptaTerminos: false});
+    // this.loginForm.controls.aceptaTerminos.disable();
 
     this.codigoEnviado = false;
     this.loadingTrabajando = true;
@@ -254,25 +314,9 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
   }
 
   IngresarPortal(): void{
-    if (this.loginFormIngreso.controls.codigo.value === ''){
-      this.MensajeTituloAlert = 'Error';
-      this.MensajeAlert = this.translate.instant('Traduct.ingrese_token');
-      this.mostrarPopu(4);
+    if (!this.Validar(3)){
       return;
     }
-
-    if (!this.AceptaTerminos){
-      this.MensajeTituloAlert = 'Error';
-      this.MensajeAlert = this.translate.instant('Traduct.acepte_terminos_condiciones');
-      this.mostrarPopu(4);
-      return;
-    }
-
-    if (this.loginFormIngreso.invalid) {
-      console.log('Form loginFormIngreso invalid!!!');
-      return;
-    }
-
     const codigoValor = this.loginFormIngreso.controls.codigo.value;
     this.loadingTrabajando = true;
     this.subscription.add(this.postservices.postValidateToken

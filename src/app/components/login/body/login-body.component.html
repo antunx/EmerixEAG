@@ -19,16 +19,6 @@
                             <div class="input-error-icon" role="alert"></div>
                             <div class="input-error-popup" role="alert">{{ 'Traduct.requerido' | translate }}</div>
                           </div>
-<!--                        <div [ngClass] = "!(tipoDoc.invalid && (tipoDoc.dirty || tipoDoc.touched)) ? 'input-wrapper select' : 'input-wrapper select error'" >
-                              <select formControlName="tipoDoc" id="login_dni_type" required>
-                                <option *ngFor="let tipo_doc of tiposDocumento" [value]="tipo_doc.IdTypeDoc">
-                                  {{tipo_doc.CodeTypeDoc}}
-                                </option>
-                              </select>
-
-                              <div class="input-error-icon" role="alert"></div>
-                              <div class="input-error-popup" role="alert">{{ 'Traduct.requerido' | translate }}</div>
-                            </div> -->
                         </div>
 
                         <div class="flex-grow">
@@ -94,7 +84,7 @@
                       </div>
                   </div>
                   <div class="flex-row flex-center">
-                      <button type="button" class="btn" data-direction="next" (click)="Login()" [disabled]='!(loginForm.valid &&  SeleccionoMedioEnvio)'>
+                      <button type="button" class="btn" data-direction="next" (click)="Login()">
                         {{ 'Traduct.siguiente' | translate }}
                         <span *ngIf="loadingTrabajando"><i Class= 'fas fa-sync fa-spin'></i></span>
                       </button>

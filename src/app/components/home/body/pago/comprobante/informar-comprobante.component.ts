@@ -63,7 +63,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void{
     this.IdMedioPago = 0;
-    this.MedioSeleccionado = 'visa.svg';
+    this.MedioSeleccionado = 'generic.svg';
     this.stepPago = 1;
     this.cambioTexto(this.translate.instant('Traduct.registrar_pago'));
     this.LlenarMediosPago();
