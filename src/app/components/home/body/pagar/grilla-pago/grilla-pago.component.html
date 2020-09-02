@@ -14,11 +14,10 @@
       <h1 class="page-title text-large">
         {{ "Traduct_pago_producto" | translate }}
       </h1>
-      <p class="page-subtitle">
-        <span></span><strong>Seleccioná los productos</strong> que queres pagar,
-        si el monto a pagar está habilitado para editar podés mantener el
-        adeudado o ingresar uno nuevo.
-      </p>
+      <p
+        class="page-subtitle"
+        [innerHTML]="'Traduct.subtitulo_grilla_pago' | translate"
+      ></p>
     </div>
   </div>
 </div>
@@ -29,11 +28,9 @@
     *ngIf="productos?.length === 0 || productos === undefined"
   >
     <div class="warning-box text-center">
-      <img
-        src="assets/images/ui/icono_info.svg"
-        alt=""
-      /><strong>No tiene productos </strong>con deuda para realizar un
-      <strong>pago</strong>.
+      <img src="assets/images/ui/icono_info.svg" alt="" /><strong
+        >No tiene productos </strong
+      >con deuda para realizar un <strong>pago</strong>.
     </div>
   </div>
   <div
@@ -87,20 +84,22 @@
             <td class="col-2-5">
               <div class="input-wrapper checkbox">
                 <input
-                  id="table-select-{{ producto?.IdCuenta }}"
+                  id="table-select-d-{{ producto?.IdCuenta }}"
                   type="checkbox"
                   class="input-elem visually-hidden"
                   required
                   name="selectAll"
                   [checked]="producto?.Check"
-                  (change)="cambiarCheckProductos(producto?.IdCuenta, $event)"
+                  (change)="
+                    cambiarCheckProductos(producto?.IdCuenta, $event, 'd')
+                  "
                 />
 
                 <div class="input-fake-checkbox">
                   <span class="input-caret"></span>
                 </div>
 
-                <label for="table-select-{{ producto?.IdCuenta }}"
+                <label for="table-select-d-{{ producto?.IdCuenta }}"
                   ><img
                     src="assets/images/ui/tables/prestamo.svg"
                     alt=""
@@ -142,7 +141,7 @@
               <input
                 type="number"
                 step="0.01"
-                id="monto-cancelar-{{ producto?.IdCuenta }}"
+                id="monto-cancelar-d-{{ producto?.IdCuenta }}"
                 value="{{ producto?.Deuda.toFixed(2) }}"
                 [disabled]="
                   !producto?.Check || producto?.CodigoProducto == 'PRESTAMO'
@@ -200,14 +199,14 @@
                 <td style="width: 100%">
                   <div class="input-wrapper checkbox">
                     <input
-                      id="table-select-{{ producto?.IdCuenta }}"
+                      id="table-select-m-{{ producto?.IdCuenta }}"
                       type="checkbox"
                       class="input-elem visually-hidden"
                       required
                       name="selectAll"
                       [checked]="producto?.Check"
                       (change)="
-                        cambiarCheckProductos(producto?.IdCuenta, $event)
+                        cambiarCheckProductos(producto?.IdCuenta, $event, 'm')
                       "
                     />
 
@@ -215,7 +214,7 @@
                       <span class="input-caret"></span>
                     </div>
 
-                    <label for="table-select-{{ producto?.IdCuenta }}"
+                    <label for="table-select-m-{{ producto?.IdCuenta }}"
                       ><img
                         style="vertical-align: middle"
                         src="assets/images/ui/tables/prestamo.svg"
@@ -302,7 +301,7 @@
                   <input
                     type="number"
                     step="0.01"
-                    id="monto-cancelar-{{ producto?.IdCuenta }}"
+                    id="monto-cancelar-m-{{ producto?.IdCuenta }}"
                     value="{{ producto?.Deuda.toFixed(2) }}"
                     [disabled]="
                       !producto?.Check || producto?.CodigoProducto == 'PRESTAMO'
@@ -339,7 +338,7 @@
                 <td style="width: 100%">
                   <div class="input-wrapper checkbox">
                     <input
-                      id="table-select-{{ promesa?.IdPromesa }}"
+                      id="table-select-m-{{ promesa?.IdPromesa }}"
                       type="checkbox"
                       class="input-elem visually-hidden"
                       required
@@ -354,7 +353,7 @@
                       <span class="input-caret"></span>
                     </div>
 
-                    <label for="table-select-{{ promesa?.IdPromesa }}"
+                    <label for="table-select-m-{{ promesa?.IdPromesa }}"
                       ><img
                         style="vertical-align: middle"
                         src="assets/images/ui/tables/prestamo.svg"
@@ -423,18 +422,17 @@
                 <div class="input-wrapper text">
                   <input
                     type="number"
-                    id="monto-cancelar-{{ promesa?.IdPromesa }}"
+                    id="monto-cancelar-m-{{ promesa?.IdPromesa }}"
                     value="{{ promesa?.ImporteComprometido.toFixed(2) }}"
                     [disabled]="!promesa?.Check"
                     [max]="promesa?.ImporteComprometido"
                     [min]="promesa?.ImporteMinimo"
                     (focusout)="cambiarMontoProm($event)"
                     attr.data-valor="{{ promesa?.ImporteComprometido }}"
-                    style="width: 100px; text-align: center"
                     (focus)="deshabilitarBoton()"
                     style="
                       text-align: right;
-                      width: 50%;
+                      width: 80%;
                       border: none;
                       border-bottom: 1px solid #8569b4;
                     "
@@ -532,20 +530,22 @@
             <td class="col-1-5">
               <div class="input-wrapper checkbox">
                 <input
-                  id="table-select-{{ promesa?.IdPromesa }}"
+                  id="table-select-d-{{ promesa?.IdPromesa }}"
                   type="checkbox"
                   class="input-elem visually-hidden"
                   required
                   name="selectAll"
                   [checked]="promesa?.Check"
-                  (change)="cambiarCheckPromesas(promesa?.IdPromesa, $event)"
+                  (change)="
+                    cambiarCheckPromesas(promesa?.IdPromesa, $event, 'd')
+                  "
                 />
 
                 <div class="input-fake-checkbox">
                   <span class="input-caret"></span>
                 </div>
 
-                <label for="table-select-{{ promesa?.IdPromesa }}"
+                <label for="table-select-d-{{ promesa?.IdPromesa }}"
                   ><img
                     src="assets/images/ui/tables/prestamo.svg"
                     alt=""
@@ -574,7 +574,7 @@
             <td class="col-1-6 text-center desktop-only">
               <input
                 type="number"
-                id="monto-cancelar-{{ promesa?.IdPromesa }}"
+                id="monto-cancelar-d-{{ promesa?.IdPromesa }}"
                 value="{{ promesa?.ImporteComprometido.toFixed(2) }}"
                 [disabled]="!promesa?.Check"
                 [max]="promesa?.ImporteComprometido"

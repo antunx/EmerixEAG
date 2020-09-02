@@ -7,14 +7,14 @@
     *ngIf="!volverHome"
     class="top-decoration"
     (click)="volver()"
-    style="cursor: pointer;"
+    style="cursor: pointer"
     >{{ "Traduct.volver_anterior" | translate }}</a
   >
   <a
     *ngIf="volverHome"
     class="top-decoration"
     (click)="volveraHome()"
-    style="cursor: pointer;"
+    style="cursor: pointer"
     >{{ "Traduct.volver_home" | translate }}</a
   >
 </div>
@@ -22,13 +22,10 @@
 <div class="restrict-width">
   <div class="title">
     <h1 class="page-title text-large">{{ "Traduct.por_monto" | translate }}</h1>
-    <p class="page-subtitle">
-      <span></span>Comprometeté a abonar el
-      <strong>monto total de la deuda</strong> o
-      <strong>ingresá otro monto</strong>, elegí cuando vas a efectuar el pago
-      (<strong>periodo</strong>) y luego hace clic en
-      <strong>generar promesa</strong>.
-    </p>
+    <p
+      class="page-subtitle"
+      [innerHTML]="'Traduct.subtitulo_monto_promesa' | translate"
+    ></p>
   </div>
 
   <div class="selectable-box flex-column" id="box-3915745509">
@@ -88,21 +85,15 @@
             </li>
 
             <li data-value="1">
-              <div class="selectable">
-                24hs
-              </div>
+              <div class="selectable">24hs</div>
             </li>
 
             <li data-value="2">
-              <div class="selectable">
-                48hs
-              </div>
+              <div class="selectable">48hs</div>
             </li>
 
             <li data-value="3">
-              <div class="selectable">
-                72hs
-              </div>
+              <div class="selectable">72hs</div>
             </li>
 
             <li data-value="">

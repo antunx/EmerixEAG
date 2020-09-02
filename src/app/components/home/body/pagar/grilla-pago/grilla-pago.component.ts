@@ -134,13 +134,18 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
           `monto-cancelar-${producto.IdCuenta}`
         ).innerHTML = producto.Deuda.toString();*/
         (document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
+          `monto-cancelar-d-${producto.IdCuenta}`
         ) as HTMLInputElement).value = (document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
+          `monto-cancelar-d-${producto.IdCuenta}`
+        ) as HTMLInputElement).dataset.valor;
+        (document.getElementById(
+          `monto-cancelar-m-${producto.IdCuenta}`
+        ) as HTMLInputElement).value = (document.getElementById(
+          `monto-cancelar-m-${producto.IdCuenta}`
         ) as HTMLInputElement).dataset.valor;
         this.montoAPagar += parseFloat(
           (document.getElementById(
-            `monto-cancelar-${producto.IdCuenta}`
+            `monto-cancelar-d-${producto.IdCuenta}`
           ) as HTMLInputElement).value
         );
       });
@@ -149,7 +154,7 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
       this.productos.forEach((producto) => {
         this.montoAPagar -= parseFloat(
           (document.getElementById(
-            `monto-cancelar-${producto.IdCuenta}`
+            `monto-cancelar-d-${producto.IdCuenta}`
           ) as HTMLInputElement).value
         );
         producto.Check = false;
@@ -158,13 +163,16 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
               ).innerHTML = '0';*/
         // console.log('monto a pagar', this.montoAPagar);
         (document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
+          `monto-cancelar-d-${producto.IdCuenta}`
+        ) as HTMLInputElement).value = '0';
+        (document.getElementById(
+          `monto-cancelar-m-${producto.IdCuenta}`
         ) as HTMLInputElement).value = '0';
       });
     }
   }
 
-  cambiarCheckProductos(id: number, e): void {
+  cambiarCheckProductos(id: number, e, vista: string): void {
     this.productos.forEach((producto) => {
       if (producto.IdCuenta === id) {
         // CARGO VALORES EN EL IMPORTE A PAGAR
@@ -172,14 +180,19 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
           `monto-cancelar-${producto.IdCuenta}`
         ).innerHTML = producto.Deuda.toString();*/
         (document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
+          `monto-cancelar-d-${producto.IdCuenta}`
         ) as HTMLInputElement).value = (document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
+          `monto-cancelar-d-${producto.IdCuenta}`
+        ) as HTMLInputElement).dataset.valor;
+        (document.getElementById(
+          `monto-cancelar-m-${producto.IdCuenta}`
+        ) as HTMLInputElement).value = (document.getElementById(
+          `monto-cancelar-m-${producto.IdCuenta}`
         ) as HTMLInputElement).dataset.valor;
 
         const montoACancelar = parseFloat(
           (document.getElementById(
-            `monto-cancelar-${producto.IdCuenta}`
+            `monto-cancelar-${vista}-${producto.IdCuenta}`
           ) as HTMLInputElement).value
         );
         producto.Check = e.target.checked;
@@ -194,7 +207,10 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
             ) as HTMLInputElement).value
           );*/
           (document.getElementById(
-            `monto-cancelar-${producto.IdCuenta}`
+            `monto-cancelar-d-${producto.IdCuenta}`
+          ) as HTMLInputElement).value = '0';
+          (document.getElementById(
+            `monto-cancelar-m-${producto.IdCuenta}`
           ) as HTMLInputElement).value = '0';
           /*console.log(
             (document.getElementById(
@@ -222,9 +238,23 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
     const max = parseFloat(e.target.max);
     const valorAnterior = parseFloat(e.target.dataset.valor);
     const monto = parseFloat(e.target.value);
+    const id = e.target.id.split('-')[3];
+
     if (e.target.value > max || e.target.value <= 0) {
-      e.target.value = max;
-      e.target.dataset.valor = max;
+      (document.getElementById(
+        `monto-cancelar-d-${id}`
+      ) as HTMLInputElement).value = max.toString();
+      (document.getElementById(
+        `monto-cancelar-d-${id}`
+      ) as HTMLInputElement).dataset.valor = max.toString();
+      (document.getElementById(
+        `monto-cancelar-m-${id}`
+      ) as HTMLInputElement).value = max.toString();
+      (document.getElementById(
+        `monto-cancelar-m-${id}`
+      ) as HTMLInputElement).dataset.valor = max.toString();
+      /*e.target.value = max;
+      e.target.dataset.valor = max;*/
       this.montoAPagar += max - valorAnterior;
       this.button = false;
       return;
@@ -237,7 +267,16 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
       // console.log('entre');
       // this.montoAPagar -= max - monto + valorAnterior - max;
       this.montoAPagar -= valorAnterior - monto;
-      e.target.dataset.valor = monto;
+      (document.getElementById(
+        `monto-cancelar-d-${id}`
+      ) as HTMLInputElement).dataset.valor = monto.toString();
+      (document.getElementById(
+        `monto-cancelar-m-${id}`
+      ) as HTMLInputElement).dataset.valor = monto.toString();
+      (document.getElementById(
+        `monto-cancelar-m-${id}`
+      ) as HTMLInputElement).value = monto.toString();
+      /*e.target.dataset.valor = monto;*/
     }
     // if (
     //   (e.target.value > max || e.target.value <= 0) &&
@@ -263,14 +302,20 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
     // console.log(e);
     const cuotas = [];
     const montoAnterior = (document.getElementById(
-      `monto-cancelar-${id}`
+      `monto-cancelar-d-${id}`
     ) as HTMLInputElement).dataset.valor;
     (document.getElementById(
-      `monto-cancelar-${id}`
+      `monto-cancelar-d-${id}`
+    ) as HTMLInputElement).value = JSON.stringify(e.monto);
+    (document.getElementById(
+      `monto-cancelar-m-${id}`
     ) as HTMLInputElement).value = JSON.stringify(e.monto);
     this.montoAPagar -= parseFloat(montoAnterior) - e.monto;
     (document.getElementById(
-      `monto-cancelar-${id}`
+      `monto-cancelar-d-${id}`
+    ) as HTMLInputElement).dataset.valor = e.monto;
+    (document.getElementById(
+      `monto-cancelar-m-${id}`
     ) as HTMLInputElement).dataset.valor = e.monto;
     // console.log((document.getElementById(`monto-cancelar-${ id }`) as HTMLInputElement))
     // console.log(e.cuotas);
@@ -297,13 +342,18 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
         `monto-cancelar-${promesa.IdPromesa}`
       ).innerHTML = promesa.ImporteComprometido.toString();*/
         (document.getElementById(
-          `monto-cancelar-${promesa.IdPromesa}`
+          `monto-cancelar-d-${promesa.IdPromesa}`
         ) as HTMLInputElement).value = (document.getElementById(
-          `monto-cancelar-${promesa.IdPromesa}`
+          `monto-cancelar-d-${promesa.IdPromesa}`
+        ) as HTMLInputElement).dataset.valor;
+        (document.getElementById(
+          `monto-cancelar-m-${promesa.IdPromesa}`
+        ) as HTMLInputElement).value = (document.getElementById(
+          `monto-cancelar-m-${promesa.IdPromesa}`
         ) as HTMLInputElement).dataset.valor;
         this.montoAPagar += parseFloat(
           (document.getElementById(
-            `monto-cancelar-${promesa.IdPromesa}`
+            `monto-cancelar-d-${promesa.IdPromesa}`
           ) as HTMLInputElement).value
         );
       });
@@ -312,7 +362,7 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
       this.promesas.forEach((promesa) => {
         this.montoAPagar -= parseFloat(
           (document.getElementById(
-            `monto-cancelar-${promesa.IdPromesa}`
+            `monto-cancelar-d-${promesa.IdPromesa}`
           ) as HTMLInputElement).value
         );
         promesa.Check = false;
@@ -320,13 +370,16 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
         `monto-cancelar-${promesa.IdPromesa}`
       ).innerHTML = '0';*/
         (document.getElementById(
-          `monto-cancelar-${promesa.IdPromesa}`
+          `monto-cancelar-d-${promesa.IdPromesa}`
+        ) as HTMLInputElement).value = '0';
+        (document.getElementById(
+          `monto-cancelar-m-${promesa.IdPromesa}`
         ) as HTMLInputElement).value = '0';
       });
     }
   }
 
-  cambiarCheckPromesas(id: number, e): void {
+  cambiarCheckPromesas(id: number, e, vista: string): void {
     this.promesas.forEach((promesa) => {
       if (promesa.IdPromesa === id) {
         // CARGO VALORES EN EL IMPORTE A PAGAR
@@ -334,14 +387,19 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
           `monto-cancelar-${promesa.IdPromesa}`
         ).innerHTML = producto.Deuda.toString();*/
         (document.getElementById(
-          `monto-cancelar-${promesa.IdPromesa}`
+          `monto-cancelar-d-${promesa.IdPromesa}`
         ) as HTMLInputElement).value = (document.getElementById(
-          `monto-cancelar-${promesa.IdPromesa}`
+          `monto-cancelar-d-${promesa.IdPromesa}`
+        ) as HTMLInputElement).dataset.valor;
+        (document.getElementById(
+          `monto-cancelar-m-${promesa.IdPromesa}`
+        ) as HTMLInputElement).value = (document.getElementById(
+          `monto-cancelar-m-${promesa.IdPromesa}`
         ) as HTMLInputElement).dataset.valor;
 
         const montoACancelar = parseFloat(
           (document.getElementById(
-            `monto-cancelar-${promesa.IdPromesa}`
+            `monto-cancelar-${vista}-${promesa.IdPromesa}`
           ) as HTMLInputElement).value
         );
         promesa.Check = e.target.checked;
@@ -351,7 +409,10 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
             `monto-cancelar-${producto.IdCuenta}`
           ).innerHTML = '0';*/
           (document.getElementById(
-            `monto-cancelar-${promesa.IdPromesa}`
+            `monto-cancelar-d-${promesa.IdPromesa}`
+          ) as HTMLInputElement).value = '0';
+          (document.getElementById(
+            `monto-cancelar-m-${promesa.IdPromesa}`
           ) as HTMLInputElement).value = '0';
 
           if (montoACancelar <= promesa.ImporteComprometido) {
@@ -376,9 +437,22 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
     const min = parseFloat(e.target.min);
     const valorAnterior = parseFloat(e.target.dataset.valor);
     const monto = parseFloat(e.target.value);
+    const id = e.target.id.split('-')[3];
     if (e.target.value > max || e.target.value <= min) {
-      e.target.value = max;
-      e.target.dataset.valor = max;
+      (document.getElementById(
+        `monto-cancelar-d-${id}`
+      ) as HTMLInputElement).value = max.toString();
+      (document.getElementById(
+        `monto-cancelar-d-${id}`
+      ) as HTMLInputElement).dataset.valor = max.toString();
+      (document.getElementById(
+        `monto-cancelar-m-${id}`
+      ) as HTMLInputElement).value = max.toString();
+      (document.getElementById(
+        `monto-cancelar-m-${id}`
+      ) as HTMLInputElement).dataset.valor = max.toString();
+      /*e.target.value = max;
+      e.target.dataset.valor = max;*/
       this.montoAPagar += max - valorAnterior;
       this.button = false;
       return;
@@ -390,8 +464,17 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
     ) {
       // console.log('entre');
       // this.montoAPagar -= max - monto + valorAnterior - max;
+      (document.getElementById(
+        `monto-cancelar-d-${id}`
+      ) as HTMLInputElement).dataset.valor = monto.toString();
+      (document.getElementById(
+        `monto-cancelar-m-${id}`
+      ) as HTMLInputElement).dataset.valor = monto.toString();
+      (document.getElementById(
+        `monto-cancelar-m-${id}`
+      ) as HTMLInputElement).value = monto.toString();
       this.montoAPagar -= valorAnterior - monto;
-      e.target.dataset.valor = monto;
+      //e.target.dataset.valor = monto;
     }
     // if (
     //   (e.target.value > max || e.target.value <= min) &&
@@ -415,6 +498,8 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
 
   /** PAGAR */
   generarPago(e): void {
+    const vista = window.innerWidth < 1025 ? 'm' : 'd';
+    console.log(vista);
     if (this.montoAPagar <= 0) {
       this.popupNro = 1;
       (document.getElementById(
@@ -446,7 +531,7 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
         };
         objeto.ImportePagar = parseFloat(
           (document.getElementById(
-            `monto-cancelar-${producto.IdCuenta}`
+            `monto-cancelar-${vista}-${producto.IdCuenta}`
           ) as HTMLInputElement).value
         );
         if (objeto.Tipo === 'PRESTAMO') {
@@ -475,9 +560,10 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
         };
         objeto.ImportePagar = parseFloat(
           (document.getElementById(
-            `monto-cancelar-${promesa.IdPromesa}`
+            `monto-cancelar-${vista}-${promesa.IdPromesa}`
           ) as HTMLInputElement).value
         );
+
         pago.Items.push(objeto);
       }
     });

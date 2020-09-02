@@ -17,7 +17,7 @@
       </div>
     </div>
   </div>
-  <div class="restrict-width large" [hidden]="acuerdo?.Cuentas.length > 0">
+  <div class="restrict-width large" *ngIf="acuerdo?.Cuentas.length == 0">
     <div class="warning-box text-center">
       <img src="assets/images/ui/icono_info.svg" alt="" />{{
         "Traduct.sin_productos" | translate
@@ -27,7 +27,7 @@
   </div>
   <div
     class="restrict-width large flex-row col-container"
-    [hidden]="acuerdo?.Cuentas?.length === 0 || acuerdo === undefined"
+    *ngIf="acuerdo?.Cuentas?.length > 0 && acuerdo != undefined"
   >
     <div class="box col-4-6 desktop-only">
       <div class="table-container">

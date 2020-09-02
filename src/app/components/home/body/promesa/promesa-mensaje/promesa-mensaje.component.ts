@@ -33,16 +33,22 @@ export class PromesaMensajeComponent implements OnInit, OnChanges {
     private servicioComunicacion: ComunicacionService
   ) {}
 
-  ngOnInit(): void{
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     // (this.promesaGenerada);
     // this.respuesta = this.getService.getPromesa();
-    if (changes?.promGen?.currentValue !== undefined){
+    if (changes?.promGen?.currentValue !== undefined) {
       this.cambioTexto(this.translate.instant('Traduct.promesa_pago'));
       // console.log(this.promGen);
-      this.importeAcordadoImprimir = JSON.stringify(this.promGen.totalPagar).split('.');
+      this.importeAcordadoImprimir = parseFloat(
+        JSON.stringify(this.promGen.totalPagar)
+      )
+        .toFixed(2)
+        .split('.');
+      /*this.importeAcordadoImprimir = JSON.stringify(
+        this.promGen.totalPagar
+      ).split('.');*/
       // console.log(this.importeAcordadoImprimir)
       if (this.promGen.formaPago === 'IMPORTE') {
         const cliente = this.promGen.cliente;
@@ -75,7 +81,8 @@ export class PromesaMensajeComponent implements OnInit, OnChanges {
       cuentas.push(cuenta);
     });
     // console.log(cuentas);
-    const obj: Promesa = { // Sacamos el Any
+    const obj: Promesa = {
+      // Sacamos el Any
       IdPersona: this.promGen.cliente,
       IdTipoPromesa: this.promGen.idTipoPromesa,
       PromesaFecha: new Date(this.promGen.fechaPromesaVencimiento),
@@ -108,9 +115,9 @@ export class PromesaMensajeComponent implements OnInit, OnChanges {
   }
 
   volver(): void {
-    if (this.promGen.formaPago === 'IMPORTE'){
+    if (this.promGen.formaPago === 'IMPORTE') {
       this.volviendo.emit(1);
-    }else{
+    } else {
       this.volviendo.emit(2);
     }
   }

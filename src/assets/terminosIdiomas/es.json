@@ -105,6 +105,7 @@
   "Traduct.registrar_pago_t8":"el comprobante generado",
 
   "Traduct.fecha_error": "La fecha debe ser anterior o igual a la fecha actual.",
+  "Traduct.error_decimales": "No puede colocar mas de 2 decimales en el monto a pagar",
   "Traduct.registrar_el_pago": "¿Registra el pago?",
   "Traduct.confirme_accion": "Confirme la acción.",
   "Traduct.si": "si",
@@ -166,8 +167,8 @@
   "Traduct.fecha_vencimiento": "Fecha de vencimiento",
   "Traduct.vencimiento": "Vencimiento",
   "Traduct.seleccionar_una_cuota": "Debes seleccionar al menos una cuota",
-  "Traduct.seleccionar_una_fecha": "Debes seleccionar una fecha",
-  "Traduct.metodos_de_pago":"Metodos de Pago",
+  "Traduct.seleccionar_una_fecha": "Debes seleccionar un periodo",
+  "Traduct.metodos_de_pago": "Metodos de Pago",
 
   "Traduct.404_msg1": "404 Página No encontrada!!!",
   "Traduct.404_msg2": "Lo sentimos, se ha producido un error. ¡No se encontró la página solicitada!",
@@ -237,9 +238,16 @@
   "Traduct.total": "Total",
   "Traduct.confirmar_plan": "Confirmá el plan: ",
   "Traduct.mensaje": "La distribución del monto se hará en base a los productos seleccionados.",
+  "Traduct.mensaje_monto": "La distribución del importe se hace por productos en base los días de mora, una vez cubierto el monto automaticamente contempla el siguiente producto hasta cubrir el importe ingresado.",
   "Traduct.plan_exito": "¡El plan de pago se generó con éxito!",
   "Traduct.pagar_por_monto": "Pagar por monto",
   "Traduct.seleccionar": "Seleccionar",
   "Traduct.productos": "Productos",
-  "Traduct.sin_registros": "No se encontraron registros..."
+  "Traduct.sin_registros": "No se encontraron registros...",
+  "Traduct.subtitulo_grilla_pago": "<span></span><strong>Seleccioná los productos</strong> que queres pagar, si el monto a pagar está habilitado para editar podés mantener el adeudado o ingresar uno nuevo.",
+  "Traduct.subtitulo_grilla_promesa": "<span></span><strong>Seleccioná los productos</strong> que queres agregar en la promesa de pago, elegí cuando te comprometes a abonarlo (<strong>periodo</strong>) y luego hace clic en <strong>generar promesa</strong>.",
+  "Traduct.subtitulo_monto_promesa": "<span></span>Comprometeté a abonar el <strong>monto total de la deuda</strong> o <strong>ingresá otro monto</strong>, elegí cuando vas a efectuar el pago (<strong>periodo</strong>) y luego hace clic en <strong>generar promesa</strong>.",
+  "Traduct.subtitulo_monto_pago": "<span></span>Aboná el <strong>monto total de la deuda</strong> o <strong>ingresá otro monto</strong>, y luego hace clic en <strong>quiero pagar</strong>.",
+  "Traduct.titulo_promesa_historica": "Consultá las promesas de pago que realizaste",
+  "Traduct.subtitulo_promesa_historica": "<span></span>Podés ver el detalle si no recordás lo prometido y pagar si aún están vigente."
 }

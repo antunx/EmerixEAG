@@ -7,26 +7,27 @@
     *ngIf="!volverHome"
     class="top-decoration"
     (click)="volver()"
-    style="cursor: pointer;"
+    style="cursor: pointer"
     >{{ "Traduct.volver_anterior" | translate }}</a
   >
   <a
     *ngIf="volverHome"
     class="top-decoration"
     (click)="volveraHome()"
-    style="cursor: pointer;"
+    style="cursor: pointer"
     >{{ "Traduct.volver_home" | translate }}</a
   >
 </div>
 
 <div class="restrict-width">
   <div class="title">
-    <h1 class="page-title text-large">{{ "Traduct.pagar_por_monto" | translate }}</h1>
-    <p class="page-subtitle">
-      <span></span>Aboná el <strong>monto total de la deuda</strong> o
-      <strong>ingresá otro monto</strong>, y luego hace clic en
-      <strong>quiero pagar</strong>.
-    </p>
+    <h1 class="page-title text-large">
+      {{ "Traduct.pagar_por_monto" | translate }}
+    </h1>
+    <p
+      class="page-subtitle"
+      [innerHTML]="'Traduct.subtitulo_monto_pago' | translate"
+    ></p>
   </div>
 
   <div class="selectable-box flex-column" id="box-3915745509">

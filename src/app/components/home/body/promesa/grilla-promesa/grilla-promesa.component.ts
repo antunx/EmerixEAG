@@ -294,11 +294,38 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
       );
       this.popupNro = 1;
       document.querySelector('#overlay-error').classList.add('active');
+      const objetoError = {
+        idPersona: localStorage.getItem('version_core'),
+        fechaSeleccionada: this.fechaPromesa,
+        importe: this.montoAPagar,
+        mensaje: this.MensajeAlert,
+        cuentas: '',
+      };
+      this.cuentas.Cuentas.forEach((promesa) => {
+        if (promesa.Check) {
+          objetoError.cuentas += promesa.IdCuenta + ',';
+        }
+      });
+      localStorage.setItem(Date.now().toString(), JSON.stringify(objetoError));
     } else if (this.fechaPromesa === null || this.fechaPromesa === undefined) {
-      this.MensajeAlert =
-        'Debe cargar una fecha antes de generar la promesa de pago';
+      this.MensajeAlert = this.translate.instant(
+        'Traduct.seleccionar_una_fecha'
+      );
       this.popupNro = 1;
       document.querySelector('#overlay-error').classList.add('active');
+      const objetoError = {
+        idPersona: localStorage.getItem('version_core'),
+        fechaSeleccionada: this.fechaPromesa,
+        importe: this.montoAPagar,
+        mensaje: this.MensajeAlert,
+        cuentas: '',
+      };
+      this.cuentas.Cuentas.forEach((promesa) => {
+        if (promesa.Check) {
+          objetoError.cuentas += promesa.IdCuenta + ',';
+        }
+      });
+      localStorage.setItem(Date.now().toString(), JSON.stringify(objetoError));
     } else {
       const promesa = {
         totalPagar: this.montoAPagar,

@@ -92,6 +92,7 @@
   "Traduct.pagos": "Payments",
   "Traduct.registrar_pago": "Register Payment",
   "Traduct.fecha_error": "The date must be before or equal to the current date.",
+  "Traduct.error_decimales": "you cannot use more than 2 decimals in the paying amount",
   "Traduct.registrar_el_pago": "Do you record the payment?",
   "Traduct.registrar_pago_t1":"Then you can enter the details of the payment made",
   "Traduct.registrar_pago_t2":"Half payment for which you paid",
@@ -160,7 +161,7 @@
   "Traduct.fecha_vencimiento": "Due Date",
   "Traduct.vencimiento": "Due",
   "Traduct.seleccionar_una_cuota": "You must select at least one fee",
-  "Traduct.seleccionar_una_fecha": "You must select a date",
+  "Traduct.seleccionar_una_fecha": "You must select a period",
   "Traduct.404_msg1": "404 Not Found!!!",
   "Traduct.404_msg2": "Sorry, an error has occured, Requested page not found!",
 
@@ -229,9 +230,16 @@
   "Traduct.total": "Total",
   "Traduct.confirmar_plan": "Confirm the plan: ",
   "Traduct.mensaje": "The distribution of the amount will be made based on the selected products.",
+  "Traduct.mensaje_monto": "The distribution of the amount is made by products based on the days of arrears, once the amount is covered, it automatically contemplates the following product to cover the amount entered.",
   "Traduct.plan_exito": "The payment plan was generated successfully!",
   "Traduct.pagar_por_monto": "Pay for ammount",
   "Traduct.seleccionar": "Select",
   "Traduct.productos": "Products",
-  "Traduct.sin_registros": "No records found ..."
+  "Traduct.sin_registros": "No records found ...",
+  "Traduct.subtitulo_grilla_pago": "<span></span><strong>Select the products</strong> you want to pay, if the amount to be paid is enabled to edit, you can keep the debt or enter a new one.",
+  "Traduct.subtitulo_grilla_promesa": "<span></span><strong>Select the products</strong> you want to add in the payment promise, choose when you commit to pay it (<strong> period </strong>) and then click <strong> generate promise </strong>.",
+  "Traduct.subtitulo_monto_promesa": "<span> </span> Commit to pay the <strong> total amount of the debt </strong> or <strong> enter another amount </strong>, choose when you are going to make the payment (<strong> period </ strong >) and then click <strong> generate promise </strong>.",
+  "Traduct.subtitulo_monto_pago": "<span> </span> Pay the <strong> full amount of the debt </strong> or <strong> enter another amount </strong>, and then click <strong> I want to pay </strong>.",
+  "Traduct.titulo_promesa_historica": "Check the payment promises you made",
+  "Traduct.subtitulo_promesa_historica": "<span> </span> You can see the detail if you do not remember what was promised and pay if they are still valid."
 }

@@ -4,7 +4,7 @@
   </div>
 
   <div class="flex-column page-header">
-    <a class="top-decoration" (click)="volver()" style="cursor: pointer;">{{
+    <a class="top-decoration" (click)="volver()" style="cursor: pointer">{{
       "Traduct.volver_anterior" | translate
     }}</a>
   </div>
@@ -43,9 +43,7 @@
       </div>
     </div>
     <p class="disclaimer">
-      La distribución del importe se hace por productos en base los días de
-      mora, una vez cubierto el monto automaticamente contempla el siguiente
-      producto hasta cubrir el importe ingresado.
+      {{ "Traduct.mensaje_monto" | translate }}
     </p>
 
     <button class="btn" (click)="postPromesa()">
@@ -59,7 +57,7 @@
     <div class="progress progress-70"></div>
   </div>
   <div class="flex-column page-header">
-    <a class="top-decoration" (click)="volver()" style="cursor: pointer;">{{
+    <a class="top-decoration" (click)="volver()" style="cursor: pointer">{{
       "Traduct.volver_anterior" | translate
     }}</a>
   </div>
@@ -114,7 +112,7 @@
               <td class="col-1-2 text-right">
                 {{
                   removerComas(
-                    item.Deuda
+                    item.ImportePagar
                       | currency: item.CodigoMoneda:"symbol-narrow":"1.2-2"
                   )
                 }}
@@ -126,7 +124,7 @@
               <td class="col-1-2 text-right">
                 {{
                   removerComas(
-                    promesa.Deuda
+                    promesa.ImportePagar
                       | currency: promesa.CodigoMoneda:"symbol-narrow":"1.2-2"
                   )
                 }}
@@ -137,7 +135,7 @@
       </div>
     </div>
     <p class="disclaimer">
-      La distribución del monto se hará en base a los productos seleccionados.
+      {{ "Traduct.mensaje" | translate }}
     </p>
     <button class="btn" (click)="postPromesa()">
       {{ "Traduct.confirmar" | translate }}

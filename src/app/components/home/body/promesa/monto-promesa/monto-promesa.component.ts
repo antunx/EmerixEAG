@@ -189,11 +189,26 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
       this.fechaPromesa = aux;
     }
 
-    // console.log(this.fechaPromesa)
     if (
+      this.montoSeleccionado === 2 &&
+      this.pagoParcial.toString().split('.')[1]?.length > 2
+    ) {
+      this.MensajeAlert = this.translate.instant('Traduct.error_decimales');
+      this.popupNro = 1;
+      document.querySelector('#overlay-monto').classList.add('active');
+      const objetoError = {
+        idPersona: localStorage.getItem('version_core'),
+        fechaSeleccionada: this.fechaPromesa,
+        importe: this.pagoParcial,
+        mensaje: this.MensajeAlert,
+        cuentas: '',
+      };
+      localStorage.setItem(Date.now().toString(), JSON.stringify(objetoError));
+    } else if (
       (this.montoSeleccionado === 2 &&
         (this.pagoParcial < this.pagoMinimo ||
-          this.pagoParcial > this.resp.DeudaTotal)) ||
+          this.pagoParcial > this.resp.DeudaTotal ||
+          this.pagoParcial <= 0)) ||
       (this.montoSeleccionado === 1 && this.resp.DeudaTotal <= 0)
     ) {
       this.MensajeAlert = this.translate.instant('Traduct.error_monto_promesa');
@@ -207,12 +222,34 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
       );
       this.popupNro = 1;
       document.querySelector('#overlay-monto').classList.add('active');
+      const objetoError = {
+        idPersona: localStorage.getItem('version_core'),
+        fechaSeleccionada: this.fechaPromesa,
+        importe:
+          this.montoSeleccionado === 1
+            ? this.resp.DeudaTotal
+            : this.pagoParcial,
+        mensaje: this.MensajeAlert,
+        cuentas: '',
+      };
+      localStorage.setItem(Date.now().toString(), JSON.stringify(objetoError));
     } else if (this.fechaPromesa === null || this.fechaPromesa === undefined) {
       this.MensajeAlert = this.translate.instant(
         'Traduct.seleccionar_una_fecha'
       );
       this.popupNro = 1;
       document.querySelector('#overlay-monto').classList.add('active');
+      const objetoError = {
+        idPersona: localStorage.getItem('version_core'),
+        fechaSeleccionada: this.fechaPromesa,
+        importe:
+          this.montoSeleccionado === 1
+            ? this.resp.DeudaTotal
+            : this.pagoParcial,
+        mensaje: this.MensajeAlert,
+        cuentas: '',
+      };
+      localStorage.setItem(Date.now().toString(), JSON.stringify(objetoError));
     } /*else if (this.periodo === '') {
       this.MensajeAlert = this.translate.instant(
         'Traduct.seleccionar_una_fecha'

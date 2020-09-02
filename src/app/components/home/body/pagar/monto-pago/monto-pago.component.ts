@@ -88,7 +88,15 @@ export class MontoPagoComponent implements OnInit, OnChanges {
 
   generarPago(e): void {
     // console.log(this.montoAPagar);
-    if (this.montoAPagar <= 0 || isNaN(this.montoAPagar)) {
+    if (
+      this.montoSeleccionado === 2 &&
+      this.montoAPagar.toString().split('.')[1]?.length > 2
+    ) {
+      this.MensajeAlert = this.translate.instant('Traduct.error_decimales');
+      this.popupNro = 1;
+      document.querySelector('#overlay-monto').classList.add('active');
+      return;
+    } else if (this.montoAPagar <= 0 || isNaN(this.montoAPagar)) {
       this.popupNro = 1;
       this.MensajeAlert = this.translate.instant('Traduct.error_monto_pago');
       this.MensajeAlert = this.MensajeAlert.replace(
