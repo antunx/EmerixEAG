@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { GetService } from '@app/services/get.service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { PromesaDetalle } from '@app/models/promesdetalle.model';
 import { PropService } from '@app/services/prop.service';
+import { pagoGen } from '@app/models/pagogen.models';
+import { Promesa } from '@app/models/getPromesaPago.model';
 
 @Component({
   selector: 'app-promesa-ultima',
@@ -13,8 +15,10 @@ import { PropService } from '@app/services/prop.service';
 })
 export class PromesaUltimaComponent implements OnInit, OnDestroy {
   persona: string;
-  promesas: any;
+  promesas: Promesa[];
   private subs: Subscription;
+  @Output() pagoGen = new EventEmitter<pagoGen>();
+  @Output() stepPago = new EventEmitter<number>();
 
   constructor(
     private router: Router,
@@ -75,5 +79,30 @@ export class PromesaUltimaComponent implements OnInit, OnDestroy {
       return numero;
     }
     return numero.replace(',', '');
+  }
+
+  pagarPromesa(Id: string, Importe: string): void{
+    console.log(Id, Importe);
+
+    const cuentas = [];
+    const cta = {
+      id: Id,
+      importe: Importe,
+      tipo: 'PROMESA',
+      cuotas: [],
+    };
+
+    cuentas.push(cta);
+
+    const obj = {
+      Items: cuentas,
+      TotalPagar: JSON.parse(Importe),
+      Cliente: localStorage.getItem('version_core')
+    };
+
+    console.log(JSON.stringify(obj));
+    this.stepPago.emit(1);
+    this.pagoGen.emit(obj);
+
   }
 }

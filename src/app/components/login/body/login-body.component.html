@@ -104,7 +104,7 @@
                         <div class="form-group flex-column phone-list">
                             <div>
                               <div *ngFor="let telefono of telefonos; let i = index" class="input-wrapper radio">
-                                  <input id="{{i}}" type="radio" class="input-elem visually-hidden" name="login_phone" Value="telefono.PhoneValue" (click)="SeleccionMedio('T',telefono)">
+                                  <input id="{{i}}" type="radio" class="input-elem visually-hidden" name="login_phone" Value="telefono.PhoneValue" (click)="SeleccionMedio('T', telefono.PhoneValue, telefono.Phone)">
                                     <div class="input-fake-radio">
                                       <span class="input-caret"></span>
                                     </div>
@@ -120,7 +120,7 @@
                         <div class="form-group flex-column phone-list">
                           <div>
                             <div *ngFor="let mail of mails; let i = index" class="input-wrapper radio">
-                              <input id="{{i}}" type="radio" class="input-elem visually-hidden" name="login_phone" Value="mail.MailValue" (click)="SeleccionMedio('M',mail)">
+                              <input id="{{i}}" type="radio" class="input-elem visually-hidden" name="login_phone" Value="mail.MailValue" (click)="SeleccionMedio('M', mail.MailValue, mail.Mail)">
                                 <div class="input-fake-radio">
                                   <span class="input-caret"></span>
                                 </div>

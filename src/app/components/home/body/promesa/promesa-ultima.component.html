@@ -62,10 +62,12 @@
               </div>
             </div>
           </td>
-          <td class="text-right col-2-5">
-            <!-- <a href="#" *ngIf="promesa.Estado !== 'Quebrada'"
-              ><button class="btn">Pagar</button></a
-            > -->
+          <td class="text-right col-2-5" *ngIf="promesa.VerBotonPagar">
+            <a (click)="pagarPromesa(promesa.IdTipoPromesa, promesa.PromesaMonto)" *ngIf="promesa.Estado !== 'Quebrada'"
+            ><button class="btn">Pagar</button></a
+          >
+          </td>
+          <td class="text-right col-2-5" *ngIf="!promesa.VerBotonPagar">
             <div class="status-label" *ngIf="promesa.Estado === 'Quebrada'">
               <span class="bullet red"></span>VENCIDA
             </div>

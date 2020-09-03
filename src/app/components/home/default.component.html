@@ -3,7 +3,7 @@
      SE CARGA EL COMPONENTE PRODUCTO-DETALLE (DENTRO DE PRODUCTO-LISTADO)
      </div>
   </div> -->
-  <section class="page-home" [hidden]="estadoPago !== ''">
+  <section class="page-home" [hidden]="estadoPago !== '' || stepPago != 0 ">
      <div class="flex-column page-header">
         <p class="top-decoration">Inicio</p>
      </div>
@@ -55,7 +55,7 @@
                  </div>
               </div>
               <div>
-                  <app-promesa-ultima></app-promesa-ultima>
+                  <app-promesa-ultima (stepPago)="onStepPago($event)" (pagoGen)="onPagoGen($event)"></app-promesa-ultima>
               </div>
               <div class="">
                 <app-ultimos-acuerdos></app-ultimos-acuerdos>
@@ -70,3 +70,12 @@
   [hidden]="estadoPago === ''"
   (volver)="onVolviendo($event)"
 ></app-estado-pago>
+
+<section class="page-pay pay_5" [hidden]="stepPago != 1">
+   <app-pago-metodos
+     [pago]="pagoGen"
+     [pagoStep]="stepPago"
+     (volviendo)="onVolver($event)"
+   >
+   </app-pago-metodos>
+ </section>

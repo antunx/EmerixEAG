@@ -21,15 +21,18 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
   @HostBinding('class') class = 'pages-container flex-grow';
 
   private subscription: Subscription = new Subscription();
+  stepAcuerdo: number;
   MostrarDetalle: boolean;
   Acuerdo: Acuerdo;
   Acuerdos: Acuerdo[];
   acuerdoSeleccionado: Acuerdo;
+  preAcuerdo;
 
   ngOnInit(): void{
     this.MostrarDetalle = false;
     this.cambioTexto(this.translate.instant('Traduct.planes_pedidos'));
     this.getAcuerdos();
+    this.stepAcuerdo = 0;
   }
 
   ngOnDestroy(): void{
@@ -116,5 +119,29 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
 
   PagarAnticipo(acuerdo: Acuerdo): void{
     alert('PagarAnticipo(): en desarrollo |_(-.-)_T ');
+  }
+
+  onVolver(e:number){
+    this.stepAcuerdo = e;
+  }
+
+  pagarAcuerdo(Id:number, importe:number){
+    // console.log(Id);
+    // console.log(importe)
+    const obj = {
+      Items: [],
+      TotalPagar: importe,
+      Cliente: localStorage.getItem('version_core'),
+    };
+    const cta = {
+      id: Id,
+      importe: importe,
+      tipo: 'ANTICIPO',
+      cuotas: [],
+    };
+
+    obj.Items.push(cta);
+    this.preAcuerdo = obj;
+    this.stepAcuerdo = this.stepAcuerdo + 1;
   }
 }

@@ -5,12 +5,12 @@ import {
   Output,
   EventEmitter,
   OnChanges,
-  SimpleChange,
   SimpleChanges,
 } from '@angular/core';
 import { Promesa } from '@app/models/Promesa.model';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { PostService } from '../../../../../services/post.service';
 
 @Component({
   selector: 'app-monto-promesa',
@@ -24,18 +24,22 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
   @Output() volviendo = new EventEmitter<number>();
   @Output() siguiente = new EventEmitter<number>();
   @Output() promGen = new EventEmitter<any>();
-  montoSeleccionado: number = 1;
+  montoSeleccionado = 1;
   DeudaTotalImprimir = [];
-  pagoParcial: number = 0;
+  pagoParcial = 0;
   // promesa: any;
-  periodo: string = '';
+  periodo = '';
   fechaPromesa: Date;
   button: boolean;
   MensajeAlert: string;
   popupNro: number;
   pagoMinimo: number;
 
-  constructor(private translate: TranslateService, private router: Router) {}
+  constructor(
+    private translate: TranslateService,
+    private router: Router,
+    private postService: PostService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.resp?.currentValue !== undefined) {
@@ -72,7 +76,7 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
   }
 
   montoParcial(e): void {
-    this.pagoParcial = JSON.parse(e.target.value);
+    this.pagoParcial = e.target.value !== '' ? JSON.parse(e.target.value) : 0;
   }
 
   // cambiarPeriodo(e): void {
@@ -151,7 +155,6 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
   // }
 
   setearFecha(e): void {
-    // console.log(e.target.value);
     const aux = new Date();
     const fecha = new Date(e.target.value);
     fecha.setDate(fecha.getDate() + 1);
@@ -160,12 +163,9 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
     } else {
       aux.setDate(aux.getDate() + this.resp.DiasMaximo);
     }
-    if (
-      /*new Date(e.target.value)*/ fecha < new Date(Date.now()) ||
-      /*new Date(e.target.value)*/ fecha > aux
-    ) {
-      this.fechaPromesa = null;
-      this.button = true;
+    if (fecha < new Date(Date.now()) || fecha > aux) {
+      this.fechaPromesa = fecha;
+      this.button = false;
       this.MensajeAlert = this.translate.instant('Traduct.error_fecha_promesa');
       this.MensajeAlert = this.MensajeAlert.replace(
         'ParamDate',
@@ -173,37 +173,74 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
       );
       this.popupNro = 1;
       document.querySelector('#overlay-monto').classList.add('active');
+      const intencion = {
+        TipoObjeto: 'PROMESA',
+        IdPersona: localStorage.getItem('version_core'),
+        FechaObjeto: this.fechaPromesa,
+        Importe: this.pagoParcial,
+        MensajeValidacion: this.MensajeAlert,
+        Cuentas: '',
+      };
+      this.postService.PostIntencion(intencion).subscribe((data) => {
+        console.log(data);
+      });
     } else {
-      // this.formatfecha(e);
-      /*const auxFecha = new Date(e.target.value);
-      auxFecha.setDate(auxFecha.getDate() + 1);*/
       this.fechaPromesa = fecha;
       this.button = false;
     }
   }
 
   generarPromesa(): void {
-    if (this.periodo !== '' && this.fechaPromesa !== null) {
-      const aux = new Date();
+    const aux = new Date();
+    if (this.periodo !== '') {
       aux.setDate(aux.getDate() + parseInt(this.periodo, 10));
       this.fechaPromesa = aux;
+    } else {
+      if (this.resp.DiasMaximo === 0) {
+        aux.setDate(aux.getDate() + this.resp.DiasMaximoParam);
+      } else {
+        aux.setDate(aux.getDate() + this.resp.DiasMaximo);
+      }
     }
 
-    if (
+    if (this.fechaPromesa < new Date(Date.now()) || this.fechaPromesa > aux) {
+      this.button = false;
+      this.MensajeAlert = this.translate.instant('Traduct.error_fecha_promesa');
+      this.MensajeAlert = this.MensajeAlert.replace(
+        'ParamDate',
+        JSON.stringify(this.resp?.DiasMaximo || this.resp?.DiasMaximoParam)
+      );
+      this.popupNro = 1;
+      document.querySelector('#overlay-monto').classList.add('active');
+      const intencion = {
+        TipoObjeto: 'PROMESA',
+        IdPersona: localStorage.getItem('version_core'),
+        FechaObjeto: this.fechaPromesa,
+        Importe: this.pagoParcial,
+        MensajeValidacion: this.MensajeAlert,
+        Cuentas: '',
+      };
+      this.postService.PostIntencion(intencion).subscribe((data) => {
+        console.log(data);
+      });
+    } else if (
       this.montoSeleccionado === 2 &&
       this.pagoParcial.toString().split('.')[1]?.length > 2
     ) {
       this.MensajeAlert = this.translate.instant('Traduct.error_decimales');
       this.popupNro = 1;
       document.querySelector('#overlay-monto').classList.add('active');
-      const objetoError = {
-        idPersona: localStorage.getItem('version_core'),
-        fechaSeleccionada: this.fechaPromesa,
-        importe: this.pagoParcial,
-        mensaje: this.MensajeAlert,
-        cuentas: '',
+      const intencion = {
+        TipoObjeto: 'PROMESA',
+        IdPersona: localStorage.getItem('version_core'),
+        FechaObjeto: this.fechaPromesa || new Date(),
+        Importe: this.pagoParcial,
+        MensajeValidacion: this.MensajeAlert,
+        Cuentas: '',
       };
-      localStorage.setItem(Date.now().toString(), JSON.stringify(objetoError));
+      this.postService.PostIntencion(intencion).subscribe((data) => {
+        console.log(data);
+      });
     } else if (
       (this.montoSeleccionado === 2 &&
         (this.pagoParcial < this.pagoMinimo ||
@@ -222,41 +259,31 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
       );
       this.popupNro = 1;
       document.querySelector('#overlay-monto').classList.add('active');
-      const objetoError = {
-        idPersona: localStorage.getItem('version_core'),
-        fechaSeleccionada: this.fechaPromesa,
-        importe:
+      const intencion = {
+        TipoObjeto: 'PROMESA',
+        IdPersona: localStorage.getItem('version_core'),
+        FechaObjeto: this.fechaPromesa || new Date(),
+        Importe:
           this.montoSeleccionado === 1
             ? this.resp.DeudaTotal
             : this.pagoParcial,
-        mensaje: this.MensajeAlert,
-        cuentas: '',
+        MensajeValidacion: this.MensajeAlert,
+        Cuentas: '',
       };
-      localStorage.setItem(Date.now().toString(), JSON.stringify(objetoError));
-    } else if (this.fechaPromesa === null || this.fechaPromesa === undefined) {
+      this.postService.PostIntencion(intencion).subscribe((data) => {
+        console.log(data);
+      });
+    } else if (
+      this.fechaPromesa === null ||
+      this.fechaPromesa === undefined ||
+      isNaN(this.fechaPromesa.getDate())
+    ) {
       this.MensajeAlert = this.translate.instant(
         'Traduct.seleccionar_una_fecha'
       );
       this.popupNro = 1;
       document.querySelector('#overlay-monto').classList.add('active');
-      const objetoError = {
-        idPersona: localStorage.getItem('version_core'),
-        fechaSeleccionada: this.fechaPromesa,
-        importe:
-          this.montoSeleccionado === 1
-            ? this.resp.DeudaTotal
-            : this.pagoParcial,
-        mensaje: this.MensajeAlert,
-        cuentas: '',
-      };
-      localStorage.setItem(Date.now().toString(), JSON.stringify(objetoError));
-    } /*else if (this.periodo === '') {
-      this.MensajeAlert = this.translate.instant(
-        'Traduct.seleccionar_una_fecha'
-      );
-      this.popupNro = 1;
-      document.querySelector('#overlay-monto').classList.add('active');
-    }*/ else {
+    } else {
       const promesa = {
         totalPagar: 0,
         DeudaTotal: this.resp.DeudaTotal,

@@ -1,5 +1,5 @@
  <!-- <div class="pages-container flex-grow"> --> <!-- LO HACE EN EL TS -->
-  <section class="page-logs">
+  <section class="page-logs" [hidden]="stepAcuerdo != 0">
 
     <div class="overlay" id="home-sidebar">
       <div *ngIf="MostrarDetalle===true" class="dialog-container sidebar" role="dialog">
@@ -44,6 +44,9 @@
                    <td class="col-2-4">
                      {{ 'Traduct.cuotas' | translate }}
                    </td>
+                   <td class="col-2-4">
+                    
+                  </td>
 <!--                   <td class="col-1-4 text-right">
                     {{ 'Traduct.pagar_anticipo' | translate }}
                   </td> -->
@@ -55,7 +58,7 @@
                       </div>
                    </td>
                    <td class="col-2-4 desktop-only" (click) = "filaClick('D',Acuerdo)">
-                     {{ Acuerdo.FechaGenerada | date: 'dd/MM/yyyy'}}
+                     {{ Acuerdo.FechaVencAnticipo | date: 'dd/MM/yyyy'}}
                    </td>
                    <td class="col-2-4" (click) = "filaClick('D',Acuerdo)">
                      <div *ngIf="Acuerdo.EstadoCodigo ==='PENDIANT'" class="status-label"><span class="bullet yellow"></span>{{ 'Traduct.pendiente' | translate }}</div>
@@ -73,6 +76,9 @@
                      <div class="wide-link">
                         <a *ngIf="EstadoNoVencidoRechazado(Acuerdo.EstadoCodigo)" [routerLink]="" (click)="filaClick('C',Acuerdo)">{{ 'Traduct.ver_cuotas' | translate }}</a>
                      </div>
+                   </td>
+                   <td class="col-2-4">
+                      <a class="btn" (click)="pagarAcuerdo(Acuerdo.IdPromesa, Acuerdo.ImportePromesa)" [hidden]="!Acuerdo.VerBotonAnticipo">PAGAR</a>
                    </td>
 <!--                    <td class="col-1-4 text-right">
                       <div class="wide-link">
@@ -94,3 +100,13 @@
      [historico]="true"
    ></app-ver-cuotas>
  </div>
+
+
+ <section class="page-pay pay_5" [hidden]="stepAcuerdo != 1">
+  <app-pago-metodos
+    [pago]="preAcuerdo"
+    [pagoStep]="stepAcuerdo"
+    (volviendo)="onVolver($event)"
+  >
+  </app-pago-metodos>
+</section>

@@ -348,28 +348,11 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
       }));
   }
 
-  SeleccionMedio(tipo: string, medioEnvio: any): void {
+  SeleccionMedio(tipo: string, Id: string, Canal: string): void {
     this.SeleccionoCanal = true;
     this.tipoEnvio = tipo;
-
-    if (tipo === 'T'){
-      this.IdCanalSeleccionado = medioEnvio.PhoneValue;
-      this.CanalSeleccionado = medioEnvio.Phone;
-
-      // uso para combo de telefonos
-      // this.CanalSeleccionado = this.loginForm.controls.telefonos.value.Phone;
-      // this.IdCanalSeleccionado = this.loginForm.controls.telefonos.value.PhoneValue;
-    }
-    if (tipo === 'M'){
-      this.IdCanalSeleccionado = medioEnvio.MailValue;
-      this.CanalSeleccionado = medioEnvio.Mail;
-
-      // uso para combo de mails
-      // this.CanalSeleccionado = this.loginForm.controls.mails.value.Mail;
-      // this.IdCanalSeleccionado = this.loginForm.controls.mails.value.MailValue;
-    }
-    // console.log(this.CanalSeleccionado);
-    // console.log(this.IdCanalSeleccionado);
+    this.IdCanalSeleccionado = Id;
+    this.CanalSeleccionado = Canal;
   }
 
   AceptoTerminos(): void{

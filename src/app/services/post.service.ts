@@ -115,4 +115,17 @@ export class PostService {
     );
   }
 
+  PostIntencion(intencion: {
+    TipoObjeto: string;
+    IdPersona: string;
+    FechaObjeto: string | Date;
+    Importe: number;
+    MensajeValidacion: string;
+    Cuentas: string;
+  }): any {
+    return this.http.post(
+      `${this.API_URL}emerixautog/ingresarintencion`,
+      intencion
+    );
+  }
 }

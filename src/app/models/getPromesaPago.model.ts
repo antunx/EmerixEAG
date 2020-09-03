@@ -4,7 +4,7 @@ export interface getPromesaPago {
   Promesas: Promesa[];
 }
 
-interface Promesa {
+export interface Promesa {
   IdTipoPromesa: number;
   PromesaFecha: string;
   PromesaMonto: number;
@@ -13,4 +13,5 @@ interface Promesa {
   CantidadCuentas: number;
   dia?: number;
   mes?: string;
+  VerBotonPagar: boolean;
 }

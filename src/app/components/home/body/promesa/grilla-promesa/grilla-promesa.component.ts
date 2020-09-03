@@ -10,6 +10,7 @@ import {
 import { Promesa } from '@app/models/Promesa.model';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { PostService } from '../../../../../services/post.service';
 
 @Component({
   selector: 'app-grilla-promesa',
@@ -35,7 +36,11 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
   checked: boolean;
   pagoMinimo: number;
 
-  constructor(private translate: TranslateService, private router: Router) {}
+  constructor(
+    private translate: TranslateService,
+    private router: Router,
+    private postService: PostService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.resp?.currentValue !== undefined) {
@@ -214,35 +219,82 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
     document.getElementById('fecha').focus();
   }*/
 
+  // setearFecha(e): void {
+  //   // console.log(e.target.value);
+  //   const aux = new Date();
+  //   const fecha = new Date(e.target.value);
+  //   fecha.setDate(fecha.getDate() + 1);
+  //   if (this.cuentas.DiasMaximo === 0) {
+  //     aux.setDate(aux.getDate() + this.cuentas.DiasMaximoParam);
+  //   } else {
+  //     aux.setDate(aux.getDate() + this.cuentas.DiasMaximo);
+  //   }
+  //   if (
+  //     /*new Date(e.target.value)*/ fecha < new Date(Date.now()) ||
+  //     /*new Date(e.target.value)*/ fecha > aux
+  //   ) {
+  //     this.fechaPromesa = null;
+  //     this.button = true;
+  //     this.MensajeAlert = this.translate.instant('Traduct.error_fecha_promesa');
+  //     this.MensajeAlert = this.MensajeAlert.replace(
+  //       'ParamDate',
+  //       JSON.stringify(
+  //         this.cuentas?.DiasMaximo || this.cuentas?.DiasMaximoParam
+  //       )
+  //     );
+  //     this.popupNro = 1;
+  //     document.querySelector('#overlay-error').classList.add('active');
+  //     const intencion = {
+  //       TipoObjeto: 'PROMESA',
+  //       IdPersona: localStorage.getItem('version_core'),
+  //       FechaObjeto: '',
+  //       Importe: this.montoAPagar,
+  //       MensajeValidacion: this.MensajeAlert,
+  //       Cuentas: '',
+  //     };
+  //     this.postService.PostIntencion(intencion).subscribe((data) => {
+  //       console.log(data);
+  //     });
+  //   } else {
+  //     // this.formatfecha(e);
+  //     /*const auxFecha = new Date(e.target.value);
+  //     auxFecha.setDate(auxFecha.getDate() + 1);*/
+  //     this.fechaPromesa = fecha;
+  //     this.button = false;
+  //   }
+  // }
+
   setearFecha(e): void {
-    // console.log(e.target.value);
     const aux = new Date();
     const fecha = new Date(e.target.value);
     fecha.setDate(fecha.getDate() + 1);
-    if (this.cuentas.DiasMaximo === 0) {
-      aux.setDate(aux.getDate() + this.cuentas.DiasMaximoParam);
+    if (this.resp.DiasMaximo === 0) {
+      aux.setDate(aux.getDate() + this.resp.DiasMaximoParam);
     } else {
-      aux.setDate(aux.getDate() + this.cuentas.DiasMaximo);
+      aux.setDate(aux.getDate() + this.resp.DiasMaximo);
     }
-    if (
-      /*new Date(e.target.value)*/ fecha < new Date(Date.now()) ||
-      /*new Date(e.target.value)*/ fecha > aux
-    ) {
-      this.fechaPromesa = null;
-      this.button = true;
+    if (fecha < new Date(Date.now()) || fecha > aux) {
+      this.fechaPromesa = fecha;
+      this.button = false;
       this.MensajeAlert = this.translate.instant('Traduct.error_fecha_promesa');
       this.MensajeAlert = this.MensajeAlert.replace(
         'ParamDate',
-        JSON.stringify(
-          this.cuentas?.DiasMaximo || this.cuentas?.DiasMaximoParam
-        )
+        JSON.stringify(this.resp?.DiasMaximo || this.resp?.DiasMaximoParam)
       );
       this.popupNro = 1;
       document.querySelector('#overlay-error').classList.add('active');
+      const intencion = {
+        TipoObjeto: 'PROMESA',
+        IdPersona: localStorage.getItem('version_core'),
+        FechaObjeto: this.fechaPromesa,
+        Importe: this.montoAPagar,
+        MensajeValidacion: this.MensajeAlert,
+        Cuentas: '',
+      };
+      this.postService.PostIntencion(intencion).subscribe((data) => {
+        console.log(data);
+      });
     } else {
-      // this.formatfecha(e);
-      /*const auxFecha = new Date(e.target.value);
-      auxFecha.setDate(auxFecha.getDate() + 1);*/
       this.fechaPromesa = fecha;
       this.button = false;
     }
@@ -272,17 +324,40 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
 
   generarPromesa(e): void {
     e.preventDefault();
-    // console.log(this.fechaPromesa);
-    /*console.log(this.periodo)
-    console.log(this.fechaPromesa)*/
-    if (this.periodo !== '' /*&& this.fechaPromesa !== null*/) {
-      const aux = new Date();
+    const aux = new Date();
+    if (this.periodo !== '') {
       aux.setDate(aux.getDate() + parseInt(this.periodo, 10));
       this.fechaPromesa = aux;
-      // console.log(this.fechaPromesa)
+    } else {
+      if (this.resp.DiasMaximo === 0) {
+        aux.setDate(aux.getDate() + this.resp.DiasMaximoParam);
+      } else {
+        aux.setDate(aux.getDate() + this.resp.DiasMaximo);
+      }
     }
+
     // ESTOS IF CREO QUE YA NO SIRVEN PORQUE EL BOTON SE BLOQUEA SI NO ESTAN LAS CONDICIONES DADAS PARA CREAR LA PROMESA
-    if (this.montoAPagar < this.pagoMinimo || this.montoAPagar <= 0) {
+    if (this.fechaPromesa < new Date(Date.now()) || this.fechaPromesa > aux) {
+      this.button = false;
+      this.MensajeAlert = this.translate.instant('Traduct.error_fecha_promesa');
+      this.MensajeAlert = this.MensajeAlert.replace(
+        'ParamDate',
+        JSON.stringify(this.resp?.DiasMaximo || this.resp?.DiasMaximoParam)
+      );
+      this.popupNro = 1;
+      document.querySelector('#overlay-error').classList.add('active');
+      const intencion = {
+        TipoObjeto: 'PROMESA',
+        IdPersona: localStorage.getItem('version_core'),
+        FechaObjeto: this.fechaPromesa,
+        Importe: this.montoAPagar,
+        MensajeValidacion: this.MensajeAlert,
+        Cuentas: '',
+      };
+      this.postService.PostIntencion(intencion).subscribe((data) => {
+        console.log(data);
+      });
+    } else if (this.montoAPagar < this.pagoMinimo || this.montoAPagar <= 0) {
       this.MensajeAlert = this.translate.instant('Traduct.error_monto_promesa');
       this.MensajeAlert = this.MensajeAlert.replace(
         '<PAGO_MINIMO>',
@@ -294,38 +369,32 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
       );
       this.popupNro = 1;
       document.querySelector('#overlay-error').classList.add('active');
-      const objetoError = {
-        idPersona: localStorage.getItem('version_core'),
-        fechaSeleccionada: this.fechaPromesa,
-        importe: this.montoAPagar,
-        mensaje: this.MensajeAlert,
-        cuentas: '',
+      const intencion = {
+        TipoObjeto: 'PROMESA',
+        IdPersona: localStorage.getItem('version_core'),
+        FechaObjeto: this.fechaPromesa || new Date(),
+        Importe: this.montoAPagar,
+        MensajeValidacion: this.MensajeAlert,
+        Cuentas: '',
       };
       this.cuentas.Cuentas.forEach((promesa) => {
         if (promesa.Check) {
-          objetoError.cuentas += promesa.IdCuenta + ',';
+          intencion.Cuentas += promesa.IdCuenta + ',';
         }
       });
-      localStorage.setItem(Date.now().toString(), JSON.stringify(objetoError));
-    } else if (this.fechaPromesa === null || this.fechaPromesa === undefined) {
+      this.postService.PostIntencion(intencion).subscribe((data) => {
+        console.log(data);
+      });
+    } else if (
+      this.fechaPromesa === null ||
+      this.fechaPromesa === undefined ||
+      isNaN(this.fechaPromesa.getDate())
+    ) {
       this.MensajeAlert = this.translate.instant(
         'Traduct.seleccionar_una_fecha'
       );
       this.popupNro = 1;
       document.querySelector('#overlay-error').classList.add('active');
-      const objetoError = {
-        idPersona: localStorage.getItem('version_core'),
-        fechaSeleccionada: this.fechaPromesa,
-        importe: this.montoAPagar,
-        mensaje: this.MensajeAlert,
-        cuentas: '',
-      };
-      this.cuentas.Cuentas.forEach((promesa) => {
-        if (promesa.Check) {
-          objetoError.cuentas += promesa.IdCuenta + ',';
-        }
-      });
-      localStorage.setItem(Date.now().toString(), JSON.stringify(objetoError));
     } else {
       const promesa = {
         totalPagar: this.montoAPagar,
@@ -381,7 +450,7 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
       this.promesaStep = this.promesaStep + 1;
       this.siguiente.emit(this.promesaStep);
       this.promGen.emit(promesa);
-      //console.log(this.promesa);
+      // console.log(this.promesa);
     }
   }
 

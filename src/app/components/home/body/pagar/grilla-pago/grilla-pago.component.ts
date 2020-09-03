@@ -14,6 +14,7 @@ import {
   Promesa,
   Producto,
 } from '@app/models/productosypromesas.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-grilla-pago',
@@ -38,8 +39,9 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
   checkedProm: boolean;
   pago: object;
   popupNro: number;
+  MensajeAlert: string;
 
-  constructor() {}
+  constructor(private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.cuotasId = [];
@@ -152,6 +154,7 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
     } else {
       // this.montoAPagar = 0;
       this.productos.forEach((producto) => {
+        console.log(this.montoAPagar);
         this.montoAPagar -= parseFloat(
           (document.getElementById(
             `monto-cancelar-d-${producto.IdCuenta}`
@@ -266,6 +269,22 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
     ) {
       // console.log('entre');
       // this.montoAPagar -= max - monto + valorAnterior - max;
+      if (e.target.value.toString().split('.')[1]?.length > 2) {
+        this.MensajeAlert = this.translate.instant('Traduct.error_decimales');
+        this.popupNro = 1;
+        document.querySelector('#overlay-error').classList.add('active');
+        (document.getElementById(
+          `monto-cancelar-d-${id}`
+        ) as HTMLInputElement).value = (document.getElementById(
+          `monto-cancelar-d-${id}`
+        ) as HTMLInputElement).dataset.valor;
+        (document.getElementById(
+          `monto-cancelar-m-${id}`
+        ) as HTMLInputElement).value = (document.getElementById(
+          `monto-cancelar-m-${id}`
+        ) as HTMLInputElement).dataset.valor;
+        return;
+      }
       this.montoAPagar -= valorAnterior - monto;
       (document.getElementById(
         `monto-cancelar-d-${id}`
@@ -474,7 +493,7 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
         `monto-cancelar-m-${id}`
       ) as HTMLInputElement).value = monto.toString();
       this.montoAPagar -= valorAnterior - monto;
-      //e.target.dataset.valor = monto;
+      // e.target.dataset.valor = monto;
     }
     // if (
     //   (e.target.value > max || e.target.value <= min) &&
@@ -500,7 +519,8 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
   generarPago(e): void {
     const vista = window.innerWidth < 1025 ? 'm' : 'd';
     console.log(vista);
-    if (this.montoAPagar <= 0) {
+    if (parseFloat(this.montoAPagar.toFixed(2)) <= 0) {
+      this.MensajeAlert = this.translate.instant('Traduct.monto_mayor_cero');
       this.popupNro = 1;
       (document.getElementById(
         `overlay-error`

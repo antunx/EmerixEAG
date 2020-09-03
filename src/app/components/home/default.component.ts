@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PostService } from '@app/services/post.service';
 import { IPago } from '../../models/postPago.model';
 import { RtagetProductPersonModel, Product } from '@app/models/rtagetproductperson.model';
+import { pagoGen } from '@app/models/pagogen.models';
 
 @Component({
   selector: 'app-default',
@@ -20,6 +21,9 @@ export class DefaultComponent implements OnInit {
   IdPersona = '';
   product: Product;
   productos: Product[] = [];
+  stepPago: number;
+  pagoGen: pagoGen;
+
   constructor(
     private translate: TranslateService,
     private servicioComunicacion: ComunicacionService,
@@ -31,6 +35,7 @@ export class DefaultComponent implements OnInit {
   ngOnInit(): void {
     this.cambioTexto(this.translate.instant('Traduct.inicio'));
     this.estadoPago = '';
+    this.stepPago = 0;
     this.activatedRoute.queryParams.subscribe((params) => {
       // console.log(params.collection_status);
       switch (params.collection_status) {
@@ -96,5 +101,17 @@ export class DefaultComponent implements OnInit {
 
   GenerarPromesa(): void{
     this.router.navigateByUrl('/home/promesa');
+  }
+
+  onStepPago(e: number): void{
+    this.stepPago = e;
+  }
+
+  onPagoGen(obj: pagoGen): void{
+    this.pagoGen = obj;
+  }
+
+  onVolver(e: number): void{
+    this.stepPago = e;
   }
 }
