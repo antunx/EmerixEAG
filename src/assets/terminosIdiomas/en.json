@@ -91,6 +91,7 @@
   "Traduct.pagos": "Payments",
   "Traduct.registrar_pago": "Register Payment",
   "Traduct.fecha_error": "The date must be before or equal to the current date.",
+  "Traduct.fecha_erronea": "The date entered is incorrect.",
   "Traduct.error_decimales": "you cannot use more than 2 decimals in the paying amount",
   "Traduct.registrar_el_pago": "Do you record the payment?",
   "Traduct.registrar_pago_t1":"Then you can enter the details of the payment made",

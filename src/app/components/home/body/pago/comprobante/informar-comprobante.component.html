@@ -50,7 +50,8 @@
                 </div>
                 <div class="col-1-3">
                   <div class="form-group">
-                    <div [ngClass] = "!(FechaPago.invalid && (FechaPago.dirty || FechaPago.touched)) ? 'input-wrapper date' : 'input-wrapper date error'">
+                    <!-- <div [ngClass] = "!(FechaPago.invalid && (FechaPago.dirty || FechaPago.touched)) ? 'input-wrapper date' : 'input-wrapper date error'"> -->
+                    <div Class="input-wrapper date">
                       <app-input-date formControlName="FechaPago"></app-input-date>
                       <div class="input-error-icon" role="alert"></div>
                       <div class="input-error-popup" role="alert">{{ 'Traduct.seleccione_fecha' | translate }}</div>

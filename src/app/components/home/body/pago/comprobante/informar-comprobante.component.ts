@@ -56,7 +56,7 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   pagoForm = this.formBuilder.group({
     IdMoneda: ['0', Validators.required],
     Importe: ['', [Validators.required, Validators.min(0.01), Validators.max(999999999)]],
-    FechaPago: [this.datePipe.transform(this.FechaActual, 'yyyy-MM-dd'), Validators.required],
+    FechaPago: [this.datePipe.transform(this.FechaActual, 'yyyy-MM-dd')], // , Validators.required
     NumeroComprobante: ['', Validators.required],
     Comentario: ['']
   });
@@ -132,6 +132,12 @@ export class InformarComprobanteComponent implements OnInit, OnDestroy {
   Validate(): string{
     const hoy = new Date();
     const FechaPago = new Date(this.pagoForm.controls.FechaPago.value);
+    let FechaValida = false;
+    FechaValida = FechaPago instanceof Date && !isNaN(FechaPago.valueOf());
+    if (!FechaValida){
+      return this.translate.instant('Traduct.fecha_erronea');
+    }
+
     if (FechaPago > hoy) {
       return this.translate.instant('Traduct.fecha_error');
     }

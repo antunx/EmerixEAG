@@ -101,6 +101,7 @@
   "Traduct.registrar_pago_t5":"Ingresando a la opción <strong>Tus Comprobantes</strong> podés consultar <strong>el comprobante generado.</strong>",
 
   "Traduct.fecha_error": "La fecha debe ser anterior o igual a la fecha actual.",
+  "Traduct.fecha_erronea": "La fecha ingresada es incorrecta.",
   "Traduct.error_decimales": "No puede colocar mas de 2 decimales en el monto a pagar",
   "Traduct.registrar_el_pago": "¿Registra el pago?",
   "Traduct.confirme_accion": "Confirme la acción.",

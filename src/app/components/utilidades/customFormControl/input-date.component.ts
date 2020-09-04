@@ -37,7 +37,7 @@ export class InputDateComponent implements OnInit, ControlValueAccessor   {
   isDisabled: boolean;
   onChange = (_: any) => { };
   onTouch = () => { };
-
+  escribiendo: boolean;
   constructor() { }
 
   ngOnInit(): void {
@@ -45,13 +45,21 @@ export class InputDateComponent implements OnInit, ControlValueAccessor   {
   }
 
   onInput(value: string): void {
+    // console.log(this.formato(this.value));
     this.value = value;
-    (document.getElementById('txt_fecha') as HTMLInputElement).value = this.formato(value);
-    document.getElementById('txt_fecha').hidden = false;
-    document.getElementById('dt_fecha').hidden = true;
 
+    (document.getElementById('txt_fecha') as HTMLInputElement).value = this.formato(value);
+    if(!this.escribiendo){
+      document.getElementById('txt_fecha').hidden = false;
+      document.getElementById('dt_fecha').hidden = true;
+    }
     this.onTouch();
     this.onChange(this.value);
+  }
+
+  onWrite(event: string, control: string): void {
+    // console.log('control: ' + control + ' texto: ' + event);
+    this.escribiendo = true;
   }
 
   writeValue(value: string): void {
@@ -79,12 +87,16 @@ export class InputDateComponent implements OnInit, ControlValueAccessor   {
   }
 
   cambiarInputFecha(): void {
+    // console.log("soy date");
+    this.escribiendo == false;
     document.getElementById('dt_fecha').hidden = false;
     document.getElementById('txt_fecha').hidden = true;
     document.getElementById('dt_fecha').focus();
   }
 
   cambiarFechaInput(): void {
+    // console.log("soy txt");
+    this.escribiendo == false;
     document.getElementById('dt_fecha').hidden = true;
     document.getElementById('txt_fecha').hidden = false;
   }
