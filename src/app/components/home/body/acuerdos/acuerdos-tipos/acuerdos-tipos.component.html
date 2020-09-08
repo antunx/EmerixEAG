@@ -96,7 +96,7 @@
                   | slice: "0":"1"
               }}</span
               >{{ split(true, item?.MontoAnticipo)
-              }}<sup class="cents">{{ split(false, item?.MontoAnticipo) }}</sup>
+              }}<sup class="cents">{{ split(false, item?.MontoAnticipo) | number: "1.2-2" }}</sup>
             </div>
           </div>
         </div>
