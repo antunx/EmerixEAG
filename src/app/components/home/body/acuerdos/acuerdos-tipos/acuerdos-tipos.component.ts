@@ -34,7 +34,7 @@ export class AcuerdosTiposComponent implements OnInit, OnChanges {
       // console.log(JSON.stringify(this.cuentas));
       this.postService
         .postObtenerAcuerdos(this.cuentas)
-        .subscribe((data) => {
+        .subscribe((data: any) => {
           // console.log(JSON.stringify(data))
           this.acuerdos = data.Acuerdos;
           data.Acuerdos.forEach((acuerdo) => {

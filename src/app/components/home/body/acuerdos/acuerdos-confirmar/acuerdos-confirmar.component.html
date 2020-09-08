@@ -181,15 +181,17 @@
     class="btn text-center"
     (click)="confirmarPlan('C')"
     [hidden]="acuerdoSeleccionado?.DiaVencAnticipo == 0"
+    [disabled]="!AceptaTerminos"
   >
     {{ "Traduct.confirmar" | translate }}
   </button>
-  <button
-    class="btn text-center"
-    (click)="confirmarPlan('A')"
+  <button 
+    class="btn text-center" 
+    (click)="confirmarPlan('A')" 
+    [disabled]="!AceptaTerminos" 
     [hidden]="acuerdoSeleccionado?.DiaVencAnticipo > 0"
   >
-    {{ "Traduct.pagar_anticipo" | translate }}
+    {{"Traduct.pagar_anticipo" | translate}}
   </button>
 </div>
 <div (click)="cerrarPopup()" class="overlay" id="overlay-termino">
@@ -198,24 +200,7 @@
       <img src="assets/images/ui/close-btn.svg" alt="Close" />
     </a>
     <div>
-      <app-termino *ngIf="popUpNro === 1"></app-termino>
-      <div class="dialog-content login-dialog" *ngIf="popUpNro === 2">
-        <div>
-          <div class="flex-column flex-center">
-            <div>
-              <img
-                width="70px"
-                height="70px"
-                src="assets/images/ui/exclamation-triangle-solid.svg"
-                alt=""
-              />
-            </div>
-            <div class="text-center">
-              <p>{{ MensajeAlert }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-termino tipo="TERACU"></app-termino>
     </div>
   </div>
 </div>

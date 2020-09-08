@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ItemDefault } from '@app/models/rtagetobjetocombo.model';
 
 @Component({
   selector: 'app-combo-box',
@@ -30,7 +31,7 @@ export class ComboBoxComponent implements OnInit, ControlValueAccessor {
   // ---------------------------------------------------------------------------------------
   @Input() Texto: string;
   @Input() ItemDefault: string;
-  @Input() Lista = [];
+  @Input() Lista: ItemDefault[];
   @Input() Disabled = false;
 
   value: string;

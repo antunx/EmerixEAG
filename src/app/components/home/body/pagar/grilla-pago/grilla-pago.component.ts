@@ -131,25 +131,27 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
   checkAllProductos(e): void {
     if (e.target.checked) {
       this.productos.forEach((producto) => {
-        producto.Check = true;
-        /*document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
-        ).innerHTML = producto.Deuda.toString();*/
-        (document.getElementById(
-          `monto-cancelar-d-${producto.IdCuenta}`
-        ) as HTMLInputElement).value = (document.getElementById(
-          `monto-cancelar-d-${producto.IdCuenta}`
-        ) as HTMLInputElement).dataset.valor;
-        (document.getElementById(
-          `monto-cancelar-m-${producto.IdCuenta}`
-        ) as HTMLInputElement).value = (document.getElementById(
-          `monto-cancelar-m-${producto.IdCuenta}`
-        ) as HTMLInputElement).dataset.valor;
-        this.montoAPagar += parseFloat(
+        if (!producto.Check) {
+          producto.Check = true;
+          /*document.getElementById(
+            `monto-cancelar-${producto.IdCuenta}`
+          ).innerHTML = producto.Deuda.toString();*/
           (document.getElementById(
             `monto-cancelar-d-${producto.IdCuenta}`
-          ) as HTMLInputElement).value
-        );
+          ) as HTMLInputElement).value = (document.getElementById(
+            `monto-cancelar-d-${producto.IdCuenta}`
+          ) as HTMLInputElement).dataset.valor;
+          (document.getElementById(
+            `monto-cancelar-m-${producto.IdCuenta}`
+          ) as HTMLInputElement).value = (document.getElementById(
+            `monto-cancelar-m-${producto.IdCuenta}`
+          ) as HTMLInputElement).dataset.valor;
+          this.montoAPagar += parseFloat(
+            (document.getElementById(
+              `monto-cancelar-d-${producto.IdCuenta}`
+            ) as HTMLInputElement).value
+          );
+        }
       });
     } else {
       // this.montoAPagar = 0;
@@ -173,6 +175,7 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
         ) as HTMLInputElement).value = '0';
       });
     }
+    this.allCheckedProd();
   }
 
   cambiarCheckProductos(id: number, e, vista: string): void {
@@ -356,25 +359,27 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
   checkAllPromesas(e): void {
     if (e.target.checked) {
       this.promesas.forEach((promesa) => {
-        promesa.Check = true;
-        /*document.getElementById(
-        `monto-cancelar-${promesa.IdPromesa}`
-      ).innerHTML = promesa.ImporteComprometido.toString();*/
-        (document.getElementById(
-          `monto-cancelar-d-${promesa.IdPromesa}`
-        ) as HTMLInputElement).value = (document.getElementById(
-          `monto-cancelar-d-${promesa.IdPromesa}`
-        ) as HTMLInputElement).dataset.valor;
-        (document.getElementById(
-          `monto-cancelar-m-${promesa.IdPromesa}`
-        ) as HTMLInputElement).value = (document.getElementById(
-          `monto-cancelar-m-${promesa.IdPromesa}`
-        ) as HTMLInputElement).dataset.valor;
-        this.montoAPagar += parseFloat(
+        if (!promesa.Check) {
+          promesa.Check = true;
+          /*document.getElementById(
+          `monto-cancelar-${promesa.IdPromesa}`
+        ).innerHTML = promesa.ImporteComprometido.toString();*/
           (document.getElementById(
             `monto-cancelar-d-${promesa.IdPromesa}`
-          ) as HTMLInputElement).value
-        );
+          ) as HTMLInputElement).value = (document.getElementById(
+            `monto-cancelar-d-${promesa.IdPromesa}`
+          ) as HTMLInputElement).dataset.valor;
+          (document.getElementById(
+            `monto-cancelar-m-${promesa.IdPromesa}`
+          ) as HTMLInputElement).value = (document.getElementById(
+            `monto-cancelar-m-${promesa.IdPromesa}`
+          ) as HTMLInputElement).dataset.valor;
+          this.montoAPagar += parseFloat(
+            (document.getElementById(
+              `monto-cancelar-d-${promesa.IdPromesa}`
+            ) as HTMLInputElement).value
+          );
+        }
       });
     } else {
       // this.montoAPagar = 0;
@@ -396,6 +401,7 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
         ) as HTMLInputElement).value = '0';
       });
     }
+    this.allCheckedProm();
   }
 
   cambiarCheckPromesas(id: number, e, vista: string): void {

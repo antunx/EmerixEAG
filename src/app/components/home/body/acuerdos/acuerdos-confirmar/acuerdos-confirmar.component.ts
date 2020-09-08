@@ -8,7 +8,6 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { PostService } from '@app/services/post.service';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-acuerdos-confirmar',
@@ -23,12 +22,8 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
   @Output() preAcuerdo = new EventEmitter<any>();
   AceptaTerminos = false;
   MensajeAlert: string;
-  popUpNro: number;
 
-  constructor(
-    private postService: PostService,
-    private translate: TranslateService
-  ) {}
+  constructor(private postService: PostService) {}
 
   ngOnInit(): void {
     this.MensajeAlert = '';
@@ -57,14 +52,6 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
   }
 
   confirmarPlan(tipo: string): void {
-    if (!this.AceptaTerminos) {
-      this.popUpNro = 2;
-      this.MensajeAlert = this.translate.instant(
-        'Traduct.acepte_terminos_condiciones'
-      );
-      document.querySelector('#overlay-termino').classList.add('active');
-      return;
-    }
     const objeto = {
       IdPersona: localStorage.getItem('version_core'),
       IdTipoAcuerdo: this.acuerdoSeleccionado.Id,
@@ -81,15 +68,17 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
       IdAcuerdo: '0',
       IdTipoAcuerdo: this.acuerdoSeleccionado.Id,
       Importe: this.acuerdoSeleccionado.MontoFinanciar,
+      Anticipo: this.acuerdoSeleccionado.MontoAnticipo,
+      Quita: this.acuerdoSeleccionado.MontoQuita
     };
     this.postService.PostObtenerCuotasAcuerdo(acuerdoAux).subscribe((data) => {
       objeto.Cuotas = data.Cuotas;
       this.postService.PostConfirmarAcuerdo(objeto).subscribe((data) => {
         if (data.ErrorCode === 0) {
-          if (tipo === 'C') {
+          if(tipo === 'C'){
             this.siguiente.emit(4);
-          } else {
-            console.log(data);
+          } else{
+            console.log(data)
             const obj = {
               Items: [],
               TotalPagar: data.ImportePromesa,
@@ -101,7 +90,7 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
               tipo: 'ANTICIPO',
               cuotas: [],
             };
-
+        
             obj.Items.push(cta);
             this.preAcuerdo.emit(obj);
             this.siguiente.emit(this.stepAcuerdo + 1);
@@ -111,20 +100,18 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
     });
   }
 
+
+
   AceptoTerminos(): void {
     this.AceptaTerminos = !this.AceptaTerminos;
   }
 
   TerminosCondiciones(): void {
-    this.popUpNro = 1;
     document.querySelector('#overlay-termino').classList.add('active');
   }
 
   cerrarPopup(): void {
     document.querySelector('#overlay-termino').classList.remove('active');
-    setTimeout(() => {
-      this.MensajeAlert = '';
-      this.popUpNro = 0;
-    }, 500);
+    this.MensajeAlert = '';
   }
 }

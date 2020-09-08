@@ -238,5 +238,7 @@
   "Traduct.subtitulo_monto_promesa": "<span> </span> Commit to pay the <strong> total amount of the debt </strong> or <strong> enter another amount </strong>, choose when you are going to make the payment (<strong> period </ strong >) and then click <strong> generate promise </strong>.",
   "Traduct.subtitulo_monto_pago": "<span> </span> Pay the <strong> full amount of the debt </strong> or <strong> enter another amount </strong>, and then click <strong> I want to pay </strong>.",
   "Traduct.titulo_promesa_historica": "Check the payment promises you made",
-  "Traduct.subtitulo_promesa_historica": "<span> </span> You can see the detail if you do not remember what was promised and pay if they are still valid."
+  "Traduct.subtitulo_promesa_historica": "<span> </span> You can see the detail if you do not remember what was promised and pay if they are still valid.",
+
+  "Traduct.interes_periodo": "Interest of the period"
 }

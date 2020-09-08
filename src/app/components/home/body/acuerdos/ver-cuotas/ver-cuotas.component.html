@@ -14,21 +14,21 @@
             <tbody>
               <tr class="table-header">
                 <td class="col-1-6 text-center">{{"Traduct.cuota" | translate}}</td>
-                <td class="col-1-6 text-center"></td>
                 <td class="col-1-6 text-center">{{"Traduct.fecha_vencimiento" | translate}}</td>
-                <td class="col-1-6 text-center"></td>
+                <td *ngIf="!EsAcuerdo" class="col-1-6 text-center">{{"Traduct.capital" | translate}}</td>
+                <td *ngIf="!EsAcuerdo" class="col-1-6 text-center">{{ "Traduct.interes_periodo" | translate }}</td>
                 <td class="col-1-6 text-center">{{"Traduct.monto" | translate }}</td>
               </tr>
               <tr *ngFor="let cuota of cuotas">
                 <td class="col-1-6 text-center">{{ cuota.Numero }}</td>
-                <td class="col-1-6 text-center"></td>
                 <td class="col-1-6 text-center">
                   {{ cuota.FechaVencimiento | date: "dd/MM/yyyy" }}
                 </td>
-                <td class="col-1-6 text-center"></td>
-                <td class="col-1-6 text-center">
-                  {{ cuota.MontoTotal | currency: "ARS":"symbol-narrow":"1.2-2" }}
-                </td>
+                <td *ngIf="!EsAcuerdo" class="col-1-6 text-center">{{cuota.Capital}}</td>
+                <td *ngIf="!EsAcuerdo" class="col-1-6 text-center">{{cuota.Interes}}</td>
+                    <td class="col-1-6 text-center">
+                      {{ cuota.MontoTotal | currency: "ARS":"symbol-narrow":"1.2-2" }}
+                    </td>
               </tr>
               <tr>
                 <td class="col-1-6 text-center"></td>

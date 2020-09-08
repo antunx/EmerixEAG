@@ -135,22 +135,24 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
   checkAll(e): void {
     if (e.target.checked) {
       this.cuentas.Cuentas.forEach((producto) => {
-        producto.Check = true;
-        document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
-        ).innerHTML = producto.Deuda.toString();
-        (document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
-        ) as HTMLInputElement).value = (document.getElementById(
-          `monto-cancelar-${producto.IdCuenta}`
-        ) as HTMLInputElement).dataset.valor;
-        this.montoAPagar += parseFloat(
+        if (!producto.Check) {
+          producto.Check = true;
+          document.getElementById(
+            `monto-cancelar-${producto.IdCuenta}`
+          ).innerHTML = producto.Deuda.toString();
           (document.getElementById(
             `monto-cancelar-${producto.IdCuenta}`
-          ) as HTMLInputElement).value ||
-            document.getElementById(`monto-cancelar-${producto.IdCuenta}`)
-              .innerHTML
-        );
+          ) as HTMLInputElement).value = (document.getElementById(
+            `monto-cancelar-${producto.IdCuenta}`
+          ) as HTMLInputElement).dataset.valor;
+          this.montoAPagar += parseFloat(
+            (document.getElementById(
+              `monto-cancelar-${producto.IdCuenta}`
+            ) as HTMLInputElement).value ||
+              document.getElementById(`monto-cancelar-${producto.IdCuenta}`)
+                .innerHTML
+          );
+        }
       });
     } else {
       this.montoAPagar = 0;
@@ -164,6 +166,7 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
         ) as HTMLInputElement).value = '0';
       });
     }
+    this.allChecked();
   }
 
   cambiarMonto(e): void {

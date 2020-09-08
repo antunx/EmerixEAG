@@ -2,6 +2,7 @@ export interface CuotasAcuerdo {
     ErrorCode: number;
     ErrorMessage: string;
     Cuotas: Cuota[];
+    EsAcuerdoVerbal: boolean;
   }
   
   interface Cuota {

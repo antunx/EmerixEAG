@@ -29,6 +29,7 @@ export class AcuerdosComponent implements OnInit {
       .getProductosAcuerdos(localStorage.getItem('version_core'))
       .subscribe((data: Acuerdo) => {
         if (data.ErrorCode === 0) {
+          console.log(data);
           this.acuerdo = data;
           data.Cuentas.forEach((cuenta) => {
             this.montoAPagar += cuenta.Deuda;
@@ -50,8 +51,10 @@ export class AcuerdosComponent implements OnInit {
   checkAll(e): void {
     if (e.target.checked) {
       this.acuerdo.Cuentas.forEach((producto) => {
-        producto.Check = true;
-        this.montoAPagar += producto.Deuda;
+        if (!producto.Check) {
+          producto.Check = true;
+          this.montoAPagar += producto.Deuda;
+        }
       });
     } else {
       this.montoAPagar = 0;
@@ -59,6 +62,7 @@ export class AcuerdosComponent implements OnInit {
         producto.Check = false;
       });
     }
+    this.allChecked();
   }
 
   cambiarCheck(id: number, e): void {

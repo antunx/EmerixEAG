@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GetService } from '../../../services/get.service';
 
 @Component({
@@ -6,6 +6,7 @@ import { GetService } from '../../../services/get.service';
   templateUrl: './termino.component.html',
 })
 export class TerminoComponent implements OnInit {
+  @Input() tipo = 'TERCOND'
   titulo = '';
   subTitulo = '';
   parrafo = '';
@@ -14,7 +15,7 @@ export class TerminoComponent implements OnInit {
   constructor(private getservices: GetService) {}
 
   ngOnInit(): void {
-    this.getservices.getPageInfo('TERCOND').subscribe(
+    this.getservices.getPageInfo(this.tipo).subscribe(
       (res) => {
         // console.log(res.Items);
         this.titulo = res.PageTitle;
