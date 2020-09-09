@@ -9,3 +9,10 @@ export interface RtapostValidateTokenModel {
   LastName: string;
   Name: string;
 }
+
+export interface DtDispositivo {
+  Dispositivo: string;
+  Browser: string;
+  BrowserIdioma: string;
+  SistemaOperativo: string;
+}
