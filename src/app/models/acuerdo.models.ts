@@ -14,6 +14,9 @@ export interface Acuerdo {
   CantidadProductos: number;
   CantidadCuotas: number;
   DeudaTotal: number;
+  IdPromesa: number;
+  ImportePromesa: number;
+  FechaVencAnticipo: Date;
   ImporteQuita: number;
   ImporteRefinanciar: number;
   VerBotonAnticipo: boolean;

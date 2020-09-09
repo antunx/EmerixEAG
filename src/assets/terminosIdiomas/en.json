@@ -125,7 +125,7 @@
   "Traduct.sin_notificaciones": "No notifications",
   "Traduct.hola": "Hello",
   "Traduct.acepto_los": "I accept the",
-
+  "Traduct.sin_productos_promesa": "<strong>You have no products </strong>to generate a <strong>payment promise</strong>.",
   "Traduct.volver_promesa_producto": "Go generate promise per product",
   "Traduct.volver_anterior": "Go back",
   "Traduct.volver_home": "Go to home",

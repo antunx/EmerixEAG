@@ -227,6 +227,7 @@
   "Traduct.generar_un_acuerdo": "Generar un Acuerdo",
   "Traduct.seleccion_productos": "Selecciona los productos que queres incluir en tu nuevo plan",
   "Traduct.sin_productos": "No tiene productos para generar un plan de pago",
+  "Traduct.sin_productos_promesa": "<strong>No tiene productos </strong>para generar una <strong>promesa de pago</strong>.",
   "Traduct.seleccion_plan": "Seleccionar plan",
   "Traduct.plan_subtitulo": "Seleccioná el plan que se ajuste mejor a la reestructuración de tu deuda.",
   "Traduct.productos_incluidos": "Productos inlcuidos",

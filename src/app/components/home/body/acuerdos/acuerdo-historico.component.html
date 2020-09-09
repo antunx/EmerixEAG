@@ -1,108 +1,168 @@
- <!-- <div class="pages-container flex-grow"> --> <!-- LO HACE EN EL TS -->
-  <section class="page-logs" [hidden]="stepAcuerdo != 0">
+<!-- <div class="pages-container flex-grow"> -->
+<!-- LO HACE EN EL TS -->
+<section class="page-logs" [hidden]="stepAcuerdo != 0">
+  <div class="overlay" id="home-sidebar">
+    <div
+      *ngIf="MostrarDetalle === true"
+      class="dialog-container sidebar"
+      role="dialog"
+    >
+      <a class="close-btn">
+        <img
+          src="assets/images/ui/close-btn.svg"
+          alt="Close"
+          (click)="CerrarPopupDetalle()"
+        />
+      </a>
+      <app-acuerdo-detalle [Acuerdo]="Acuerdo"></app-acuerdo-detalle>
+    </div>
+  </div>
 
-    <div class="overlay" id="home-sidebar">
-      <div *ngIf="MostrarDetalle===true" class="dialog-container sidebar" role="dialog">
-         <a class="close-btn">
-            <img src="assets/images/ui/close-btn.svg" alt="Close" (click) ="CerrarPopupDetalle()">
-         </a>
-         <app-acuerdo-detalle [Acuerdo]="Acuerdo"></app-acuerdo-detalle>
+  <div class="flex-column page-header">
+    <p class="top-decoration">{{ "Traduct.planes_pedidos" | translate }}</p>
+  </div>
+  <div class="restrict-width">
+    <div class="title">
+      <h1 class="page-title">{{ "Traduct.tus_planes_t1" | translate }}</h1>
+      <!--      <p class="page-subtitle"><span></span>{{ 'Traduct.tus_planes_t2' | translate }}</p> -->
+    </div>
+    <!-- SIN REGISTROS... -->
+    <div *ngIf="Acuerdos?.length === 0" class="restrict-width large">
+      <div class="warning-box text-center">
+        <img src="assets/images/ui/icono_info.svg" alt="" />{{
+          "Traduct.sin_registros" | translate
+        }}
       </div>
     </div>
-
-    <div class="flex-column page-header">
-       <p class="top-decoration">{{ 'Traduct.planes_pedidos' | translate }}</p>
-    </div>
-    <div class="restrict-width">
-       <div class="title">
-          <h1 class="page-title">{{ 'Traduct.tus_planes_t1' | translate }}</h1>
-<!--      <p class="page-subtitle"><span></span>{{ 'Traduct.tus_planes_t2' | translate }}</p> -->
-       </div>
-       <!-- SIN REGISTROS... -->
-       <div *ngIf="Acuerdos?.length === 0" class="restrict-width large">
-        <div class="warning-box text-center">
-          <img src="assets/images/ui/icono_info.svg" alt="" />{{
-            "Traduct.sin_registros" | translate
-          }}
-        </div>
-      </div>
-      <!-- HAY REGISTROS... -->
-       <div *ngIf="Acuerdos?.length > 0" id="agreement-table" class="box">
-          <div class="table-container">
-             <table class="table selectable" width="100%" border="0">
-               <tbody>
-                <tr class="table-header">
-                   <td class="col-3-4">
-                     {{ 'Traduct.acuerdo' | translate }}
-                   </td>
-                   <td class="col-2-4 desktop-only">
-                     {{ 'Traduct.vencimiento_anticipo' | translate }}
-                   </td>
-                   <td class="col-2-4">
-                     {{ 'Traduct.estado' | translate }}
-                   </td>
-                   <td class="col-2-4">
-                     {{ 'Traduct.cuotas' | translate }}
-                   </td>
-                   <td class="col-2-4">
-                    
-                  </td>
-<!--                   <td class="col-1-4 text-right">
+    <!-- HAY REGISTROS... -->
+    <div *ngIf="Acuerdos?.length > 0" id="agreement-table" class="box">
+      <div class="table-container">
+        <table class="table selectable" width="100%" border="0">
+          <tbody>
+            <tr class="table-header">
+              <td class="col-1-4">
+                {{ "Traduct.acuerdo" | translate }}
+              </td>
+              <td class="col-1-4 desktop-only">
+                {{ "Traduct.vencimiento_anticipo" | translate }}
+              </td>
+              <td class="col-1-3">
+                {{ "Traduct.estado" | translate }}
+              </td>
+              <td class="col-1-4">
+                {{ "Traduct.cuotas" | translate }}
+              </td>
+              <td class="col-1-4"></td>
+              <!--                   <td class="col-1-4 text-right">
                     {{ 'Traduct.pagar_anticipo' | translate }}
                   </td> -->
-                </tr>
-                <tr *ngFor="let Acuerdo of Acuerdos">
-                   <td class="col-3-4" (click) = "filaClick('D',Acuerdo)">
-                      <div class="flex-row justify-between" style="width: 80%">
-                         <div>{{ Acuerdo.NombreAcuerdo }}</div>
-                      </div>
-                   </td>
-                   <td class="col-2-4 desktop-only" (click) = "filaClick('D',Acuerdo)">
-                     {{ Acuerdo.FechaVencAnticipo | date: 'dd/MM/yyyy'}}
-                   </td>
-                   <td class="col-2-4" (click) = "filaClick('D',Acuerdo)">
-                     <div *ngIf="Acuerdo.EstadoCodigo ==='PENDIANT'" class="status-label"><span class="bullet yellow"></span>{{ 'Traduct.pendiente' | translate }}</div>
-                     <div *ngIf="Acuerdo.EstadoCodigo ==='VIGENTE'" class="status-label"><span class="bullet yellow"></span>{{ 'Traduct.vigente' | translate }}</div>
+            </tr>
+            <tr *ngFor="let Acuerdo of Acuerdos">
+              <td class="col-1-4" (click)="filaClick('D', Acuerdo)">
+                <div class="flex-row justify-between" style="width: 80%">
+                  <div>{{ Acuerdo.NombreAcuerdo }}</div>
+                </div>
+              </td>
+              <td
+                class="col-1-4 desktop-only"
+                (click)="filaClick('D', Acuerdo)"
+              >
+                {{ Acuerdo.FechaVencAnticipo | date: "dd/MM/yyyy" }}
+              </td>
+              <td class="col-1-3" (click)="filaClick('D', Acuerdo)">
+                <div
+                  *ngIf="Acuerdo.EstadoCodigo === 'PENDIANT'"
+                  class="status-label"
+                >
+                  <span class="bullet yellow"></span
+                  >{{ "Traduct.pendiente" | translate }}
+                </div>
+                <div
+                  *ngIf="Acuerdo.EstadoCodigo === 'VIGENTE'"
+                  class="status-label"
+                >
+                  <span class="bullet yellow"></span
+                  >{{ "Traduct.vigente" | translate }}
+                </div>
 
-                     <div *ngIf="Acuerdo.EstadoCodigo ==='CUMPLIDO'" class="status-label"><span class="bullet green"></span>{{ 'Traduct.cumplido' | translate }}</div>
+                <div
+                  *ngIf="Acuerdo.EstadoCodigo === 'CUMPLIDO'"
+                  class="status-label"
+                >
+                  <span class="bullet green"></span
+                  >{{ "Traduct.cumplido" | translate }}
+                </div>
 
-                     <div *ngIf="Acuerdo.EstadoCodigo ==='CAIDO'" class="status-label"><span class="bullet red"></span>{{ 'Traduct.caido' | translate }}</div>
-                     <div *ngIf="Acuerdo.EstadoCodigo ==='ANTVENCI'" class="status-label"><span class="bullet red"></span>{{ 'Traduct.vencido' | translate }}</div>
+                <div
+                  *ngIf="Acuerdo.EstadoCodigo === 'CAIDO'"
+                  class="status-label"
+                >
+                  <span class="bullet red"></span
+                  >{{ "Traduct.caido" | translate }}
+                </div>
+                <div
+                  *ngIf="Acuerdo.EstadoCodigo === 'ANTVENCI'"
+                  class="status-label"
+                >
+                  <span class="bullet red"></span
+                  >{{ "Traduct.vencido" | translate }}
+                </div>
 
-                     <div *ngIf="OtroEstado(Acuerdo.EstadoCodigo)" class="status-label"><span class="bullet gray"></span>{{ Acuerdo.EstadoNombre }}</div>
-                   </td>
-                   <td class="col-2-4">
-                     {{ Acuerdo.CantidadCuotas }} &nbsp;
-                     <div class="wide-link">
-                        <a *ngIf="EstadoNoVencidoRechazado(Acuerdo.EstadoCodigo)" [routerLink]="" (click)="filaClick('C',Acuerdo)">{{ 'Traduct.ver_cuotas' | translate }}</a>
-                     </div>
-                   </td>
-                   <td class="col-2-4">
-                      <a class="btn" (click)="pagarAcuerdo(Acuerdo.IdPromesa, Acuerdo.ImportePromesa)" [hidden]="!Acuerdo.VerBotonAnticipo">PAGAR</a>
-                   </td>
-<!--                    <td class="col-1-4 text-right">
+                <div
+                  *ngIf="OtroEstado(Acuerdo.EstadoCodigo)"
+                  class="status-label"
+                >
+                  <span class="bullet gray"></span>{{ Acuerdo.EstadoNombre }}
+                </div>
+              </td>
+              <td class="col-1-4">
+                {{ Acuerdo.CantidadCuotas }} &nbsp;
+                <div class="wide-link">
+                  <a
+                    *ngIf="EstadoNoVencidoRechazado(Acuerdo.EstadoCodigo)"
+                    [routerLink]=""
+                    (click)="filaClick('C', Acuerdo)"
+                    >{{ "Traduct.ver_cuotas" | translate }}</a
+                  >
+                </div>
+              </td>
+              <td class="col-1-4">
+                <a
+                  class="btn"
+                  (click)="
+                    pagarAcuerdo(Acuerdo.IdPromesa, Acuerdo.ImportePromesa)
+                  "
+                  [hidden]="!Acuerdo.VerBotonAnticipo"
+                  >PAGAR</a
+                >
+              </td>
+              <!--                    <td class="col-1-4 text-right">
                       <div class="wide-link">
                         <a *ngIf="Acuerdo.VerBotonAnticipo === true" [routerLink]="" (click)="clickDetalle('P',Acuerdo)">{{ 'Traduct.pagar' | translate }}</a>
                     </div>
                    </td> -->
-                </tr>
-               </tbody>
-             </table>
-          </div>
-       </div>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
- </section>
+  </div>
+</section>
 <!-- </div> -->
 
-<div *ngIf="MostrarDetalle===false" class="overlay" id="billing-dialog" (click)="cerrarPopupCuotas()">
-   <app-ver-cuotas
-     [acuerdo]="acuerdoSeleccionado"
-     [historico]="true"
-   ></app-ver-cuotas>
- </div>
+<div
+  *ngIf="MostrarDetalle === false"
+  class="overlay"
+  id="billing-dialog"
+  (click)="cerrarPopupCuotas()"
+>
+  <app-ver-cuotas
+    [acuerdo]="acuerdoSeleccionado"
+    [historico]="true"
+  ></app-ver-cuotas>
+</div>
 
-
- <section class="page-pay pay_5" [hidden]="stepAcuerdo != 1">
+<section class="page-pay pay_5" [hidden]="stepAcuerdo != 1">
   <app-pago-metodos
     [pago]="preAcuerdo"
     [pagoStep]="stepAcuerdo"

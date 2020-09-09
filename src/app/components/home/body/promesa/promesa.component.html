@@ -4,28 +4,39 @@
   </div>
 
   <div class="flex-column page-header">
-    <p class="top-decoration">{{"Traduct.prometer_fecha" | translate }}</p>
+    <p class="top-decoration">{{ "Traduct.prometer_fecha" | translate }}</p>
   </div>
 
   <div class="restrict-width">
     <div class="title">
-      <h1 class="page-title text-large">{{"Traduct.generar_promesa" | translate }}</h1>
-      <p class="page-subtitle">
-        <span></span>{{"Traduct.promesa_subtituilo" | translate }}
+      <h1 class="page-title text-large">
+        {{ "Traduct.generar_promesa" | translate }}
+      </h1>
+      <p class="page-subtitle" *ngIf="!ocultar">
+        <span></span>{{ "Traduct.promesa_subtituilo" | translate }}
       </p>
+      <div class="warning-box text-center" *ngIf="ocultar">
+        <img src="assets/images/ui/icono_info.svg" alt="" />
+        <span [innerHTML]="'Traduct.sin_productos_promesa' | translate"></span>
+      </div>
     </div>
 
-    <div class="selectable-box flex-row col-container" id="box-2994778034">
+    <div
+      class="selectable-box flex-row col-container"
+      id="box-2994778034"
+      *ngIf="!ocultar"
+    >
       <div
         class="box col-1-2"
         id="porMonto"
-        (click)="seleccionarTipoPromesa(1)">
+        (click)="seleccionarTipoPromesa(1)"
+      >
         <div class="flex-row flex-center">
           <img src="assets/images/sections/promises/1.svg" alt="" />
           <img src="assets/images/sections/promises/1_active.svg" alt="" />
         </div>
         <p class="text-center">
-          {{"Traduct.monto_titulo" | translate }}
+          {{ "Traduct.monto_titulo" | translate }}
         </p>
       </div>
       <div
@@ -38,12 +49,14 @@
           <img src="assets/images/sections/promises/2_active.svg" alt="" />
         </div>
         <p class="text-center">
-          {{"Traduct.producto_titulo" | translate }}
+          {{ "Traduct.producto_titulo" | translate }}
         </p>
       </div>
     </div>
-    <div>
-      <button (click)="continuarStep()" class="btn" data-next>{{"Traduct.siguiente" | translate }}</button>
+    <div *ngIf="!ocultar">
+      <button (click)="continuarStep()" class="btn" data-next>
+        {{ "Traduct.siguiente" | translate }}
+      </button>
     </div>
   </div>
 </section>
@@ -85,40 +98,55 @@
   <app-promesa-exito></app-promesa-exito>
 </section>
 <section>
-  <div class="chat-bot col-5" style="position: relative;">
-    <button (click)="toggleElement()"
-          class="btn-chat col-3"
-          style="width: 40px;
-                height: 40px;
-                position: fixed;
-                right: 10px;
-                bottom: 10px;
-                background-color: transparent;
-                cursor: pointer;
-                outline: transparent;">
-        <i class="far fa-comment-dots"
-            style="color: #8569B4;
-              position: absolute;
-              right: 5px;
-              top: 5px;
-              font-size: 30px;"></i>
+  <div class="chat-bot col-5" style="position: relative">
+    <button
+      (click)="toggleElement()"
+      class="btn-chat col-3"
+      style="
+        width: 40px;
+        height: 40px;
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        background-color: transparent;
+        cursor: pointer;
+        outline: transparent;
+      "
+    >
+      <i
+        class="far fa-comment-dots"
+        style="
+          color: #8569b4;
+          position: absolute;
+          right: 5px;
+          top: 5px;
+          font-size: 30px;
+        "
+      ></i>
     </button>
-    <div [hidden]="!hideElement" class="contain-iframe col-12 col-md-4 offset-md-8 col-lg-3" style="height: 550px; position: fixed;
-    right: 50px;
-    bottom: 10px;
-    border: 1px solid hsla(0,0%,59.6%,.15);
-    box-shadow: 0 2px 4px rgba(0,0,0,.5);
-    z-index: 500;
-    padding: 0;
-    border-radius: 10px;">
-        <iframe src="https://ss.emerix.com.ar/twilio-net"
+    <div
+      [hidden]="!hideElement"
+      class="contain-iframe col-12 col-md-4 offset-md-8 col-lg-3"
+      style="
+        height: 550px;
+        position: fixed;
+        right: 50px;
+        bottom: 10px;
+        border: 1px solid hsla(0, 0%, 59.6%, 0.15);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        z-index: 500;
+        padding: 0;
+        border-radius: 10px;
+      "
+    >
+      <iframe
+        src="https://ss.emerix.com.ar/twilio-net"
         frameborder="0"
         width="100%"
         height="100%"
-        style="padding: 0;
-        margin: 0;
-        overflow: hidden;">
-          </iframe>
+        style="padding: 0; margin: 0; overflow: hidden"
+      >
+      </iframe>
     </div>
   </div>
 </section>

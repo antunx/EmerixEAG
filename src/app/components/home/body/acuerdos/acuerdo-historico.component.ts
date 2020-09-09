@@ -9,15 +9,15 @@ import { Acuerdo } from '@app/models/acuerdo.models';
 @Component({
   selector: 'app-acuerdo-historico',
   templateUrl: './acuerdo-historico.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private translate: TranslateService,
     private servicioComunicacion: ComunicacionService,
-    private getservices: GetService) {}
+    private getservices: GetService
+  ) {}
   @HostBinding('class') class = 'pages-container flex-grow';
 
   private subscription: Subscription = new Subscription();
@@ -28,14 +28,14 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
   acuerdoSeleccionado: Acuerdo;
   preAcuerdo;
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.MostrarDetalle = false;
     this.cambioTexto(this.translate.instant('Traduct.planes_pedidos'));
     this.getAcuerdos();
     this.stepAcuerdo = 0;
   }
 
-  ngOnDestroy(): void{
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
@@ -43,89 +43,99 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
     this.servicioComunicacion.enviarMensaje(mensaje);
   }
 
-  getAcuerdos(): void{
-    this.subscription.add(this.getservices.getAcuerdos(localStorage.getItem('version_core'), 'false').subscribe((res) => {
-      if (res.ErrorCode > 0){
-        console.log(res.ErrorMessage);
-      } else{
-        this.Acuerdos = res.Acuerdos;
-        // console.log(this.Acuerdos);
-      }
-    }, (err) => {
-        console.log(err);
-    }));
+  getAcuerdos(): void {
+    this.subscription.add(
+      this.getservices
+        .getAcuerdos(localStorage.getItem('version_core'), 'false')
+        .subscribe(
+          (res) => {
+            if (res.ErrorCode > 0) {
+              console.log(res.ErrorMessage);
+            } else {
+              console.log(res);
+              this.Acuerdos = res.Acuerdos;
+              // console.log(this.Acuerdos);
+            }
+          },
+          (err) => {
+            console.log(err);
+          }
+        )
+    );
   }
 
-  OtroEstado(EstadoCodigo: string): boolean{
-    if (EstadoCodigo === 'PENDIANT' || EstadoCodigo === 'VIGENTE'
-     || EstadoCodigo === 'CUMPLIDO' || EstadoCodigo === 'CAIDO'
-     || EstadoCodigo === 'ANTVENCI'){
+  OtroEstado(EstadoCodigo: string): boolean {
+    if (
+      EstadoCodigo === 'PENDIANT' ||
+      EstadoCodigo === 'VIGENTE' ||
+      EstadoCodigo === 'CUMPLIDO' ||
+      EstadoCodigo === 'CAIDO' ||
+      EstadoCodigo === 'ANTVENCI'
+    ) {
       return false;
-    }else {
+    } else {
       return true;
     }
   }
 
-  EstadoNoVencidoRechazado(EstadoCodigo: string): boolean{
-    if (EstadoCodigo === 'CAIDO'
-     || EstadoCodigo === 'ANTVENCI'){
+  EstadoNoVencidoRechazado(EstadoCodigo: string): boolean {
+    if (EstadoCodigo === 'CAIDO' || EstadoCodigo === 'ANTVENCI') {
       return false;
-    }else {
+    } else {
       return true;
     }
   }
 
-  filaClick(tipo: string, acuerdo: Acuerdo): void{
-    if (acuerdo !== null){
-      if (tipo === 'D'){
+  filaClick(tipo: string, acuerdo: Acuerdo): void {
+    if (acuerdo !== null) {
+      if (tipo === 'D') {
         this.VerDetalle(acuerdo);
       }
-      if (tipo === 'P'){
+      if (tipo === 'P') {
         this.PagarAnticipo(acuerdo);
       }
-      if (tipo === 'C'){
+      if (tipo === 'C') {
         this.VerCuotas(acuerdo);
       }
     }
   }
 
-  VerCuotas(acuerdo: Acuerdo): void{
+  VerCuotas(acuerdo: Acuerdo): void {
     this.MostrarDetalle = false;
     this.acuerdoSeleccionado = acuerdo;
     const overlay = document.querySelector('#billing-dialog');
     overlay.classList.add('active');
   }
 
-  cerrarPopupCuotas(): void{
+  cerrarPopupCuotas(): void {
     const overlay = document.querySelector('#billing-dialog');
     overlay.classList.remove('active');
   }
 
-  VerDetalle(acuerdo: Acuerdo): void{
-    this.Acuerdo  = acuerdo;
+  VerDetalle(acuerdo: Acuerdo): void {
+    this.Acuerdo = acuerdo;
     const overlay = document.querySelector('#home-sidebar');
     this.MostrarDetalle = true;
     overlay.classList.add('active');
-
   }
 
-  CerrarPopupDetalle(): void{
+  CerrarPopupDetalle(): void {
     this.MostrarDetalle = false;
     const overlay = document.querySelector('#home-sidebar');
     overlay.querySelector('.close-btn').addEventListener('click', () => {
-        overlay.classList.remove('active');
-      });
+      overlay.classList.remove('active');
+    });
   }
 
-  PagarAnticipo(acuerdo: Acuerdo): void{
+  PagarAnticipo(acuerdo: Acuerdo): void {
     alert('PagarAnticipo(): en desarrollo |_(-.-)_T ');
   }
 
-  onVolver(e:number){
+  onVolver(e: number) {
     this.stepAcuerdo = e;
   }
 
-  pagarAcuerdo(Id:number, importe:number){
+  pagarAcuerdo(Id: number, importe: number) {
     // console.log(Id);
     // console.log(importe)
     const obj = {

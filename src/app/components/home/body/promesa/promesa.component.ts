@@ -21,7 +21,7 @@ export class PromesaComponent implements OnInit, OnDestroy {
   volverHome: boolean = false;
   // Boton chatbot -- metodo mostrar y ocultar
   hideElement: boolean;
-
+  ocultar: boolean = true;
   constructor(private router: Router, private getService: GetService) {}
 
   ngOnInit() {
@@ -33,7 +33,8 @@ export class PromesaComponent implements OnInit, OnDestroy {
         // data.ActivoMonto = true;
         // data.ActivoProducto = true;
         this.resp = data;
-        // console.log(this.resp);
+        this.ocultar = data.IdTipoPromesa === 0 ? true : false;
+        console.log(this.resp);
         if (data.ActivoMonto && !data.ActivoProducto) {
           this.promesaStep = 1;
           this.volverHome = true;
