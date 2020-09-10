@@ -88,7 +88,7 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
   configurarFormLogin(): void {
     this.loginForm = new FormGroup({
       tipoDoc: new FormControl(''), // , [Validators.required]
-      numero: new FormControl('', [Validators.required]), // 0803288836
+      numero: new FormControl('0803288836', [Validators.required]), // 0803288836
       recaptcha: new FormControl('ERR', [Validators.required]),
       // genero: new FormControl('', [Validators.required]),
       medioEnvio: new FormControl({value: false, disabled: false}),
@@ -327,6 +327,7 @@ export class LoginBodyComponent implements OnInit, OnDestroy {
     };
     const codigoValor = this.loginFormIngreso.controls.codigo.value;
     this.loadingTrabajando = true;
+
     this.subscription.add(this.postservices.postValidateToken
       (
         this.usuario.dni,

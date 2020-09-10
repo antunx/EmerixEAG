@@ -84,8 +84,11 @@ export class GetService {
     return this.http.get<AcuerdosLst>(this.API_URL + 'emerixautog/getacuerdoslista', { params });
   }
 
-  getDebtFree(id: string): Observable<RtagetDebtFreeModel>{
-    return this.http.get<RtagetDebtFreeModel>(this.API_URL + 'emerixautog/getdebtfree/' + id);
+  getDebtFree(id: string, chatbot: string): Observable<RtagetDebtFreeModel>{
+    let params = new HttpParams();
+    params = params.append('id', id);
+    params = params.append('chatbot', chatbot);
+    return this.http.get<RtagetDebtFreeModel>(this.API_URL + 'emerixautog/getdebtfree' , { params });
   }
 
   getProductProm(id: string): Observable<Promesa> {
