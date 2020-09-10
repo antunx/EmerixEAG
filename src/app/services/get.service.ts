@@ -84,10 +84,10 @@ export class GetService {
     return this.http.get<AcuerdosLst>(this.API_URL + 'emerixautog/getacuerdoslista', { params });
   }
 
-  getDebtFree(id: string, chatbot: string): Observable<RtagetDebtFreeModel>{
+  getDebtFree(id: string): Observable<RtagetDebtFreeModel>{
     let params = new HttpParams();
     params = params.append('id', id);
-    params = params.append('chatbot', chatbot);
+    params = params.append('chatbot', 'false');
     return this.http.get<RtagetDebtFreeModel>(this.API_URL + 'emerixautog/getdebtfree' , { params });
   }
 

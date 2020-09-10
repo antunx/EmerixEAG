@@ -98,7 +98,7 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
               Cliente: localStorage.getItem('version_core'),
             };
             const cta = {
-              id: data.IdPromesa,
+              id: data.IdAcuerdo,
               importe: data.ImportePromesa,
               tipo: 'ANTICIPO',
               cuotas: [],
