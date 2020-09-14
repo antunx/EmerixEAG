@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 /*import { PropService } from '@app/services/prop.service';
 import { Router } from '@angular/router';*/
+import { PostService } from '@app/services/post.service';
 
 @Component({
   selector: 'app-confirmar-pago',
@@ -27,7 +28,9 @@ export class ConfirmarPagoComponent implements OnInit, OnChanges {
   importeApagar = [];
   porProducto: boolean;
 
-  constructor(/*private propService: PropService, private router: Router*/) {}
+  constructor(
+    /*private propService: PropService, private router: Router*/ private postService: PostService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     // this.ok = false;
@@ -97,9 +100,22 @@ export class ConfirmarPagoComponent implements OnInit, OnChanges {
     };
 
     // this.propService.setPago(obj);
-    this.pagoStep = this.pagoStep + 1;
-    this.siguiente.emit(this.pagoStep);
-    this.pagoGen.emit(obj);
+    const intencion = {
+      TipoObjeto: 'PAGO',
+      IdPersona: localStorage.getItem('version_core'),
+      FechaObjeto: new Date(),
+      Importe: this.pago.TotalPagar,
+      MensajeValidacion: '',
+      Cuentas: '',
+    };
+    this.postService.PostIntencion(intencion).subscribe((data) => {
+      console.log(data);
+      if (data.ErrorCode === 0) {
+        this.pagoStep = this.pagoStep + 1;
+        this.siguiente.emit(this.pagoStep);
+        this.pagoGen.emit(obj);
+      }
+    });
     // this.router.navigateByUrl('home/metodos-pago');
   }
 

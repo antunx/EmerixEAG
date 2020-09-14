@@ -63,4 +63,13 @@ export class PromesaHistoricaComponent implements OnInit, OnDestroy {
     }
     return numero.replace(',', '');
   }
+
+  abrirDetalle(promesa: string): void {
+    this.promesas.forEach((prom, index) => {
+      if (index !== parseInt(promesa, 10)) {
+        document.getElementById(`promesa-${index}`).classList.remove('active');
+      }
+    });
+    document.getElementById(`promesa-${promesa}`).classList.toggle('active');
+  }
 }

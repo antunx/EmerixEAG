@@ -29,7 +29,7 @@ export class AcuerdosComponent implements OnInit {
       .getProductosAcuerdos(localStorage.getItem('version_core'))
       .subscribe((data: Acuerdo) => {
         if (data.ErrorCode === 0) {
-          console.log(data);
+          // console.log(data);
           this.acuerdo = data;
           data.Cuentas.forEach((cuenta) => {
             this.montoAPagar += cuenta.Deuda;

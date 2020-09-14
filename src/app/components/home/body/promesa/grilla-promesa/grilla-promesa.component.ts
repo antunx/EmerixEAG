@@ -295,7 +295,7 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
         Cuentas: '',
       };
       this.postService.PostIntencion(intencion).subscribe((data) => {
-        console.log(data);
+        // console.log(data);
       });
     } else {
       this.fechaPromesa = fecha;
@@ -358,7 +358,7 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
         Cuentas: '',
       };
       this.postService.PostIntencion(intencion).subscribe((data) => {
-        console.log(data);
+        // console.log(data);
       });
     } else if (this.montoAPagar < this.pagoMinimo || this.montoAPagar <= 0) {
       this.MensajeAlert = this.translate.instant('Traduct.error_monto_promesa');
@@ -386,7 +386,7 @@ export class GrillaPromesaComponent implements OnInit, OnChanges {
         }
       });
       this.postService.PostIntencion(intencion).subscribe((data) => {
-        console.log(data);
+        // data);
       });
     } else if (
       this.fechaPromesa === null ||

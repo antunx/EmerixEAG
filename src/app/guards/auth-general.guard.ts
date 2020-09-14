@@ -15,7 +15,7 @@ export class AuthGeneralGuard implements CanActivate, CanActivateChild {
       // console.log('SI logueado (AuthGeneralGuard)');
       return true;
     }else{
-      console.log('No logueado (AuthGeneralGuard)');
+      // console.log('No logueado (AuthGeneralGuard)');
       this.router.navigateByUrl('/login');
       return false;
     }

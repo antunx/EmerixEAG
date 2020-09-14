@@ -82,7 +82,7 @@ export class PromesaUltimaComponent implements OnInit, OnDestroy {
   }
 
   pagarPromesa(Id: string, Importe: string): void{
-    console.log(Id, Importe);
+    // console.log(Id, Importe);
 
     const cuentas = [];
     const cta = {
@@ -100,7 +100,7 @@ export class PromesaUltimaComponent implements OnInit, OnDestroy {
       Cliente: localStorage.getItem('version_core')
     };
 
-    console.log(JSON.stringify(obj));
+    // console.log(JSON.stringify(obj));
     this.stepPago.emit(1);
     this.pagoGen.emit(obj);
 

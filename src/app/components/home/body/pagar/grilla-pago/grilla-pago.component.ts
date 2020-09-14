@@ -156,7 +156,7 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
     } else {
       // this.montoAPagar = 0;
       this.productos.forEach((producto) => {
-        console.log(this.montoAPagar);
+        // console.log(this.montoAPagar);
         this.montoAPagar -= parseFloat(
           (document.getElementById(
             `monto-cancelar-d-${producto.IdCuenta}`
@@ -524,7 +524,7 @@ export class GrillaPagoComponent implements OnInit, OnChanges {
   /** PAGAR */
   generarPago(e): void {
     const vista = window.innerWidth < 1025 ? 'm' : 'd';
-    console.log(vista);
+    // console.log(vista);
     if (parseFloat(this.montoAPagar.toFixed(2)) <= 0) {
       this.MensajeAlert = this.translate.instant('Traduct.monto_mayor_cero');
       this.popupNro = 1;

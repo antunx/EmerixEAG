@@ -36,7 +36,7 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes?.acuerdoSeleccionado?.currentValue !== undefined) {
-      console.log(this.acuerdoSeleccionado);
+      // console.log(this.acuerdoSeleccionado);
     }
   }
 
@@ -86,30 +86,33 @@ export class AcuerdosConfirmarComponent implements OnInit, OnChanges {
     };
     this.postService.PostObtenerCuotasAcuerdo(acuerdoAux).subscribe((data) => {
       objeto.Cuotas = data.Cuotas;
-      this.postService.PostConfirmarAcuerdo(objeto).subscribe((data) => {
-        if (data.ErrorCode === 0) {
-          if (tipo === 'C') {
-            this.siguiente.emit(4);
-          } else {
-            console.log(data);
-            const obj = {
-              Items: [],
-              TotalPagar: data.ImportePromesa,
-              Cliente: localStorage.getItem('version_core'),
-            };
-            const cta = {
-              id: data.IdAcuerdo,
-              importe: data.ImportePromesa,
-              tipo: 'ANTICIPO',
-              cuotas: [],
-            };
 
-            obj.Items.push(cta);
-            this.preAcuerdo.emit(obj);
-            this.siguiente.emit(this.stepAcuerdo + 1);
-          }
+      if (data.ErrorCode === 0) {
+        if (tipo === 'C') {
+          this.postService.PostConfirmarAcuerdo(objeto).subscribe((data) => {
+            if (data.ErrorCode === 0) {
+              this.siguiente.emit(4);
+            }
+          });
+        } else {
+          /*console.log(data);
+          const obj = {
+            Items: [],
+            TotalPagar: data.ImportePromesa,
+            Cliente: localStorage.getItem('version_core'),
+          };
+          const cta = {
+            id: data.IdAcuerdo,
+            importe: data.ImportePromesa,
+            tipo: 'ANTICIPO',
+            cuotas: [],
+          };
+
+          obj.Items.push(cta);*/
+          this.preAcuerdo.emit(objeto);
+          this.siguiente.emit(this.stepAcuerdo + 1);
         }
-      });
+      }
     });
   }
 

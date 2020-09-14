@@ -182,7 +182,7 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
         Cuentas: '',
       };
       this.postService.PostIntencion(intencion).subscribe((data) => {
-        console.log(data);
+        // console.log(data);
       });
     } else {
       this.fechaPromesa = fecha;
@@ -221,7 +221,7 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
         Cuentas: '',
       };
       this.postService.PostIntencion(intencion).subscribe((data) => {
-        console.log(data);
+        // console.log(data);
       });
     } else if (
       this.montoSeleccionado === 2 &&
@@ -239,7 +239,7 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
         Cuentas: '',
       };
       this.postService.PostIntencion(intencion).subscribe((data) => {
-        console.log(data);
+        //console.log(data);
       });
     } else if (
       (this.montoSeleccionado === 2 &&
@@ -271,7 +271,7 @@ export class MontoPromesaComponent implements OnInit, OnChanges {
         Cuentas: '',
       };
       this.postService.PostIntencion(intencion).subscribe((data) => {
-        console.log(data);
+        // console.log(data);
       });
     } else if (
       this.fechaPromesa === null ||

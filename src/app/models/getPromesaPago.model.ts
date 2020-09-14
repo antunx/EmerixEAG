@@ -14,4 +14,11 @@ export interface Promesa {
   dia?: number;
   mes?: string;
   VerBotonPagar: boolean;
+  Detalle: Array<Producto>;
+}
+
+export interface Producto {
+  CodigoMoneda: string;
+  ImportePago: number;
+  NombreProducto: string;
 }
