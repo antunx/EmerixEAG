@@ -627,6 +627,10 @@ html.no-scroll body {
   margin-bottom: 0;
 }
 
+.emerix-page .margin-left {
+  margin-left: 1rem;
+}
+
 .emerix-page hr {
   border: 0;
   height: 1px;
