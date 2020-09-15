@@ -62,7 +62,7 @@ export class PagoMetodosComponent implements OnInit, OnChanges {
   GenerarPrepago(): void {
     if (this.esAcuerdo) {
       this.postService.PostConfirmarAcuerdo(this.acuerdo).subscribe((data) => {
-        console.log('es acuerdo');
+        // console.log('es acuerdo');
         if (data.ErrorCode === 0) {
           const objAux = {
             Items: [],

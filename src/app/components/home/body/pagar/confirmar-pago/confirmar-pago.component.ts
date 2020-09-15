@@ -109,7 +109,7 @@ export class ConfirmarPagoComponent implements OnInit, OnChanges {
       Cuentas: '',
     };
     this.postService.PostIntencion(intencion).subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       if (data.ErrorCode === 0) {
         this.pagoStep = this.pagoStep + 1;
         this.siguiente.emit(this.pagoStep);
