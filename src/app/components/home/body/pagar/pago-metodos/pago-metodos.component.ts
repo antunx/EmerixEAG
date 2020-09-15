@@ -244,7 +244,7 @@ export class PagoMetodosComponent implements OnInit, OnChanges {
           productoAux.TipoObjeto = 'CUENTA';
         }
         obj.Items.push(productoAux);
-        //console.log(producto);
+        // console.log(producto);
         if (
           producto.tipo !== 'PROMESA' &&
           producto.tipo !== 'MONTO' &&

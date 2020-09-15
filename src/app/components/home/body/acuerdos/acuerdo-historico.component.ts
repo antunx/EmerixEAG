@@ -52,7 +52,7 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
             if (res.ErrorCode > 0) {
               console.log(res.ErrorMessage);
             } else {
-              console.log(res);
+              // console.log(res);
               this.Acuerdos = res.Acuerdos;
               // console.log(this.Acuerdos);
             }
