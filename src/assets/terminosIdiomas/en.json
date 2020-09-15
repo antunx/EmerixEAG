@@ -241,5 +241,8 @@
   "Traduct.titulo_promesa_historica": "Check the payment promises you made",
   "Traduct.subtitulo_promesa_historica": "<span> </span> You can see the detail if you do not remember what was promised and pay if they are still valid.",
 
-  "Traduct.interes_periodo": "Interest of the period"
+  "Traduct.interes_periodo": "Interest of the period",
+  "Traduct.ver_plan": "See Plan",
+  "Traduct.no_hay_promesa": "No promise to pay yet",
+  "Traduct.no_hay_acuerdo": "No payment plan yet"
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { GetService } from '@app/services/get.service';
 import { Acuerdo } from '@app/models/getAcuerdo.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-acuerdos',
@@ -18,7 +19,7 @@ export class AcuerdosComponent implements OnInit {
   montoAPagar: number;
   TodosProductos: Array<any>;
   preAcuerdo: any;
-  constructor(private getService: GetService) {}
+  constructor(private getService: GetService, private router: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.popupNro = 0;

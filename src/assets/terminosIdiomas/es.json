@@ -250,5 +250,9 @@
   "Traduct.titulo_promesa_historica": "Consultá las promesas de pago que realizaste",
   "Traduct.subtitulo_promesa_historica": "<span></span>Podés ver el detalle si no recordás lo prometido y pagar si aún están vigente.",
 
-  "Traduct.interes_periodo": "Interes del periodo"
+  "Traduct.interes_periodo": "Interes del periodo",
+  "Traduct.ver_plan": "Ver Plan",
+  "Traduct.no_hay_promesa": "Aún no hay promesa de pago",
+  "Traduct.no_hay_acuerdo": "Aún no hay plan de pago"
+
 }

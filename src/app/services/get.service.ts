@@ -22,6 +22,7 @@ import { RtagetNotificacionesModel } from '@app/models/rtagetnotificaciones.mode
 import { RtagetTuPerfilModel } from '@app/models/rtagettuperfil.model';
 import { AcuerdosLst } from '@app/models/acuerdo.models';
 import { Acuerdo } from '@app/models/getAcuerdo.model';
+import { CampaniaEspecial } from '@app/models/campaniaEspecial.model';
 
 
 @Injectable({
@@ -129,11 +130,16 @@ export class GetService {
     return this.http.get<RtagetTuPerfilModel>(this.API_URL + 'emerixautog/getperfil/' + id);
   }
 
-
   getProductosAcuerdos(id: string): Observable<Acuerdo> {
     return this.http.get<Acuerdo>(
       this.API_URL + 'emerixautog/getacuerdosproductos/' + id
     );
+  }
+
+  getMensajeCampaniaEspecial(id: string): Observable<CampaniaEspecial> {
+    let params = new HttpParams();
+    params = params.append('Id', id);
+    return this.http.get<CampaniaEspecial>(this.API_URL + 'emerixautog/GetAcuerdosCampania', { params });
   }
 
 }

@@ -38,7 +38,10 @@
 <h2>{{ "Traduct.ultimas_promesas" | translate }}</h2>
 <div class="box">
   <div *ngIf="promesas?.length === 0 || promesas === undefined">
-    No ha realizado ninguna promesa de pago.
+    <div class="text-center">
+      <img src="/assets/images/sections/home/promesas.svg" alt="">
+      <p>{{ "Traduct.no_hay_promesa" | translate }}</p>
+    </div>
   </div>
   <div class="table-container" *ngIf="promesas?.length != 0 && promesas != undefined">
     <table class="table selectable" width="100%" border="0">

@@ -54,6 +54,7 @@ import { AcuerdosConfirmarComponent } from './body/acuerdos/acuerdos-confirmar/a
 import { AcuerdosExitoComponent } from './body/acuerdos/acuerdos-exito/acuerdos-exito.component';
 import { AcuerdosTiposComponent } from './body/acuerdos/acuerdos-tipos/acuerdos-tipos.component';
 import { VerCuotasComponent } from './body/acuerdos/ver-cuotas/ver-cuotas.component';
+import { CampaniaEspecialComponent } from './body/campania-especial/campania-especial.component';
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import { VerCuotasComponent } from './body/acuerdos/ver-cuotas/ver-cuotas.compon
     AcuerdosConfirmarComponent,
     AcuerdosExitoComponent,
     AcuerdosTiposComponent,
-    VerCuotasComponent
+    VerCuotasComponent,
+    CampaniaEspecialComponent
   ],
   imports: [
     ReactiveFormsModule,
