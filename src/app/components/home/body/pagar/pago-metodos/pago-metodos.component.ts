@@ -104,7 +104,7 @@ export class PagoMetodosComponent implements OnInit, OnChanges {
               productoAux.TipoObjeto = 'CUENTA';
             }
             obj.Items.push(productoAux);
-            //console.log(producto);
+            // console.log(producto);
             if (
               producto.tipo !== 'PROMESA' &&
               producto.tipo !== 'MONTO' &&
@@ -338,18 +338,18 @@ export class PagoMetodosComponent implements OnInit, OnChanges {
 
         this.postService
           .postPreferenceMp(preference, aux['access_token'])
-          .subscribe((res) => {
+          .subscribe((rta) => {
             this.mensajeLoad = 'Obteniendo Link de Pago';
             // console.log(res);
             const ActPreference = {
-              IdPago: res.external_reference,
-              Preferencia: res.sandbox_init_point,
+              IdPago: rta.external_reference,
+              Preferencia: rta.sandbox_init_point,
             };
 
             this.postService
               .postActualizarPreference(ActPreference)
-              .subscribe((res) => {
-                if (res.ErrorCode === 0) {
+              .subscribe((rta2) => {
+                if (rta2.ErrorCode === 0) {
                   document.location.href = ActPreference.Preferencia;
                 }
               });

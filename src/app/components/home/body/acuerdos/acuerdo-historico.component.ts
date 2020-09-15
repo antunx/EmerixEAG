@@ -131,11 +131,11 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
     alert('PagarAnticipo(): en desarrollo |_(-.-)_T ');
   }
 
-  onVolver(e: number) {
+  onVolver(e: number): void {
     this.stepAcuerdo = e;
   }
 
-  pagarAcuerdo(Id: number, importe: number) {
+  pagarAcuerdo(Id: number, importe: number): void {
     // console.log(Id);
     // console.log(importe)
     const obj = {
@@ -145,7 +145,7 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
     };
     const cta = {
       id: Id,
-      importe: importe,
+      importe: { importe },
       tipo: 'ANTICIPO',
       cuotas: [],
     };
