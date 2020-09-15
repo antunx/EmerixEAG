@@ -506,6 +506,12 @@ html.no-scroll body {
   text-align: right;
 }
 
+@media all and (max-width: 1024px) {
+  .emerix-page .text-right-mobile {
+    text-align: right;
+  }
+}
+
 .emerix-page .text-center {
   text-align: center;
 }
@@ -559,6 +565,10 @@ html.no-scroll body {
 
 .emerix-page .flex-column.flex-end {
   align-items: flex-end;
+}
+
+.emerix-page .no-wrap {
+  white-space: nowrap;
 }
 
 .emerix-page .hidden {
@@ -1156,7 +1166,7 @@ html.no-scroll body {
   margin-top: -2px;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  pointer-events: none;
+  cursor: pointer;
 }
 
 .emerix-page .input-wrapper input[type=date],
@@ -1561,6 +1571,7 @@ html.no-scroll body {
 }
 
 .emerix-page .dropdown-target {
+  display: none;
   max-height: 0;
   overflow: hidden;
   transition: all 0.35s ease;
@@ -1711,6 +1722,14 @@ html.no-scroll body {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  max-height: calc(100% - 2rem);
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .overlay .dialog-container {
+    border-radius: 0;
+    width: 100vw;
+  }
 }
 
 .emerix-page .col-1-6 {
@@ -2002,8 +2021,7 @@ html.no-scroll body {
   display: block;
 }
 
-.emerix-page .main-navigation .navigation-item > .item:before {
-  content: "";
+.emerix-page .main-navigation .navigation-item > .item .nav-icon {
   display: block;
   position: absolute;
   top: 50%;
@@ -2012,9 +2030,10 @@ html.no-scroll body {
   height: 1rem;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  background-image: var(--icon);
-  background-size: contain;
-  background-repeat: no-repeat;
+}
+
+.emerix-page .main-navigation .navigation-item > .item .nav-icon svg:not(.avoid-fill-none) {
+  fill: none;
 }
 
 .emerix-page .main-navigation .navigation-item .dropdown-title {
@@ -2226,6 +2245,12 @@ html.no-scroll body {
   color: #3C3C3B;
 }
 
+@media all and (max-width: 1024px) {
+  .emerix-page .success img {
+    max-width: 70%;
+  }
+}
+
 .emerix-page .box .table-container, .emerix-page .input-wrapper.select2.active ul .table-container, .emerix-page .overlay .dialog-container .table-container, .emerix-page .topbar .notifications-menu .dropdown-target ul .table-container {
   width: calc(100% + 3rem);
   margin-left: -1.5rem;
@@ -2302,14 +2327,15 @@ html.no-scroll body {
 }
 
 @media all and (min-width: 1025px) {
-  .emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled):hover {
+  .emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled).active, .emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled):hover {
     background-color: #fbfbfb;
     font-weight: 500;
+    cursor: pointer;
   }
-  .emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled):hover .item-label {
+  .emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled).active .item-label, .emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled):hover .item-label {
     font-weight: 500;
   }
-  .emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled):hover:before {
+  .emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled).active:before, .emerix-page .table-container .table.selectable tr:not(.table-header):not(.disabled):hover:before {
     content: '';
     position: absolute;
     top: 0;
@@ -2875,6 +2901,50 @@ html.no-scroll body {
   right: .4rem;
 }
 
+.emerix-page .page-billings.billings-home .dropdown-title::after {
+  top: -3rem;
+}
+
+.emerix-page .page-billings.billings-home .special-mobile-selectable-box .box, .emerix-page .page-billings.billings-home .special-mobile-selectable-box .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .page-billings.billings-home .special-mobile-selectable-box ul, .emerix-page .page-billings.billings-home .special-mobile-selectable-box .overlay .dialog-container, .emerix-page .overlay .page-billings.billings-home .special-mobile-selectable-box .dialog-container, .emerix-page .page-billings.billings-home .special-mobile-selectable-box .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .page-billings.billings-home .special-mobile-selectable-box ul {
+  padding-bottom: 0;
+}
+
+.emerix-page .page-billings.billings-home .special-mobile-selectable-box .dropdown-target {
+  margin-top: -1rem;
+}
+
+@media all and (min-width: 1025px) {
+  .emerix-page .page-billings.billings-1 .col-container > .full-width-mobile.box:not(:first-child), .emerix-page .page-billings.billings-1 .input-wrapper.select2.active .col-container > ul.full-width-mobile:not(:first-child), .emerix-page .input-wrapper.select2.active .page-billings.billings-1 .col-container > ul.full-width-mobile:not(:first-child), .emerix-page .page-billings.billings-1 .overlay .col-container > .full-width-mobile.dialog-container:not(:first-child), .emerix-page .overlay .page-billings.billings-1 .col-container > .full-width-mobile.dialog-container:not(:first-child), .emerix-page .page-billings.billings-1 .topbar .notifications-menu .dropdown-target .col-container > ul.full-width-mobile:not(:first-child), .emerix-page .topbar .notifications-menu .dropdown-target .page-billings.billings-1 .col-container > ul.full-width-mobile:not(:first-child) {
+    margin: 0 1rem;
+  }
+  .emerix-page .page-billings.billings-1 .dropdown-target {
+    overflow: visible;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-billings.billings-2 .flex-row.col-container.box, .emerix-page .page-billings.billings-2 .input-wrapper.select2.active ul.flex-row.col-container, .emerix-page .input-wrapper.select2.active .page-billings.billings-2 ul.flex-row.col-container, .emerix-page .page-billings.billings-2 .overlay .flex-row.col-container.dialog-container, .emerix-page .overlay .page-billings.billings-2 .flex-row.col-container.dialog-container, .emerix-page .page-billings.billings-2 .topbar .notifications-menu .dropdown-target ul.flex-row.col-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-billings.billings-2 ul.flex-row.col-container {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .emerix-page .page-billings.billings-2 .flex-row.col-container.box .text-xlarge, .emerix-page .page-billings.billings-2 .input-wrapper.select2.active ul.flex-row.col-container .text-xlarge, .emerix-page .input-wrapper.select2.active .page-billings.billings-2 ul.flex-row.col-container .text-xlarge, .emerix-page .page-billings.billings-2 .overlay .flex-row.col-container.dialog-container .text-xlarge, .emerix-page .overlay .page-billings.billings-2 .flex-row.col-container.dialog-container .text-xlarge, .emerix-page .page-billings.billings-2 .topbar .notifications-menu .dropdown-target ul.flex-row.col-container .text-xlarge, .emerix-page .topbar .notifications-menu .dropdown-target .page-billings.billings-2 ul.flex-row.col-container .text-xlarge {
+    display: inline-block;
+    margin-bottom: 1rem;
+    margin-top: .5rem;
+  }
+  .emerix-page .page-billings.billings-2 .flex-row.col-container.box + .flex-row.col-container.box, .emerix-page .page-billings.billings-2 .input-wrapper.select2.active ul.flex-row.col-container + .flex-row.col-container.box, .emerix-page .input-wrapper.select2.active .page-billings.billings-2 ul.flex-row.col-container + .flex-row.col-container.box, .emerix-page .page-billings.billings-2 .overlay .flex-row.col-container.dialog-container + .flex-row.col-container.box, .emerix-page .overlay .page-billings.billings-2 .flex-row.col-container.dialog-container + .flex-row.col-container.box, .emerix-page .page-billings.billings-2 .topbar .notifications-menu .dropdown-target ul.flex-row.col-container + .flex-row.col-container.box, .emerix-page .topbar .notifications-menu .dropdown-target .page-billings.billings-2 ul.flex-row.col-container + .flex-row.col-container.box, .emerix-page .page-billings.billings-2 .input-wrapper.select2.active .flex-row.col-container.box + ul.flex-row.col-container, .emerix-page .input-wrapper.select2.active .page-billings.billings-2 .flex-row.col-container.box + ul.flex-row.col-container, .emerix-page .page-billings.billings-2 .input-wrapper.select2.active ul.flex-row.col-container + ul.flex-row.col-container, .emerix-page .input-wrapper.select2.active .page-billings.billings-2 ul.flex-row.col-container + ul.flex-row.col-container, .emerix-page .page-billings.billings-2 .overlay .input-wrapper.select2.active .flex-row.col-container.dialog-container + ul.flex-row.col-container, .emerix-page .input-wrapper.select2.active .page-billings.billings-2 .overlay .flex-row.col-container.dialog-container + ul.flex-row.col-container, .emerix-page .overlay .page-billings.billings-2 .input-wrapper.select2.active .flex-row.col-container.dialog-container + ul.flex-row.col-container, .emerix-page .input-wrapper.select2.active .overlay .page-billings.billings-2 .flex-row.col-container.dialog-container + ul.flex-row.col-container, .emerix-page .page-billings.billings-2 .overlay .flex-row.col-container.box + .flex-row.col-container.dialog-container, .emerix-page .overlay .page-billings.billings-2 .flex-row.col-container.box + .flex-row.col-container.dialog-container, .emerix-page .page-billings.billings-2 .input-wrapper.select2.active .overlay ul.flex-row.col-container + .flex-row.col-container.dialog-container, .emerix-page .overlay .page-billings.billings-2 .input-wrapper.select2.active ul.flex-row.col-container + .flex-row.col-container.dialog-container, .emerix-page .input-wrapper.select2.active .page-billings.billings-2 .overlay ul.flex-row.col-container + .flex-row.col-container.dialog-container, .emerix-page .overlay .input-wrapper.select2.active .page-billings.billings-2 ul.flex-row.col-container + .flex-row.col-container.dialog-container, .emerix-page .page-billings.billings-2 .overlay .flex-row.col-container.dialog-container + .flex-row.col-container.dialog-container, .emerix-page .overlay .page-billings.billings-2 .flex-row.col-container.dialog-container + .flex-row.col-container.dialog-container, .emerix-page .page-billings.billings-2 .topbar .notifications-menu .dropdown-target .overlay ul.flex-row.col-container + .flex-row.col-container.dialog-container, .emerix-page .overlay .page-billings.billings-2 .topbar .notifications-menu .dropdown-target ul.flex-row.col-container + .flex-row.col-container.dialog-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-billings.billings-2 .overlay ul.flex-row.col-container + .flex-row.col-container.dialog-container, .emerix-page .overlay .topbar .notifications-menu .dropdown-target .page-billings.billings-2 ul.flex-row.col-container + .flex-row.col-container.dialog-container, .emerix-page .page-billings.billings-2 .topbar .notifications-menu .dropdown-target .flex-row.col-container.box + ul.flex-row.col-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-billings.billings-2 .flex-row.col-container.box + ul.flex-row.col-container, .emerix-page .page-billings.billings-2 .overlay .topbar .notifications-menu .dropdown-target .flex
+-row.col-container.dialog-container + ul.flex-row.col-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-billings.billings-2 .overlay .flex-row.col-container.dialog-container + ul.flex-row.col-container, .emerix-page .overlay .page-billings.billings-2 .topbar .notifications-menu .dropdown-target .flex-row.col-container.dialog-container + ul.flex-row.col-container, .emerix-page .topbar .notifications-menu .dropdown-target .overlay .page-billings.billings-2 .flex-row.col-container.dialog-container + ul.flex-row.col-container, .emerix-page .page-billings.billings-2 .topbar .notifications-menu .dropdown-target ul.flex-row.col-container + ul.flex-row.col-container, .emerix-page .topbar .notifications-menu .dropdown-target .page-billings.billings-2 ul.flex-row.col-container + ul.flex-row.col-container {
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    top: -.25rem;
+    position: relative;
+    padding-top: 0;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
 .emerix-page .page-billings .card-dropdown-target {
   background-color: #F7F7F7;
   border-radius: 4px;
@@ -2923,7 +2993,16 @@ html.no-scroll body {
   display: block;
 }
 
+@media all and (min-width: 1025px) {
+  .emerix-page .page-billings .card-global-wrapper {
+    display: none;
+  }
+}
+
 @media all and (max-width: 1024px) {
+  .emerix-page .page-billings .table-container label img {
+    width: 1.5rem;
+  }
   .emerix-page .page-billings .btn + .btn {
     margin-left: 0;
     margin-top: 1rem;
@@ -2941,6 +3020,9 @@ html.no-scroll body {
     flex-direction: row;
     margin-bottom: 0;
   }
+  .emerix-page .page-billings .data-field:last-of-type {
+    margin-bottom: 1rem;
+  }
   .emerix-page .page-billings .data-field div {
     width: 50%;
   }
@@ -2952,6 +3034,7 @@ html.no-scroll body {
     top: 0;
     right: 0;
     text-align: right;
+    width: 100%;
   }
   .emerix-page .page-billings .card-dropdown {
     pointer-events: none;
@@ -2964,7 +3047,7 @@ html.no-scroll body {
     margin-right: 0;
   }
   .emerix-page .page-billings .dropdown-target {
-    max-height: none;
+    display: block;
   }
   .emerix-page .page-billings .card-global-wrapper {
     position: absolute;
@@ -3006,6 +3089,15 @@ html.no-scroll body {
   margin-right: .5rem;
 }
 
+.emerix-page .billing-dialog .billing-dialog-content {
+  padding: 0;
+  overflow: hidden;
+  overflow-y: hidden;
+  overflow-y: auto;
+  max-height: calc(100vh - 6rem);
+  margin-top: 1rem;
+}
+
 .emerix-page .billing-dialog .btn {
   width: 100%;
   text-align: center;
@@ -3038,6 +3130,10 @@ html.no-scroll body {
 
 .emerix-page .page-faqs .input-wrapper {
   margin-bottom: 0;
+}
+
+.emerix-page .page-faqs .input-wrapper.search.filled:after {
+  background-image: url("/assets/images/ui/close-btn.svg");
 }
 
 .emerix-page .page-faqs .accordion-title a {
@@ -3254,9 +3350,6 @@ html.no-scroll body {
   .emerix-page .page-login .login-content {
     height: calc(100% - 2rem);
   }
-  .emerix-page .overlay .dialog-container {
-    width: calc(100vw - 4rem);
-  }
   .emerix-page .overlay .login-dialog:not(.dialog-content) {
     margin: 0;
     top: 50%;
@@ -3275,10 +3368,150 @@ html.no-scroll body {
   .emerix-page .overlay .login-dialog:not(.dialog-content) h2 {
     color: #3C3C3B;
   }
-  .emerix-page .overlay .dialog-content {
+  .emerix-page .overlay .login-dialog.dialog-content {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
+}
+
+.emerix-page .page-logs .active .overview {
+  padding: 1rem 0;
+  max-height: 100vh;
+  opacity: 1;
+}
+
+@media all and (max-width: 640px) {
+  .emerix-page .page-logs .active .overview {
+    padding-top: 0;
+    margin-top: -.5rem;
+  }
+}
+
+.emerix-page .page-logs .overview {
+  width: 100%;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.15s ease;
+}
+
+.emerix-page .page-logs .overview li {
+  margin-bottom: .5rem;
+  font-weight: normal;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-logs .overview strong:not(.added) {
+    font-weight: normal;
+  }
+}
+
+.emerix-page .page-logs .logs-table .table-header td {
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.emerix-page .page-logs .logs-table .table-header td:nth-child(1) {
+  width: 25%;
+}
+
+.emerix-page .page-logs .logs-table .table-header td:nth-child(2) {
+  width: 25%;
+}
+
+.emerix-page .page-logs .logs-table .table-header td:nth-child(3) {
+  width: 25%;
+  justify-content: center;
+}
+
+.emerix-page .page-logs .logs-table .table-header td:nth-child(4) {
+  width: 25%;
+  justify-content: center;
+}
+
+.emerix-page .page-logs .logs-table .table-data {
+  height: 64px;
+  align-items: center;
+}
+
+.emerix-page .page-logs .logs-table .table-data > div:nth-child(1) {
+  width: 30%;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-logs .logs-table .table-data > div:nth-child(1) {
+    width: 60%;
+  }
+}
+
+.emerix-page .page-logs .logs-table .table-data > div:nth-child(2) {
+  width: 26%;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-logs .logs-table .table-data > div:nth-child(2) {
+    display: none;
+  }
+}
+
+.emerix-page .page-logs .logs-table .table-data > div:nth-child(3) {
+  width: 18%;
+  text-align: center;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-logs .logs-table .table-data > div:nth-child(3) {
+    display: none;
+  }
+}
+
+.emerix-page .page-logs .logs-table .table-data > div:nth-child(4) {
+  width: 18%;
+  text-align: right;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-logs .logs-table .table-data > div:nth-child(4) {
+    width: 40%;
+  }
+}
+
+.emerix-page .page-logs .logs-table .last-row {
+  margin-top: 1rem;
+  align-items: center;
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-logs .logs-table .last-row {
+    flex-direction: column;
+  }
+  .emerix-page .page-logs .logs-table .last-row div + div {
+    margin-top: 1rem;
+    width: 100%;
+  }
+  .emerix-page .page-logs .logs-table .last-row div + div button.btn {
+    width: 100%;
+    display: block;
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+}
+
+.emerix-page .page-logs .logs-table .last-row a {
+  color: #8569b4;
+  margin-right: 1rem;
+  font-size: .85rem;
+  text-decoration: none;
+}
+
+.emerix-page .page-logs .logs-table .last-row .btn {
+  font-size: .85rem;
+  padding: 0.25rem 1rem;
+  font-weight: 500;
+  letter-spacing: .5px;
 }
 
 @media all and (max-width: 1024px) {
@@ -3419,8 +3652,27 @@ html.no-scroll body {
   }
 }
 
+@media all and (max-width: 1024px) {
+  .emerix-page .page-home .products-table td {
+    min-height: 32px;
+  }
+  .emerix-page .page-home .products-table td img {
+    max-width: 1.5rem;
+  }
+}
+
 .emerix-page .page-home .promises-table a {
   text-decoration: none;
+}
+
+.emerix-page .page-home .promises-table tr {
+  position: relative;
+}
+
+.emerix-page .page-home .promises-table td.text-right {
+  position: absolute;
+  top: 0;
+  right: 1rem;
 }
 
 @media all and (min-width: 1025px) {
@@ -3433,6 +3685,8 @@ html.no-scroll body {
   align-items: flex-start;
   margin-top: 12px;
   margin-bottom: 12px;
+  width: 100%;
+  justify-content: flex-start;
 }
 
 .emerix-page .page-home .promises-table .table.selectable .align-start .align-self-start {
@@ -3447,12 +3701,19 @@ html.no-scroll body {
 
 .emerix-page .page-home .promises-table .table.selectable label {
   margin-top: 12px;
+  width: 5.5rem;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-home .promises-table .table.selectable label {
+    width: 5rem;
+  }
 }
 
 .emerix-page .page-home .promises-table .table.selectable .dropdown-target {
   font-size: 12px;
   font-weight: normal;
-  padding-top: 2rem;
+  padding-top: .5rem;
 }
 
 @media all and (max-width: 1024px) {
@@ -3462,7 +3723,7 @@ html.no-scroll body {
 }
 
 .emerix-page .page-home .promises-table .table.selectable .dropdown-target li {
-  padding: .5rem 0;
+  padding: .05rem 0;
 }
 
 @media all and (max-width: 1024px) {
@@ -3620,132 +3881,6 @@ html.no-scroll body {
   height: 1.188rem;
 }
 
-.emerix-page .page-promises .input-wrapper.huge.price {
-  margin-bottom: 0;
-}
-
-@media all and (max-width: 1024px) {
-  .emerix-page .page-promises.promises_1 .col-3-6 {
-    width: 100%;
-  }
-}
-
-.emerix-page .page-promises.promises .box.active p, .emerix-page .page-promises.promises .input-wrapper.select2.active ul.active p, .emerix-page .input-wrapper.select2.active .page-promises.promises ul.active p, .emerix-page .page-promises.promises .overlay .active.dialog-container p, .emerix-page .overlay .page-promises.promises .active.dialog-container p, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul.active p, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul.active p {
-  font-weight: bold;
-}
-
-.emerix-page .page-promises.promises .box.active img, .emerix-page .page-promises.promises .input-wrapper.select2.active ul.active img, .emerix-page .input-wrapper.select2.active .page-promises.promises ul.active img, .emerix-page .page-promises.promises .overlay .active.dialog-container img, .emerix-page .overlay .page-promises.promises .active.dialog-container img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul.active img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul.active img {
-  display: none;
-}
-
-.emerix-page .page-promises.promises .box.active img + img, .emerix-page .page-promises.promises .input-wrapper.select2.active ul.active img + img, .emerix-page .input-wrapper.select2.active .page-promises.promises ul.active img + img, .emerix-page .page-promises.promises .overlay .active.dialog-container img + img, .emerix-page .overlay .page-promises.promises .active.dialog-container img + img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul.active img + img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul.active img + img {
-  display: block;
-}
-
-.emerix-page .page-promises.promises .box:not(.active) img, .emerix-page .page-promises.promises .input-wrapper.select2.active ul:not(.active) img, .emerix-page .input-wrapper.select2.active .page-promises.promises ul:not(.active) img, .emerix-page .page-promises.promises .overlay .dialog-container:not(.active) img, .emerix-page .overlay .page-promises.promises .dialog-container:not(.active) img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul:not(.active) img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul:not(.active) img {
-  display: block;
-}
-
-.emerix-page .page-promises.promises .box:not(.active) img + img, .emerix-page .page-promises.promises .input-wrapper.select2.active ul:not(.active) img + img, .emerix-page .input-wrapper.select2.active .page-promises.promises ul:not(.active) img + img, .emerix-page .page-promises.promises .overlay .dialog-container:not(.active) img + img, .emerix-page .overlay .page-promises.promises .dialog-container:not(.active) img + img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul:not(.active) img + img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul:not(.active) img + img {
-  display: none;
-}
-
-.emerix-page .page-promises .dropdown-card {
-  position: relative;
-}
-
-.emerix-page .page-promises .dropdown-card .dropdown-title {
-  position: absolute;
-  top: -2rem;
-  right: 0;
-}
-
-@media all and (max-width: 1024px) {
-  .emerix-page .page-payments .col-container {
-    flex-direction: row;
-  }
-  .emerix-page .page-payments .col-container.flex-column-on-mobile {
-    flex-direction: column;
-  }
-  .emerix-page .page-payments .col-container.flex-column-on-mobile > * {
-    margin: .5rem 0;
-    width: 100% !important;
-  }
-  .emerix-page .page-payments .col-container > * {
-    margin: 0 1rem;
-  }
-  .emerix-page .page-payments .col-container > *:first-child {
-    width: 60%;
-  }
-  .emerix-page .page-payments .col-container > *:last-child {
-    width: 30%;
-  }
-  .emerix-page .page-payments .col-container > *:first-child {
-    margin-left: 0;
-  }
-  .emerix-page .page-payments .col-container > *:last-child {
-    margin-right: 0;
-  }
-}
-
-.emerix-page .page-payments .payment-selector {
-  background-color: #fff;
-}
-
-.emerix-page .page-payments .payment-selector ul {
-  flex-wrap: wrap;
-  margin-left: -15px;
-  margin-right: -15px;
-}
-
-.emerix-page .page-payments .payment-selector li {
-  width: 70px;
-  height: 48px;
-  border-radius: 4px;
-  border: 1px solid #c1c1c1;
-  margin: 15px;
-}
-
-@media all and (max-width: 1024px) {
-  .emerix-page .page-payments .payment-selector li {
-    width: 42px;
-    height: 28px;
-  }
-}
-
-.emerix-page .page-payments .payment-selector li img {
-  max-height: 100%;
-  padding: .5rem;
-}
-
-@media all and (max-width: 1024px) {
-  .emerix-page .page-payments .payment-selector li img {
-    padding: .25rem;
-  }
-}
-
-.emerix-page .page-payments .payment-selector li.active {
-  border-color: #8569b4;
-}
-
-.emerix-page .page-payments .selectable-box {
-  flex-wrap: wrap;
-}
-
-@media all and (max-width: 1024px) {
-  .emerix-page .page-payments .selectable-box {
-    flex-direction: row;
-  }
-}
-
-.emerix-page .page-payments .payment-selector .box, .emerix-page .page-payments .payment-selector .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .page-payments .payment-selector ul, .emerix-page .page-payments .payment-selector .overlay .dialog-container, .emerix-page .overlay .page-payments .payment-selector .dialog-container, .emerix-page .page-payments .payment-selector .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .page-payments .payment-selector ul {
-  display: flex;
-  padding: 0;
-  box-shadow: none;
-  justify-content: center;
-  align-items: center;
-}
-
 @media all and (max-width: 1024px) {
   .emerix-page .page-pay label img {
     width: 1.5rem;
@@ -3853,6 +3988,15 @@ html.no-scroll body {
   }
 }
 
+@media all and (max-width: 1024px) {
+  .emerix-page .page-pay.pay_4 .box.col-1-2.full-width-mobile, .emerix-page .page-pay.pay_4 .input-wrapper.select2.active ul.col-1-2.full-width-mobile, .emerix-page .input-wrapper.select2.active .page-pay.pay_4 ul.col-1-2.full-width-mobile, .emerix-page .page-pay.pay_4 .overlay .col-1-2.full-width-mobile.dialog-container, .emerix-page .overlay .page-pay.pay_4 .col-1-2.full-width-mobile.dialog-container, .emerix-page .page-pay.pay_4 .topbar .notifications-menu .dropdown-target ul.col-1-2.full-width-mobile, .emerix-page .topbar .notifications-menu .dropdown-target .page-pay.pay_4 ul.col-1-2.full-width-mobile {
+    margin-bottom: 0;
+  }
+  .emerix-page .page-pay.pay_4 .table-container .table td {
+    min-height: 32px;
+  }
+}
+
 .emerix-page .page-pay.pay_5 .selectable-box {
   flex-wrap: wrap;
 }
@@ -3871,7 +4015,473 @@ html.no-scroll body {
   align-items: center;
 }
 
+@media all and (max-width: 1024px) {
+  .emerix-page .page-payments .col-container {
+    flex-direction: row;
+  }
+  .emerix-page .page-payments .col-container.flex-column-on-mobile {
+    flex-direction: column;
+  }
+  .emerix-page .page-payments .col-container.flex-column-on-mobile > * {
+    margin: .5rem 0;
+    width: 100% !important;
+  }
+  .emerix-page .page-payments .col-container > * {
+    margin: 0 1rem;
+  }
+  .emerix-page .page-payments .col-container > *:first-child {
+    width: 60%;
+  }
+  .emerix-page .page-payments .col-container > *:last-child {
+    width: 30%;
+  }
+  .emerix-page .page-payments .col-container > *:first-child {
+    margin-left: 0;
+  }
+  .emerix-page .page-payments .col-container > *:last-child {
+    margin-right: 0;
+  }
+}
+
+.emerix-page .page-payments .payment-selector {
+  background-color: #fff;
+}
+
+.emerix-page .page-payments .payment-selector ul {
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.emerix-page .page-payments .payment-selector li {
+  width: 70px;
+  height: 48px;
+  border-radius: 4px;
+  border: 1px solid #c1c1c1;
+  margin: 15px;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-payments .payment-selector li {
+    width: 42px;
+    height: 28px;
+  }
+}
+
+.emerix-page .page-payments .payment-selector li img {
+  max-height: 100%;
+  padding: .5rem;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-payments .payment-selector li img {
+    padding: .25rem;
+  }
+}
+
+.emerix-page .page-payments .payment-selector li.active {
+  border-color: #8569b4;
+}
+
+.emerix-page .page-payments .selectable-box {
+  flex-wrap: wrap;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-payments .selectable-box {
+    flex-direction: row;
+  }
+}
+
+.emerix-page .page-payments .payment-selector .box, .emerix-page .page-payments .payment-selector .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .page-payments .payment-selector ul, .emerix-page .page-payments .payment-selector .overlay .dialog-container, .emerix-page .overlay .page-payments .payment-selector .dialog-container, .emerix-page .page-payments .payment-selector .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .page-payments .payment-selector ul {
+  display: flex;
+  padding: 0;
+  box-shadow: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.emerix-page .page-plans .plans-table .table-data > div:nth-child(1) {
+  width: 30%;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-plans .plans-table .table-data > div:nth-child(1) {
+    width: 60%;
+  }
+}
+
+.emerix-page .page-plans .plans-table .table-data > div:nth-child(2) {
+  width: 26%;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-plans .plans-table .table-data > div:nth-child(2) {
+    width: 40%;
+  }
+}
+
+.emerix-page .page-plans .plans-table .table-data > div:nth-child(3) {
+  width: 18%;
+  text-align: center;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-plans .plans-table .table-data > div:nth-child(3) {
+    display: none;
+  }
+}
+
+.emerix-page .page-plans .plans-table .table-data > div:nth-child(4) {
+  width: 18%;
+  text-align: right;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-plans .plans-table .table-data > div:nth-child(4) {
+    display: none;
+  }
+}
+
+.emerix-page .page-plans .plans-table .table-data > div:nth-child(5) {
+  width: 8%;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-plans .plans-table .table-data > div:nth-child(5) {
+    display: none;
+  }
+}
+
+.emerix-page .page-plans .plans-table td:nth-child(1) {
+  width: 22%;
+}
+
+.emerix-page .page-plans .plans-table td:nth-child(2) {
+  width: 20%;
+}
+
+.emerix-page .page-plans .plans-table td:nth-child(3) {
+  width: 10%;
+}
+
+.emerix-page .page-plans .plans-table td:nth-child(4) {
+  width: 10%;
+}
+
+.emerix-page .page-plans .plans-table td:nth-child(5) {
+  width: 1%;
+}
+
+.emerix-page .page-plans .plans-table .table-header td {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.emerix-page .page-plans .plans-table .table-header td:nth-child(1) {
+  width: 22%;
+}
+
+.emerix-page .page-plans .plans-table .table-header td:nth-child(2) {
+  width: 20%;
+}
+
+.emerix-page .page-plans .plans-table .table-header td:nth-child(3) {
+  width: 10%;
+  align-items: center;
+}
+
+.emerix-page .page-plans .plans-table .table-header td:nth-child(4) {
+  width: 10%;
+  align-items: flex-end;
+}
+
+.emerix-page .page-plans .plans-table .table-header td:nth-child(5) {
+  width: 1%;
+  align-items: flex-end;
+}
+
+.emerix-page .page-plans .plans-table :not(.table-header) td {
+  flex-direction: column;
+  width: 100%;
+}
+
+.emerix-page .page-plans .site-select {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.emerix-page .page-plans .site-select .input-wrapper {
+  width: 8rem;
+  margin-right: 0rem;
+}
+
+.emerix-page .page-plans .site-select .input-wrapper:not(.active) ul {
+  background-color: transparent;
+}
+
+.emerix-page .page-plans .site-select .input-wrapper:not(.active) ul li:first-child:hover {
+  background-color: transparent;
+  color: #3C3C3B;
+}
+
+.emerix-page .page-plans .site-select .input-wrapper:after {
+  right: .5rem;
+}
+
+.emerix-page .page-plans .status-label {
+  display: inline-block;
+}
+
+.emerix-page .page-plans .table-data {
+  height: 64px;
+  align-items: center;
+}
+
+.emerix-page .page-plans .active .overview {
+  padding: 1rem 0;
+  max-height: 100vh;
+  opacity: 1;
+}
+
+@media all and (max-width: 640px) {
+  .emerix-page .page-plans .active .overview {
+    padding-top: 0;
+    margin-top: -.5rem;
+  }
+}
+
+.emerix-page .page-plans .overview {
+  width: 100%;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.15s ease;
+}
+
+.emerix-page .page-plans .overview li {
+  margin-bottom: .5rem;
+  font-weight: normal;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-plans .overview strong:not(.added) {
+    font-weight: normal;
+  }
+}
+
+.emerix-page .page-plans .last-row {
+  margin-top: 1rem;
+  align-items: center;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-plans .last-row {
+    flex-direction: column;
+  }
+  .emerix-page .page-plans .last-row div + div {
+    margin-top: 1rem;
+    width: 100%;
+  }
+  .emerix-page .page-plans .last-row div + div button.btn {
+    width: 100%;
+    display: block;
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+}
+
+.emerix-page .page-plans .last-row a {
+  color: #8569b4;
+  margin-right: 1rem;
+  font-size: .85rem;
+  text-decoration: none;
+}
+
+.emerix-page .page-plans .last-row .btn {
+  font-size: .85rem;
+  padding: 0.25rem 1rem;
+  font-weight: 500;
+  letter-spacing: .5px;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-plans .box-table-container {
+    box-shadow: none;
+    padding: 0;
+    margin: .5rem;
+    border: 0;
+    background: transparent;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-plans .box-table-container tr {
+    background-color: #fff;
+    border: 1px solid rgba(152, 152, 152, 0.15);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    box-shadow: 0.25rem 0.5rem 1rem rgba(60, 60, 59, 0.1);
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-left: 4px solid #8569b4;
+    position: relative;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-plans .logs-table .col-1-4.text-right {
+    margin-right: 1rem;
+  }
+  .emerix-page .page-plans .logs-table .download-icn {
+    position: absolute;
+    top: 50%;
+    right: .5rem;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    width: 1rem;
+  }
+}
+
+@media all and (min-width: 1025px) {
+  .emerix-page .page-plans .logs-table .download-icn {
+    display: none;
+  }
+  .emerix-page .page-plans .logs-table tr:hover .download-icn {
+    display: inline;
+  }
+}
+
+.emerix-page .plans-dialog {
+  max-width: 44.5rem;
+  width: 44.5rem;
+  padding: 0;
+}
+
+.emerix-page .plans-dialog .plans-dialog-content {
+  padding: 0;
+  overflow: hidden;
+  overflow-y: hidden;
+  overflow-y: auto;
+  max-height: calc(100vh - 6rem);
+  margin-top: 1rem;
+}
+
+.emerix-page .plans-dialog h3 {
+  font-size: 1.125rem;
+  margin-top: 0;
+}
+
+.emerix-page .plans-dialog h3 img {
+  vertical-align: middle;
+  margin-right: .5rem;
+}
+
+.emerix-page .plans-dialog .btn {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+}
+
+.emerix-page .plans-dialog .table-container .table {
+  padding: 0 1.5rem;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .plans-dialog .table-container .table {
+    padding: 0 1rem;
+  }
+}
+
+.emerix-page .plans-dialog .table-container .table td {
+  height: 2.5rem;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .plans-dialog .table-container .table td {
+    font-size: 10px;
+  }
+}
+
+.emerix-page .plans-dialog .table-container .table td:first-child {
+  width: 10%;
+}
+
+.emerix-page .plans-dialog .table-container .table tr {
+  padding: 0;
+}
+
+.emerix-page .plans-dialog .table-container .table tr:not(:last-child) {
+  border-bottom: 1px solid #c1c1c1;
+}
+
+.emerix-page .plans-dialog .table-container .table .table-header {
+  display: flex;
+}
+
+.emerix-page .page-promises .input-wrapper.huge.price {
+  margin-bottom: 0;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-promises label img {
+    width: 1.5rem;
+  }
+  .emerix-page .page-promises .selector-icon {
+    width: 25%;
+    min-width: 3.5rem;
+    margin-right: 1rem;
+  }
+  .emerix-page .page-promises .col-container + .box, .emerix-page .page-promises .input-wrapper.select2.active .col-container + ul, .emerix-page .input-wrapper.select2.active .page-promises .col-container + ul, .emerix-page .page-promises .overlay .col-container + .dialog-container, .emerix-page .overlay .page-promises .col-container + .dialog-container, .emerix-page .page-promises .topbar .notifications-menu .dropdown-target .col-container + ul, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises .col-container + ul {
+    margin-top: -1rem;
+  }
+  .emerix-page .page-promises .col-container .box, .emerix-page .page-promises .col-container .input-wrapper.select2.active ul, .emerix-page .input-wrapper.select2.active .page-promises .col-container ul, .emerix-page .page-promises .col-container .overlay .dialog-container, .emerix-page .overlay .page-promises .col-container .dialog-container, .emerix-page .page-promises .col-container .topbar .notifications-menu .dropdown-target ul, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises .col-container ul {
+    margin-bottom: 1rem;
+  }
+  .emerix-page .page-promises .input-wrapper {
+    margin-bottom: 0;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-promises.promises_1 .col-3-6 {
+    width: 100%;
+  }
+}
+
+.emerix-page .page-promises.promises .box.active p, .emerix-page .page-promises.promises .input-wrapper.select2.active ul.active p, .emerix-page .input-wrapper.select2.active .page-promises.promises ul.active p, .emerix-page .page-promises.promises .overlay .active.dialog-container p, .emerix-page .overlay .page-promises.promises .active.dialog-container p, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul.active p, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul.active p {
+  font-weight: bold;
+}
+
+.emerix-page .page-promises.promises .box.active img, .emerix-page .page-promises.promises .input-wrapper.select2.active ul.active img, .emerix-page .input-wrapper.select2.active .page-promises.promises ul.active img, .emerix-page .page-promises.promises .overlay .active.dialog-container img, .emerix-page .overlay .page-promises.promises .active.dialog-container img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul.active img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul.active img {
+  display: none;
+}
+
+.emerix-page .page-promises.promises .box.active img + img, .emerix-page .page-promises.promises .input-wrapper.select2.active ul.active img + img, .emerix-page .input-wrapper.select2.active .page-promises.promises ul.active img + img, .emerix-page .page-promises.promises .overlay .active.dialog-container img + img, .emerix-page .overlay .page-promises.promises .active.dialog-container img + img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul.active img + img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul.active img + img {
+  display: block;
+}
+
+.emerix-page .page-promises.promises .box:not(.active) img, .emerix-page .page-promises.promises .input-wrapper.select2.active ul:not(.active) img, .emerix-page .input-wrapper.select2.active .page-promises.promises ul:not(.active) img, .emerix-page .page-promises.promises .overlay .dialog-container:not(.active) img, .emerix-page .overlay .page-promises.promises .dialog-container:not(.active) img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul:not(.active) img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul:not(.active) img {
+  display: block;
+}
+
+.emerix-page .page-promises.promises .box:not(.active) img + img, .emerix-page .page-promises.promises .input-wrapper.select2.active ul:not(.active) img + img, .emerix-page .input-wrapper.select2.active .page-promises.promises ul:not(.active) img + img, .emerix-page .page-promises.promises .overlay .dialog-container:not(.active) img + img, .emerix-page .overlay .page-promises.promises .dialog-container:not(.active) img + img, .emerix-page .page-promises.promises .topbar .notifications-menu .dropdown-target ul:not(.active) img + img, .emerix-page .topbar .notifications-menu .dropdown-target .page-promises.promises ul:not(.active) img + img {
+  display: none;
+}
+
+.emerix-page .page-promises .dropdown-card {
+  position: relative;
+}
+
+.emerix-page .page-promises .dropdown-card .dropdown-title {
+  position: absolute;
+  top: -2rem;
+  right: 0;
+}
+
 /* pedido por kike/nico */
 [hidden] {
   display: none !important;
 }
+
