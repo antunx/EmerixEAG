@@ -1,9 +1,14 @@
 <div>
   <div class="flex-column flex-center">
-    <div><img src="assets/images/ui/dialogs/login-dialog.svg" alt=""></div>
+    <div><img src="assets/images/ui/dialogs/login-dialog-1.svg" alt=""></div>
     <div class="text-center">
-        <h1>{{ PageTitle }}</h1>
+        <h1 class="text-large">{{ PageTitle }}</h1>
         <p>{{ PageParagraph }}</p>
+
+        <ng-container *ngFor="let item of items">
+          <h2>{{ item.ItemTitle }}</h2>
+          <p>{{ item.ItemParagraph }}</p>
+        </ng-container>
     </div>
   </div>
 </div>
