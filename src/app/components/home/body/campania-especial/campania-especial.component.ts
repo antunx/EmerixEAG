@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { GetService } from '@app/services/get.service';
-import { PropService } from '../../../../services/prop.service';
+import { PropService } from '@app/services/prop.service';
 
 @Component({
   selector: 'app-campania-especial',
