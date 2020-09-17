@@ -142,4 +142,12 @@ export class GetService {
     return this.http.get<CampaniaEspecial>(this.API_URL + 'emerixautog/GetAcuerdosCampania', { params });
   }
 
+  getProductosCampaniaEspecial(id: string): Observable<Acuerdo> {
+    let params = new HttpParams();
+    params = params.append('Id', id);
+    return this.http.get<Acuerdo>(
+      this.API_URL + 'emerixautog/getacuerdosproductosespecial',
+      { params }
+    );
+  }
 }

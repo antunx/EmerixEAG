@@ -31,6 +31,15 @@ export class PromesaUltimaComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
+  abrirDetalle(promesa: string): void {
+    this.promesas.forEach((prom, index) => {
+      if (index !== parseInt(promesa, 10)) {
+        document.getElementById(`promesa-${index}`).classList.remove('active');
+      }
+    });
+    document.getElementById(`promesa-${promesa}`).classList.toggle('active');
+  }
+
   ngOnInit(): void {
     this.persona = localStorage.getItem('version_core');
     this.subs = this.getService

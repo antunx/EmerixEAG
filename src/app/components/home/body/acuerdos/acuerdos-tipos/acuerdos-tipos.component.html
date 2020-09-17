@@ -1,51 +1,64 @@
 <div class="page-progress">
-    <div class="progress progress-30"></div>
-  </div>
+  <div class="progress progress-30"></div>
+</div>
 
-  <div class="flex-column page-header">
-    <a class="top-decoration" (click)="onVolver()" style="cursor: pointer"
-      >{{"Traduct.volver_anterior" | translate }}</a
-    >
-  </div>
+<div class="flex-column page-header">
+  <a class="top-decoration" (click)="onVolver()" style="cursor: pointer">{{
+    "Traduct.volver_anterior" | translate
+  }}</a>
+</div>
 
-  <div class="restrict-width large">
-    <div class="full-width-mobile">
-      <div class="title">
-        <h1 class="page-title">{{"Traduct.seleccion_plan" | translate}}</h1>
-        <p class="page-subtitle">
-          <span></span>{{"Traduct.plan_subtitulo" | translate }}
-        </p>
-      </div>
+<div class="restrict-width large">
+  <div class="full-width-mobile">
+    <div class="title">
+      <h1 class="page-title">{{ "Traduct.seleccion_plan" | translate }}</h1>
+      <p class="page-subtitle">
+        <span></span>{{ "Traduct.plan_subtitulo" | translate }}
+      </p>
     </div>
   </div>
+</div>
 
-  <div class="restrict-width large">
-    <div class="flex-col" id="warnings"></div>
-    <div class="flex-row col-container">
-      <div
-        class="col-1-4 box full-width-mobile"
-        *ngFor="let item of acuerdos; let i = index"
-        style="min-width: 246.5px;"
+<div class="restrict-width large">
+  <div class="flex-col" id="warnings"></div>
+  <div class="flex-row col-container" *ngFor="let item of filas">
+    <div
+      class="col-1-3 box full-width-mobile relative"
+      *ngFor="let item of acuerdos | slice: item.empezar:item.finalizar"
+    >
+      <input
+        aria-hidden="true"
+        type="checkbox"
+        class="dropdown-trigger"
+        id="dropdown-trigger-acuerdo{{ item.Id }}"
+        checked="checked"
+      />
+      <label
+        class="dropdown-title card-global-wrapper"
+        for="dropdown-trigger-acuerdo-{{ item.Id }}"
       >
-        <div>
+      </label>
+      <div class="dropdown-target">
+        <div class="">
           <h4>
             <img src="assets/images/ui/tables/prestamo.svg" alt="" />{{
               item?.Nombre
             }}
           </h4>
         </div>
+
         <div class="card-dropdown-container">
           <input
             aria-hidden="true"
             type="checkbox"
             class="dropdown-trigger"
-            id="dropdown-trigger-dropdown-{{ i }}"
+            id="dropdown-trigger-productos-{{ item.Id }}"
           />
           <label
             class="dropdown-title card-dropdown"
-            for="dropdown-trigger-dropdown-{{ i }}"
+            for="dropdown-trigger-productos-{{ item.Id }}"
           >
-            {{"Traduct.productos_incluidos" | translate }}
+            {{ "Traduct.productos_incluidos" | translate }}
           </label>
           <div class="dropdown-target">
             <ul class="card-dropdown-target">
@@ -58,8 +71,11 @@
             </ul>
           </div>
         </div>
+
         <div class="data-field">
-          <div><strong>{{"Traduct.a_financiar" | translate }}</strong></div>
+          <div>
+            <strong>{{ "Traduct.a_financiar" | translate }}</strong>
+          </div>
           <div>
             <div class="price-container text-normal">
               <span class="denomination">{{
@@ -68,12 +84,17 @@
                   | slice: "0":"1"
               }}</span>
               {{ split(true, item?.MontoFinanciar)
-              }}<sup class="cents">{{ split(false, item?.MontoFinanciar) }}</sup>
+              }}<sup class="cents">{{
+                split(false, item?.MontoFinanciar)
+              }}</sup>
             </div>
           </div>
         </div>
+
         <div class="data-field">
-          <div><strong>{{"Traduct.quita" | translate }}</strong></div>
+          <div>
+            <strong>{{ "Traduct.quita" | translate }}</strong>
+          </div>
           <div>
             <div class="price-container text-normal">
               <span class="denomination">{{
@@ -86,8 +107,11 @@
             </div>
           </div>
         </div>
+
         <div class="data-field">
-          <div><strong>{{"Traduct.anticipo" | translate }}</strong></div>
+          <div>
+            <strong>{{ "Traduct.anticipo" | translate }}</strong>
+          </div>
           <div>
             <div class="price-container text-normal">
               <span class="denomination">{{
@@ -96,12 +120,17 @@
                   | slice: "0":"1"
               }}</span
               >{{ split(true, item?.MontoAnticipo)
-              }}<sup class="cents">{{ split(false, item?.MontoAnticipo) | number: "1.2-2" }}</sup>
+              }}<sup class="cents">{{
+                split(false, item?.MontoAnticipo) | number: "1.2-2"
+              }}</sup>
             </div>
           </div>
         </div>
+
         <div class="data-field">
-          <div><strong>{{"Traduct.cuota" | translate }}</strong></div>
+          <div>
+            <strong>{{ "Traduct.cuota" | translate }}</strong>
+          </div>
           <div>
             <div class="price-container text-normal">
               <span class="denomination">{{
@@ -116,29 +145,34 @@
             </div>
           </div>
         </div>
-<div class="data-field">
-        <div><strong>Plazo de anticipo</strong></div>
-        <div>
-          <div class="price-container text-normal">
-            {{ item?.PlazoAnticipo | date: "dd/MM/yyyy" }}
+
+        <div class="data-field">
+          <div><strong>Plazo de anticipo</strong></div>
+          <div>
+            <div class="price-container text-normal">
+              {{ item?.PlazoAnticipo | date: "dd/MM/yyyy" }}
+            </div>
           </div>
         </div>
-      </div>
 
-        <a class="btn secondary active" (click)="onSiguiente(item)"
-          >{{"Traduct.seleccionar" | translate }}</a
-        >
-        <a (click)="verCuotas(item)" data-popup="billings" style="cursor: pointer"
-          >{{"Traduct.ver_detalle" | translate }}</a
+        <a class="btn secondary active" (click)="onSiguiente(item)">{{
+          "Traduct.seleccionar" | translate
+        }}</a>
+        <a
+          (click)="verCuotas(item)"
+          data-popup="billings"
+          style="cursor: pointer"
+          >{{ "Traduct.ver_detalle" | translate }}</a
         >
       </div>
     </div>
   </div>
+</div>
 
-  <div class="overlay" id="billing-dialog" (click)="cerrarPopup()">
-    <app-ver-cuotas
-      [acuerdo]="verCuotasAcuerdo"
-      [historico]="false"
-      (acuerdoSeleccionado)="onSiguiente($event)"
-    ></app-ver-cuotas>
-  </div>
+<div class="overlay" id="billing-dialog" (click)="cerrarPopup()">
+  <app-ver-cuotas
+    [acuerdo]="verCuotasAcuerdo"
+    [historico]="false"
+    (acuerdoSeleccionado)="onSiguiente($event)"
+  ></app-ver-cuotas>
+</div>

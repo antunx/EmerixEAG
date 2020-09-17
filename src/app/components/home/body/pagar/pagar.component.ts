@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { GetService } from '../../../../services/get.service';
+import { GetService } from '@app/services/get.service';
 import { Router } from '@angular/router';
 import { productosPromesas } from '@app/models/productosypromesas.model';
 

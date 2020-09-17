@@ -7,11 +7,17 @@
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
 
-/* Pedido por NICO*/
+/*pedido por NICO*/
+.custom-2 {
+  margin-left: 10%;
+}
 
 @media screen and (max-width: 1024px) {
   .custom {
     margin-left: 40%;
+  }
+  .custom-2 {
+    margin-left: 25%;
   }
 }
 

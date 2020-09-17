@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PromesaDetalle } from '../models/promesdetalle.model';
+import { PromesaDetalle } from '@app/models/promesdetalle.model';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +8,7 @@ export class PropService {
   private promesaDetalle: PromesaDetalle;
   private desdeHome: boolean;
   private AccessToken: string;
-
+  private campaniaEspecial: boolean;
 
   constructor() {}
 
@@ -27,5 +27,13 @@ export class PropService {
 
   getAccesToken(): string {
     return this.AccessToken;
+  }
+
+  setCampaniaEspecial(campaniaEspecial: boolean): void {
+    this.campaniaEspecial = campaniaEspecial;
+  }
+
+  getCampaniaEspecial(): boolean {
+    return this.campaniaEspecial;
   }
 }

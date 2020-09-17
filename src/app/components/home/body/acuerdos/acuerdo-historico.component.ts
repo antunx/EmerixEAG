@@ -23,13 +23,17 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   stepAcuerdo: number;
   MostrarDetalle: boolean;
+  Mostrarcuotas: boolean;
   Acuerdo: Acuerdo;
   Acuerdos: Acuerdo[];
+  acuerdosFiltrados: Acuerdo[];
   acuerdoSeleccionado: Acuerdo;
   preAcuerdo;
+  banderaInput: number = 1;
 
   ngOnInit(): void {
     this.MostrarDetalle = false;
+    this.Mostrarcuotas = false;
     this.cambioTexto(this.translate.instant('Traduct.planes_pedidos'));
     this.getAcuerdos();
     this.stepAcuerdo = 0;
@@ -52,9 +56,10 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
             if (res.ErrorCode > 0) {
               console.log(res.ErrorMessage);
             } else {
-              // console.log(res);
+              console.log(res);
               this.Acuerdos = res.Acuerdos;
-              // console.log(this.Acuerdos);
+              console.log(this.Acuerdos);
+              this.seleccionarFiltroFecha(12);
             }
           },
           (err) => {
@@ -86,66 +91,36 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
     }
   }
 
-  filaClick(tipo: string, acuerdo: Acuerdo): void {
-    if (acuerdo !== null) {
-      if (tipo === 'D') {
-        this.VerDetalle(acuerdo);
-      }
-      if (tipo === 'P') {
-        this.PagarAnticipo(acuerdo);
-      }
-      if (tipo === 'C') {
-        this.VerCuotas(acuerdo);
-      }
-    }
-  }
-
   VerCuotas(acuerdo: Acuerdo): void {
-    this.MostrarDetalle = false;
     this.acuerdoSeleccionado = acuerdo;
-    const overlay = document.querySelector('#billing-dialog');
+    const overlay = document.querySelector('#plans-dialog');
     overlay.classList.add('active');
   }
 
   cerrarPopupCuotas(): void {
-    const overlay = document.querySelector('#billing-dialog');
+    const overlay = document.querySelector('#plans-dialog');
     overlay.classList.remove('active');
-  }
-
-  VerDetalle(acuerdo: Acuerdo): void {
-    this.Acuerdo = acuerdo;
-    const overlay = document.querySelector('#home-sidebar');
-    this.MostrarDetalle = true;
-    overlay.classList.add('active');
-  }
-
-  CerrarPopupDetalle(): void {
-    this.MostrarDetalle = false;
-    const overlay = document.querySelector('#home-sidebar');
-    overlay.querySelector('.close-btn').addEventListener('click', () => {
-      overlay.classList.remove('active');
-    });
   }
 
   PagarAnticipo(acuerdo: Acuerdo): void {
     alert('PagarAnticipo(): en desarrollo |_(-.-)_T ');
   }
 
-  onVolver(e: number): void {
+  onVolver(e: number) {
     this.stepAcuerdo = e;
   }
 
-  pagarAcuerdo(Id: number, importe: number): void {
+  pagarAcuerdo(acuerdo: Acuerdo) {
     // console.log(Id);
     // console.log(importe)
     const obj = {
       Items: [],
-      TotalPagar: importe,
+      TotalPagar: acuerdo.ImportePromesa,
       Cliente: localStorage.getItem('version_core'),
     };
     const cta = {
-      id: Id,
-      importe: { importe },
+      id: acuerdo.IdAcuerdo,
+      importe: acuerdo.ImportePromesa,
       tipo: 'ANTICIPO',
       cuotas: [],
     };
@@ -153,5 +128,39 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
     obj.Items.push(cta);
     this.preAcuerdo = obj;
     this.stepAcuerdo = this.stepAcuerdo + 1;
+  }
+
+  abrirDetalle(idAcuerdo: string): void {
+    this.MostrarDetalle = !this.MostrarDetalle;
+    this.acuerdosFiltrados.forEach((acu) => {
+      if (parseInt(idAcuerdo, 10) !== acu.IdAcuerdo) {
+        document
+          .getElementById(`acuerdo-${acu.IdAcuerdo}`)
+          .classList.remove('active');
+      }
+    });
+    document.getElementById(`acuerdo-${idAcuerdo}`).classList.toggle('active');
+  }
+
+  abrirFiltroFecha(): void {
+    document.getElementById('select-7420924462').classList.toggle('active');
+  }
+
+  seleccionarFiltroFecha(meses: number): void {
+    meses === 12
+      ? (this.banderaInput = 1)
+      : meses === 6
+      ? (this.banderaInput = 2)
+      : (this.banderaInput = 3);
+    let fecha = new Date();
+    let setMeses = fecha.getMonth() - meses;
+    fecha.setMonth(setMeses);
+    this.acuerdosFiltrados = this.Acuerdos.filter((acuerdo) => {
+      acuerdo.FechaGenerada = new Date('2020-01-15T11:40:51.56-03:00');
+      let fechaAcuerdo = new Date(acuerdo.FechaGenerada);
+      if (fechaAcuerdo > fecha) {
+        return acuerdo;
+      }
+    });
   }
 }

@@ -190,53 +190,53 @@
                 <div class="overview flex-column full-width">
                   <div class="flex-row full-width flex-column-on-mobile">
                     <!-- <div class="col-1-2 text-small full-width-mobile">
-                      <ul class="full-width flex-row mobile-only">
-                        <li class="col-1-2">
-                          <strong class="added">Venc. Anticipo</strong>
-                        </li>
-                        <li class="col-1-2 text-right">04/10/20</li>
-                      </ul>
-                      <ul class="full-width flex-row mobile-only">
-                        <li class="col-1-2">
-                          <strong class="added">Monto anticipo</strong>
-                        </li>
-                        <li class="col-1-2 text-right">$19450,87</li>
-                      </ul>
-                      <ul class="full-width flex-row mobile-only">
-                        <li class="col-1-2">
-                          <strong class="added">Cuotas</strong>
-                        </li>
-                        <li class="col-1-2 text-right">18</li>
-                      </ul>
-                      <ul class="full-width flex-row">
-                        <li class="col-1-2">
-                          <strong class="text-violet">Deuda total</strong>
-                        </li>
-                        <li class="col-1-2 text-right-mobile">$2308,50</li>
-                      </ul>
-                      <ul class="full-width flex-row">
-                        <li class="col-1-2">
-                          <strong class="text-violet"
-                            >Deuda al generar el acuerdo</strong
-                          >
-                        </li>
-                        <li class="col-1-2 text-right-mobile">$2306,50</li>
-                      </ul>
-                      <ul class="full-width flex-row">
-                        <li class="col-1-2">
-                          <strong class="text-violet"
-                            >Deuda a refinanciar</strong
-                          >
-                        </li>
-                        <li class="col-1-2 text-right-mobile">$2308,50</li>
-                      </ul>
-                      <ul class="full-width flex-row">
-                        <li class="col-1-2">
-                          <strong class="text-violet">Quita</strong>
-                        </li>
-                        <li class="col-1-2 text-right-mobile">$2308,50</li>
-                      </ul>
-                    </div> -->
+                        <ul class="full-width flex-row mobile-only">
+                          <li class="col-1-2">
+                            <strong class="added">Venc. Anticipo</strong>
+                          </li>
+                          <li class="col-1-2 text-right">04/10/20</li>
+                        </ul>
+                        <ul class="full-width flex-row mobile-only">
+                          <li class="col-1-2">
+                            <strong class="added">Monto anticipo</strong>
+                          </li>
+                          <li class="col-1-2 text-right">$19450,87</li>
+                        </ul>
+                        <ul class="full-width flex-row mobile-only">
+                          <li class="col-1-2">
+                            <strong class="added">Cuotas</strong>
+                          </li>
+                          <li class="col-1-2 text-right">18</li>
+                        </ul>
+                        <ul class="full-width flex-row">
+                          <li class="col-1-2">
+                            <strong class="text-violet">Deuda total</strong>
+                          </li>
+                          <li class="col-1-2 text-right-mobile">$2308,50</li>
+                        </ul>
+                        <ul class="full-width flex-row">
+                          <li class="col-1-2">
+                            <strong class="text-violet"
+                              >Deuda al generar el acuerdo</strong
+                            >
+                          </li>
+                          <li class="col-1-2 text-right-mobile">$2306,50</li>
+                        </ul>
+                        <ul class="full-width flex-row">
+                          <li class="col-1-2">
+                            <strong class="text-violet"
+                              >Deuda a refinanciar</strong
+                            >
+                          </li>
+                          <li class="col-1-2 text-right-mobile">$2308,50</li>
+                        </ul>
+                        <ul class="full-width flex-row">
+                          <li class="col-1-2">
+                            <strong class="text-violet">Quita</strong>
+                          </li>
+                          <li class="col-1-2 text-right-mobile">$2308,50</li>
+                        </ul>
+                      </div> -->
                     <div class="col-1-2 text-small full-width-mobile">
                       <ul class="full-width flex-row">
                         <li class="full-width">
@@ -249,8 +249,8 @@
                         class="full-width flex-row"
                         *ngFor="let producto of item?.Detalle"
                       >
-                        <li class="col-1-3">{{ producto.NombreProducto }}</li>
-                        <li class="col-1-3 text-right">
+                        <li class="col-1-5">{{ producto.NombreProducto }}</li>
+                        <li class="col-1-5 text-left">
                           {{
                             producto.CodigoMoneda +
                               removerComas(
@@ -262,63 +262,63 @@
                     </div>
                   </div>
                   <!-- <div class="flex-row full-width flex-end last-row">
-                    <div>
-                      <a href="#" class="text-violet trigger-popup"
-                        >Ver detalle del plan y cuotas</a
-                      >
-                    </div>
-                    <div>
-                      <button class="btn secondary active">
-                        firmar acuerdo
-                      </button>
-                    </div>
-                  </div> -->
+                      <div>
+                        <a href="#" class="text-violet trigger-popup"
+                          >Ver detalle del plan y cuotas</a
+                        >
+                      </div>
+                      <div>
+                        <button class="btn secondary active">
+                          firmar acuerdo
+                        </button>
+                      </div>
+                    </div> -->
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
         <!-- <table class="table selectable logs-table" width="100%" border="0">
-          <tbody>
-            <tr class="table-header">
-              <td class="col-1-5 text-center">
-                {{ "Traduct.plazo_de_pago" | translate }}
-              </td>
+            <tbody>
+              <tr class="table-header">
+                <td class="col-1-5 text-center">
+                  {{ "Traduct.plazo_de_pago" | translate }}
+                </td>
 
-              <td class="col-1-5 text-center">
-                {{ "Traduct.estado" | translate }}
-              </td>
+                <td class="col-1-5 text-center">
+                  {{ "Traduct.estado" | translate }}
+                </td>
 
-              <td class="col-1-5 text-center">
-                {{ "Traduct.monto" | translate }}
-              </td>
+                <td class="col-1-5 text-center">
+                  {{ "Traduct.monto" | translate }}
+                </td>
 
-              <td class="col-2-5 text-center desktop-only">
-                {{ "Traduct.cant_productos_adeu" | translate }}
-              </td>
-            </tr>
+                <td class="col-2-5 text-center desktop-only">
+                  {{ "Traduct.cant_productos_adeu" | translate }}
+                </td>
+              </tr>
 
-            <tr *ngFor="let item of promesas; let i = index">
-              <td class="col-1-5 text-center">
-                {{ item.PromesaFecha | date: "dd/MM/yyyy" }}
-              </td>
-              <td class="col-1-5 text-center">
-                {{ item.Estado }}
-              </td>
-              <td class="col-1-5 text-center">
-                {{
-                  item.CodigoMoneda +
-                    removerComas(item.PromesaMonto | number: "1.2-2")
-                }}
-              </td>
-              <td class="col-2-5 text-center desktop-only">
-                {{ item.CantidadCuentas }}&nbsp;
-                <p *ngIf="item.CantidadCuentas < 2">Producto</p>
-                <p *ngIf="item.CantidadCuentas >= 2">Productos</p>
-              </td>
-            </tr>
-          </tbody>
-        </table> -->
+              <tr *ngFor="let item of promesas; let i = index">
+                <td class="col-1-5 text-center">
+                  {{ item.PromesaFecha | date: "dd/MM/yyyy" }}
+                </td>
+                <td class="col-1-5 text-center">
+                  {{ item.Estado }}
+                </td>
+                <td class="col-1-5 text-center">
+                  {{
+                    item.CodigoMoneda +
+                      removerComas(item.PromesaMonto | number: "1.2-2")
+                  }}
+                </td>
+                <td class="col-2-5 text-center desktop-only">
+                  {{ item.CantidadCuentas }}&nbsp;
+                  <p *ngIf="item.CantidadCuentas < 2">Producto</p>
+                  <p *ngIf="item.CantidadCuentas >= 2">Productos</p>
+                </td>
+              </tr>
+            </tbody>
+          </table> -->
       </div>
       <div *ngIf="promesas?.length === 0 || promesas === undefined">
         <p class="page-subtitle text-center">

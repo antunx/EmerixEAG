@@ -1,14 +1,15 @@
-<div class="dialog-container billing-dialog" role="dialog">
-  <a class="close-btn" (click)="cerrarPopup()">
+<div class="dialog-container plans-dialog" role="dialog">
+  <a class="close-btn">
     <img src="assets/images/ui/close-btn.svg" alt="Close" />
   </a>
-  <div class="dialog-content billing-dialog-content">
+  <div class="dialog-content plans-dialog-content">
     <div>
       <div class="billing-title">
         <h3>
-          <img src="assets/images/ui/tables/prestamo.svg" alt="" />{{
-            "Traduct.acuerdos" | translate
-          }}
+          <img
+            src="assets/images/ui/tables/prestamo.svg"
+            alt=""
+          />{{ "Traduct.detalle_acuerdo" | translate }}
         </h3>
       </div>
       <div class="table-container row-container">
@@ -21,17 +22,13 @@
               <td class="col-1-6 text-center">
                 {{ "Traduct.fecha_vencimiento" | translate }}
               </td>
-              <td
-                *ngIf="historico"
-                class="col-1-6 text-center"
-                [ngClass]="{ 'desktop-only': EsAcuerdo === false }"
-              >
+              <td class="col-1-6 text-center">
                 {{ "Traduct.estado" | translate }}
               </td>
-              <td *ngIf="!EsAcuerdo" class="col-1-6 text-center">
+              <td class="col-1-6 text-center">
                 {{ "Traduct.capital" | translate }}
               </td>
-              <td *ngIf="!EsAcuerdo" class="col-1-6 text-center">
+              <td class="col-1-6 text-center">
                 {{ "Traduct.interes_periodo" | translate }}
               </td>
               <td class="col-1-6 text-center">
@@ -44,30 +41,27 @@
                 {{ cuota.FechaVencimiento | date: "dd/MM/yyyy" }}
               </td>
               <td
-                *ngIf="historico"
                 class="col-1-6 text-center"
+                *ngIf="!historico"
                 [ngClass]="{ 'desktop-only': EsAcuerdo === false }"
               >
                 {{ cuota.Estado }}
               </td>
-              <td *ngIf="!EsAcuerdo" class="col-1-6 text-center">
-                {{ cuota.Capital }}
-              </td>
-              <td *ngIf="!EsAcuerdo" class="col-1-6 text-center">
-                {{ cuota.Interes }}
-              </td>
+              <td class="col-1-6 text-center">{{ cuota.Capital }}</td>
+              <td class="col-1-6 text-center">{{ cuota.Interes }}</td>
               <td class="col-1-6 text-center">
                 {{ cuota.MontoTotal | currency: "ARS":"symbol-narrow":"1.2-2" }}
               </td>
             </tr>
-            <tr>
+            <tr *ngIf="!historico">
               <td class="col-1-6 text-center"></td>
               <td class="col-1-6 text-center"></td>
               <td class="col-1-6 text-center"></td>
-              <td *ngIf="!historico" class="col-1-6 text-center">
+              <td class="col-1-6 text-center"></td>
+              <td class="col-1-6 text-center">
                 <strong>{{ "Traduct.total" | translate }}</strong>
               </td>
-              <td *ngIf="!historico" class="col-1-6 text-center">
+              <td class="col-1-6 text-center">
                 <strong>{{
                   acuerdo?.MontoFinanciar
                     | currency: "ARS":"symbol-narrow":"1.2-2"
@@ -77,6 +71,9 @@
           </tbody>
         </table>
       </div>
+      <a *ngIf="historico" class="btn secondary active" (click)="seleccionar()"
+        >Pagar</a
+      >
       <a
         *ngIf="!historico"
         class="btn secondary active"

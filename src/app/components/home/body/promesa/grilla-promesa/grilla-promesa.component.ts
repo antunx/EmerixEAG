@@ -10,7 +10,7 @@ import {
 import { Promesa } from '@app/models/Promesa.model';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { PostService } from '../../../../../services/post.service';
+import { PostService } from '@app/services/post.service';
 
 @Component({
   selector: 'app-grilla-promesa',

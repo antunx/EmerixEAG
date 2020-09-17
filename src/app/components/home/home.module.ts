@@ -3,7 +3,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 /* CUSTOM FORM CONTROL*/
-import { UtilidadesModule } from '../utilidades/utilidades.module';
+import { UtilidadesModule } from '@component/utilidades/utilidades.module';
 
 /* ROUTING */
 import { HomeRoutingModule } from './home-routing.module';

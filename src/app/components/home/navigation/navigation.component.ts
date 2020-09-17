@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ComunicacionService } from '@app/services/comunicacion.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '@app/services/auth.service';
+import { PropService } from '@app/services/prop.service';
 
 @Component({
   selector: 'app-navigation',
@@ -27,6 +28,7 @@ export class NavigationComponent implements OnInit {
   constructor(
     private router: Router,
     private servicioComunicacion: ComunicacionService,
+    private propService: PropService,
     private translate: TranslateService,
     private authService: AuthService) {
     }
@@ -75,6 +77,7 @@ export class NavigationComponent implements OnInit {
     this.MenuSel = this.translate.instant('Traduct.pagar_cuotas');
     this.MenuPagarCuotas = this.translate.instant('Traduct.pagar_cuotas');
     this.cambioTexto(this.translate.instant('Traduct.pagar_cuotas'));
+    this.propService.setCampaniaEspecial(false);
     this.router.navigateByUrl('/home/acuerdos');
     this.clickMobile(true);
   }

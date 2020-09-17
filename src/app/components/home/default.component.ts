@@ -3,9 +3,11 @@ import { ComunicacionService } from '@app/services/comunicacion.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PostService } from '@app/services/post.service';
-import { IPago } from '../../models/postPago.model';
+import { IPago } from '@app/models/postPago.model';
 import { RtagetProductPersonModel, Product } from '@app/models/rtagetproductperson.model';
 import { pagoGen } from '@app/models/pagogen.models';
+import { GetService } from '@app/services/get.service';
+import { PropService } from '@app/services/prop.service';
 
 @Component({
   selector: 'app-default',
@@ -29,10 +31,12 @@ export class DefaultComponent implements OnInit {
     private servicioComunicacion: ComunicacionService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private postService: PostService
+    private postService: PostService,
+    private propService: PropService
   ) {}
 
   ngOnInit(): void {
+    this.propService.setCampaniaEspecial(false);
     this.cambioTexto(this.translate.instant('Traduct.inicio'));
     this.estadoPago = '';
     this.stepPago = 0;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetService } from '../../../services/get.service';
+import { GetService } from '@app/services/get.service';
 import { Item } from '@app/models/rtagetpageinfo.model';
 
 @Component({

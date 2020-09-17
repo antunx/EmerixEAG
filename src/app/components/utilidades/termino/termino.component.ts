@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GetService } from '../../../services/get.service';
+import { GetService } from '@app/services/get.service';
 
 @Component({
   selector: 'app-termino',

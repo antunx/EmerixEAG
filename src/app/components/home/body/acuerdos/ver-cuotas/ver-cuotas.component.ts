@@ -1,4 +1,4 @@
-import { PostService } from '../../../../../services/post.service';
+import { PostService } from '@app/services/post.service';
 import {
   Component,
   OnInit,
@@ -45,9 +45,8 @@ export class VerCuotasComponent implements OnInit, OnChanges {
       this.postService
         .PostObtenerCuotasAcuerdo(acuerdoAux)
         .subscribe((data) => {
-          // console.log(data)
           this.cuotas = data.Cuotas;
-          this.EsAcuerdo = data.EsAcuerdoVerbal
+          this.EsAcuerdo = data.EsAcuerdoVerbal;
         });
     }
   }
@@ -55,7 +54,7 @@ export class VerCuotasComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   cerrarPopup(): void {
-    document.querySelector('#billing-dialog').classList.remove('active');
+    document.querySelector('#plans-dialog').classList.remove('active');
   }
 
   seleccionar(): void {

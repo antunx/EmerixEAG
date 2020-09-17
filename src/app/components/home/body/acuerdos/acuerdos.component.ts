@@ -2,6 +2,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { GetService } from '@app/services/get.service';
 import { Acuerdo } from '@app/models/getAcuerdo.model';
 import { ActivatedRoute } from '@angular/router';
+import { PropService } from '@app/services/prop.service';
 
 @Component({
   selector: 'app-acuerdos',
@@ -19,25 +20,47 @@ export class AcuerdosComponent implements OnInit {
   montoAPagar: number;
   TodosProductos: Array<any>;
   preAcuerdo: any;
-  constructor(private getService: GetService, private router: ActivatedRoute) {}
+  constructor(
+    private getService: GetService,
+    private router: ActivatedRoute,
+    private propService: PropService
+  ) {}
 
   ngOnInit(): void {
     this.popupNro = 0;
     this.stepAcuerdo = 0;
     this.montoAPagar = 0;
     this.TodosProductos = [];
-    this.getService
-      .getProductosAcuerdos(localStorage.getItem('version_core'))
-      .subscribe((data: Acuerdo) => {
-        if (data.ErrorCode === 0) {
-          // console.log(data);
-          this.acuerdo = data;
-          data.Cuentas.forEach((cuenta) => {
-            this.montoAPagar += cuenta.Deuda;
-          });
-          this.allChecked();
-        }
-      });
+    if (this.propService.getCampaniaEspecial()) {
+      this.getService
+        .getProductosCampaniaEspecial(localStorage.getItem('version_core'))
+        .subscribe((data: Acuerdo) => {
+          console.log('acuerdo especial');
+          if (data.ErrorCode === 0) {
+            // console.log(data);
+            this.acuerdo = data;
+            data.Cuentas.forEach((cuenta) => {
+              this.montoAPagar += cuenta.Deuda;
+            });
+            this.allChecked();
+          }
+        });
+      /** Campania Especial */
+    } else {
+      this.getService
+        .getProductosAcuerdos(localStorage.getItem('version_core'))
+        .subscribe((data: Acuerdo) => {
+          console.log('acuerdo comun');
+          if (data.ErrorCode === 0) {
+            // console.log(data);
+            this.acuerdo = data;
+            data.Cuentas.forEach((cuenta) => {
+              this.montoAPagar += cuenta.Deuda;
+            });
+            this.allChecked();
+          }
+        });
+    }
   }
 
   allChecked(): void {
@@ -92,6 +115,7 @@ export class AcuerdosComponent implements OnInit {
       DeudaTotal: this.acuerdo.DeudaTotal,
       DiasMora: this.acuerdo.DiasMora,
       Cuentas: [],
+      IdPersona: localStorage.getItem('version_core'),
     };
     this.acuerdo.Cuentas.forEach((cuenta) => {
       if (cuenta.Check) {
@@ -145,7 +169,7 @@ export class AcuerdosComponent implements OnInit {
     return numero.replace(',', '');
   }
 
-  onpreAcuerdo(e: any) {
+  onpreAcuerdo(e: any): void {
     this.preAcuerdo = e;
   }
 }

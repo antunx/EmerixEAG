@@ -1,106 +1,106 @@
-<div
+<!-- <div
   class="dialog-container billing-dialog"
   role="dialog"
   style="margin-top: 30px"
->
-  <a class="close-btn" (click)="volver()">
-    <img src="assets/images/ui/close-btn.svg" alt="Close" />
-  </a>
-  <div>
-    <div class="dialog-content billing-dialog-content">
-      <div class="billing-title">
-        <h3>
-          <img src="assets/images/ui/tables/prestamo.svg" alt="" />Detalle de
-          Cuotas del prestamo
-        </h3>
-      </div>
-
-      <div class="table-container row-container">
-        <table class="table" width="100%">
-          <tbody>
-            <tr class="table-header">
-              <td class="col-1-4 text-center">
-                {{ "Traduct.cuota" | translate }}
-              </td>
-              <td class="col-1-4 text-center">
-                {{ "Traduct.fecha_vencimiento" | translate }}
-              </td>
-              <td class="col-1-4 desktop-only text-center">
-                {{ "Traduct.estado" | translate }}
-              </td>
-              <td class="col-1-4 text-center">
-                {{ "Traduct.importe_a_pagar" | translate }}
-              </td>
-            </tr>
-            <div *ngFor="let cuota of prestamo">
-              <tr>
-                <td class="col-1-4 text-center">
-                  <div class="input-wrapper checkbox">
-                    <input
-                      id="table-select-{{ cuota.IdPrestamoCuota }}"
-                      type="checkbox"
-                      class="input-elem visually-hidden"
-                      required
-                      [disabled]="cuota.CodigoEstado == 'PAGADA'"
-                      name="selectAll"
-                      [checked]="cuota.Check"
-                      (change)="cambiarCheck(cuota.IdPrestamoCuota, $event)"
-                    />
-
-                    <div class="input-fake-checkbox">
-                      <span class="input-caret"></span>
-                    </div>
-
-                    <label for="table-select-{{ cuota.IdPrestamoCuota }}">
-                      {{ cuota.NumeroCuota }}
-                    </label>
-                  </div>
-                </td>
-
-                <td class="col-1-4 text-center">
-                  {{ cuota.FechaVemcimiento | date: "dd/MM/yyyy" }}
-                </td>
-
-                <td
-                  class="col-1-4 desktop-only text-center"
-                  [ngClass]="{
-                    red: cuota.CodigoEstado === 'VENCIDA',
-                    green: cuota.CodigoEstado === 'PAGADA'
-                  }"
-                >
-                  {{ cuota.CodigoEstado }}
-                </td>
-
-                <td class="col-1-4 text-center">
-                  {{ cuota.ImporteTotal }}
-                </td>
-              </tr>
-            </div>
-          </tbody>
-        </table>
-      </div>
-      <div class="flex-row deal-mini">
-        <button
-          value="Generar Promesa"
-          id="generar-promesa"
-          (click)="volver()"
-          class="btn secondary"
-        >
-          {{ "Traduct.volver" | translate }}
-        </button>
-
-        <button
-          class="btn"
-          value="Generar Promesa"
-          id="generar-promesa"
-          (click)="confirmarCuotas($event)"
-        >
-          {{ "Traduct.confirmar" | translate }}
-        </button>
-      </div>
-    </div>
+> -->
+<a class="close-btn" (click)="volver()">
+  <img src="assets/images/ui/close-btn.svg" alt="Close" />
+</a>
+<div>
+  <!-- <div class="dialog-content billing-dialog-content"> -->
+  <div class="billing-title">
+    <h3>
+      <img src="assets/images/ui/tables/prestamo.svg" alt="" />Detalle de Cuotas
+      del prestamo
+    </h3>
   </div>
+
+  <div class="table-container row-container">
+    <table class="table" width="100%">
+      <tbody>
+        <tr class="table-header">
+          <td class="col-1-4 text-center">
+            {{ "Traduct.cuota" | translate }}
+          </td>
+          <td class="col-1-4 text-center">
+            {{ "Traduct.fecha_vencimiento" | translate }}
+          </td>
+          <td class="col-1-4 desktop-only text-center">
+            {{ "Traduct.estado" | translate }}
+          </td>
+          <td class="col-1-4 text-center">
+            {{ "Traduct.importe_a_pagar" | translate }}
+          </td>
+        </tr>
+        <div *ngFor="let cuota of prestamo">
+          <tr>
+            <td class="col-1-4 text-center">
+              <div class="input-wrapper checkbox">
+                <input
+                  id="table-select-{{ cuota.IdPrestamoCuota }}"
+                  type="checkbox"
+                  class="input-elem visually-hidden"
+                  required
+                  [disabled]="cuota.CodigoEstado == 'PAGADA'"
+                  name="selectAll"
+                  [checked]="cuota.Check"
+                  (change)="cambiarCheck(cuota.IdPrestamoCuota, $event)"
+                />
+
+                <div class="input-fake-checkbox">
+                  <span class="input-caret"></span>
+                </div>
+
+                <label for="table-select-{{ cuota.IdPrestamoCuota }}">
+                  {{ cuota.NumeroCuota }}
+                </label>
+              </div>
+            </td>
+
+            <td class="col-1-4 text-center">
+              {{ cuota.FechaVemcimiento | date: "dd/MM/yyyy" }}
+            </td>
+
+            <td
+              class="col-1-4 desktop-only text-center"
+              [ngClass]="{
+                red: cuota.CodigoEstado === 'VENCIDA',
+                green: cuota.CodigoEstado === 'PAGADA'
+              }"
+            >
+              {{ cuota.CodigoEstado }}
+            </td>
+
+            <td class="col-1-4 text-center">
+              {{ cuota.ImporteTotal }}
+            </td>
+          </tr>
+        </div>
+      </tbody>
+    </table>
+  </div>
+  <div class="flex-row deal-mini">
+    <button
+      value="Generar Promesa"
+      id="generar-promesa"
+      (click)="volver()"
+      class="btn secondary"
+    >
+      {{ "Traduct.volver" | translate }}
+    </button>
+
+    <button
+      class="btn"
+      value="Generar Promesa"
+      id="generar-promesa"
+      (click)="confirmarCuotas($event)"
+    >
+      {{ "Traduct.confirmar" | translate }}
+    </button>
+  </div>
+  <!-- </div> -->
 </div>
+<!-- </div> -->
 <!-- END DESKTOP TABLE -->
 
 <!-- START MOBILE TABLE -->

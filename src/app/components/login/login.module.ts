@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 
 /* CUSTOM FORM CONTROL*/
-import { UtilidadesModule } from '../utilidades/utilidades.module';
+import { UtilidadesModule } from '@component/utilidades/utilidades.module';
 
 /** COMPONENTES */
 import { LoginComponent } from './login.component';

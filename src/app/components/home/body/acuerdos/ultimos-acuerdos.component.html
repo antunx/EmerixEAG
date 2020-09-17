@@ -10,14 +10,14 @@
       <table class="table selectable" width="100%" border="0">
        <tbody>
           <tr class="" *ngFor="let Acuerdo of Acuerdos">
-            <td class="col-3-5">
+          	<td class="col-1-2">
               <img style="float: left; vertical-align: middle" src="assets/images/ui/tables/refinanciacion.svg" alt="">&nbsp;
               <div class="flex-column text-small text-uppercase">
                   <div class="text-semi">{{ Acuerdo.NombreAcuerdo }}</div>
                   <div>{{ Acuerdo.FechaGenerada | date : "dd/MM/yyyy" }}</div>
               </div>
             </td>
-            <td class="col-2-5 text-right">
+          	<td class="col-1-2 text-right">
               <div *ngIf="Acuerdo.EstadoCodigo ==='PENDIANT'" class="status-label"><span class="bullet yellow"></span>{{ 'Traduct.pendiente' | translate }}</div>
               <div *ngIf="Acuerdo.EstadoCodigo ==='VIGENTE'" class="status-label"><span class="bullet yellow"></span>{{ 'Traduct.vigente' | translate }}</div>
 

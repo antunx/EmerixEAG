@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { GetService } from '../../../../../services/get.service';
-import { RtagetDetailProductModel } from '../../../../../models/rtagetdetailproduct.model';
+import { GetService } from '@app/services/get.service';
+import { RtagetDetailProductModel } from '@app/models/rtagetdetailproduct.model';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import pdfMake from 'pdfmake/build/pdfmake';

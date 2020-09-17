@@ -83,6 +83,7 @@ export class PostService {
     DeudaTotal: number;
     DiasMora: number;
     Cuentas: any[];
+    IdPersona: string;
   }): Observable<Acuerdos> {
     return this.http.post<Acuerdos>(
       this.API_URL + 'emerixautog/getacuerdos',
@@ -119,6 +120,18 @@ export class PostService {
     return this.http.post<StandardPost>(
       this.API_URL + 'emerixautog/ingresarintencion',
       intencion
+    );
+  }
+
+  postObtenerAcuerdosEspeciales(ctas: {
+    DeudaTotal: number;
+    DiasMora: number;
+    Cuentas: any[];
+    IdPersona: string;
+  }): Observable<Acuerdos> {
+    return this.http.post<Acuerdos>(
+      this.API_URL + 'emerixautog/getacuerdosespecial',
+      ctas
     );
   }
 }
