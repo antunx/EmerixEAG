@@ -22,13 +22,13 @@
               <td class="col-1-6 text-center">
                 {{ "Traduct.fecha_vencimiento" | translate }}
               </td>
-              <td class="col-1-6 text-center">
+              <td class="col-1-6 text-center" *ngIf="tieneCuotas">
                 {{ "Traduct.estado" | translate }}
               </td>
-              <td class="col-1-6 text-center">
+              <td class="col-1-6 text-center" *ngIf="EsAcuerdo === false">
                 {{ "Traduct.capital" | translate }}
               </td>
-              <td class="col-1-6 text-center">
+              <td class="col-1-6 text-center" *ngIf="EsAcuerdo === false">
                 {{ "Traduct.interes_periodo" | translate }}
               </td>
               <td class="col-1-6 text-center">
@@ -42,13 +42,17 @@
               </td>
               <td
                 class="col-1-6 text-center"
-                *ngIf="!historico"
+                *ngIf="tieneCuotas || (!historico && cuota.Estado !== '')"
                 [ngClass]="{ 'desktop-only': EsAcuerdo === false }"
               >
                 {{ cuota.Estado }}
               </td>
-              <td class="col-1-6 text-center">{{ cuota.Capital }}</td>
-              <td class="col-1-6 text-center">{{ cuota.Interes }}</td>
+              <td class="col-1-6 text-center" *ngIf="EsAcuerdo === false">
+                {{ cuota.Capital }}
+              </td>
+              <td class="col-1-6 text-center" *ngIf="EsAcuerdo === false">
+                {{ cuota.Interes }}
+              </td>
               <td class="col-1-6 text-center">
                 {{ cuota.MontoTotal | currency: "ARS":"symbol-narrow":"1.2-2" }}
               </td>

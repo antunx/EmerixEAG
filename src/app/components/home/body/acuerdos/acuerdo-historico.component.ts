@@ -152,12 +152,12 @@ export class AcuerdoHistoricoComponent implements OnInit, OnDestroy {
       : meses === 6
       ? (this.banderaInput = 2)
       : (this.banderaInput = 3);
-    let fecha = new Date();
-    let setMeses = fecha.getMonth() - meses;
+    const fecha = new Date();
+    const setMeses = fecha.getMonth() - meses;
     fecha.setMonth(setMeses);
     this.acuerdosFiltrados = this.Acuerdos.filter((acuerdo) => {
-      acuerdo.FechaGenerada = new Date('2020-01-15T11:40:51.56-03:00');
-      let fechaAcuerdo = new Date(acuerdo.FechaGenerada);
+      // acuerdo.FechaGenerada = new Date('2020-01-15T11:40:51.56-03:00');
+      const fechaAcuerdo = new Date(acuerdo.FechaGenerada);
       if (fechaAcuerdo > fecha) {
         return acuerdo;
       }

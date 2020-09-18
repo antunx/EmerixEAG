@@ -150,4 +150,18 @@ export class GetService {
       { params }
     );
   }
+
+  getFirma(
+    id: string
+  ): Observable<{
+    ErrorCode: number;
+    ErrorMessage: string;
+    Firma: string | null;
+  }> {
+    return this.http.get<{
+      ErrorCode: number;
+      ErrorMessage: string;
+      Firma: string | null;
+    }>(this.API_URL + 'emerixautog/getFirma/?Id=' + id);
+  }
 }

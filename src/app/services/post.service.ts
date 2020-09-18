@@ -134,4 +134,14 @@ export class PostService {
       ctas
     );
   }
+
+  PostFirma(firma: {
+    firma: string;
+    IdPersona: string;
+  }): Observable<{ ErrorCode: number; ErrorMessage: string }> {
+    return this.http.post<{ ErrorCode: number; ErrorMessage: string }>(
+      `${this.API_URL}emerixautog/ingresarfirma`,
+      firma
+    );
+  }
 }

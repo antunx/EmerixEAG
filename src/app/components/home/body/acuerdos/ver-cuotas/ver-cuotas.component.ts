@@ -20,6 +20,7 @@ export class VerCuotasComponent implements OnInit, OnChanges {
   @Output() acuerdoSeleccionado = new EventEmitter<any>();
   cuotas: Array<any>;
   EsAcuerdo: boolean;
+  tieneCuotas: boolean;
 
   constructor(private postService: PostService) {}
   ngOnChanges(changes: SimpleChanges): void {
@@ -32,7 +33,7 @@ export class VerCuotasComponent implements OnInit, OnChanges {
         IdTipoAcuerdo: changes.acuerdo.currentValue.Id,
         Importe: changes.acuerdo.currentValue.MontoFinanciar,
         Anticipo: changes.acuerdo.currentValue.MontoAnticipo,
-        Quita: changes.acuerdo.currentValue.MontoQuita
+        Quita: changes.acuerdo.currentValue.MontoQuita,
       };
       if (this.historico) {
         acuerdoAux.IdAcuerdo = changes.acuerdo.currentValue.IdAcuerdo;
@@ -45,7 +46,9 @@ export class VerCuotasComponent implements OnInit, OnChanges {
       this.postService
         .PostObtenerCuotasAcuerdo(acuerdoAux)
         .subscribe((data) => {
+          console.log(data);
           this.cuotas = data.Cuotas;
+          this.tieneCuotas = data.Cuotas[0].Estado !== '' ? true : false;
           this.EsAcuerdo = data.EsAcuerdoVerbal;
         });
     }

@@ -1,0 +1,30 @@
+<div class="pages-container flex-grow">
+  <section class="page-promises promises_1">
+    <button class="btn primary" (click)="abrirFirma()">Firmar</button>
+    <button *ngIf="edit === true" class="btn primary" (click)="editar()">
+      editar
+    </button>
+    <div class="overlay" id="overlay-firma">
+      <div class="dialog-container sidebar" role="dialog">
+        <a class="close-btn" (click)="cerrarPopup()">
+          <img src="assets/images/ui/close-btn.svg" alt="Close" />
+        </a>
+        <div class="dialog-content login-dialog">
+          <div>
+            <div class="flex-column flex-center" style="margin-bottom: 20px">
+              <canvas
+                #sPad
+                style="touch-action: none; border: 4px solid gray"
+              ></canvas>
+            </div>
+            <div class="flex-row flex-center">
+              <button (click)="borrar()" class="btn secondary">Borrar</button>
+              <button (click)="undo()" class="btn secondary">Undo</button>
+              <button (click)="guardar()" class="btn primary">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

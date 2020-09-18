@@ -14,4 +14,5 @@ export interface CuotasAcuerdo {
     TotalCuota: number;
     CapitalRestante: number;
     FechaVencimiento: string;
+    Estado: string;
   }

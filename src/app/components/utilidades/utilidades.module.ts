@@ -13,6 +13,7 @@ import { ComboBoxComponent } from './CustomFormControl/combo-box.component';
 import { InputDateComponent } from './CustomFormControl/input-date.component';
 import { TerminoComponent } from './termino/termino.component';
 import { ConsultaComponent } from './consulta/consulta.component';
+import { PadFirmaComponent } from './pad-firma/pad-firma.component';
 
 export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/terminosIdiomas/', '.json');
@@ -25,6 +26,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     ComboBoxComponent,
     TerminoComponent,
     ConsultaComponent,
+    PadFirmaComponent,
   ],
   imports: [
     RouterModule,
@@ -45,6 +47,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
     ComboBoxComponent,
     TerminoComponent,
     ConsultaComponent,
+    PadFirmaComponent,
   ],
 })
 export class UtilidadesModule {}

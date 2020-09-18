@@ -2908,7 +2908,7 @@ html.no-scroll body {
 
 .emerix-page .page-billings .dropdown-title::after {
   top: .4rem;
-  right: .4rem;
+  right: .8rem; /*CAMBIO NICO*/
 }
 
 .emerix-page .page-billings.billings-home .dropdown-title::after {

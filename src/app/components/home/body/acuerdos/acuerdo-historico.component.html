@@ -21,7 +21,7 @@
         <ul id="requested_select" data-value="6 meses">
           <div *ngIf="banderaInput === 1">
             <li (click)="seleccionarFiltroFecha(12)">
-              <div class="selectable">último año</div>
+              <div class="selectable">Último año</div>
             </li>
             <li (click)="seleccionarFiltroFecha(6)">
               <div class="selectable">6 meses</div>
@@ -36,7 +36,7 @@
               <div class="selectable">6 meses</div>
             </li>
             <li (click)="seleccionarFiltroFecha(12)">
-              <div class="selectable">último año</div>
+              <div class="selectable">Último año</div>
             </li>
             <li (click)="seleccionarFiltroFecha(1)">
               <div class="selectable last">1 mes</div>
@@ -48,7 +48,7 @@
               <div class="selectable last">1 mes</div>
             </li>
             <li (click)="seleccionarFiltroFecha(12)">
-              <div class="selectable">último año</div>
+              <div class="selectable">Último año</div>
             </li>
             <li (click)="seleccionarFiltroFecha(6)">
               <div class="selectable">6 meses</div>
@@ -61,7 +61,7 @@
     </div>
 
     <div class="box box-table-container">
-      <div class="table-container">
+      <div class="table-container" *ngIf="Acuerdos?.length > 0">
         <table class="table selectable plans-table" width="100%" border="0">
           <tbody>
             <tr class="table-header">
@@ -156,7 +156,7 @@
 
                 <div
                   class="overview flex-column full-width"
-                  *ngIf="MostrarDetalle"
+                  
                 >
                   <div class="flex-row full-width flex-column-on-mobile">
                     <div class="col-1-2 text-small full-width-mobile">
@@ -270,6 +270,11 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div *ngIf="Acuerdos?.length === 0 || Acuerdos === undefined">
+        <p class="page-subtitle text-center">
+          No ha realizado ningun acuerdo ni refinanciacion.
+        </p>
       </div>
     </div>
   </div>

@@ -29,6 +29,7 @@
     "ng-recaptcha": "^5.0.0",
     "pdfmake": "^0.1.66",
     "rxjs": "~6.5.5",
+    "signature_pad": "^3.0.0-beta.3",
     "sweetalert2": "^9.15.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
