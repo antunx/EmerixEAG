@@ -2255,6 +2255,10 @@ html.no-scroll body {
   color: #3C3C3B;
 }
 
+.emerix-page .success img {
+  max-width: 250px;
+}
+
 @media all and (max-width: 1024px) {
   .emerix-page .success img {
     max-width: 70%;
@@ -2679,6 +2683,7 @@ html.no-scroll body {
   right: 0;
   min-width: 18.750rem;
   background-color: #fbfbfb;
+  border-radius: 5px;
 }
 
 .emerix-page .topbar .notifications-menu .dropdown-target ul {
@@ -2930,6 +2935,15 @@ html.no-scroll body {
   .emerix-page .page-billings.billings-1 .dropdown-target {
     overflow: visible;
   }
+  .emerix-page .page-billings.billings-1 .dropdown-target .btn {
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .page-billings.billings-1 .dropdown-target {
+    display: block;
+  }
 }
 
 @media all and (max-width: 1024px) {
@@ -3057,8 +3071,17 @@ html.no-scroll body {
     margin-right: 0;
   }
   .emerix-page .page-billings .dropdown-target {
+    max-height: none;
+  }
+}
+
+@media all and (max-width: 1024px) and (min-width: 1025px) {
+  .emerix-page .page-billings .dropdown-target {
     display: block;
   }
+}
+
+@media all and (max-width: 1024px) {
   .emerix-page .page-billings .card-global-wrapper {
     position: absolute;
     top: 0;
@@ -3069,6 +3092,9 @@ html.no-scroll body {
     top: 1rem;
     right: 1rem;
   }
+  .emerix-page .page-billings .special-mobile-selectable-box .input-wrapper {
+    margin-top: -0.45rem;
+  }
   .emerix-page .page-billings input:not(:checked) + .card-global-wrapper + .dropdown-target {
     max-height: 2rem;
   }
@@ -3076,6 +3102,14 @@ html.no-scroll body {
 
 .emerix-page .dialog-container.billing-dialog {
   padding: 0;
+}
+
+@media all and (max-width: 1024px) {
+  .emerix-page .dialog-container.billing-dialog {
+    max-height: 100vh;
+    height: 100vh;
+    border-radius: 0;
+  }
 }
 
 .emerix-page .billing-dialog {
@@ -3104,8 +3138,9 @@ html.no-scroll body {
   overflow: hidden;
   overflow-y: hidden;
   overflow-y: auto;
-  max-height: calc(100vh - 6rem);
+  max-height: calc(100vh - 2rem);
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .emerix-page .billing-dialog .btn {
@@ -3119,7 +3154,8 @@ html.no-scroll body {
 }
 
 .emerix-page .billing-dialog .table-container .table td {
-  height: 2.5rem;
+  height: 42px;
+  min-height: 42px;
 }
 
 .emerix-page .billing-dialog .table-container .table td:first-child {
@@ -3415,6 +3451,10 @@ html.no-scroll body {
   }
 }
 
+.emerix-page .page-logs.promises-logs .logs-table .last-row {
+  position: static;
+}
+
 .emerix-page .page-logs .logs-table .table-header td {
   align-items: center;
   justify-content: flex-start;
@@ -3663,10 +3703,12 @@ html.no-scroll body {
 }
 
 @media all and (max-width: 1024px) {
-  .emerix-page .page-home .products-table td {
+  .emerix-page .page-home .products-table td,
+  .emerix-page .page-home .plans-table td {
     min-height: 32px;
   }
-  .emerix-page .page-home .products-table td img {
+  .emerix-page .page-home .products-table td img,
+  .emerix-page .page-home .plans-table td img {
     max-width: 1.5rem;
   }
 }
@@ -3740,6 +3782,10 @@ html.no-scroll body {
   .emerix-page .page-home .promises-table .table.selectable .dropdown-target li {
     padding: .25rem 0;
     margin-bottom: 0;
+  }
+  .emerix-page .page-home .promises-table .table.selectable .dropdown-target li:before {
+    content: "•"; /* Merge kike: verificar si es correcto*/
+    margin-right: .5rem;
   }
 }
 

@@ -1,4 +1,4 @@
-<div class="dialog-container plans-dialog" role="dialog">
+<div class="dialog-container billing-dialog" role="dialog">
   <a class="close-btn">
     <img src="assets/images/ui/close-btn.svg" alt="Close" />
   </a>
@@ -22,7 +22,7 @@
               <td class="col-1-6 text-center">
                 {{ "Traduct.fecha_vencimiento" | translate }}
               </td>
-              <td class="col-1-6 text-center" *ngIf="tieneCuotas">
+              <td class="col-1-6 text-center" *ngIf="tieneCuotas" [ngClass]="{ 'desktop-only': EsAcuerdo === false }">
                 {{ "Traduct.estado" | translate }}
               </td>
               <td class="col-1-6 text-center" *ngIf="EsAcuerdo === false">
