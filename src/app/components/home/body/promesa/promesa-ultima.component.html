@@ -92,10 +92,20 @@
 
 <section class="page-plans">
   <h2>{{ "Traduct.ultimas_promesas" | translate }}</h2>
-  <div class="box box-table-container">
+  <div class="box" *ngIf="promesas?.length < 1">
+    <div class="text-center">
+      <img src="assets/images/sections/home/promesas.svg" alt="">
+      <p>{{ "Traduct.no_hay_promesa" | translate }}</p>
+    </div>
+    <hr>
+    <div class="wide-link">
+      <a [routerLink]="['/home/promesa']">{{ "Traduct.generar_una_promesa" | translate }}</a>
+    </div>
+  </div>
+  <div class="box box-table-container" *ngIf="promesas?.length != 0 && promesas != undefined">
     <div
       class="table-container"
-      *ngIf="promesas?.length != 0 && promesas != undefined"
+
     >
       <table class="table selectable plans-table" width="100%" border="0">
         <tbody>
@@ -193,10 +203,10 @@
         </tbody>
       </table>
     </div>
-    <div *ngIf="promesas?.length === 0 || promesas === undefined">
+    <!-- <div *ngIf="promesas?.length === 0 || promesas === undefined">
       <p class="page-subtitle text-center">
         No ha realizado ninguna promesa de pago.
       </p>
-    </div>
+    </div> -->
   </div>
 </section>

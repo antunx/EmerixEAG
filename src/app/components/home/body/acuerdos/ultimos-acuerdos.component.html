@@ -1,12 +1,22 @@
 <h2>{{ 'Traduct.planes_de_pago' | translate }}</h2>
-<div class="box">
-   <div *ngIf="Acuerdos?.length === 0 || Acuerdos === undefined">
+<div class="box" *ngIf="Acuerdos?.length === 0 || Acuerdos === undefined">
+  <div class="text-center">
+    <img src="assets/images/sections/home/planes.svg" alt="">
+    <p>{{ "Traduct.no_hay_acuerdo" | translate }}</p>
+  </div>
+  <hr>
+  <div class="wide-link">
+    <a [routerLink]="['/home/acuerdos']">{{ "Traduct.generar_un_plan" | translate }}</a>
+  </div>
+</div>
+<div class="box" *ngIf="Acuerdos?.length != 0 && Acuerdos != undefined">
+   <!-- <div *ngIf="Acuerdos?.length === 0 || Acuerdos === undefined">
     <div class="text-center">
       <img src="assets/images/sections/home/promesas.svg" alt="">
       <p>{{ "Traduct.no_hay_acuerdo" | translate }}</p>
     </div>
-   </div>
-   <div class="table-container" *ngIf="Acuerdos?.length != 0 && Acuerdos != undefined">
+   </div> -->
+   <div class="table-container" >
       <table class="table selectable" width="100%" border="0">
        <tbody>
           <tr class="" *ngFor="let Acuerdo of Acuerdos">
